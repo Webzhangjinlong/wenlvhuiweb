@@ -1,9 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -13,7 +7,6 @@
   		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   		<link rel="stylesheet" href="layui/css/layui.css"  media="all">
   		<script src="layui/layui.js"></script>
-  		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 	</head>
 	<style type="text/css">
 		td{
@@ -29,71 +22,67 @@
  			<hr style="background: red; height: 2px">
  		</div>
  		<div id="tab1">
-
- 			<table id="tab" class="layui-table" lay-skin="line">
+ 			<table class="layui-table" lay-skin="line">
  				<tr style="font-weight: bold;">
- 					<td>序111号</td>
+ 					<td>序号</td>
  					<td>标题</td>
- 					<td>状111态</td>
- 					<td>来11源</td>
+ 					<td>状态</td>
+ 					<td>来源</td>
  					<td>转发数</td>
- 					<td>浏11览量</td>
+ 					<td>浏览量</td>
  					<td>活动状态</td>
  					<td>活动种类</td>
- 					<td>报名11时间</td>
+ 					<td>报名时间</td>
  					<td>活动时间</td>
  					<td>活动地点</td>
  					<td>参与人数</td>
  					<td>操作</td>
  				</tr>
- 				<c:forEach items="${policyList}" var="policyList"  >
-		 				<tr style="font-weight: bold;">
-		 					<td>1</td>
-		 					<td>${ policyList.title}</td>
-		 					<td>${ policyList.title}</td>
-		 					<td>${ policyList.title}</td>
-		 					<td>${ policyList.title}</td>
-		 					<td>${ policyList.title}</td>
-		 					<td>${ policyList.title}</td>
-		 					<td>${ policyList.title}</td>
-		 					<td>${ policyList.title}</td>
-		 					<td>${ policyList.textType}</td>
-		 					<td>${ policyList.textType}</td>
-		 					<td>${ policyList.textType}</td>
-		 					<td>${ policyList.textType}</td>
-		 					<c:if test="${policyList.status==1 }">
-		 						<td>完成</td>
-		 					</c:if>
-		 					<c:if test="${policyList.status==2 }">
-		 						<td>weiwancc </td>
-		 					</c:if>
-		 				</tr>
- 				</c:forEach>
+ 				<tr>
+ 					<td>1</td>
+ 					<td>习近平臭流氓</td>
+ 					<td>转发</td>
+ 					<td>百度</td>
+ 					<td>10086</td>
+ 					<td>1008611</td>
+ 					<td id="state">&nbsp;</td>
+ 					<script>
+ 						var a = document.getElementById("state").value;
+ 						if(a == 1){
+ 							&nbsp="进行";
+ 						}else {
+ 							&nbsp="未进行";
+ 						}
+ 					</script>
+ 					<td>害民</td>
+ 					<td>8-1</td>
+ 					<td>8-2</td>
+ 					<td>宁夏银川</td>
+ 					<td>13亿</td>
+ 					<td>
+ 						<button class="layui-btn layui-btn-sm layui-btn-warm" onclick="update();">修改</button>
+ 						<button class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
+ 					</td>
+ 				</tr>
 			</table>
+			<div id="test1"style="margin-left: 900px">
+	</div>
  		</div>
-
-	<script type="text/javascript">
-
-       /*  $(function(){
-            console.log("页面初始化");
-            $.ajax({
-                url: "policy/getpolicyList",
-                type: "GET",
-                dataType: "json",
-                success: function(data){
-                	console.log(">>>>>>>>>>>>>",data);
-					/*这个方法里是ajax发送请求成功之后执行的代码*/
-                    showData(data);//我们仅做数据展示
-                },
-                error: function(msg){
-                    alert("ajax连接异常："+msg);
-                }
-            });
-        });
- */
-
-	</script>
-
-
  	</body>
+ 	<script type="text/javascript">
+ 		function update(){
+ 			window.location.href="tagAdd.html"
+ 		}
+ 	</script>
+ 	<script>
+layui.use('laypage', function(){
+  var laypage = layui.laypage;
+  
+  //执行一个laypage实例
+  laypage.render({
+    elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
+    ,count: 100 //数据总数，从服务端得到
+  });
+});
+</script>
 </html>

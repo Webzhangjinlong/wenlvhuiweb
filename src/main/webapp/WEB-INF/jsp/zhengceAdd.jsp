@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 	<head>
@@ -99,10 +98,6 @@ pageEncoding="UTF-8"%>
 		    		<button class="layui-btn layui-btn-sm layui-btn-danger">确定修改</button>
 		    	</div>
 			</form>
-			<div style="margin-left: 690px; margin-top: -30px">
- 			</div>
- 			<div style="margin-left: 443px; margin-top: -30px">
- 			</div>
  		</div>
     <script type="text/javascript" src="js/wangEditor.min.js"></script>
     <script type="text/javascript">

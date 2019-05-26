@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 	<head>
@@ -58,11 +57,24 @@ pageEncoding="UTF-8"%>
  					</td>
  				</tr>
 			</table>
+			<div id="test1"style="margin-left: 900px">
+				</div>
  		</div>
  	</body>
  	<script>
  		function upDate(){
- 			window.location.href="hotelAdd.jsp";
+ 			window.location.href="hotelAdd.html";
  		}
  	</script>
+ 	<script>
+layui.use('laypage', function(){
+  var laypage = layui.laypage;
+  
+  //执行一个laypage实例
+  laypage.render({
+    elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
+    ,count: 100 //数据总数，从服务端得到
+  });
+});
+</script>
 </html>

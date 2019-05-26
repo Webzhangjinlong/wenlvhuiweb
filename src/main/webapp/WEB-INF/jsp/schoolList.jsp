@@ -11,55 +11,39 @@ pageEncoding="UTF-8"%>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="layui/css/layui.css"  media="all">
   <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
-  <style type="text/css">
-  	table{
-  		table-layout: fixed;
-  	}
-  	td{
-  	width:100%;
-  	word-break:keep-all;/* 不换行 */
-    white-space:nowrap;/* 不换行 */
-    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
-    text-overflow:ellipsis;
-    }
-  </style>
 </head>
 <body>
 <div style="margin-top: 10px">
  			<font style="color: #000; font-size: 12px; margin-left: 10px">
- 				★ 匠人列表
+ 				★ 学校列表
  			</font>
  			<br>
  			<hr style="background: red; height: 2px">
  		</div>
  <div style="margin-top: 20px;">
-	<table class="layui-table" lay-skin="line,row" style="text-align: center; overflow: hidden;">
+	<table class="layui-table" lay-skin="line,row" style="text-align: center;">
  				<tr style="font-weight: bold;">
  					<td style="width: 5%">编号</td>
- 					<td style="width: 10%">匠人名称</td>
- 					<td style="width: 10%">匠人标语</td>
- 					<td style="width: 6%">省</td>
+ 					<td style="width: 10%">机构名称</td>
+ 					<td style="width: 10%">机构类型</td>
+ 					<td style="width: 10%">联系电话</td>
+ 					<td style="width: 5%">省</td>
  					<td style="width: 5%">市</td>
- 					<td style="width: 7%">区</td>
- 					<td style="width: 7%">经度</td>
- 					<td style="width: 7%">纬度</td>
+ 					<td style="width: 5%">区</td>
  					<td style="width: 15%">详细地址</td>
- 					<td style="width: 10%">创建时间</td>
- 					<td style="width: 8%">创建人</td>
+ 					<td style="width: 15%">创建时间</td>
  					<td style="width: 10%">操作</td>
  				</tr>
  				<tr>
  					<td>1</td>
  					<td>Blue shit</td>
  					<td>挖机</td>
+ 					<td>1389595959</td>
  					<td>宁夏</td>
  					<td>银川</td>
  					<td>金凤区</td>
- 					<td>12315</td>
- 					<td>56464</td>
- 					<td>北京路上海路向南一百米dsadsadsadasdasdsadsa萨达萨达萨达萨达撒旦撒旦</td>
+ 					<td>左拐右拐</td>
  					<td>2016-05-21</td>
- 					<td>耿宝大大</td>
  					<td>
  						<button class="layui-btn layui-btn-sm layui-btn-warm" onclick="foodAdd()">修改</button>
  						<button class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
