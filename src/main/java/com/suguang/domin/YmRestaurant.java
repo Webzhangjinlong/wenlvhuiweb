@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 食物表
  */
-public class YmRestaurantTbl  extends  YmEntityTbl{
+public class YmRestaurant extends YmEntity {
 	    Integer   id  ;// int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
 	    String restaurantType    ;//int(11) DEFAULT NULL COMMENT '餐厅分类    1：小吃  2：火锅  （后续如果有继续增加）',
 	    Integer restaurantTag  ;//  varchar(255) DEFAULT NULL COMMENT '店铺标签   必吃 / 特色',
@@ -28,7 +28,7 @@ public class YmRestaurantTbl  extends  YmEntityTbl{
 	    Integer comment_num;   //评论数
 	    Integer up_num;		//点赞数
 	    
-	    List<YmFoodTbl>  foodList = new ArrayList<YmFoodTbl>();
+	    List<YmFood>  foodList = new ArrayList<YmFood>();
 	    
 	    
 	    
@@ -40,10 +40,10 @@ public class YmRestaurantTbl  extends  YmEntityTbl{
 		public void setAverageConsumption(Integer averageConsumption) {
 			this.averageConsumption = averageConsumption;
 		}
-		public List<YmFoodTbl> getFoodList() {
+		public List<YmFood> getFoodList() {
 			return foodList;
 		}
-		public void setFoodList(List<YmFoodTbl> foodList) {
+		public void setFoodList(List<YmFood> foodList) {
 			this.foodList = foodList;
 		}
 		public Integer getId() {
@@ -148,15 +148,7 @@ public class YmRestaurantTbl  extends  YmEntityTbl{
 		public void setUp_num(Integer up_num) {
 			this.up_num = up_num;
 		}
-		@Override
-		public String toString() {
-			return "YmRestaurantTbl [id=" + id + ", restaurantType=" + restaurantType + ", restaurantTag="
-					+ restaurantTag + ", restaurantName=" + restaurantName + ", province=" + province + ", city=" + city
-					+ ", area=" + area + ", addrDetail=" + addrDetail + ", starClass=" + starClass + ", restaurantImg="
-					+ restaurantImg + ", restaurantDetail=" + restaurantDetail + ", longitude=" + longitude
-					+ ", latitude=" + latitude + ", createDate=" + createDate + ", createUser=" + createUser
-					+ ", comment_num=" + comment_num + ", up_num=" + up_num + "]";
-		}
+
 	    
 	    
 	  

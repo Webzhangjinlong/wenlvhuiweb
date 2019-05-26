@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * 图片表
  */
-public class YmImageTbl {
+public class YmImage {
 
 	Integer id;// int(11) NOT NULL,
 	Integer imgType;// int(255) DEFAULT NULL COMMENT '图片类型 1:空间 2：活动 3：艺人 4：培训机构',
@@ -89,12 +89,7 @@ public class YmImageTbl {
 	public void setPaixu(Integer paixu) {
 		this.paixu = paixu;
 	}
-	@Override
-	public String toString() {
-		return "YmImageTbl [id=" + id + ", imgType=" + imgType + ", imageType=" + imageType + ", imgName=" + imgName
-				+ ", pid=" + pid + ", imgUrl=" + imgUrl + ", upDate=" + upDate + ", backupField1=" + backupField1
-				+ ", paixu=" + paixu + "]";
-	}
+
 	
 	
 

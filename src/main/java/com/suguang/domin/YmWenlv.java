@@ -4,7 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-public class YmWenlv  extends YmEntityTbl{
+public class YmWenlv  extends YmEntity {
     private Integer id;
 
     private Integer titleType;

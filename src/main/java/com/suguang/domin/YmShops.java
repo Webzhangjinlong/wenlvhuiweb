@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class YmShopsTbl {
+public class YmShops {
 
 	Integer  id  ;
 	String   shopsName  ;
@@ -26,13 +26,13 @@ public class YmShopsTbl {
 	Integer product_num;
 	Integer up_num;
 
-	List<YmProductTbl> productList = new ArrayList<YmProductTbl>(); // 商品集合
+	List<YmProduct> productList = new ArrayList<YmProduct>(); // 商品集合
 
-	List<YmUpTbl> upList = new ArrayList<YmUpTbl>(); // 点赞集合
+	List<YmUp> upList = new ArrayList<YmUp>(); // 点赞集合
 
-	List<YmExperienceTbl>  experienceList= new ArrayList<YmExperienceTbl>(); // 经历集合
+	List<YmExperience>  experienceList= new ArrayList<YmExperience>(); // 经历集合
 	
-	List<YmImageTbl> videoList = new ArrayList<YmImageTbl>(); // 图片或者视频
+	List<YmImage> videoList = new ArrayList<YmImage>(); // 图片或者视频
 
 	public Integer getId() {
 		return id;
@@ -162,48 +162,39 @@ public class YmShopsTbl {
 		this.up_num = up_num;
 	}
 
-	public List<YmProductTbl> getProductList() {
+	public List<YmProduct> getProductList() {
 		return productList;
 	}
 
-	public void setProductList(List<YmProductTbl> productList) {
+	public void setProductList(List<YmProduct> productList) {
 		this.productList = productList;
 	}
 
-	public List<YmUpTbl> getUpList() {
+	public List<YmUp> getUpList() {
 		return upList;
 	}
 
-	public void setUpList(List<YmUpTbl> upList) {
+	public void setUpList(List<YmUp> upList) {
 		this.upList = upList;
 	}
 
-	public List<YmExperienceTbl> getExperienceList() {
+	public List<YmExperience> getExperienceList() {
 		return experienceList;
 	}
 
-	public void setExperienceList(List<YmExperienceTbl> experienceList) {
+	public void setExperienceList(List<YmExperience> experienceList) {
 		this.experienceList = experienceList;
 	}
 
-	public List<YmImageTbl> getVideoList() {
+	public List<YmImage> getVideoList() {
 		return videoList;
 	}
 
-	public void setVideoList(List<YmImageTbl> videoList) {
+	public void setVideoList(List<YmImage> videoList) {
 		this.videoList = videoList;
 	}
 
-	@Override
-	public String toString() {
-		return "YmShopsTbl [id=" + id + ", shopsName=" + shopsName + ", shopsSlogan=" + shopsSlogan + ", shopsDetail="
-				+ shopsDetail + ", imgUrl=" + imgUrl + ", province=" + province + ", city=" + city + ", area=" + area
-				+ ", addrDetail=" + addrDetail + ", longitude=" + longitude + ", latitude=" + latitude + ", createDate="
-				+ createDate + ", createUser=" + createUser + ", is_up=" + is_up + ", product_num=" + product_num
-				+ ", up_num=" + up_num + ", productList=" + productList + ", upList=" + upList + ", experienceList="
-				+ experienceList + ", videoList=" + videoList + "]";
-	}
-	
+
 }
 	
 

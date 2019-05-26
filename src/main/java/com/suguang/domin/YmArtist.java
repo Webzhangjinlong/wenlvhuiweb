@@ -3,7 +3,7 @@ package com.suguang.domin;
 import java.util.ArrayList;
 import java.util.List;
 
-public class YmArtist  extends YmEntityTbl {
+public class YmArtist  extends YmEntity {
     private Integer id;
 
     private Integer artistType;
@@ -24,20 +24,20 @@ public class YmArtist  extends YmEntityTbl {
 
 
     private List<YmArtist> commentList= new ArrayList<YmArtist>();
-    private List<YmImageTbl> videoList = new ArrayList<YmImageTbl>();
-    private List<YmExperienceTbl> experienceList = new ArrayList<YmExperienceTbl>();
-    private List<YmImageTbl> imgList = new ArrayList<YmImageTbl>();
+    private List<YmImage> videoList = new ArrayList<YmImage>();
+    private List<YmExperience> experienceList = new ArrayList<YmExperience>();
+    private List<YmImage> imgList = new ArrayList<YmImage>();
     
     
     
     
     
     
-    public List<YmImageTbl> getImgList() {
+    public List<YmImage> getImgList() {
 		return imgList;
 	}
 
-	public void setImgList(List<YmImageTbl> imgList) {
+	public void setImgList(List<YmImage> imgList) {
 		this.imgList = imgList;
 	}
 
@@ -61,11 +61,11 @@ public class YmArtist  extends YmEntityTbl {
 		return commentList;
 	}
 
-	public List<YmImageTbl> getVideoList() {
+	public List<YmImage> getVideoList() {
 		return videoList;
 	}
 
-	public List<YmExperienceTbl> getExperienceList() {
+	public List<YmExperience> getExperienceList() {
 		return experienceList;
 	}
 
@@ -129,12 +129,12 @@ public class YmArtist  extends YmEntityTbl {
         this.commentList = commentList;
     }
 
-    public void setVideoList(List<YmImageTbl> videoList) {
+    public void setVideoList(List<YmImage> videoList) {
         this.videoList = videoList;
     }
 
 
-    public void setExperienceList(List<YmExperienceTbl> experienceList) {
+    public void setExperienceList(List<YmExperience> experienceList) {
         this.experienceList = experienceList;
     }
 }

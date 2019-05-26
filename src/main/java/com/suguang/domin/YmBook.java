@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 图书表
  */
-public class YmBookTbl extends YmEntityTbl {
+public class YmBook extends YmEntity {
 	
 	    Integer id  ;// int(11) NOT NULL COMMENT '主键',
 	    String bookName  ;//  varchar(255) DEFAULT NULL COMMENT '书名',
@@ -31,8 +31,8 @@ public class YmBookTbl extends YmEntityTbl {
 	    
 	    YmUser user = new YmUser();
 	    
-	    List<YmCommentTbl> commentList = new ArrayList<YmCommentTbl>();
-	    List<YmDataDictionaryTbl> tagList = new ArrayList<YmDataDictionaryTbl>();
+	    List<YmComment> commentList = new ArrayList<YmComment>();
+	    List<YmDataDictionary> tagList = new ArrayList<YmDataDictionary>();
 	    
 	    
 	    
@@ -127,28 +127,20 @@ public class YmBookTbl extends YmEntityTbl {
 		public void setRecommendClass(Integer recommendClass) {
 			this.recommendClass = recommendClass;
 		}
-		public List<YmCommentTbl> getCommentList() {
+		public List<YmComment> getCommentList() {
 			return commentList;
 		}
-		public void setCommentList(List<YmCommentTbl> commentList) {
+		public void setCommentList(List<YmComment> commentList) {
 			this.commentList = commentList;
 		}
 
-		public List<YmDataDictionaryTbl> getTagList() {
+		public List<YmDataDictionary> getTagList() {
 			return tagList;
 		}
-		public void setTagList(List<YmDataDictionaryTbl> tagList) {
+		public void setTagList(List<YmDataDictionary> tagList) {
 			this.tagList = tagList;
 		}
-		@Override
-		public String toString() {
-			return "YmBookTbl [id=" + id + ", bookName=" + bookName + ", bookAuther=" + bookAuther + ", publishDate="
-					+ publishDate + ", bookDetail=" + bookDetail + ", imgUrl=" + imgUrl + ", sex=" + sex + ", bookTag="
-					+ bookTag + ", bookPrice=" + bookPrice + ", recommendUser=" + recommendUser + ", recommendedNumber="
-					+ recommendedNumber + ", createDate=" + createDate + ", indexShow=" + indexShow
-					+ ", recommendClass=" + recommendClass + ", commentList=" + commentList + ", dataList=" + tagList
-					+ "]";
-		}
+
 	    
 	    
 	    

@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * 食物表
  */
-public class YmCommentTbl extends  YmEntityTbl {
+public class YmComment extends YmEntity {
 	
 	   Integer id ;// int(11) NOT NULL,
 	   Integer pid ;// int(11) DEFAULT NULL COMMENT '评论的文章id',
@@ -82,11 +82,7 @@ public class YmCommentTbl extends  YmEntityTbl {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	@Override
-	public String toString() {
-		return "YmCommentTbl [id=" + id + ", pid=" + pid + ", pidType=" + pidType + ", userid=" + userid
-				+ ", createTime=" + createTime + ", comment=" + comment + "]";
-	}
+
 	
 	   
 	   

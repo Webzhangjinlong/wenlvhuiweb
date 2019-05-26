@@ -1,10 +1,11 @@
 package com.suguang.dao;
 
 
+
+
 import com.suguang.domin.YmUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
 
 /**
  * Created by 11491 on 2019/5/26.

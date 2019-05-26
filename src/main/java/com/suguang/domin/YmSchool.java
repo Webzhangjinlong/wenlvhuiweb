@@ -23,7 +23,7 @@ public class YmSchool {
     private Date createDate;
     
     
-    private List<YmUpTbl> upList;
+    private List<YmUp> upList;
     
     
     

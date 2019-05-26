@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * 点赞表
  */
-public class YmUpTbl {
+public class YmUp {
 		Integer id; //id
 		Integer textType ;//  int(11) DEFAULT NULL COMMENT '文章类别    1：餐厅   2：文旅政策   3：活动等  不够继续增加',
 		Integer  textId ;// int(11) DEFAULT NULL COMMENT '文章id',
@@ -41,11 +41,7 @@ public class YmUpTbl {
 		public void setCreateDate(Date createDate) {
 			this.createDate = createDate;
 		}
-		@Override
-		public String toString() {
-			return "YmUpTbl [id=" + id + ", textType=" + textType + ", textId=" + textId + ", userid=" + userid
-					+ ", createDate=" + createDate + "]";
-		}
+
 	
 	  
 }

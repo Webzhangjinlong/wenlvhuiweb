@@ -17,30 +17,12 @@ pageEncoding="UTF-8"%>
 	</script>
 	<body>
 		<div class="form">
-			<form method="post" name="myForm">
+			<form method="post" name="myForm" action="/user/login">
 				账号：<input type="text" name="username" id="username"><br>
 				密码：<input type="password" name="password" id="password"><br>
-				<input type="button" onclick="jump()" value="登陆"> 
+				<input type="submit" value="登陆"> 
 			</form>
 		</div>
-		<script type="text/javascript">
-			function jump(){
-			var a = document.getElementById("username").value;
-			var b = document.getElementById("password").value;
-				if(a == "admin" && b == "123"){
-				alert("欢迎超级管理员！")
-					window.location.href = "index.html"; 		
-				}else if(a == "tag" && b == "456"){
-				alert("欢迎老板！")
-					window.location.href = "hotelAddById.html"; 
-				}else if(a == "jiangren" && b == "123456"){
-				alert("欢迎手艺人！")
-					window.location.href = "craftsmanAddById.html"
-				}else {
-				alert("你是干嘛的？")
-					return false;
-				}
-			}
-		</script>
+
 	</body>
 </html>

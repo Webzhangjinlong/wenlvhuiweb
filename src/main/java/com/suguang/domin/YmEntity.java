@@ -1,7 +1,7 @@
 package com.suguang.domin;
 
 //实体类集成  SQL用
-public class YmEntityTbl {
+public class YmEntity {
 	Integer isOrder;//  是否 排序   1：是  2：否
 	String orderBy;  //  排序条件
 	Integer asc ;   //  降序/升序    1：降序  desc   2：升序  asc
@@ -46,11 +46,7 @@ public class YmEntityTbl {
 	public void setEndNum(Integer endNum) {
 		this.endNum = endNum;
 	}
-	@Override
-	public String toString() {
-		return "YmEntityTbl [isOrder=" + isOrder + ", orderBy=" + orderBy + ", asc=" + asc + ", limit=" + limit
-				+ ", startNum=" + startNum + ", endNum=" + endNum + "]";
-	}
+
 	
 
 	

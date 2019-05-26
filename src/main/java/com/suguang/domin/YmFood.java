@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 食物表
  */
-public class YmFoodTbl {
+public class YmFood {
 	
 	  Integer id ; // '主键id',
 	  Integer restaurantId ;// int(11) DEFAULT NULL COMMENT '店铺id',
@@ -20,7 +20,7 @@ public class YmFoodTbl {
 	  BigDecimal  foodPrice ;// decimal(10,2) DEFAULT NULL COMMENT '菜品价格',
 	  Integer upNum  ;//int(11) DEFAULT NULL COMMENT '推荐数',
 	  
-	  List<YmCommentTbl> commentList = new ArrayList<YmCommentTbl>();
+	  List<YmComment> commentList = new ArrayList<YmComment>();
 
 	  
 	  
@@ -105,20 +105,15 @@ public class YmFoodTbl {
 		this.upNum = upNum;
 	}
 
-	public List<YmCommentTbl> getCommentList() {
+	public List<YmComment> getCommentList() {
 		return commentList;
 	}
 
-	public void setCommentList(List<YmCommentTbl> commentList) {
+	public void setCommentList(List<YmComment> commentList) {
 		this.commentList = commentList;
 	}
 
-	@Override
-	public String toString() {
-		return "YmFoodTbl [id=" + id + ", restaurantId=" + restaurantId + ", foodType=" + foodType + ", foodName="
-				+ foodName + ", imgOrVideo=" + imgOrVideo + ", imgUrl=" + imgUrl + ", foodDetail=" + foodDetail
-				+ ", foodPrice=" + foodPrice + ", upNum=" + upNum + ", commentList=" + commentList + "]";
-	} 
+
 
 	  
 	  

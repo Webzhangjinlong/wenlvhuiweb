@@ -4,12 +4,17 @@ package com.suguang.domin;
 * */
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.ArrayList;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
-import java.util.List;
 
-public class YmPolicyTbl {
-    private Integer id;
+@Entity
+public class YmPolicy {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
     private String title;
 
@@ -37,15 +42,7 @@ public class YmPolicyTbl {
 
     private String backupField2;
 
-    private List<YmCommentTbl> commentList= new ArrayList<YmCommentTbl>();
 
-    public List<YmCommentTbl> getCommentList() {
-        return commentList;
-    }
-
-    public void setCommentList(List<YmCommentTbl> commentList) {
-        this.commentList = commentList;
-    }
 
     public Integer getId() {
         return id;

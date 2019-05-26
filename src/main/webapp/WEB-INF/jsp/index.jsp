@@ -9,10 +9,10 @@ pageEncoding="UTF-8"%>
 	</head>
  		<frameset rows="15%,85%" cols="*">
 		  	<frameset rows="100%" cols="*" frameborder="yes" border="1" framespacing="1">
-		  		<frame src="top.jsp" scrolling="no"/>
+		  		<frame src="/index/top" scrolling="no"/>
 		  	</frameset>
 		  	<frameset rows="*" cols="13%,87%">
-		  		<frame src="left.jsp" scrolling="no"/>
+		  		<frame src="/index/left" scrolling="no"/>
 		  		<frame scrolling="auto" noresize="" border="0" name="showframe" src="popleList.jsp"/>
 		  		<frame name="showframe" scrolling="auto"/>
 		  	</frameset>

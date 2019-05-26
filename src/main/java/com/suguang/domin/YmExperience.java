@@ -7,7 +7,7 @@ import java.sql.Timestamp;
  * Author liruifeng
  * Date  2019-05-06
  */
-public class YmExperienceTbl implements Serializable {
+public class YmExperience implements Serializable {
     private static final long serialVersionUID = 1L;
     private int id;
     private int experienceType;
@@ -16,7 +16,7 @@ public class YmExperienceTbl implements Serializable {
     private String experience;
 
 
-    public YmExperienceTbl(){
+    public YmExperience(){
     }
 
     public void setId (int id) {this.id = id;} 

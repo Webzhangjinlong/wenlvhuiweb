@@ -3,7 +3,7 @@ package com.suguang.domin;
 /**
  * 数据字典表
  */
-public class YmDataDictionaryTbl extends YmEntityTbl {
+public class YmDataDictionary extends YmEntity {
 	
 	    Integer id ;//   int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
 	    String dataType ;//   varchar(255) DEFAULT NULL COMMENT '数据类型   活动菜单  主页菜单  图书分类等',
@@ -54,11 +54,7 @@ public class YmDataDictionaryTbl extends YmEntityTbl {
 		public void setBackupField1(String backupField1) {
 			this.backupField1 = backupField1;
 		}
-		@Override
-		public String toString() {
-			return "YmDataDictionaryTbl [id=" + id + ", dataType=" + dataType + ", dataName=" + dataName + ", imageUrl="
-					+ imageUrl + ", paixu=" + paixu + ", dateil=" + dateil + ", backupField1=" + backupField1 + "]";
-		}
+
 		
 	    
 	    

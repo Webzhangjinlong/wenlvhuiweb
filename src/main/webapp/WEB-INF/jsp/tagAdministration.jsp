@@ -38,32 +38,31 @@
  					<td>参与人数</td>
  					<td>操作</td>
  				</tr>
- 				<tr>
- 					<td>1</td>
- 					<td>习近平臭流氓</td>
- 					<td>转发</td>
- 					<td>百度</td>
- 					<td>10086</td>
- 					<td>1008611</td>
- 					<td id="state">&nbsp;</td>
- 					<script>
- 						var a = document.getElementById("state").value;
- 						if(a == 1){
- 							&nbsp="进行";
- 						}else {
- 							&nbsp="未进行";
- 						}
- 					</script>
- 					<td>害民</td>
- 					<td>8-1</td>
- 					<td>8-2</td>
- 					<td>宁夏银川</td>
- 					<td>13亿</td>
- 					<td>
- 						<button class="layui-btn layui-btn-sm layui-btn-warm" onclick="update();">修改</button>
- 						<button class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
- 					</td>
- 				</tr>
+
+				<c:forEach items="${tagList}" var="tagList"  >
+					<tr style="font-weight: bold;">
+						<td>${ tagList.id}</td>
+						<td>${ tagList.title}</td>
+						<td>${ tagList.title}</td>
+						<td>${ tagList.title}</td>
+						<td>${ tagList.title}</td>
+						<td>${ tagList.title}</td>
+						<td>${ tagList.title}</td>
+						<td>${ tagList.title}</td>
+						<td>${ tagList.title}</td>
+						<td>${ tagList.textType}</td>
+						<td>${ tagList.textType}</td>
+						<td>${ tagList.textType}</td>
+						<td>${ tagList.textType}</td>
+						<c:if test="${tagList.status==1 }">
+							<td>完成</td>
+						</c:if>
+						<c:if test="${tagList.status==2 }">
+							<td>weiwancc </td>
+						</c:if>
+					</tr>
+				</c:forEach>
+
 			</table>
 			<div id="test1"style="margin-left: 900px">
 	</div>

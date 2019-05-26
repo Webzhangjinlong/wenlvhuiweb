@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Author liruifeng Date 2019-05-05
  */
-public class YmProductTbl implements Serializable {
+public class YmProduct implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer shopsId;
@@ -37,7 +37,7 @@ public class YmProductTbl implements Serializable {
 	
 	
 	
-	List<YmCommentTbl> commentList = new ArrayList<YmCommentTbl>(); // 商品集合
+	List<YmComment> commentList = new ArrayList<YmComment>(); // 商品集合
 
 	
 	public Integer getIsUp() {
@@ -96,15 +96,15 @@ public class YmProductTbl implements Serializable {
 		this.imgUrl = imgUrl;
 	}
 
-	public List<YmCommentTbl> getCommentList() {
+	public List<YmComment> getCommentList() {
 		return commentList;
 	}
 
-	public void setCommentList(List<YmCommentTbl> commentList) {
+	public void setCommentList(List<YmComment> commentList) {
 		this.commentList = commentList;
 	}
 
-	public YmProductTbl() {
+	public YmProduct() {
 	}
 
 	public void setId(Integer id) {
@@ -211,14 +211,7 @@ public class YmProductTbl implements Serializable {
 		return createUser;
 	}
 
-	@Override
-	public String toString() {
-		return "YmProductTbl [id=" + id + ", shopsId=" + shopsId + ", productName=" + productName + ", skuId=" + skuId
-				+ ", productPoint=" + productPoint + ", price=" + price + ", productDatile=" + productDatile
-				+ ", priceDq=" + priceDq + ", browse=" + browse + ", categoryId=" + categoryId + ", status=" + status
-				+ ", createDate=" + createDate + ", createUser=" + createUser + ", img_url=" + imgUrl
-				+ ", productList=" + commentList + "]";
-	}
+
 	
 	
 
