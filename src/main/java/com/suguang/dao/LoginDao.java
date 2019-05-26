@@ -11,6 +11,7 @@ import java.util.List;
  */
 public interface LoginDao extends JpaRepository<YmUser,Integer> {
     //根据密码账号判断
-    public YmUser findByNameAndPassword(String username, String password);
+
+    public YmUser getByPasswordAndUsername(String username,String password);
 
 }

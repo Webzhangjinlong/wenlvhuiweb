@@ -23,22 +23,25 @@ public class LoginController  {
 
     @RequestMapping(value = "/login")
     public String Userlogin(HttpServletRequest request){
-        YmUser ymUser = loginDao.findByNameAndPassword(request.getParameter("username"), request.getParameter("password"));
-        request.getSession().setAttribute("user", ymUser);
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        YmUser ymUser = loginDao.getByPasswordAndUsername(username,password);
+
+
         if(ymUser !=null){
             if(ymUser.getUserType()==3){
                 return "商家对应的主页面";
             }if(ymUser.getUserType() == 4){
                 //返回餐厅对应的主页
                 return "hotelAddById";
-            }if(ymUser.getUserType() == 9){
+            }if(ymUser.getUserType() == 1){
                 //返回管理员的主页
                 return "index";
             }
         }else{
             return "login";
         }
-        return "/";
+        return "login";
 
     }
 }
