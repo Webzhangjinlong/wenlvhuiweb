@@ -1,0 +1,91 @@
+{
+  "data": [
+    {
+      "text": "订单管理",
+      "icon": "&#xe620;",
+      "subset": [
+        {
+          "text": "订单查询",
+          "icon": "&#xe621;",
+          "href": "/order_inquiry_track"
+        },
+        {
+          "text": "待配送订单",
+          "icon": "&#xe621;",
+          "href": "/order_inquiry_wait"
+        },
+        {
+          "text": "订单配送完成",
+          "icon": "&#xe621;",
+          "href": "/order_inquiry_finish"
+        },
+        {
+          "text": "待分配订单",
+          "icon": "&#xe621;",
+          "href": "/order_inquiry_waitPei"
+        }
+      ]
+    },  {
+      "text": "综合管理",
+      "icon": "&#xe620;",
+      "subset": [
+        {
+          "text": "利润报表管理",
+          "icon": "&#xe621;",
+          "href": "/delivery_profit"
+        },
+        {
+          "text": "配送费管理",
+          "icon": "&#xe621;",
+          "href": "/delivery_charge"
+        },
+        {
+          "text": "提现审核管理",
+          "icon": "&#xe621;",
+          "href": "/delivery_shen"
+        },
+        {
+          "text": "提现审核完成",
+          "icon": "&#xe621;",
+          "href": "/delivery_feefinish"
+        },
+        {
+          "text": "销量统计",
+          "icon": "&#xe621;",
+          "href": "/order_sales"
+        }
+      ]
+    },  {
+      "text": "系统管理",
+      "icon": "&#xe620;",
+      "subset": [
+        {
+          "text": "用户管理",
+          "icon": "&#xe621;",
+          "href": "/getUserMangers"
+        },
+        {
+          "text": "角色管理",
+          "icon": "&#xe621;",
+          "href": "/role_managers"
+        },
+        {
+          "text": "权限管理",
+          "icon": "&#xe621;",
+          "href": "/authority_managers"
+        },
+        {
+          "text": "数据字典",
+          "icon": "&#xe621;",
+          "href": "/dict_managers"
+        },
+        {
+          "text": "菜单管理",
+          "icon": "&#xe621;",
+          "href": "/menu_managers"
+        }
+        
+      ]
+    }
+  ]
+}
