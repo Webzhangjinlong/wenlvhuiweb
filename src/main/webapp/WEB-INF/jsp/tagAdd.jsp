@@ -49,13 +49,13 @@ pageEncoding="UTF-8"%>
 						<div class="col-sm-2">
 						<select name="textType" value="${tagupdate.textType}" class="form-control">
 							<c:if test="${tagupdate.textType == 1}">
-								<option name="textType" value="">演出</option>
+								<option name="textType" value="1">演出</option>
 							</c:if>
 							<c:if test="${tagupdate.textType == 3}">
-								<option name="textType" value="">亲子</option>
+								<option name="textType" value="3">亲子</option>
 							</c:if>
 							<c:if test="${tagupdate.textType == 5}">
-								<option name="textType" value="">历史</option>
+								<option name="textType" value="5">历史</option>
 							</c:if>
 											<option>--请选择--</option>
 											<option value="1" name="textType">惠民</option>
@@ -70,21 +70,27 @@ pageEncoding="UTF-8"%>
 				<div class="form-group">
 					<label class="col-sm-1 control-label">活动来源:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text" name="source" value="" placeholder="请输入活动来源">
+						<input class="form-control" id="focusedInput" type="text" name="source" value="${tagupdate.source}" placeholder="请输入活动来源">
 					</div>
 						<label class="col-sm-1 control-label">创建类型:</label>
 						<div class="col-sm-2">
-						<select class="form-control">
+						<select name="status" value="${tagupdate.status}" class="form-control">
+							<c:if test="${tagupdate.status == 1}">
+								<option value="1" name="status">转发</option>
+							</c:if>
+							<c:if test="${tagupdate.status == 2}">
+								<option value="2" name="status">自写</option>
+							</c:if>
 									<option>--请选择--</option>
-											<option>转发</option>
-											<option>自写</option>
+											<option value="1" name="status">转发</option>
+											<option value="2" name="status">自写</option>
 							</select>
 					</div>
 				</div>
 				<div class="form-group" style="margin-top: ">
 					<label class="col-sm-1 control-label">参与人数:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" name="peopleNum" type="text"  value="" placeholder="请输入参与人数">
+						<input class="form-control" id="focusedInput" name="peopleNum" type="text"  value="${tagupdate.peopleNum}" placeholder="请输入参与人数">
 					</div>
 						<label class="col-sm-1 control-label">活动状态:</label>
 						<div class="col-sm-2">

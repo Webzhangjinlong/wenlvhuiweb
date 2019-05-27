@@ -60,11 +60,16 @@ public class TagController extends BaseController {
         String id = request.getParameter("id");
         String title = request.getParameter("title");
         String textType = request.getParameter("textType");
+        String source = request.getParameter("source");
+        String status = request.getParameter("status");
+        String peopleNum = request.getParameter("peopleNum");
         YmPolicy ymPolicy = new YmPolicy();
         ymPolicy.setId(Integer.parseInt(id));
         ymPolicy.setTitle(title);
         ymPolicy.setTextType(Integer.parseInt(textType));
-        System.out.print("dfsdfsdfsdf:"+ymPolicy);
+        ymPolicy.setSource(source);
+        ymPolicy.setStatus(status);
+       // ymPolicy.setPeopleNum(Integer.parseInt(peopleNum));
         YmPolicy policy = tagDao.save(ymPolicy);
 
         model.addAttribute("policy",policy);

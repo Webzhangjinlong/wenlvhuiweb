@@ -32,6 +32,8 @@ public class YmPolicy {
 
     private String giveDefault;
 
+    private Integer peopleNum;
+
     private String cotent;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createDate;

@@ -46,8 +46,8 @@
 						<td>${ tag.id}</td>
 						<td>${ tag.title}</td>
 						<td>
-							<c:if test="${tag.status==1 }">完成</c:if>
-							<c:if test="${tag.status==2 }">未完成</c:if>
+							<c:if test="${tag.status==1 }">转发</c:if>
+							<c:if test="${tag.status==2 }">自写</c:if>
 						</td>
 						<td>${ tag.source}</td>
 						<td>${ tag.relay}</td>
@@ -76,7 +76,7 @@
             window.location.href="/tag/delete?id="+id;
         }
  	</script>
-	<
+
 	<script>
 		function updateById(id) {
 		    alert("666")
