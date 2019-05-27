@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -24,14 +25,18 @@ public class TagController extends BaseController {
     @RequestMapping("/list")
     @Override
     protected String getList(HttpServletRequest request, Model model) {
-//        List<YmPolicy> all = tagDao.findAll();
-//        model.addAttribute("tagList",all);
+        List<YmPolicy> all = tagDao.findAll();
+        model.addAttribute("tagList",all);
         return "tagAdministration";
     }
 
+    @RequestMapping("/delete")
     @Override
     protected String DeleteOne(HttpServletRequest request, Model model) {
-        return null;
+        String id = request.getParameter("id");
+        tagDao.deleteById(Integer.parseInt(id));
+
+        return "redirect:/tag/list";
     }
 
     @Override
@@ -39,8 +44,32 @@ public class TagController extends BaseController {
         return null;
     }
 
+    //返回修改页面，并且查询到需要修改的数据
+    @RequestMapping("/update")
     @Override
     protected String UpdataOne(HttpServletRequest request, Model model) {
-        return null;
+        String id = request.getParameter("id");
+        YmPolicy ymPolicy = tagDao.getById(Integer.parseInt(id));
+        model.addAttribute("tagupdate",ymPolicy);
+        return "tagAdd";
     }
+
+    //在修改页面直接对其进行修改，且保存修改数据
+    @RequestMapping("/tagAddById")
+    public String tagPreUpdate(HttpServletRequest request,Model model){
+        String id = request.getParameter("id");
+        String title = request.getParameter("title");
+        String textType = request.getParameter("textType");
+        YmPolicy ymPolicy = new YmPolicy();
+        ymPolicy.setId(Integer.parseInt(id));
+        ymPolicy.setTitle(title);
+        ymPolicy.setTextType(Integer.parseInt(textType));
+        System.out.print("dfsdfsdfsdf:"+ymPolicy);
+        YmPolicy policy = tagDao.save(ymPolicy);
+
+        model.addAttribute("policy",policy);
+        return "redirect:/tag/list";
+    }
+
+
 }

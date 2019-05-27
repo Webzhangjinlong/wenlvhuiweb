@@ -9,11 +9,11 @@ pageEncoding="UTF-8"%>
 		<meta name="renderer" content="webkit">
   		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  		<link rel="stylesheet" href="layui/css/layui.css"  media="all">
+  		<link rel="stylesheet" href="/layui/css/layui.css"  media="all">
   		<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
 		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  		<script src="layui/layui.js"></script>
+  		<script src="/layui/layui.js"></script>
 	</head>
 	<style type="text/css">
         .toolbar {
@@ -35,29 +35,42 @@ pageEncoding="UTF-8"%>
  			<hr style="background: red; height: 2px; margin-top: -3px">
  		</div>
  		<div>
-			<form class="form-horizontal" role="form" >
+			<form class="form-horizontal" role="form" action="/tag/tagAddById" method="post">
+				<div>
+					<input type="hidden" name="id" value="${tagupdate.id}">
+
+				</div>
 				<div class="form-group">
 					<label class="col-sm-1 control-label">活动名称:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入活动名称">
+						<input class="form-control" id="focusedInput" type="text"  name="title" value="${tagupdate.title}" placeholder="请输入活动名称">
 					</div>
 						<label class="col-sm-1 control-label">活动类别:</label>
 						<div class="col-sm-2">
-						<select class="form-control">
-									<option>--请选择--</option>
-											<option>惠民</option>
-											<option>演出</option>
-											<option>亲子</option>
-											<option>赛事</option>
-											<option>历史</option>
-											<option>社区</option>
+						<select name="textType" value="${tagupdate.textType}" class="form-control">
+							<c:if test="${tagupdate.textType == 1}">
+								<option name="textType" value="">演出</option>
+							</c:if>
+							<c:if test="${tagupdate.textType == 3}">
+								<option name="textType" value="">亲子</option>
+							</c:if>
+							<c:if test="${tagupdate.textType == 5}">
+								<option name="textType" value="">历史</option>
+							</c:if>
+											<option>--请选择--</option>
+											<option value="1" name="textType">惠民</option>
+											<option value="2" name="textType">演出</option>
+											<option value="3" name="textType">亲子</option>
+											<option value="4" name="textType">赛事</option>
+											<option value="5" name="textType">历史</option>
+											<option value="6" name="textType">社区</option>
 							</select>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-1 control-label">活动来源:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入活动来源">
+						<input class="form-control" id="focusedInput" type="text" name="source" value="" placeholder="请输入活动来源">
 					</div>
 						<label class="col-sm-1 control-label">创建类型:</label>
 						<div class="col-sm-2">
@@ -71,7 +84,7 @@ pageEncoding="UTF-8"%>
 				<div class="form-group" style="margin-top: ">
 					<label class="col-sm-1 control-label">参与人数:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入参与人数">
+						<input class="form-control" id="focusedInput" name="peopleNum" type="text"  value="" placeholder="请输入参与人数">
 					</div>
 						<label class="col-sm-1 control-label">活动状态:</label>
 						<div class="col-sm-2">
@@ -86,7 +99,7 @@ pageEncoding="UTF-8"%>
 				<div class="form-group">
 						<label class="col-sm-1 control-label">报名时间:</label>
 						<div class="col-sm-2">
-							<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入报名时间">
+							<input class="form-control" id="focusedInput" type="text" name="" value="" placeholder="请输入报名时间">
 						</div>
 						<label class="col-sm-1 control-label">活动时间:</label>
 						<div class="col-sm-2">
@@ -134,7 +147,7 @@ pageEncoding="UTF-8"%>
 		    	</div>
 		    	<div style="margin-top: 10px; margin-left: 600px;">
 		    		
-		    		<button class="layui-btn layui-btn-sm">确定添加</button>
+		    		<button type="submit" class="layui-btn layui-btn-sm" onclick="addOk();">确定添加</button>
 		    		<button class="layui-btn layui-btn-sm layui-btn-danger">确定修改</button>
 		    	</div>
 			</form>
@@ -144,28 +157,35 @@ pageEncoding="UTF-8"%>
  			</div>
  		</div>
     <script type="text/javascript" src="js/wangEditor.min.js"></script>
-    <script type="text/javascript">
-        var E = window.wangEditor;
-        var editor1 = new E('#div1', '#div2'); 
-        editor1.customConfig.uploadImgServer = '/upload';
-        editor1.create();
-    </script>
-    <script>
-		layui.use('upload', function(){
-		  var upload = layui.upload;
-		   
-		  //执行实例
-		  var uploadInst = upload.render({
-		    elem: '#test1' //绑定元素
-		    ,url: '/upload/' //上传接口
-		    ,done: function(res){
-		      //上传完毕回调
-		    }
-		    ,error: function(){
-		      //请求异常回调
-		    }
-		  });
-		});
-</script>
+    <%--<script type="text/javascript">--%>
+        <%--var E = window.wangEditor;--%>
+        <%--var editor1 = new E('#div1', '#div2'); --%>
+        <%--editor1.customConfig.uploadImgServer = '/upload';--%>
+        <%--editor1.create();--%>
+    <%--</script>--%>
+    <%--<script>--%>
+		<%--layui.use('upload', function(){--%>
+		  <%--var upload = layui.upload;--%>
+		   <%----%>
+		  <%--//执行实例--%>
+		  <%--var uploadInst = upload.render({--%>
+		    <%--elem: '#test1' //绑定元素--%>
+		    <%--,url: '/upload/' //上传接口--%>
+		    <%--,done: function(res){--%>
+		      <%--//上传完毕回调--%>
+		    <%--}--%>
+		    <%--,error: function(){--%>
+		      <%--//请求异常回调--%>
+		    <%--}--%>
+		  <%--});--%>
+		<%--});--%>
+<%--</script>--%>
 </body>
+<script>
+		function addOk() {
+			alert("修改完成");
+			window.location.href="/tag/list"
+        }
+
+</script>
 </html>
