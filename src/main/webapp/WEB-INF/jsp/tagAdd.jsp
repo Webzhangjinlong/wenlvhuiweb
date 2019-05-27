@@ -28,11 +28,11 @@ pageEncoding="UTF-8"%>
     </style>
 	<body>
 	<div style="margin-top: 5px">
- 			<font style="color: #000; font-size: 12px; margin-top: 10px; margin-left: 20px">
+		<font style="color: #000; font-size: 12px; margin-left: 10px">
  				★ 添加活动
  			</font>
  			<br>
- 			<hr style="background: red; height: 2px; margin-top: -3px">
+		<hr style="background: red; height: 2px; margin-top: 5px">
  		</div>
  		<div>
 			<form class="form-horizontal" role="form" action="/tag/tagAddById" method="post">
@@ -49,13 +49,22 @@ pageEncoding="UTF-8"%>
 						<div class="col-sm-2">
 						<select name="textType" value="${tagupdate.textType}" class="form-control">
 							<c:if test="${tagupdate.textType == 1}">
+								<option name="textType" value="1">惠民</option>
+							</c:if>
+							<c:if test="${tagupdate.textType == 2}">
 								<option name="textType" value="1">演出</option>
 							</c:if>
 							<c:if test="${tagupdate.textType == 3}">
 								<option name="textType" value="3">亲子</option>
 							</c:if>
+							<c:if test="${tagupdate.textType == 4}">
+								<option name="textType" value="1">赛事</option>
+							</c:if>
 							<c:if test="${tagupdate.textType == 5}">
 								<option name="textType" value="5">历史</option>
+							</c:if>
+							<c:if test="${tagupdate.textType == 6}">
+								<option name="textType" value="1">社区</option>
 							</c:if>
 											<option value="0" name="textType">--请选择--</option>
 											<option value="1" name="textType">惠民</option>
@@ -81,116 +90,122 @@ pageEncoding="UTF-8"%>
 							<c:if test="${tagupdate.status == 2}">
 								<option value="2" name="status">自写</option>
 							</c:if>
-									<option value="0" name="status">--请选择--</option>
+											<option value="0" name="status">--请选择--</option>
 											<option value="1" name="status">转发</option>
 											<option value="2" name="status">自写</option>
 							</select>
 					</div>
 				</div>
-				<div class="form-group" style="margin-top: ">
+				<div class="form-group" >
 					<label class="col-sm-1 control-label">参与人数:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" name="peopleNum" type="text"  value="${tagupdate.peopleNum}" placeholder="请输入参与人数">
+						<input class="form-control" id="focusedInput" name="peopleNum" type="text"  value="${ tagupdate.peopleNum}" placeholder="请输入参与人数">
 					</div>
 						<label class="col-sm-1 control-label">活动状态:</label>
 						<div class="col-sm-2">
-							<select class="form-control" >
-									<option value="0">--请选择--</option>
-											<option value="1" >未开启</option>
-											<option value="2" >进行中</option>
-											<option value="3" >结束</option>
+							<select name="giveDefault" value="${tagupdate.giveDefault}" class="form-control">
+								<c:if test="${tagupdate.giveDefault == 1}">
+									<option value="1" name="giveDefault">进行中</option>
+								</c:if>
+								<c:if test="${tagupdate.giveDefault == 2}">
+									<option value="2" name="giveDefault">已结束</option>
+								</c:if>
+								<c:if test="${tagupdate.giveDefault == 3}">
+									<option value="3" name="giveDefault">未开始</option>
+								</c:if>
+											<option value="0" name="giveDefault">--请选择--</option>
+											<option value="1" name="giveDefault">进行中</option>
+											<option value="2" name="giveDefault">已结束</option>
+											<option value="3" name="giveDefault">未开始</option>
 							</select>
 						</div>
 				</div>
 				<div class="form-group">
 						<label class="col-sm-1 control-label">报名时间:</label>
 						<div class="col-sm-2">
-							<input class="form-control" id="focusedInput" type="text" name="" value="" placeholder="请输入报名时间">
+							<input class="form-control" id="focusedInput" type="text" name="signDate" value="${tagupdate.signDate}" placeholder="年-月-日">
 						</div>
 						<label class="col-sm-1 control-label">活动时间:</label>
 						<div class="col-sm-2">
-							<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入活动时间">
+							<input class="form-control" id="focusedInput" type="text" name="policyDate" value="${tagupdate.policyDate}" placeholder="年-月-日">
 						</div>
 				</div>
 				<div class="form-group">
 						<label class="col-sm-1 control-label">详细地址:</label>
 						<div class="col-sm-5">
-							<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入详细地址">
+							<input class="form-control" id="focusedInput" type="text" name="policyAddr" value="${tagupdate.policyAddr}" placeholder="请输入详细地址">
 						</div>
 				</div>
 				<div class="form-group">
 						<label class="col-sm-1 control-label">活动奖品:</label>
 						<div class="col-sm-5">
-							<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入各奖项奖品">
+							<input class="form-control" id="focusedInput" type="text" name="prize" value="${tagupdate.prize}" placeholder="请输入各奖项奖品">
 						</div>
 				</div>
 				<div class="form-group">
 						<label class="col-sm-1 control-label">活动规则:</label>
 						<div class="col-sm-5">
-							<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入活动规则">
+							<input class="form-control" id="focusedInput" type="text" name="policyRule" value="${tagupdate.policyRule}" placeholder="请输入活动规则">
 						</div>
 				</div>
 				<div class="form-group">
 						<label class="col-sm-1 control-label">获奖规则:</label>
 						<div class="col-sm-5">
-							<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入获奖规则">
+							<input class="form-control" id="focusedInput" type="text" name="awardRules" value="${tagupdate.awardRules}" placeholder="请输入获奖规则">
 						</div>
 				</div>
 				<div class="form-group">
 						<label class="col-sm-1 control-label">活动宗旨:</label>
 						<div class="col-sm-5">
-							<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入活动宗旨">
+							<input class="form-control" id="focusedInput" type="text" name="policyPurpose" value="${tagupdate.policyPurpose}" placeholder="请输入活动宗旨">
 						</div>
 				</div>
 				<div style="margin-left: 22px;">
-				<label class="control-label">活动内容详情:</label><br>
+					<label class="control-label">活动内容详情:</label><br>
 				</div>
 				<div style="margin-left: 22px; margin-top: 10px">
-				    <div id="div1" class="toolbar"></div>
-					    <div style="padding: 5px 0; color: #ccc"></div>
-					    <div id="div2" class="text"> <!--可使用 min-height 实现编辑区域自动增加高度-->
-		    		</div>
-		    	</div>
+					<div id="div1" class="toolbar"></div>
+					<div style="padding: 5px 0; color: #ccc"></div>
+					<div id="div2" class="text">
+						<p name="cotent">${tagupdate.cotent}</p>
+					</div>
+				</div>
 		    	<div style="margin-top: 10px; margin-left: 600px;">
-		    		
-		    		<button type="submit" class="layui-btn layui-btn-sm" onclick="addOk();">确定添加</button>
+		    		<button type="submit" class="layui-btn layui-btn-sm">确定添加</button>
 		    		<button class="layui-btn layui-btn-sm layui-btn-danger">确定修改</button>
 		    	</div>
 			</form>
-			<div style="margin-left: 690px; margin-top: -30px">
- 			</div>
- 			<div style="margin-left: 443px; margin-top: -30px">
- 			</div>
  		</div>
-    <script type="text/javascript" src="js/wangEditor.min.js"></script>
-    <%--<script type="text/javascript">--%>
-        <%--var E = window.wangEditor;--%>
-        <%--var editor1 = new E('#div1', '#div2'); --%>
-        <%--editor1.customConfig.uploadImgServer = '/upload';--%>
-        <%--editor1.create();--%>
-    <%--</script>--%>
-    <%--<script>--%>
-		<%--layui.use('upload', function(){--%>
-		  <%--var upload = layui.upload;--%>
-		   <%----%>
-		  <%--//执行实例--%>
-		  <%--var uploadInst = upload.render({--%>
-		    <%--elem: '#test1' //绑定元素--%>
-		    <%--,url: '/upload/' //上传接口--%>
-		    <%--,done: function(res){--%>
-		      <%--//上传完毕回调--%>
-		    <%--}--%>
-		    <%--,error: function(){--%>
-		      <%--//请求异常回调--%>
-		    <%--}--%>
-		  <%--});--%>
-		<%--});--%>
-<%--</script>--%>
+    <script type="text/javascript" src="/js/wangEditor.js"></script>
+    <script type="text/javascript">
+        var E = window.wangEditor;
+        var editor1 = new E('#div1', '#div2');
+        editor1.customConfig.uploadImgShowBase64 = true;
+        editor1.create();
+        editor1.text.html(${tagupdate.cotent});
+    </script>
+    <script>
+		layui.use('upload', function(){
+		  var upload = layui.upload;
+
+		  //执行实例
+		  var uploadInst = upload.render({
+		    elem: '#test1' //绑定元素
+		    ,url: '/upload/' //上传接口
+		    ,done: function(res){
+		      //上传完毕回调
+		    }
+		    ,error: function(){
+		      //请求异常回调
+		    }
+		  });
+		});
+</script>
 </body>
 <script>
 		function addOk() {
 			alert("修改完成");
-			window.location.href="/tag/list"
+			window.location.href="/tag/list"  //你不应该点添加的嘛
         }
 
 </script>

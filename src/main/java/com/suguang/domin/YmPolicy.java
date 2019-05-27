@@ -32,6 +32,8 @@ public class YmPolicy {
 
     private String giveDefault;
 
+    private Integer peopleNum;
+
     private String cotent;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createDate;
@@ -42,7 +44,77 @@ public class YmPolicy {
 
     private String backupField2;
 
+    private String prize;
+
+    private String policyRule;
+
+    private String awardRules;
+
+    private String policyPurpose;
+
+    public String getPolicyPurpose() {
+        return policyPurpose;
+    }
+
+    public void setPolicyPurpose(String policyPurpose) {
+        this.policyPurpose = policyPurpose;
+    }
+
+    public String getAwardRules() {
+        return awardRules;
+    }
+
+    public void setAwardRules(String awardRule) {
+        this.awardRules = awardRule;
+    }
+
+    public String getPolicyRule() {
+        return policyRule;
+    }
+
+    public void setPolicyRule(String policyRule) {
+        this.policyRule = policyRule;
+    }
+
+    public String getPrize() {
+        return prize;
+    }
+
+    public void setPrize(String prize) {
+        this.prize = prize;
+    }
+
     private Integer peopleNum;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date signDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date policyDate;
+
+    private String policyAddr;
+
+    public String getPolicyAddr() {
+        return policyAddr;
+    }
+
+    public void setPolicyAddr(String policyAddr) {
+        this.policyAddr = policyAddr;
+    }
+
+    public Date getSignDate() {
+        return signDate;
+    }
+
+    public void setSignDate(Date signDate) {
+        this.signDate = signDate;
+    }
+
+    public Date getPolicyDate() {
+        return policyDate;
+    }
+
+    public void setPolicyDate(Date policyDate) {
+        this.policyDate = policyDate;
+    }
 
     public Integer getPeopleNum() {
         return peopleNum;

@@ -18,7 +18,7 @@ pageEncoding="UTF-8"%>
 		    <a href="javascript:;">活动管理</a>
 		    <dl class="layui-nav-child">
 		      <dd><a href="/tag/list" target="showframe">活动列表</a></dd>
-		      <dd><a href="/tag/add" target="showframe">添加活动</a></dd>
+		      <dd><a href="tagAdd.jsp" target="showframe">添加活动</a></dd>
 		    </dl>
 		  </li>
 		  <li class="layui-nav-item">

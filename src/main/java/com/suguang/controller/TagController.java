@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,17 +36,14 @@ public class TagController extends BaseController {
     @RequestMapping("/delete")
     @Override
     protected String DeleteOne(HttpServletRequest request, Model model) {
-        String id = request.getParameter("id");
+        String id = request.getParameter("id"); // 你加的那个？
         tagDao.deleteById(Integer.parseInt(id));
 
         return "redirect:/tag/list";
     }
 
-    //路径跳转到添加页面，添加活动信息
-    @RequestMapping("/add")
     @Override
     protected String InsertOne(HttpServletRequest request, Model model) {
-
         return null;
     }
 
@@ -59,13 +59,26 @@ public class TagController extends BaseController {
 
     //在修改页面直接对其进行修改，且保存修改数据
     @RequestMapping("/tagAddById")
-    public String tagPreUpdate(HttpServletRequest request,Model model){
+    public String tagPreUpdate(HttpServletRequest request,Model model) throws ParseException {
         String id = request.getParameter("id");
         String title = request.getParameter("title");
         String textType = request.getParameter("textType");
         String source = request.getParameter("source");
         String status = request.getParameter("status");
-        String peopleNum = request.getParameter("peopleNum");
+        String peopleNum = request.getParameter("peopleNum"); //你哪里要格式化呢
+        String giveDefault = request.getParameter("giveDefault");
+        String date = request.getParameter("signDate");//
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // 日期格式锕 y = 年， M = 月， d= t天， H = 时， m = 分， s= 秒
+        Date parse = sdf.parse(date);
+        String date1 = request.getParameter("policyDate");//
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd"); // 日期格式锕 y = 年， M = 月， d= t天， H = 时， m = 分， s= 秒
+        Date parse1 = sdf1.parse(date1);
+        String policyAddr = request.getParameter("policyAddr");
+        String prize = request.getParameter("prize");
+        String policyRule = request.getParameter("policyRule");
+        String awardRules = request.getParameter("awardRules");
+        String policyPurpose = request.getParameter("policyPurpose");
+        String cotent = request.getParameter("cotent");
         YmPolicy ymPolicy = new YmPolicy();
         ymPolicy.setId(Integer.parseInt(id));
         ymPolicy.setTitle(title);
@@ -73,14 +86,19 @@ public class TagController extends BaseController {
         ymPolicy.setSource(source);
         ymPolicy.setStatus(status);
         ymPolicy.setPeopleNum(Integer.parseInt(peopleNum));
+        ymPolicy.setGiveDefault(giveDefault);
+        ymPolicy.setSignDate(parse);
+        ymPolicy.setPolicyDate(parse1);
+        ymPolicy.setPolicyAddr(policyAddr);
+        ymPolicy.setPrize(prize);
+        ymPolicy.setPolicyRule(policyRule);
+        ymPolicy.setAwardRules(awardRules);
+        ymPolicy.setPolicyPurpose(policyPurpose);
+        ymPolicy.setCotent(cotent);
         YmPolicy policy = tagDao.save(ymPolicy);
-
         model.addAttribute("policy",policy);
         return "redirect:/tag/list";
     }
-
-
-
 
 
 }
