@@ -13,9 +13,16 @@
   		<script src="/layui/layui.js"></script>
 	</head>
 	<style type="text/css">
+		table{
+			table-layout: fixed;
+		}
 		td{
-	  		text-align: center;
-	  	}
+			width:100%;
+			word-break:keep-all;/* 不换行 */
+			white-space:nowrap;/* 不换行 */
+			overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+			text-overflow:ellipsis;
+		}
 	</style>
  	<body>
  		<div style="margin-top: 5px">
@@ -26,19 +33,19 @@
  			<hr style="background: red; height: 2px">
  		</div>
  		<div id="tab1">
- 			<table class="layui-table" lay-skin="line" border="2">
+ 			<table class="layui-table" lay-skin="line,row" style="text-align: center; overflow: hidden;">
  				<tr style="font-weight: bold;">
- 					<td>序号</td>
- 					<td>标题</td>
- 					<td>状态</td>
- 					<td>来源</td>
- 					<td>转发数</td>
- 					<td>浏览量</td>
- 					<td>活动状态</td>
- 					<td>内容</td>
- 					<td>创建时间</td>
- 					<td>文章类型</td>
- 					<td>操作</td>
+ 					<td style="width: 5%">序号</td>
+ 					<td style="width: 10%">标题</td>
+ 					<td style="width: 5%">状态</td>
+ 					<td style="width: 5%">来源</td>
+ 					<td style="width: 6%">转发数</td>
+ 					<td style="width: 6%">浏览量</td>
+ 					<td style="width: 10%">活动状态</td>
+ 					<td style="width: 20%">内容</td>
+ 					<td style="width: 10%">创建时间</td>
+ 					<td style="width: 8%">文章类型</td>
+ 					<td style="width: 15%">操作</td>
  				</tr>
 
 				<c:forEach items="${tagList}" var="tag"  >
