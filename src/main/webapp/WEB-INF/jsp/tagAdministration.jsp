@@ -25,27 +25,25 @@
 		}
 	</style>
  	<body>
- 		<div style="margin-top: 5px">
- 			<font style="color: #000; font-size: 12px; margin-top: 10px">
- 				★ 活动列表
- 			</font>
- 			<br>
- 			<hr style="background: red; height: 2px">
- 		</div>
+    <div style="margin-top: 10px">
+        <font style="color: #000; font-size: 12px; margin-left: 10px">
+            ★ 活动列表 </font> <br>
+        <hr style="background: red; height: 2px; margin-top: 5px">
+    </div>
  		<div id="tab1">
  			<table class="layui-table" lay-skin="line,row" style="text-align: center; overflow: hidden;">
  				<tr style="font-weight: bold;">
  					<td style="width: 5%">序号</td>
- 					<td style="width: 10%">标题</td>
- 					<td style="width: 5%">状态</td>
- 					<td style="width: 5%">来源</td>
+ 					<td style="width: 13%">标题</td>
+ 					<td style="width: 8%">状态</td>
+ 					<td style="width: 8%">来源</td>
  					<td style="width: 6%">转发数</td>
  					<td style="width: 6%">浏览量</td>
- 					<td style="width: 10%">活动状态</td>
- 					<td style="width: 20%">内容</td>
+ 					<td style="width: 8%">活动状态</td>
+ 					<td style="width: 16%">内容</td>
  					<td style="width: 10%">创建时间</td>
  					<td style="width: 8%">文章类型</td>
- 					<td style="width: 15%">操作</td>
+ 					<td style="width: 12%">操作</td>
  				</tr>
 
 				<c:forEach items="${tagList}" var="tag"  >
@@ -59,10 +57,21 @@
 						<td>${ tag.source}</td>
 						<td>${ tag.relay}</td>
 						<td>${ tag.browse}</td>
-						<td>${ tag.giveDefault}</td>
+						<td>
+							<c:if test="${ tag.giveDefault == 1}">进行中</c:if>
+							<c:if test="${ tag.giveDefault == 2}">已结束</c:if>
+							<c:if test="${ tag.giveDefault == 3}">未开始</c:if>
+						</td>
 						<td>${ tag.cotent}</td>
 						<td>${ tag.createDate}</td>
-						<td>${ tag.textType}</td>
+						<td>
+							<c:if test="${tag.textType == 1}">惠民</c:if>
+							<c:if test="${tag.textType == 2}">演出</c:if>
+							<c:if test="${tag.textType == 3}">亲子</c:if>
+							<c:if test="${tag.textType == 4}">赛事</c:if>
+							<c:if test="${tag.textType == 5}">历史</c:if>
+							<c:if test="${tag.textType == 6}">社区</c:if>
+						</td>
 						<td>
 							<button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ tag.id})">修改</button>
 							<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ tag.id})">删除</button>

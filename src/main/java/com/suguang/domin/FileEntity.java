@@ -9,6 +9,7 @@ public class FileEntity {
 	    private String titleOrig;
 	    private String titleAlter;
 	    private Timestamp uploadTime;
+
 	    public String getType() {
 	        return type;
 	    }

@@ -9,11 +9,12 @@ pageEncoding="UTF-8"%>
 		<meta name="renderer" content="webkit">
   		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  		<link rel="stylesheet" href="layui/css/layui.css"  media="all">
+  		<link rel="stylesheet" href="/layui/css/layui.css"  media="all">
   		<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
 		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  		<script src="layui/layui.js"></script>
+  		<script src="/layui/layui.js"></script>
+		<script src="/js/wangEditor.js"></script>
 	</head>
 	<style type="text/css">
         .toolbar {
@@ -99,7 +100,7 @@ pageEncoding="UTF-8"%>
 		    	</div>
 			</form>
  		</div>
-    <script type="text/javascript" src="js/wangEditor.min.js"></script>
+
     <script type="text/javascript">
         var E = window.wangEditor;
         var editor1 = new E('#div1', '#div2'); 

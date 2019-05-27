@@ -25,7 +25,7 @@ pageEncoding="UTF-8"%>
 		    <a href="javascript:;">政策管理</a>
 			    <dl class="layui-nav-child">
 			      <dd><a href="wenlvzhengce.jsp" target="showframe">政策列表</a></dd>
-			      <dd><a href="zhengceAdd.jsp" target="showframe">添加政策</a></dd>
+			      <dd><a href="/wlzc/add" target="showframe">添加政策</a></dd>
 			    </dl>
 		  </li>
 		  <li class="layui-nav-item">
