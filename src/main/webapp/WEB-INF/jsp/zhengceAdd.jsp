@@ -35,51 +35,65 @@ pageEncoding="UTF-8"%>
  			<hr style="background: red; height: 2px; margin-top: -3px">
  		</div>
  		<div>
-			<form class="form-horizontal" role="form" >
+			<form class="form-horizontal" role="form" action="/wenlv/addSure">
+
+				<div>
+					<input type="hidden" name="id" value="${wenlv.id}">
+				</div>
+
 				<div class="form-group">
 					<label class="col-sm-1 control-label">政策标题:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入政策标题">
+						<input class="form-control" id="focusedInput" type="text"  name="title" value="${wenlv.title}" placeholder="请输入政策标题">
 					</div>
 						<label class="col-sm-1 control-label">政策类型:</label>
 						<div class="col-sm-2">
-						<select class="form-control">
-									<option>--请选择--</option>
-											<option>水利</option>
-											<option>科技</option>
-											<option>国家</option>
-											<option>赛事</option>
-											<option>历史</option>
-											<option>社区</option>
-							</select>
+							<input class="form-control" id="focusedInput" type="text"  name="titleType" value="${wenlv.titleType}" placeholder="请输入政策标题">
 					</div>
 				</div>
 				<div class="form-group" style="margin-top: ">
 					<label class="col-sm-1 control-label">政策来源:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入政策来源">
+						<input class="form-control" name="source" value="${wenlv.source}" id="focusedInput" type="text"  placeholder="请输入政策来源">
 					</div>
 						<label class="col-sm-1 control-label">创建类型:</label>
 						<div class="col-sm-2">
-							<select class="form-control">
-									<option>--请选择--</option>
-											<option>转发</option>
-											<option>自写</option>
+							<select class="form-control" name="status" value="${wenlv.status}">
+								<c:if test="${wenlv.status == 1}">
+									<option name="status" value="1">转发</option>
+								</c:if>
+								<c:if test="${wenlv.status == 2}">
+									<option name="status" value="1">自写</option>
+								</c:if>
+											<option value="0" name="status">--请选择--</option>
+											<option value="1" name="status">转发</option>
+											<option value="2" name="status">自写</option>
 							</select>
 						</div>
 				</div>
 				<div class="form-group">
 						<label class="col-sm-1 control-label">创建人:</label>
 						<div class="col-sm-2">
-							<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入创建人">
+							<input class="form-control" name="createUser" value="${wenlv.createUser}" id="focusedInput" type="text"   placeholder="请输入创建人">
 						</div>
 						<label class="col-sm-1 control-label">文章类型:</label>
 						<div class="col-sm-2">
-						<select class="form-control">
-									<option>--请选择--</option>
-											<option>咨询动态</option>
-											<option>政策解读</option>
-											<option>项目公告</option>
+						<select class="form-control" name="textType" value="${wenlv.textType}">
+
+							<c:if test="${wenlv.textType == 1}">
+								<option name="textType" value="1">咨询动态</option>
+							</c:if>
+							<c:if test="${wenlv.textType == 2}">
+								<option name="textType" value="1">政策解读</option>
+							</c:if>
+							<c:if test="${wenlv.textType == 3}">
+								<option name="textType" value="1">项目公告</option>
+							</c:if>
+
+											<option value="0" name="textType">--请选择--</option>
+											<option value="1" name="textType">咨询动态</option>
+											<option value="2" name="textType">政策解读</option>
+											<option value="3" name="textType">项目公告</option>
 							</select>
 						</div>
 				</div>
@@ -94,18 +108,26 @@ pageEncoding="UTF-8"%>
 		    	</div>
 		    	<div style="margin-top: 10px; margin-left: 600px;">
 		    		
-		    		<button class="layui-btn layui-btn-sm">确定添加</button>
-		    		<button class="layui-btn layui-btn-sm layui-btn-danger">确定修改</button>
+		    		<button class="layui-btn layui-btn-sm" type="submit" >确定添加</button>
+		    		<button class="layui-btn layui-btn-sm layui-btn-danger"type="submit">确定修改</button>
 		    	</div>
 			</form>
  		</div>
-    <script type="text/javascript" src="js/wangEditor.min.js"></script>
-    <script type="text/javascript">
-        var E = window.wangEditor;
-        var editor1 = new E('#div1', '#div2'); 
-        editor1.customConfig.uploadImgServer = '/upload';
-        editor1.create();
-    </script>
+    <%--<script type="text/javascript" src="js/wangEditor.min.js"></script>--%>
+    <%--<script type="text/javascript">--%>
+        <%--var E = window.wangEditor;--%>
+        <%--var editor1 = new E('#div1', '#div2'); --%>
+        <%--editor1.customConfig.uploadImgServer = '/upload';--%>
+        <%--editor1.create();--%>
+    <%--</script>--%>
+
+	<%--<script type="text/javascript">--%>
+        <%--function addSure(){--%>
+            <%--window.location.href="/wenlv/addSure";--%>
+        <%--}--%>
+
+	<%--</script>--%>
+
     <script>
 		layui.use('upload', function(){
 		  var upload = layui.upload;

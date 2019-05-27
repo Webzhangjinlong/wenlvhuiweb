@@ -39,8 +39,11 @@ public class TagController extends BaseController {
         return "redirect:/tag/list";
     }
 
+    //路径跳转到添加页面，添加活动信息
+    @RequestMapping("/add")
     @Override
     protected String InsertOne(HttpServletRequest request, Model model) {
+
         return null;
     }
 
@@ -69,12 +72,15 @@ public class TagController extends BaseController {
         ymPolicy.setTextType(Integer.parseInt(textType));
         ymPolicy.setSource(source);
         ymPolicy.setStatus(status);
-       // ymPolicy.setPeopleNum(Integer.parseInt(peopleNum));
+        ymPolicy.setPeopleNum(Integer.parseInt(peopleNum));
         YmPolicy policy = tagDao.save(ymPolicy);
 
         model.addAttribute("policy",policy);
         return "redirect:/tag/list";
     }
+
+
+
 
 
 }

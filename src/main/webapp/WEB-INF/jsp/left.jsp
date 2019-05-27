@@ -18,14 +18,14 @@ pageEncoding="UTF-8"%>
 		    <a href="javascript:;">活动管理</a>
 		    <dl class="layui-nav-child">
 		      <dd><a href="/tag/list" target="showframe">活动列表</a></dd>
-		      <dd><a href="tagAdd.jsp" target="showframe">添加活动</a></dd>
+		      <dd><a href="/tag/add" target="showframe">添加活动</a></dd>
 		    </dl>
 		  </li>
 		  <li class="layui-nav-item">
 		    <a href="javascript:;">政策管理</a>
 			    <dl class="layui-nav-child">
-			      <dd><a href="wenlvzhengce.jsp" target="showframe">政策列表</a></dd>
-			      <dd><a href="zhengceAdd.jsp" target="showframe">添加政策</a></dd>
+			      <dd><a href="/wenlv/list" target="showframe">政策列表</a></dd>
+			      <dd><a href="/wenlv/addwenlv" target="showframe">添加政策</a></dd>
 			    </dl>
 		  </li>
 		  <li class="layui-nav-item">

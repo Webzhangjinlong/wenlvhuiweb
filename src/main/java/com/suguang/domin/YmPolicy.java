@@ -32,8 +32,6 @@ public class YmPolicy {
 
     private String giveDefault;
 
-    private Integer peopleNum;
-
     private String cotent;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createDate;
@@ -44,7 +42,15 @@ public class YmPolicy {
 
     private String backupField2;
 
+    private Integer peopleNum;
 
+    public Integer getPeopleNum() {
+        return peopleNum;
+    }
+
+    public void setPeopleNum(Integer peopleNum) {
+        this.peopleNum = peopleNum;
+    }
 
     public Integer getId() {
         return id;

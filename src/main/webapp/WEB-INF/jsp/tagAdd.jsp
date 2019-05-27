@@ -57,7 +57,7 @@ pageEncoding="UTF-8"%>
 							<c:if test="${tagupdate.textType == 5}">
 								<option name="textType" value="5">历史</option>
 							</c:if>
-											<option>--请选择--</option>
+											<option value="0" name="textType">--请选择--</option>
 											<option value="1" name="textType">惠民</option>
 											<option value="2" name="textType">演出</option>
 											<option value="3" name="textType">亲子</option>
@@ -81,7 +81,7 @@ pageEncoding="UTF-8"%>
 							<c:if test="${tagupdate.status == 2}">
 								<option value="2" name="status">自写</option>
 							</c:if>
-									<option>--请选择--</option>
+									<option value="0" name="status">--请选择--</option>
 											<option value="1" name="status">转发</option>
 											<option value="2" name="status">自写</option>
 							</select>
@@ -94,11 +94,11 @@ pageEncoding="UTF-8"%>
 					</div>
 						<label class="col-sm-1 control-label">活动状态:</label>
 						<div class="col-sm-2">
-							<select class="form-control">
-									<option>--请选择--</option>
-											<option>未开启</option>
-											<option>进行中</option>
-											<option>结束</option>
+							<select class="form-control" >
+									<option value="0">--请选择--</option>
+											<option value="1" >未开启</option>
+											<option value="2" >进行中</option>
+											<option value="3" >结束</option>
 							</select>
 						</div>
 				</div>
