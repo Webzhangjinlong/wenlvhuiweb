@@ -69,8 +69,7 @@ pageEncoding="UTF-8"%>
  				</tr>
 				</c:forEach>
 			</table>
-			<div id="test1"style="margin-left: 900px">
-	</div>
+			<div id="test1"style="margin-left: 900px"></div>
  		</div>
  	</body>
 
