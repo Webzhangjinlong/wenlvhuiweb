@@ -233,5 +233,18 @@ public class YmPolicy {
     public void setBackupField2(String backupField2) {
         this.backupField2 = backupField2 == null ? null : backupField2.trim();
     }
+
+	@Override
+	public String toString() {
+		return "YmPolicy [id=" + id + ", title=" + title + ", image=" + image + ", substance=" + substance + ", status="
+				+ status + ", source=" + source + ", relay=" + relay + ", browse=" + browse + ", giveDefault="
+				+ giveDefault + ", cotent=" + cotent + ", createDate=" + createDate + ", textType=" + textType
+				+ ", backupField1=" + backupField1 + ", backupField2=" + backupField2 + ", prize=" + prize
+				+ ", policyRule=" + policyRule + ", awardRules=" + awardRules + ", policyPurpose=" + policyPurpose
+				+ ", peopleNum=" + peopleNum + ", signDate=" + signDate + ", policyDate=" + policyDate + ", policyAddr="
+				+ policyAddr + "]";
+	}
+    
+    
 }
 

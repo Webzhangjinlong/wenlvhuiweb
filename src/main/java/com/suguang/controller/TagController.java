@@ -2,13 +2,20 @@ package com.suguang.controller;
 
 import com.suguang.dao.TagDao;
 import com.suguang.domin.YmPolicy;
+import com.suguang.util.YmStaticVariablesUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
+
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -95,10 +102,23 @@ public class TagController extends BaseController {
         ymPolicy.setAwardRules(awardRules);
         ymPolicy.setPolicyPurpose(policyPurpose);
         ymPolicy.setCotent(cotent);
+        
+        System.out.println(ymPolicy);
+        
+        
         YmPolicy policy = tagDao.save(ymPolicy);
+        
+        
+        
         model.addAttribute("policy",policy);
         return "redirect:/tag/list";
     }
-
+    
+	//返回服务器资源
+	@RequestMapping(value = "export_xls", method = RequestMethod.GET)
+	public ResponseEntity<FileSystemResource> exportXls(HttpServletRequest request) {
+		String file = request.getParameter("file");
+		return UploadController.export(new File(YmStaticVariablesUtil.UPLOAD_PATH+file));
+	}
 
 }

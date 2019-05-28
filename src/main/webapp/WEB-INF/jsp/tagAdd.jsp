@@ -35,7 +35,7 @@ pageEncoding="UTF-8"%>
 		<hr style="background: red; height: 2px; margin-top: 5px">
  		</div>
  		<div>
-			<form class="form-horizontal" role="form" action="/tag/tagAddById" method="post">
+			<form class="form-horizontal" id="form1" role="form" action="/tag/tagAddById" method="post">
 				<div>
 					<input type="hidden" name="id" value="${tagupdate.id}">
 
@@ -166,23 +166,35 @@ pageEncoding="UTF-8"%>
 				<div style="margin-left: 22px; margin-top: 10px">
 					<div id="div1" class="toolbar"></div>
 					<div style="padding: 5px 0; color: #ccc"></div>
-					<div id="div2" class="text">
-						<p name="cotent">${tagupdate.cotent}</p>
+					<div id="div2"   class="text">
+						<p>${tagupdate.cotent}</p>
 					</div>
 				</div>
 		    	<div style="margin-top: 10px; margin-left: 600px;">
-		    		<button type="submit" class="layui-btn layui-btn-sm">确定添加</button>
+		    		<button type="button" onclick="chan()" class="layui-btn layui-btn-sm">确定添加</button>
 		    		<button class="layui-btn layui-btn-sm layui-btn-danger">确定修改</button>
 		    	</div>
+		    	<input type="hidden" id="cotent"  name="cotent">
 			</form>
  		</div>
     <script type="text/javascript" src="/js/wangEditor.js"></script>
     <script type="text/javascript">
         var E = window.wangEditor;
         var editor1 = new E('#div1', '#div2');
-        editor1.customConfig.uploadImgShowBase64 = true;
+        
+        editor1.customConfig.uploadImgServer = '/uploadflv/upload';
+        editor1.customConfig.uploadFileName = 'file';
+        editor1.customConfig.uploadImgMaxSize = 10 * 1024 * 1024;
+        //editor.customConfig.uploadImgMaxLength = 5;
+        //editor1.customConfig.uploadImgShowBase64 = true;
         editor1.create();
-        editor1.text.html(${tagupdate.cotent});
+        
+        function chan(){
+       		$("#cotent").val(editor1.txt.html());
+       		
+       		$("#form1").submit();
+        }
+       
     </script>
     <script>
 		layui.use('upload', function(){
