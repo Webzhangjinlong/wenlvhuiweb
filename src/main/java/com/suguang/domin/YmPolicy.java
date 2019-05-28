@@ -1,7 +1,8 @@
 package com.suguang.domin;
 /*
-* 活动表
-* */
+ * 活动表
+ * */
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
@@ -13,7 +14,7 @@ import java.util.Date;
 @Entity
 public class YmPolicy {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String title;
@@ -83,9 +84,9 @@ public class YmPolicy {
     }
 
     private Integer peopleNum;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
     private Date signDate;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    //@DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date policyDate;
 
     private String policyAddr;
@@ -234,17 +235,8 @@ public class YmPolicy {
         this.backupField2 = backupField2 == null ? null : backupField2.trim();
     }
 
-	@Override
-	public String toString() {
-		return "YmPolicy [id=" + id + ", title=" + title + ", image=" + image + ", substance=" + substance + ", status="
-				+ status + ", source=" + source + ", relay=" + relay + ", browse=" + browse + ", giveDefault="
-				+ giveDefault + ", cotent=" + cotent + ", createDate=" + createDate + ", textType=" + textType
-				+ ", backupField1=" + backupField1 + ", backupField2=" + backupField2 + ", prize=" + prize
-				+ ", policyRule=" + policyRule + ", awardRules=" + awardRules + ", policyPurpose=" + policyPurpose
-				+ ", peopleNum=" + peopleNum + ", signDate=" + signDate + ", policyDate=" + policyDate + ", policyAddr="
-				+ policyAddr + "]";
-	}
-    
-    
+
+
+
 }
 

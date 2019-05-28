@@ -38,7 +38,6 @@ pageEncoding="UTF-8"%>
 			<form class="form-horizontal" id="form1" role="form" action="/tag/tagAddById" method="post">
 				<div>
 					<input type="hidden" name="id" value="${tagupdate.id}">
-
 				</div>
 				<div class="form-group">
 					<label class="col-sm-1 control-label">活动名称:</label>
@@ -170,9 +169,8 @@ pageEncoding="UTF-8"%>
 						<p>${tagupdate.cotent}</p>
 					</div>
 				</div>
-		    	<div style="margin-top: 10px; margin-left: 600px;">
-		    		<button type="button" onclick="chan()" class="layui-btn layui-btn-sm">确定添加</button>
-		    		<button class="layui-btn layui-btn-sm layui-btn-danger">确定修改</button>
+		    	<div style="margin-top: 10px; margin-left: 650px;">
+		    		<button type="button" onclick="chan()" class="layui-btn layui-btn-sm">确定添加/修改</button>
 		    	</div>
 		    	<input type="hidden" id="cotent"  name="cotent">
 			</form>
