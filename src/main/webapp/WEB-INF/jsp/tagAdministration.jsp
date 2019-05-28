@@ -33,17 +33,17 @@
  		<div id="tab1">
  			<table class="layui-table" lay-skin="line,row" style="text-align: center; overflow: hidden;">
  				<tr style="font-weight: bold;">
- 					<td style="width: 5%">序号</td>
- 					<td style="width: 13%">标题</td>
- 					<td style="width: 8%">状态</td>
- 					<td style="width: 8%">来源</td>
- 					<td style="width: 6%">转发数</td>
- 					<td style="width: 6%">浏览量</td>
- 					<td style="width: 8%">活动状态</td>
- 					<td style="width: 16%">内容</td>
- 					<td style="width: 10%">创建时间</td>
- 					<td style="width: 8%">文章类型</td>
- 					<td style="width: 12%">操作</td>
+ 					<td style="width: 5%; height:5%">序号</td>
+ 					<td style="width: 13%; height:5%">标题</td>
+ 					<td style="width: 8%; height:5%">状态</td>
+ 					<td style="width: 8%; height:5%">来源</td>
+ 					<td style="width: 6%; height:5%">转发数</td>
+ 					<td style="width: 6%; height:5%">浏览量</td>
+ 					<td style="width: 8%; height:5%">活动状态</td>
+ 					<td style="width: 16%; height:5%">内容</td>
+ 					<td style="width: 10%; height:5%">创建时间</td>
+ 					<td style="width: 8%; height:5%">文章类型</td>
+ 					<td style="width: 12%; height:5%">操作</td>
  				</tr>
 
 				<c:forEach items="${tagList}" var="tag"  >
@@ -95,7 +95,6 @@
 
 	<script>
 		function updateById(id) {
-		    alert("666")
 			window.location.href="/tag/update?id="+id;
         }
 

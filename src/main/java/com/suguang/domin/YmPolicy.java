@@ -1,7 +1,8 @@
 package com.suguang.domin;
 /*
-* 活动表
-* */
+ * 活动表
+ * */
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
@@ -13,7 +14,7 @@ import java.util.Date;
 @Entity
 public class YmPolicy extends YmEntity{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String title;
@@ -83,9 +84,9 @@ public class YmPolicy extends YmEntity{
     }
 
     private Integer peopleNum;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
     private Date signDate;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    //@DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date policyDate;
 
     private String policyAddr;
@@ -233,5 +234,9 @@ public class YmPolicy extends YmEntity{
     public void setBackupField2(String backupField2) {
         this.backupField2 = backupField2 == null ? null : backupField2.trim();
     }
+
+
+
+
 }
 

@@ -2,13 +2,20 @@ package com.suguang.controller;
 
 import com.suguang.dao.TagDao;
 import com.suguang.domin.YmPolicy;
+import com.suguang.util.YmStaticVariablesUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
+
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -60,6 +67,7 @@ public class TagController extends BaseController {
     //在修改页面直接对其进行修改，且保存修改数据
     @RequestMapping("/tagAddById")
     public String tagPreUpdate(HttpServletRequest request,Model model) throws ParseException {
+
         String id = request.getParameter("id");
         String title = request.getParameter("title");
         String textType = request.getParameter("textType");
@@ -80,7 +88,9 @@ public class TagController extends BaseController {
         String policyPurpose = request.getParameter("policyPurpose");
         String cotent = request.getParameter("cotent");
         YmPolicy ymPolicy = new YmPolicy();
-        ymPolicy.setId(Integer.parseInt(id));
+        if(id != null && id != ""){
+            ymPolicy.setId(Integer.parseInt(id));
+        }
         ymPolicy.setTitle(title);
         ymPolicy.setTextType(Integer.parseInt(textType));
         ymPolicy.setSource(source);
@@ -95,10 +105,23 @@ public class TagController extends BaseController {
         ymPolicy.setAwardRules(awardRules);
         ymPolicy.setPolicyPurpose(policyPurpose);
         ymPolicy.setCotent(cotent);
+        System.out.println(ymPolicy);
         YmPolicy policy = tagDao.save(ymPolicy);
         model.addAttribute("policy",policy);
         return "redirect:/tag/list";
     }
 
+    //添加活动
+    @RequestMapping("/tagAdd")
+    public String tagAdd(){
+        return "tagAdd";
+    }
+
+	//返回服务器资源
+	@RequestMapping(value = "export_xls", method = RequestMethod.GET)
+	public ResponseEntity<FileSystemResource> exportXls(HttpServletRequest request) {
+		String file = request.getParameter("file");
+		return UploadController.export(new File(YmStaticVariablesUtil.UPLOAD_PATH+file));
+	}
 
 }
