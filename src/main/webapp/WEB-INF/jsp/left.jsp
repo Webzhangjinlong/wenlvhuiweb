@@ -53,7 +53,7 @@ pageEncoding="UTF-8"%>
 		     <li class="layui-nav-item">
 		  	<a href="javascript:;">学校管理</a>
 			  	<dl class="layui-nav-child">
-			      <dd><a href="schoolList.jsp" target="showframe">学校列表</a></dd>
+			      <dd><a href="/school/get/jpaPage" target="showframe">学校列表</a></dd>
 			      <dd><a href="schoolAdd.html" target="showframe">添加学校</a></dd>
 			    </dl>
 		    </li>

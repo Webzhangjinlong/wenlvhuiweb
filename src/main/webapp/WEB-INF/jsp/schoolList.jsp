@@ -34,21 +34,24 @@ pageEncoding="UTF-8"%>
  					<td style="width: 15%">创建时间</td>
  					<td style="width: 10%">操作</td>
  				</tr>
+
+		<c:forEach items="${schoolList}" var="school"  >
  				<tr>
- 					<td>1</td>
- 					<td>Blue shit</td>
- 					<td>挖机</td>
- 					<td>1389595959</td>
- 					<td>宁夏</td>
- 					<td>银川</td>
- 					<td>金凤区</td>
- 					<td>左拐右拐</td>
- 					<td>2016-05-21</td>
+ 					<td>${ school.id}</td>
+ 					<td>${ school.name}</td>
+ 					<td>${ school.schoolType}</td>
+ 					<td>${ school.phone}</td>
+ 					<td>${ school.province}</td>
+ 					<td>${ school.city}</td>
+ 					<td>${ school.area}</td>
+ 					<td>${ school.addrDetail}</td>
+ 					<td>${ school.createDate}</td>
  					<td>
  						<button class="layui-btn layui-btn-sm layui-btn-warm" onclick="foodAdd()">修改</button>
  						<button class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
  					</td>
  				</tr>
+		</c:forEach>
 			</table>
 	<div id="test1"style="margin-left: 900px">
 	</div>
@@ -62,7 +65,7 @@ layui.use('laypage', function(){
   //执行一个laypage实例
   laypage.render({
     elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
-    ,count: 100 //数据总数，从服务端得到
+    ,count: 5 //数据总数，从服务端得到
   });
 });
 </script>

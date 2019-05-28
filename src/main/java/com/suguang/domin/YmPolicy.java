@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
-public class YmPolicy {
+public class YmPolicy extends YmEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -31,8 +31,6 @@ public class YmPolicy {
     private Integer browse;
 
     private String giveDefault;
-
-    private Integer peopleNum;
 
     private String cotent;
     @DateTimeFormat(pattern = "yyyy-MM-dd")

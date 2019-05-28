@@ -69,14 +69,14 @@ public class WenLvController extends BaseController{
         String titleType = request.getParameter("titleType");
         String source = request.getParameter("source");
         String status = request.getParameter("status");
-        String createUser = request.getParameter("createUser");
-        String textType = request.getParameter("textType");
+       // String createUser = request.getParameter("createUser");
+        //String textType = request.getParameter("textType");
         ymWenlv.setTitle(title);
         ymWenlv.setTitleType(titleType);
         ymWenlv.setSource(source);
         ymWenlv.setStatus(status);
-        ymWenlv.setCreateUser(Integer.parseInt(createUser));
-       ymWenlv.getTextType(Integer.parseInt(textType));
+        //ymWenlv.setCreateUser(Integer.parseInt(createUser));
+       //ymWenlv.getTextType(Integer.parseInt(textType));
         YmWenlv save = wenLvDao.save(ymWenlv);
         model.addAttribute("save",save);
         return "redirect:/wenlv/list";
