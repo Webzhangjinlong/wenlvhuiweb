@@ -9,11 +9,11 @@ pageEncoding="UTF-8"%>
 		<meta name="renderer" content="webkit">
   		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  		<link rel="stylesheet" href="layui/css/layui.css"  media="all">
-  		<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+  		<link rel="stylesheet" href="/layui/css/layui.css"  media="all">
+  		<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  		<script src="layui/layui.js"></script>
+  		<script src="/layui/layui.js"></script>
 	</head>
 	<style type="text/css">
         .toolbar {
@@ -35,64 +35,84 @@ pageEncoding="UTF-8"%>
  			<hr style="background: red; height: 2px">
  		</div>
  		<div>
-			<form class="form-horizontal" role="form">
+			<form class="form-horizontal" role="form" action="/hotel/preUpdate">
+				<div>
+					<input type="hidden" name="id" value="${hotel.id}">
+				</div>
+
 				<div class="form-group">
 					<label class="col-sm-1 control-label">餐馆名称:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入餐馆名称">
+						<input class="form-control" id="focusedInput" type="text"  name="restaurantName" value="${hotel.restaurantName}" placeholder="请输入餐馆名称">
 					</div>
 						<label class="col-sm-1 control-label">餐馆类别:</label>
 						<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入餐馆类别">
+						<input class="form-control" id="focusedInput" type="text"  name="restaurantType" value="${hotel.restaurantType}" placeholder="请输入餐馆类别">
 					</div>
 						<div style="margin-left: 750px; margin-top: 20px">
 							<button type="button" class="layui-btn" id="test1">
 							  <i class="layui-icon">&#xe67c;</i>餐馆图片:
 							</button>
-								<img src="img/icon.jpg" class="img-circle" style="margin-left: 25px;width: 60px; height: 60px">
+								<img src="/img/icon.jpg" class="img-circle" style="margin-left: 25px;width: 60px; height: 60px">
 						</div>
 				</div>
 				<div class="form-group" style="margin-top: -30px">
 					<label class="col-sm-1 control-label">平均消费:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入平均消费">
+						<input class="form-control" id="focusedInput" type="text"  name="averageConsumption" value="${hotel.averageConsumption}" placeholder="请输入平均消费">
 					</div>
 						<label class="col-sm-1 control-label">推荐指数:</label>
 						<div class="col-sm-2">
-							<select class="form-control">
-									<option>--请选择--</option>
-											<option>★</option>
-											<option>★★</option>
-											<option>★★★</option>
-											<option>★★★★</option>
-											<option>★★★★★</option>
+							<select class="form-control" name="starClass" value="${hotel.starClass}">
+
+								<c:if test="${hotel.starClass == 1}">
+									<option name="starClass" value="1">★</option>
+								</c:if>
+								<c:if test="${hotel.starClass == 2}">
+									<option name="starClass" value="1">★★</option>
+								</c:if>
+								<c:if test="${hotel.starClass == 3}">
+									<option name="starClass" value="1">★★★</option>
+								</c:if>
+								<c:if test="${hotel.starClass == 4}">
+									<option name="starClass" value="1">★★★★</option>
+								</c:if>
+								<c:if test="${hotel.starClass == 5}">
+									<option name="starClass" value="1">★★★★★</option>
+								</c:if>
+									<option value="0" name="starClass">--请选择--</option>
+											<option value="1" name="starClass">★</option>
+											<option value="2" name="starClass">★★</option>
+											<option value="3" name="starClass">★★★</option>
+											<option value="4" name="starClass">★★★★</option>
+											<option value="5" name="starClass">★★★★★</option>
 							</select>
 						</div>
 				</div>
 				<div class="form-group"style="margin-top: 32px">
 						<label class="col-sm-1 control-label">市:</label>
 						<div class="col-sm-2">
-							<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入市">
+							<input class="form-control" id="focusedInput" type="text"  name="city" value="${hotel.city}" placeholder="请输入市">
 						</div>
 						<label class="col-sm-1 control-label">区:</label>
 						<div class="col-sm-2">
-							<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入区">
+							<input class="form-control" id="focusedInput" type="text"  name="area" value="${hotel.area}" placeholder="请输入区">
 						</div>
 				</div>
 				<div class="form-group"style="margin-top: 32px">
 						<label class="col-sm-1 control-label">详细地址:</label>
 						<div class="col-sm-5">
-							<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入详细地址">
+							<input class="form-control" id="focusedInput" type="text" name="addrDetail" value="${hotel.addrDetail}" placeholder="请输入详细地址">
 						</div>
 				</div>
 				<div class="form-group" style="margin-top: 30px">
 					<label class="col-sm-1 control-label">经度:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入经度">
+						<input class="form-control" id="focusedInput" type="text"  name="longitude" value="${hotel.longitude}" placeholder="请输入经度">
 					</div>
 						<label class="col-sm-1 control-label">纬度:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入纬度">
+						<input class="form-control" id="focusedInput" type="text"  name="latitude" value="${hotel.latitude}" placeholder="请输入纬度">
 					</div>
 					<div style="margin-top: 8px">
 						<a href="https://lbs.amap.com/console/show/picker">查看经纬度</a>
@@ -101,11 +121,11 @@ pageEncoding="UTF-8"%>
 				<div class="form-group" style="margin-top: 30px">
 					<label class="col-sm-1 control-label">餐馆账号:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  value="" placeholder="">
+						<input class="form-control" id="focusedInput" type="text"  name="restaurantName" value="${hotel.restaurantName}" placeholder="">
 					</div>
 						<label class="col-sm-1 control-label">餐馆密码:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  value="" placeholder="">
+						<input class="form-control" id="focusedInput" type="text"  name="restaurantName" value="${hotel.restaurantName}" placeholder="">
 					</div>
 				</div>
 				<div style="margin-left: 22px;">
@@ -128,7 +148,7 @@ pageEncoding="UTF-8"%>
  			<div style="margin-left: 443px; margin-top: -30px">
  			</div>
  		</div>
-    <script type="text/javascript" src="js/wangEditor.min.js"></script>
+    <script type="text/javascript" src="/js/wangEditor.min.js"></script>
     <script type="text/javascript">
         var E = window.wangEditor;
         var editor1 = new E('#div1', '#div2'); 

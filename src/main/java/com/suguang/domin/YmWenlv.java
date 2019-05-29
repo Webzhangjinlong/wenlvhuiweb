@@ -40,8 +40,6 @@ public class YmWenlv  extends YmEntity {
 
     private Integer textType;
 
-    private Integer backupField1;
-
     private String backupField2;
     
     //private Integer comment_num;
@@ -159,13 +157,6 @@ public class YmWenlv  extends YmEntity {
         this.textType = textType;
     }
 
-    public Integer getBackupField1() {
-        return backupField1;
-    }
-
-    public void setBackupField1(Integer backupField1) {
-        this.backupField1 = backupField1;
-    }
 
     public String getBackupField2() {
         return backupField2;

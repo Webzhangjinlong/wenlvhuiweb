@@ -46,8 +46,8 @@ pageEncoding="UTF-8"%>
 		    <li class="layui-nav-item">
 		  	<a href="javascript:;">餐馆管理</a>
 			  	<dl class="layui-nav-child">
-			      <dd><a href="hotelList.jsp" target="showframe">餐馆列表</a></dd>
-			      <dd><a href="hotelAdd.jsp" target="showframe">添加餐馆</a></dd>
+			      <dd><a href="/hotel/list" target="showframe">餐馆列表</a></dd>
+			      <dd><a href="/hotel/add" target="showframe">添加餐馆</a></dd>
 			    </dl>
 		    </li>
 		     <li class="layui-nav-item">

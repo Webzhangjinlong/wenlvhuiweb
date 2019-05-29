@@ -53,10 +53,14 @@ public class WenLvController extends BaseController{
     @RequestMapping("/update")
     @Override
     protected String UpdataOne(HttpServletRequest request, Model model) {
+
         String id = request.getParameter("id");
-        YmWenlv ymWenlv = wenLvDao.getById(Integer.parseInt(id));
-        model.addAttribute("wenlv",ymWenlv);
-        return "zhengceAdd";
+        if(id != null && !id.equals("") && !id.equals("null")) {
+            YmWenlv ymWenlv = wenLvDao.getById(Integer.parseInt(id.trim()));
+            model.addAttribute("wenlv",ymWenlv);
+            return "zhengceAdd";
+        }
+        return "";
     }
 
     //修改页面里面的数据，及就是将修改的数据保存数据库

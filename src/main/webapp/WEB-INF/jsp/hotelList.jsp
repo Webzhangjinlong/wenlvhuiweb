@@ -9,8 +9,8 @@ pageEncoding="UTF-8"%>
 		<meta name="renderer" content="webkit">
   		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  		<link rel="stylesheet" href="layui/css/layui.css"  media="all">
-  		<script src="layui/layui.js"></script>
+  		<link rel="stylesheet" href="/layui/css/layui.css"  media="all">
+  		<script src="/layui/layui.js"></script>
 	</head>
 	<style type="text/css">
 		td{
@@ -40,32 +40,38 @@ pageEncoding="UTF-8"%>
  					<td>纬度</td>
  					<td>操作</td>
  				</tr>
+
+				<c:forEach items="${hotelList}" var="list"  >
  				<tr>
- 					<td>1</td>
- 					<td>小吃</td>
- 					<td>特色</td>
- 					<td>26元</td>
- 					<td>银川</td>
- 					<td>西夏</td>
- 					<td>浙江商城24号</td>
- 					<td>5</td>
- 					<td>16254</td>
- 					<td>65652</td>
+ 					<td>${ list.id}</td>
+ 					<td>${ list.restaurantType}</td>
+ 					<td>${ list.restaurantTag}</td>
+ 					<td>${ list.averageConsumption}</td>
+ 					<td>${ list.city}</td>
+ 					<td>${ list.area}</td>
+ 					<td>${ list.addrDetail}</td>
+ 					<td>${ list.starClass}</td>
+ 					<td>${ list.longitude}</td>
+ 					<td>${ list.latitude}</td>
  					<td>
- 						<button class="layui-btn layui-btn-sm layui-btn-warm" onclick="upDate()">修改</button>
- 						<button class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
+ 						<button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ list.id})">修改</button>
+ 						<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ list.id})">删除</button>
  					</td>
  				</tr>
+				</c:forEach>
 			</table>
-			<div id="test1"style="margin-left: 900px">
-				</div>
+			<div id="test1"style="margin-left: 900px"></div>
  		</div>
  	</body>
- 	<script>
- 		function upDate(){
- 			window.location.href="hotelAdd.html";
- 		}
- 	</script>
+	<script type="text/javascript">
+        function updateById(id){
+            window.location.href="/hotel/update?id="+id;
+        }
+
+        function deleteById(id){
+            window.location.href="/hotel/delete?id="+id;
+        }
+	</script>
  	<script>
 layui.use('laypage', function(){
   var laypage = layui.laypage;

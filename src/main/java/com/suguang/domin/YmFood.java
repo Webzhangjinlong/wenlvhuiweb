@@ -2,6 +2,10 @@ package com.suguang.domin;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +13,11 @@ import java.util.List;
 /**
  * 食物表
  */
+
+@Entity
 public class YmFood {
-	
+	  @Id
+	  @GeneratedValue(strategy = GenerationType.IDENTITY)
 	  Integer id ; // '主键id',
 	  Integer restaurantId ;// int(11) DEFAULT NULL COMMENT '店铺id',
 	  Integer foodType;//  int(255) DEFAULT NULL COMMENT '食物类别    不得不吃/不容错过',
@@ -22,7 +29,7 @@ public class YmFood {
 	  BigDecimal  foodPrice ;// decimal(10,2) DEFAULT NULL COMMENT '菜品价格',
 	  Integer upNum  ;//int(11) DEFAULT NULL COMMENT '推荐数',
 	  
-	  List<YmComment> commentList = new ArrayList<YmComment>();
+	 // List<YmComment> commentList = new ArrayList<YmComment>();
 
 	  
 	  
@@ -105,14 +112,6 @@ public class YmFood {
 
 	public void setUpNum(Integer upNum) {
 		this.upNum = upNum;
-	}
-
-	public List<YmComment> getCommentList() {
-		return commentList;
-	}
-
-	public void setCommentList(List<YmComment> commentList) {
-		this.commentList = commentList;
 	}
 
 
