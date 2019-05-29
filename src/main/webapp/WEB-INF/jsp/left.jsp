@@ -24,8 +24,8 @@ pageEncoding="UTF-8"%>
 		  <li class="layui-nav-item">
 		    <a href="javascript:;">政策管理</a>
 			    <dl class="layui-nav-child">
-			      <dd><a href="wenlvzhengce.jsp" target="showframe">政策列表</a></dd>
-			      <dd><a href="/wlzc/add" target="showframe">添加政策</a></dd>
+			      <dd><a href="/wenlv/list" target="showframe">政策列表</a></dd>
+			      <dd><a href="/wenlv/addwenlv" target="showframe">添加政策</a></dd>
 			    </dl>
 		  </li>
 		  <li class="layui-nav-item">
@@ -38,7 +38,7 @@ pageEncoding="UTF-8"%>
 		  <li class="layui-nav-item">
 		  	<a href="javascript:;">艺人管理</a>
 			  	<dl class="layui-nav-child">
-			      <dd><a href="">艺人列表</a></dd>
+			      <dd><a href="/artist/list">艺人列表</a></dd>
 			      <dd><a href="">添加艺人</a></dd>
 			      <dd><a href="">修改艺人</a></dd>
 			    </dl>
@@ -53,7 +53,7 @@ pageEncoding="UTF-8"%>
 		     <li class="layui-nav-item">
 		  	<a href="javascript:;">学校管理</a>
 			  	<dl class="layui-nav-child">
-			      <dd><a href="schoolList.jsp" target="showframe">学校列表</a></dd>
+			      <dd><a href="/school/list?page=1&size=10" target="showframe">学校列表</a></dd>
 			      <dd><a href="schoolAdd.html" target="showframe">添加学校</a></dd>
 			    </dl>
 		    </li>

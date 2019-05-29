@@ -9,7 +9,7 @@ pageEncoding="UTF-8"%>
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+  <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
   <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
 </head>
 <body>
@@ -21,7 +21,7 @@ pageEncoding="UTF-8"%>
  			<hr style="background: red; height: 2px">
  		</div>
  <div style="margin-top: 20px;">
-	<table class="layui-table" lay-skin="line,row" style="text-align: center;">
+	<table class="layui-table" lay-skin="line,row" id="schoolTable" style="text-align: center;">
  				<tr style="font-weight: bold;">
  					<td style="width: 5%">编号</td>
  					<td style="width: 10%">机构名称</td>
@@ -34,37 +34,66 @@ pageEncoding="UTF-8"%>
  					<td style="width: 15%">创建时间</td>
  					<td style="width: 10%">操作</td>
  				</tr>
+
+		<c:forEach items="${schoolList.content}" var="school"  >
  				<tr>
- 					<td>1</td>
- 					<td>Blue shit</td>
- 					<td>挖机</td>
- 					<td>1389595959</td>
- 					<td>宁夏</td>
- 					<td>银川</td>
- 					<td>金凤区</td>
- 					<td>左拐右拐</td>
- 					<td>2016-05-21</td>
+ 					<td>${ school.id}</td>
+ 					<td>${ school.name}</td>
+ 					<td>${ school.schoolType}</td>
+ 					<td>${ school.phone}</td>
+ 					<td>${ school.province}</td>
+ 					<td>${ school.city}</td>
+ 					<td>${ school.area}</td>
+ 					<td>${ school.addrDetail}</td>
+ 					<td>${ school.createDate}</td>
  					<td>
- 						<button class="layui-btn layui-btn-sm layui-btn-warm" onclick="foodAdd()">修改</button>
- 						<button class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
+ 						<button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ school.id})">修改</button>
+ 						<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ school.id})">删除</button>
  					</td>
  				</tr>
+		</c:forEach>
 			</table>
-	<div id="test1"style="margin-left: 900px">
+	<div id="test1">
 	</div>
  </div>     
-<script src="layui/layui.js" charset="utf-8"></script>
-<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 --> 
+<%--<script src="../../../layui/layui.js" charset="utf-8"></script>--%>
+<script src="/layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到$本地，上述js路径需要改成你本地的 -->
 <script>
+	var count = "${schoolList.totalElements}"
 layui.use('laypage', function(){
   var laypage = layui.laypage;
   
   //执行一个laypage实例
   laypage.render({
-    elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
-    ,count: 100 //数据总数，从服务端得到
+    elem: 'test1', //注意，这里的 test1 是 ID，不用加 # 号
+    count:count,
+      jump: function(obj, first){
+          if(!first){
+           return   //do something
+          }
+        var  href ='/school/list?page='+obj.curr+'&size='+obj.limit
+          //obj包含了当前分页的所有参数，比如：
+          console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+		  location.href=href;
+          console.log(obj.limit); //得到每页显示的条数
+
+          //首次不执行
+
+      }
   });
 });
 </script>
 </body>
+
+<script type="text/javascript">
+    function updateById(id){
+        window.location.href="/school/update?id="+id;
+    }
+
+    function deleteById(id){
+        window.location.href="/school/delete?id="+id;
+    }
+</script>
+
 </html>

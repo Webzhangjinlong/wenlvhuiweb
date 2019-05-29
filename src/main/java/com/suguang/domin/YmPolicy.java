@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
-public class YmPolicy {
+public class YmPolicy extends YmEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

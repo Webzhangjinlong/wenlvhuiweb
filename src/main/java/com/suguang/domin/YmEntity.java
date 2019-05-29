@@ -8,6 +8,10 @@ public class YmEntity {
 	Integer limit ; //是否分页  1：是   2：否
 	Integer startNum ; // 分页起始数
 	Integer endNum ;  // 分页结束数
+
+
+	Integer size;
+	int page;
 	
 	
 	public Integer getIsOrder() {
@@ -47,7 +51,19 @@ public class YmEntity {
 		this.endNum = endNum;
 	}
 
-	
+	public Integer getSize() {
+		return size;
+	}
 
-	
+	public void setSize(Integer size) {
+		this.size = size;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
 }

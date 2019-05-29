@@ -2,14 +2,21 @@ package com.suguang.domin;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 
+@Entity
 public class YmWenlv  extends YmEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer titleType;
+    private String titleType;
     
-    private String titleTypeName;
+    //private String titleTypeName;
     
     private String title;
 
@@ -37,55 +44,26 @@ public class YmWenlv  extends YmEntity {
 
     private String backupField2;
     
-    private Integer comment_num;
+    //private Integer comment_num;
     
-    private Integer up_num;
+    //private Integer up_num;
 
-    private Integer is_up; // 判断当前用户是否点赞   1 ： 点赞   0：未点赞
-    
-    
-    
-	public Integer getTitleType() {
-		return titleType;
-	}
+    //private Integer is_up; // 判断当前用户是否点赞   1 ： 点赞   0：未点赞
 
-	public void setTitleType(Integer titleType) {
-		this.titleType = titleType;
-	}
 
-	public String getTitleTypeName() {
-		return titleTypeName;
-	}
+    public Integer getTextType() {
+        return textType;
+    }
 
-	public void setTitleTypeName(String titleTypeName) {
-		this.titleTypeName = titleTypeName;
-	}
+    public String getTitleType() {
+        return titleType;
+    }
 
-	public Integer getIs_up() {
-		return is_up;
-	}
+    public void setTitleType(String titleType) {
+        this.titleType = titleType;
+    }
 
-	public void setIs_up(Integer is_up) {
-		this.is_up = is_up;
-	}
-
-	public Integer getComment_num() {
-		return comment_num;
-	}
-
-	public void setComment_num(Integer comment_num) {
-		this.comment_num = comment_num;
-	}
-
-	public Integer getUp_num() {
-		return up_num;
-	}
-
-	public void setUp_num(Integer up_num) {
-		this.up_num = up_num;
-	}
-
-	public Integer getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -173,7 +151,7 @@ public class YmWenlv  extends YmEntity {
         this.createUser = createUser;
     }
 
-    public Integer getTextType() {
+    public Integer getTextType(int i) {
         return textType;
     }
 

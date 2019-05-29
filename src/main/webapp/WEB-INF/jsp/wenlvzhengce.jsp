@@ -9,8 +9,8 @@ pageEncoding="UTF-8"%>
 		<meta name="renderer" content="webkit">
   		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  		<link rel="stylesheet" href="layui/css/layui.css"  media="all">
-  		<script src="layui/layui.js"></script>
+  		<link rel="stylesheet" href="/layui/css/layui.css"  media="all">
+  		<script src="/layui/layui.js"></script>
 	</head>
 	<style type="text/css">
 		td{
@@ -39,30 +39,48 @@ pageEncoding="UTF-8"%>
  					<td>文章分类</td>
  					<td>操作</td>
  				</tr>
+				<c:forEach items="${tagList}" var="tag"  >
+				<tr style="font-weight: bold;">
+					<td>${ tag.id}</td>
+					<td>${ tag.title}</td>
+					<td>
+						<c:if test="${tag.status==1 }">转发</c:if>
+						<c:if test="${tag.status==2 }">自写</c:if>
+					</td>
+					<td>${ tag.source}</td>
+				</tr>
+				</c:forEach>
+				<c:forEach items="${wenlvlist}" var="wenlv">
  				<tr>
- 					<td>1</td>
- 					<td>水利</td>
- 					<td>扫黑除恶</td>
- 					<td>转发</td>
- 					<td>百度</td>
- 					<td>556</td>
- 					<td>5254</td>
- 					<td>耿宝大大</td>
- 					<td>政策解读</td>
+ 					<td>${wenlv.id}</td>
+ 					<td>${wenlv.titleType}</td>
+ 					<td>${wenlv.title}</td>
+ 					<td>${wenlv.status}</td>
+ 					<td>${wenlv.source}</td>
+ 					<td>${wenlv.relay}</td>
+ 					<td>${wenlv.browse}</td>
+ 					<td>${wenlv.createUser}</td>
+ 					<td>${wenlv.textType}</td>
  					<td>
- 						<button class="layui-btn layui-btn-sm layui-btn-warm" onclick="update();">修改</button>
- 						<button class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
+ 						<button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ wenlv.id})">修改</button>
+ 						<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ wenlv.id})">删除</button>
  					</td>
+
  				</tr>
+				</c:forEach>
 			</table>
-			<div id="test1"style="margin-left: 900px">
-	</div>
+			<div id="test1"style="margin-left: 900px"></div>
  		</div>
  	</body>
+
  	<script type="text/javascript">
- 		function update(){
- 			window.location.href="zhengceAdd.jsp"
+ 		function updateById(id){
+ 			window.location.href="/wenlv/update?id="+id;
  		}
+
+        function deleteById(id){
+            window.location.href="/wenlv/delete?id="+id;
+        }
  	</script>
  	<script>
 layui.use('laypage', function(){
