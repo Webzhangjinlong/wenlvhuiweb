@@ -26,6 +26,11 @@ pageEncoding="UTF-8"%>
             height: 200px;
         }
     </style>
+	<script>
+        function check() {
+           document.getElementById('')
+        }
+	</script>
 	<body>
 	<div style="margin-top: 5px">
 		<font style="color: #000; font-size: 12px; margin-left: 10px">
@@ -42,11 +47,11 @@ pageEncoding="UTF-8"%>
 				<div class="form-group">
 					<label class="col-sm-1 control-label">活动名称:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  name="title" value="${tagupdate.title}" placeholder="请输入活动名称">
+						<input class="form-control" id="tagName" type="text"  name="title" value="${tagupdate.title}" placeholder="请输入活动名称">
 					</div>
 						<label class="col-sm-1 control-label">活动类别:</label>
 						<div class="col-sm-2">
-						<select name="textType" value="${tagupdate.textType}" class="form-control">
+						<select id="tagType" name="textType" value="${tagupdate.textType}" class="form-control">
 							<c:if test="${tagupdate.textType == 1}">
 								<option name="textType" value="1">惠民</option>
 							</c:if>
@@ -159,6 +164,16 @@ pageEncoding="UTF-8"%>
 							<input class="form-control" id="focusedInput" type="text" name="policyPurpose" value="${tagupdate.policyPurpose}" placeholder="请输入活动宗旨">
 						</div>
 				</div>
+				<div class="layui-upload" style="margin-left: 20px">
+					<button type="button" class="layui-btn" id="test1">上传活动封面图</button>
+					<div class="layui-upload-list">
+						<img class="layui-upload-img" id="demo1" src="${tagupdate.image}" style="width: 10%; height: 15%">
+						<div id="div3">
+						</div>
+					</div>
+					<input id="image" name="image" type="hidden" />
+					<p id="demoText"></p>
+				</div>
 				<div style="margin-left: 22px;">
 					<label class="control-label">活动内容详情:</label><br>
 				</div>
@@ -179,38 +194,16 @@ pageEncoding="UTF-8"%>
     <script type="text/javascript">
         var E = window.wangEditor;
         var editor1 = new E('#div1', '#div2');
-        
         editor1.customConfig.uploadImgServer = '/uploadflv/upload';
         editor1.customConfig.uploadFileName = 'file';
         editor1.customConfig.uploadImgMaxSize = 10 * 1024 * 1024;
-        //editor.customConfig.uploadImgMaxLength = 5;
-        //editor1.customConfig.uploadImgShowBase64 = true;
         editor1.create();
-        
         function chan(){
        		$("#cotent").val(editor1.txt.html());
-       		
        		$("#form1").submit();
         }
        
     </script>
-    <script>
-		layui.use('upload', function(){
-		  var upload = layui.upload;
-
-		  //执行实例
-		  var uploadInst = upload.render({
-		    elem: '#test1' //绑定元素
-		    ,url: '/upload/' //上传接口
-		    ,done: function(res){
-		      //上传完毕回调
-		    }
-		    ,error: function(){
-		      //请求异常回调
-		    }
-		  });
-		});
-</script>
 </body>
 <script>
 		function addOk() {
@@ -219,4 +212,36 @@ pageEncoding="UTF-8"%>
         }
 
 </script>
+	<script>
+        layui.use('upload', function() {
+            var $ = layui.jquery
+                , upload = layui.upload;
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: '#test1'
+                , url: '/uploadflv/upload'
+                , before: function (obj) {
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function (index, file, result) {
+                        $('#demo1').attr('src', result); //图片链接（base64）
+                    });
+                }
+                , done: function (res) {
+                      if(res.code>0){
+						return layer.msg('上传失败！')
+					  }
+                      $('#image').val('/'+res.url);
+                    return layer.msg('上传成功！')
+                }
+                , error: function () {
+                    //演示失败状态，并实现重传
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function () {
+                        uploadInst.upload();
+                    });
+                }
+            });
+        });
+	</script>
 </html>
