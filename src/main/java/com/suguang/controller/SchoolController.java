@@ -37,7 +37,6 @@ public class SchoolController {
     @GetMapping("/list")
 
     public String getAllByPage(Model model,@RequestParam("page") int page, @RequestParam("size") int size){
-//        List<YmSchool> schoolPage = schoolDao.findAll();
         Paging schoolPage = schoolService.findAllSchoolByMypage(page, size);
        model.addAttribute("schoolList",schoolPage);
 //        //JSONObject jsonObject = (JSONObject) JSON.toJSON(schoolPage);
@@ -52,11 +51,7 @@ public class SchoolController {
         schoolDao.deleteById(Integer.parseInt(id));
         return "redirect:/school/list";
     }
-
     //学校没有添加修改页面，暂时没有写
-
-
-
 
 //    @GetMapping("/get/myPage")
 //    public JSONObject getAllByMyPage(HttpServletRequest request, HttpServletResponse response, @RequestParam("page") int page, @RequestParam("size") int size){

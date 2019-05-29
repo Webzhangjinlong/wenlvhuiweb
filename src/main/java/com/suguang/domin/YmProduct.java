@@ -1,16 +1,22 @@
 package com.suguang.domin;
-
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Author liruifeng Date 2019-05-05
  */
+
+@Entity
 public class YmProduct implements Serializable {
 	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Integer shopsId;
 	private String productName;
@@ -37,9 +43,9 @@ public class YmProduct implements Serializable {
 	
 	
 	
-	List<YmComment> commentList = new ArrayList<YmComment>(); // 商品集合
+	//List<YmComment> commentList = new ArrayList<YmComment>(); // 商品集合
 
-	
+
 	public Integer getIsUp() {
 		return isUp;
 	}
@@ -96,13 +102,13 @@ public class YmProduct implements Serializable {
 		this.imgUrl = imgUrl;
 	}
 
-	public List<YmComment> getCommentList() {
-		return commentList;
-	}
-
-	public void setCommentList(List<YmComment> commentList) {
-		this.commentList = commentList;
-	}
+//	public List<YmComment> getCommentList() {
+//		return commentList;
+//	}
+//
+//	public void setCommentList(List<YmComment> commentList) {
+//		this.commentList = commentList;
+//	}
 
 	public YmProduct() {
 	}

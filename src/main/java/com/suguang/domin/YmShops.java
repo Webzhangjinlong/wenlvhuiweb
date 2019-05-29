@@ -1,11 +1,17 @@
 package com.suguang.domin;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class YmShops {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer  id  ;
 	String   shopsName  ;
 	String   shopsSlogan  ;
@@ -18,21 +24,17 @@ public class YmShops {
 	String   longitude  ;
 	String  latitude  ;
 	Date  createDate  ;
-	
 	Integer  createUser ;
-	
 	Integer is_up;
-	
 	Integer product_num;
 	Integer up_num;
-
-	List<YmProduct> productList = new ArrayList<YmProduct>(); // 商品集合
-
-	List<YmUp> upList = new ArrayList<YmUp>(); // 点赞集合
-
-	List<YmExperience>  experienceList= new ArrayList<YmExperience>(); // 经历集合
-	
-	List<YmImage> videoList = new ArrayList<YmImage>(); // 图片或者视频
+//	List<YmProduct> productList = new ArrayList<YmProduct>(); // 商品集合
+//
+//	List<YmUp> upList = new ArrayList<YmUp>(); // 点赞集合
+//
+//	List<YmExperience>  experienceList= new ArrayList<YmExperience>(); // 经历集合
+//
+//	List<YmImage> videoList = new ArrayList<YmImage>(); // 图片或者视频
 
 	public Integer getId() {
 		return id;
@@ -162,40 +164,40 @@ public class YmShops {
 		this.up_num = up_num;
 	}
 
-	public List<YmProduct> getProductList() {
-		return productList;
-	}
-
-	public void setProductList(List<YmProduct> productList) {
-		this.productList = productList;
-	}
-
-	public List<YmUp> getUpList() {
-		return upList;
-	}
-
-	public void setUpList(List<YmUp> upList) {
-		this.upList = upList;
-	}
-
-	public List<YmExperience> getExperienceList() {
-		return experienceList;
-	}
-
-	public void setExperienceList(List<YmExperience> experienceList) {
-		this.experienceList = experienceList;
-	}
-
-	public List<YmImage> getVideoList() {
-		return videoList;
-	}
-
-	public void setVideoList(List<YmImage> videoList) {
-		this.videoList = videoList;
-	}
+//	public List<YmProduct> getProductList() {
+//		return productList;
+//	}
+//
+//	public void setProductList(List<YmProduct> productList) {
+//		this.productList = productList;
+//	}
+//
+//	public List<YmUp> getUpList() {
+//		return upList;
+//	}
+//
+//	public void setUpList(List<YmUp> upList) {
+//		this.upList = upList;
+//	}
+//
+//	public List<YmExperience> getExperienceList() {
+//		return experienceList;
+//	}
+//
+//	public void setExperienceList(List<YmExperience> experienceList) {
+//		this.experienceList = experienceList;
+//	}
+//
+//	public List<YmImage> getVideoList() {
+//		return videoList;
+//	}
+//
+//	public void setVideoList(List<YmImage> videoList) {
+//		this.videoList = videoList;
+//	}
 
 
 }
-	
+
 
  
