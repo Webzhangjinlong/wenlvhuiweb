@@ -9,11 +9,11 @@
 		<meta name="renderer" content="webkit">
   		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  		<link rel="stylesheet" href="layui/css/layui.css"  media="all">
+  		<link rel="stylesheet" href="/layui/css/layui.css"  media="all">
   		<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
 		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  		<script src="layui/layui.js"></script>
+  		<script src="/layui/layui.js"></script>
 	</head>
 	<style type="text/css">
         .toolbar {
@@ -40,48 +40,53 @@
  			<hr style="background: red; height: 2px">
  		</div>
  		<div>
-			<form class="form-horizontal" role="form">
+			<form class="form-horizontal" role="form" action="/school/saveupdate">
+
+				<div>
+					<input type="hidden" name="id" value="${addSchool.id}">
+				</div>
+
 				<div class="form-group">
 					<label class="col-sm-1 control-label">学校名称:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入学校名称">
+						<input class="form-control" id="focusedInput" type="text" name="name" value="${addSchool.title}" value="" placeholder="请输入学校名称">
 					</div>
 						<label class="col-sm-1 control-label">学校类别:</label>
 						<div class="col-sm-2">
-							<select class="form-control">
-									<option>--请选择--</option>
-											<option>唱歌</option>
-											<option>跳舞</option>
-											<option>刺绣</option>
+							<select class="form-control" name="schoolType" value="${addSchool.status}">
+											<option value="0" name="schoolType">--请选择--</option>
+											<option value="0" name="schoolType">唱歌</option>
+											<option value="0" name="schoolType">跳舞</option>
+											<option value="0" name="schoolType">刺绣</option>
 							</select>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-1 control-label">市:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入市">
+						<input class="form-control" name="city" value="${addSchool.city}" id="focusedInput" type="text"  value="" placeholder="请输入市">
 					</div>
 					<label class="col-sm-1 control-label">区:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入区">
+						<input class="form-control" name="area" value="${addSchool.area}" id="focusedInput" type="text"  value="" placeholder="请输入区">
 					</div>
 				</div>
 				<div class="form-group"style="margin-top: 32px">
 						<label class="col-sm-1 control-label">联系电话:</label>
 						<div class="col-sm-2">
-							<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入联系电话">
+							<input class="form-control" name="phone" value="${addSchool.phone}" id="focusedInput" type="text"  value="" placeholder="请输入联系电话">
 						</div>
 				</div>
 				<div class="form-group"style="margin-top: 32px">
 						<label class="col-sm-1 control-label">详细地址:</label>
 						<div class="col-sm-5">
-							<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入详细地址">
+							<input class="form-control" name="addrDetail" value="${addSchool.addrDetail}" id="focusedInput" type="text"  value="" placeholder="请输入详细地址">
 						</div>
 				</div>
 				<div class="form-group" style="margin-top: 30px">
 					<label class="col-sm-1 control-label">学校账号:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  value="" placeholder="">
+						<input class="form-control"  id="focusedInput" type="text"  value="" placeholder="">
 					</div>
 						<label class="col-sm-1 control-label">学校密码:</label>
 					<div class="col-sm-2">
@@ -138,7 +143,7 @@
 		    	</div>
 			</form>
  		</div>
-    <script type="text/javascript" src="js/wangEditor.min.js"></script>
+    <script type="text/javascript" src="/js/wangEditor.min.js"></script>
     <script type="text/javascript">
         var E = window.wangEditor;
         var editor1 = new E('#div1', '#div2'); 

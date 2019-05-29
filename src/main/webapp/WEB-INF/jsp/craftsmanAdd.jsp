@@ -10,7 +10,7 @@ pageEncoding="UTF-8"%>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="stylesheet" href="layui/css/layui.css" media="all">
+<link rel="stylesheet" href="/layui/css/layui.css" media="all">
 <link rel="stylesheet"
 	href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
@@ -18,12 +18,13 @@ pageEncoding="UTF-8"%>
 .toolbar {
 	border: 1px solid #ccc;
 	width: 700px;
+	margin-left: 120px;
 }
 
 .text {
 	border: 1px solid #ccc;
 	width: 700px;
-	height: 200px;
+	height: 100px;
 }
 </style>
 <body>
@@ -33,35 +34,39 @@ pageEncoding="UTF-8"%>
 		<hr style="background: red; height: 2px; margin-top: 5px">
 	</div>
 	<div>
-		<form class="form-horizontal" role="form">
+		<form class="form-horizontal" role="form" id="form1" action="/craftsman/addList">
+
+			<div>
+				<input type="hidden" name="id" value="${show.id}">
+			</div>
 			<div class="form-group">
 				<label class="col-sm-1 control-label">匠人名称:</label>
 				<div class="col-sm-2">
-					<input class="form-control" id="focusedInput" type="text" value=""
+					<input class="form-control" id="focusedInput" type="text" name="shopsName" value="${show.shopsName}"
 						placeholder="请输入匠人名称">
 				</div>
 				<label class="col-sm-1 control-label">创建人:</label>
 				<div class="col-sm-2">
-					<input class="form-control" id="focusedInput" type="text" value=""
+					<input class="form-control" id="focusedInput" type="text" name="createUser" value="${show.createUser}"
 						placeholder="请输入创建人">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-1 control-label">匠人标语:</label>
 				<div class="col-sm-5">
-					<input class="form-control" id="focusedInput" type="text" value=""
+					<input class="form-control" id="focusedInput" type="text" name="shopsSlogan" value="${show.shopsSlogan}"
 						placeholder="请输入匠人标语">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-1 control-label">市:</label>
 				<div class="col-sm-2">
-					<input class="form-control" id="focusedInput" type="text" value=""
+					<input class="form-control" id="focusedInput" type="text" name="city" value="${show.city}"
 						placeholder="市">
 				</div>
 				<label class="col-sm-1 control-label">区:</label>
 				<div class="col-sm-2">
-					<input class="form-control" id="focusedInput" type="text" value=""
+					<input class="form-control" id="focusedInput" type="text" name="area" value="${show.area}"
 						placeholder="区">
 				</div>
 
@@ -69,19 +74,19 @@ pageEncoding="UTF-8"%>
 			<div class="form-group">
 				<label class="col-sm-1 control-label">详细地址:</label>
 				<div class="col-sm-5">
-					<input class="form-control" id="focusedInput" type="text" value=""
+					<input class="form-control" id="focusedInput" type="text" name="addrDetail" value="${show.addrDetail}"
 						placeholder="请输入详细地址">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-1 control-label">经度:</label>
 				<div class="col-sm-2">
-					<input class="form-control" id="focusedInput" type="text" value=""
+					<input class="form-control" id="focusedInput" type="text" name="longitude" value="${show.longitude}"
 						placeholder="请输入经度">
 				</div>
 				<label class="col-sm-1 control-label">纬度:</label>
 				<div class="col-sm-2">
-					<input class="form-control" id="focusedInput" type="text" value=""
+					<input class="form-control" id="focusedInput" type="text" name="latitude" value="${show.latitude}"
 						placeholder="纬度">
 				</div>
 				<div class="col-sm-2">
@@ -91,11 +96,13 @@ pageEncoding="UTF-8"%>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-1 control-label" style="margin-top: 30px;">匠人介绍:</label>
-				<div>
-					<div id="div1" class="toolbar" style="margin-left: 120px"></div>
+				<div style="margin-left: 120px">
+					<div id="div1" class="toolbar"></div>
 					<div style="padding: 5px 0; color: #ccc"></div>
-					<div id="div2" class="text"
-						style="margin-left: 120px; height:100px"></div>
+					<div id="div2" class="text">
+						<p>${show.shopsDetail}</p>
+					</div>
+					<input type="hidden" id="shopsDetail" name="shopsDetail">
 				</div>
 			</div>
 			<div class="layui-upload" style="margin-left: 20px">
@@ -136,7 +143,7 @@ pageEncoding="UTF-8"%>
 				</div>
 				<button type="button" class="layui-btn" id="testListAction1">开始上传</button>
 			</div>
-			<div class="layui-upload"  style="margin-left: 800px; margin-top: -690px">
+			<div class="layui-upload"  style="margin-left: 800px; margin-top: -650px">
 				<button type="button" class="layui-btn" id="test1">请上传店铺logo</button>
 				<div class="layui-upload-list">
 					<img class="layui-upload-img" id="demo1">
@@ -144,19 +151,24 @@ pageEncoding="UTF-8"%>
 				</div>
 			</div>
 			<div style="margin-left: 650px; margin-top: 620px">
-		    		<button class="layui-btn layui-btn-sm">确定添加</button>
-		    		<button class="layui-btn layui-btn-sm layui-btn-danger">确定修改</button>
+		    		<button class="layui-btn layui-btn-sm" onclick="chan()">确定添加</button>
 		    	</div>
 		</form>
 	</div>
-	<script type="text/javascript" src="js/wangEditor.min.js"></script>
+	<script type="text/javascript" src="/js/wangEditor.js"></script>
 	<script type="text/javascript">
 		var E = window.wangEditor;
 		var editor1 = new E('#div1', '#div2');
-		editor1.customConfig.uploadImgServer = '/upload';
+        editor1.customConfig.uploadImgServer = '/uploadflv/upload';
+        editor1.customConfig.uploadFileName = 'file';
+        editor1.customConfig.uploadImgMaxSize = 10 * 1024 * 1024;
 		editor1.create();
+		function chan() {
+            $("#shopsDetail").val(editor1.txt.html());
+            $("#form1").submit();
+        }
 	</script>
-	<script src="layui/layui.js"></script>
+	<script src="/layui/layui.js"></script>
 	<script>
 		layui
 				.use(

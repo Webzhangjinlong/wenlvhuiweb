@@ -31,8 +31,8 @@ pageEncoding="UTF-8"%>
 		  <li class="layui-nav-item">
 		  	<a href="javascript:;">匠人管理</a>
 			  	<dl class="layui-nav-child">
-			      <dd><a href="craftsmanList.jsp" target="showframe">匠人列表</a></dd>
-			      <dd><a href="craftsmanAdd.jsp" target="showframe">添加匠人</a></dd>
+			      <dd><a href="/craftsman/list" target="showframe">匠人列表</a></dd>
+			      <dd><a href="/craftsman/addpage" target="showframe">添加匠人</a></dd>
 			    </dl>
 		    </li>
 		  <li class="layui-nav-item">
@@ -54,7 +54,7 @@ pageEncoding="UTF-8"%>
 		  	<a href="javascript:;">学校管理</a>
 			  	<dl class="layui-nav-child">
 			      <dd><a href="/school/list?page=1&size=10" target="showframe">学校列表</a></dd>
-			      <dd><a href="schoolAdd.html" target="showframe">添加学校</a></dd>
+			      <dd><a href="/school/update" target="showframe">添加学校</a></dd>
 			    </dl>
 		    </li>
 		</ul>

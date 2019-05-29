@@ -25,9 +25,9 @@ public class YmShops {
 	String  latitude  ;
 	Date  createDate  ;
 	Integer  createUser ;
-	Integer is_up;
-	Integer product_num;
-	Integer up_num;
+	//Integer is_up;
+	//Integer product_num;
+	//Integer up_num;
 //	List<YmProduct> productList = new ArrayList<YmProduct>(); // 商品集合
 //
 //	List<YmUp> upList = new ArrayList<YmUp>(); // 点赞集合
@@ -140,29 +140,29 @@ public class YmShops {
 		this.createUser = createUser;
 	}
 
-	public Integer getIs_up() {
-		return is_up;
-	}
+//	public Integer getIs_up() {
+//		return is_up;
+//	}
+//
+//	public void setIs_up(Integer is_up) {
+//		this.is_up = is_up;
+//	}
 
-	public void setIs_up(Integer is_up) {
-		this.is_up = is_up;
-	}
+//	public Integer getProduct_num() {
+//		return product_num;
+//	}
+//
+//	public void setProduct_num(Integer product_num) {
+//		this.product_num = product_num;
+//	}
 
-	public Integer getProduct_num() {
-		return product_num;
-	}
-
-	public void setProduct_num(Integer product_num) {
-		this.product_num = product_num;
-	}
-
-	public Integer getUp_num() {
-		return up_num;
-	}
-
-	public void setUp_num(Integer up_num) {
-		this.up_num = up_num;
-	}
+//	public Integer getUp_num() {
+//		return up_num;
+//	}
+//
+//	public void setUp_num(Integer up_num) {
+//		this.up_num = up_num;
+//	}
 
 //	public List<YmProduct> getProductList() {
 //		return productList;

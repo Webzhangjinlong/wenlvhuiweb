@@ -9,7 +9,7 @@ pageEncoding="UTF-8"%>
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+  <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
   <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
   <style type="text/css">
   	table{
@@ -48,28 +48,31 @@ pageEncoding="UTF-8"%>
  					<td style="width: 8%">创建人</td>
  					<td style="width: 10%">操作</td>
  				</tr>
+
+		<c:forEach items="${list}" var="list"  >
  				<tr>
- 					<td>1</td>
- 					<td>Blue shit</td>
- 					<td>挖机</td>
- 					<td>宁夏</td>
- 					<td>银川</td>
- 					<td>金凤区</td>
- 					<td>12315</td>
- 					<td>56464</td>
- 					<td>北京路上海路向南一百米dsadsadsadasdasdsadsa萨达萨达萨达萨达撒旦撒旦</td>
- 					<td>2016-05-21</td>
- 					<td>耿宝大大</td>
+ 					<td>${ list.id}</td>
+ 					<td>${ list.shopsName}</td>
+ 					<td>${ list.shopsSlogan}</td>
+ 					<td>${ list.province}</td>
+ 					<td>${ list.city}</td>
+ 					<td>${ list.area}</td>
+ 					<td>${ list.longitude}</td>
+ 					<td>${ list.latitude}</td>
+ 					<td>${ list.addrDetail}</td>
+ 					<td>${ list.createDate}</td>
+ 					<td>${ list.createUser}</td>
  					<td>
- 						<button class="layui-btn layui-btn-sm layui-btn-warm" onclick="foodAdd()">修改</button>
- 						<button class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
+ 						<button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ list.id})">修改</button>
+ 						<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ list.id})">删除</button>
  					</td>
  				</tr>
+		</c:forEach>
 			</table>
 	<div id="test1"style="margin-left: 900px">
 	</div>
  </div>     
-<script src="layui/layui.js" charset="utf-8"></script>
+<script src="/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 --> 
 <script>
 layui.use('laypage', function(){
@@ -81,6 +84,16 @@ layui.use('laypage', function(){
     ,count: 100 //数据总数，从服务端得到
   });
 });
+</script>
+
+<script type="text/javascript">
+    function updateById(id){
+        window.location.href="/craftsman/show?id="+id;
+    }
+
+    function deleteById(id){
+        window.location.href="/craftsman/delete?id="+id;
+    }
 </script>
 </body>
 </html>
