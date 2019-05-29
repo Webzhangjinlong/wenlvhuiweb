@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.transaction.Transactional;
 
 import java.io.File;
 import java.text.ParseException;
@@ -87,6 +86,7 @@ public class TagController extends BaseController {
         String awardRules = request.getParameter("awardRules");
         String policyPurpose = request.getParameter("policyPurpose");
         String cotent = request.getParameter("cotent");
+        String image = request.getParameter("image");
         YmPolicy ymPolicy = new YmPolicy();
         if(id != null && id != ""){
             ymPolicy.setId(Integer.parseInt(id));
@@ -105,7 +105,7 @@ public class TagController extends BaseController {
         ymPolicy.setAwardRules(awardRules);
         ymPolicy.setPolicyPurpose(policyPurpose);
         ymPolicy.setCotent(cotent);
-        System.out.println(ymPolicy);
+        ymPolicy.setImage(image);
         YmPolicy policy = tagDao.save(ymPolicy);
         model.addAttribute("policy",policy);
         return "redirect:/tag/list";

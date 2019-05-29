@@ -1,5 +1,7 @@
 package com.suguang.domin;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -114,11 +116,13 @@ public class YmFood {
 	}
 
 
+    /**
+     * Created by 11491 on 2019/5/26.
+     */
+    public static interface UserDao extends JpaRepository<YmUser,Integer> {
+        //根据密码账号判断
 
-	  
-	  
-	  
-	  
-	  
-	  
+        public YmUser getById(Integer id);
+
+    }
 }

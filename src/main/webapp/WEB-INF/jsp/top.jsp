@@ -37,9 +37,9 @@ pageEncoding="UTF-8"%>
 		</div>
 		<div id="top">
 			<ul class="layui-nav" lay-filter="">
-			  <li class="layui-nav-item"><a href="">最新活动</a></li>
-			  <li class="layui-nav-item"><a href="/resources/templates/popleList.html" target="showframe" onload="load()">会员管理</a></li>
-			  <li class="layui-nav-item"><a href="">大数据</a></li>
+			  <li class="layui-nav-item"><a href="/user/list" target="showframe">会员列表</a></li>
+			  <li class="layui-nav-item"><a href="/user/userAdd" target="showframe">添加会员</a></li>
+			  <li class="layui-nav-item"><a href="/scwj/demo"  target="showframe">大数据</a></li>
 			  <li class="layui-nav-item"><a href="">社区</a></li>
 			</ul>
 	 	</div>

@@ -10,5 +10,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 
 public interface TagDao extends JpaRepository<YmPolicy,Integer> {
-    public YmPolicy getById(Integer id);
+     YmPolicy getById(Integer id);
 }
