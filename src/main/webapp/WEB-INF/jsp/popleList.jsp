@@ -24,7 +24,7 @@ pageEncoding="UTF-8"%>
 			text-overflow:ellipsis;
 		}
 	</style>
- 	<body onload="load();">
+ 	<body>
  		<div style="margin-top: 5px">
  			<font style="color: #000; font-size: 12px; margin-top: 10px">
  				★ 会员列表

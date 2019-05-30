@@ -22,6 +22,11 @@ pageEncoding="UTF-8"%>
     overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
     text-overflow:ellipsis;
     }
+	  td:hover{
+		  overflow: visible;
+		  width: auto;
+	  }
+
   </style>
 </head>
 <body>
@@ -33,7 +38,7 @@ pageEncoding="UTF-8"%>
  			<hr style="background: red; height: 2px">
  		</div>
  <div style="margin-top: 20px;">
-	<table class="layui-table" lay-skin="line,row" style="text-align: center; overflow: hidden;">
+	<table class="layui-table" lay-skin="line" style="text-align: center; overflow: hidden;">
  				<tr style="font-weight: bold;">
  					<td style="width: 5%">编号</td>
  					<td style="width: 10%">匠人名称</td>
@@ -50,7 +55,7 @@ pageEncoding="UTF-8"%>
  				</tr>
 
 		<c:forEach items="${list}" var="list"  >
- 				<tr>
+ 				<tr class="ofDiv" nowrap="nowrap">
  					<td>${ list.id}</td>
  					<td>${ list.shopsName}</td>
  					<td>${ list.shopsSlogan}</td>

@@ -2,12 +2,21 @@ package com.suguang.controller;
 
 import com.suguang.dao.WenLvDao;
 import com.suguang.domin.YmWenlv;
+import com.suguang.util.YmStaticVariablesUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import java.awt.*;
+import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -66,23 +75,38 @@ public class WenLvController extends BaseController{
     //修改页面里面的数据，及就是将修改的数据保存数据库
     //添加政策
     @RequestMapping("/addSure")
-    public String addSure (HttpServletRequest request,Model model){
-        YmWenlv ymWenlv = new YmWenlv();
+    public String addSure (HttpServletRequest request,Model model) throws ParseException {
         String id = request.getParameter("id");
         String title = request.getParameter("title");
         String titleType = request.getParameter("titleType");
         String source = request.getParameter("source");
+        String textType = request.getParameter("textType");
         String status = request.getParameter("status");
-       // String createUser = request.getParameter("createUser");
-        //String textType = request.getParameter("textType");
+
+        Date date = new Date();
+
+        String cotent = request.getParameter("cotent");
+        String image = request.getParameter("image");
+        YmWenlv ymWenlv = new YmWenlv();
+        if(id != null && id != ""){
+            ymWenlv.setId(Integer.parseInt(id));
+        }
         ymWenlv.setTitle(title);
         ymWenlv.setTitleType(titleType);
         ymWenlv.setSource(source);
+        ymWenlv.setTextType(textType);
         ymWenlv.setStatus(status);
-        //ymWenlv.setCreateUser(Integer.parseInt(createUser));
-       //ymWenlv.getTextType(Integer.parseInt(textType));
-        YmWenlv save = wenLvDao.save(ymWenlv);
-        model.addAttribute("save",save);
+        ymWenlv.setCotent(cotent);
+        ymWenlv.setImage(image);
+        YmWenlv wenlv = wenLvDao.save(ymWenlv);
+        model.addAttribute("wenlv", wenlv);
         return "redirect:/wenlv/list";
+    }
+
+    //返回服务器资源
+    @RequestMapping(value = "export_xls", method = RequestMethod.GET)
+    public ResponseEntity<FileSystemResource> exportXls(HttpServletRequest request) {
+        String file = request.getParameter("file");
+        return UploadController.export(new File(YmStaticVariablesUtil.UPLOAD_PATH+file));
     }
 }

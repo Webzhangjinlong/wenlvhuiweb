@@ -38,12 +38,13 @@ public class UploadController {
 		try {
 			entity = fileUploadTool.createFile(multipartFile, request);
 			List list= new ArrayList();
-			list.add("export_xls?file="+entity.getPath());
+			String path = entity.getPath();
+			list.add("export_xls?file="+path);
 			if (entity != null) {
-//                service.saveFile(entity);
+               // service.saveFile(entity);
 				message = "上传成功";
 				result.put("errno", 0);
-				result.put("data", list);
+				result.put("data", list);  //你这里是data  看到没嗯然后呢
 				result.put("msg", message);
 			} else {
 				message = "上传失败";

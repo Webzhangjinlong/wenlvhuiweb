@@ -9,15 +9,15 @@ import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
-public class YmWenlv  extends YmEntity {
+public class YmWenlv extends YmEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String titleType;
-    
+
     //private String titleTypeName;
-    
+
     private String title;
 
     private String image;
@@ -38,18 +38,18 @@ public class YmWenlv  extends YmEntity {
 
     private Integer createUser;
 
-    private Integer textType;
+    private String textType;
 
     private String backupField2;
-    
+
     //private Integer comment_num;
-    
+
     //private Integer up_num;
 
     //private Integer is_up; // 判断当前用户是否点赞   1 ： 点赞   0：未点赞
 
 
-    public Integer getTextType() {
+    public String getTextType() {
         return textType;
     }
 
@@ -98,7 +98,7 @@ public class YmWenlv  extends YmEntity {
     }
 
     public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
+        this.status = status;
     }
 
     public String getSource() {
@@ -149,11 +149,11 @@ public class YmWenlv  extends YmEntity {
         this.createUser = createUser;
     }
 
-    public Integer getTextType(int i) {
+    public String getTextType(int i) {
         return textType;
     }
 
-    public void setTextType(Integer textType) {
+    public void setTextType(String textType) {
         this.textType = textType;
     }
 
