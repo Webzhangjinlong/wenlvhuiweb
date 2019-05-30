@@ -25,6 +25,8 @@ public class YmShops {
 	String  latitude  ;
 	Date  createDate  ;
 	Integer  createUser ;
+
+
 	//Integer is_up;
 	//Integer product_num;
 	//Integer up_num;
