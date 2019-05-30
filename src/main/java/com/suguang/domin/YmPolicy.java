@@ -34,14 +34,11 @@ public class YmPolicy extends YmEntity{
     private String giveDefault;
 
     private String cotent;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createDate;
 
     private Integer textType;
-
-    private Integer backupField1;
-
-    private String backupField2;
 
     private String prize;
 
@@ -50,6 +47,41 @@ public class YmPolicy extends YmEntity{
     private String awardRules;
 
     private String policyPurpose;
+
+    private Integer peopleNum;
+
+    private Date signDate;
+    //@DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date policyDate;
+
+    private String policyAddr;
+
+    private String videourl;
+
+    private String videoBackurl;
+
+    @Override
+    public String toString() {
+        return "YmPolicy{" +
+                "videoBackurl='" + videoBackurl + '\'' +
+                '}';
+    }
+
+    public String getVideourl() {
+        return videourl;
+    }
+
+    public void setVideourl(String videourl) {
+        this.videourl = videourl;
+    }
+
+    public String getVideoBackurl() {
+        return videoBackurl;
+    }
+
+    public void setVideoBackurl(String videoBackurl) {
+        this.videoBackurl = videoBackurl;
+    }
 
     public String getPolicyPurpose() {
         return policyPurpose;
@@ -82,14 +114,6 @@ public class YmPolicy extends YmEntity{
     public void setPrize(String prize) {
         this.prize = prize;
     }
-
-    private Integer peopleNum;
-
-    private Date signDate;
-    //@DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date policyDate;
-
-    private String policyAddr;
 
     public String getPolicyAddr() {
         return policyAddr;
@@ -218,25 +242,6 @@ public class YmPolicy extends YmEntity{
     public void setTextType(Integer textType) {
         this.textType = textType;
     }
-
-    public Integer getBackupField1() {
-        return backupField1;
-    }
-
-    public void setBackupField1(Integer backupField1) {
-        this.backupField1 = backupField1;
-    }
-
-    public String getBackupField2() {
-        return backupField2;
-    }
-
-    public void setBackupField2(String backupField2) {
-        this.backupField2 = backupField2 == null ? null : backupField2.trim();
-    }
-
-
-
 
 }
 

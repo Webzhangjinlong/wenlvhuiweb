@@ -13,9 +13,16 @@ pageEncoding="UTF-8"%>
   		<script src="/layui/layui.js"></script>
 	</head>
 	<style type="text/css">
+		table{
+			table-layout: fixed;
+		}
 		td{
-	  		text-align: center;
-	  	}
+			width:100%;
+			word-break:keep-all;/* 不换行 */
+			white-space:nowrap;/* 不换行 */
+			overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+			text-overflow:ellipsis;
+		}
 	</style>
  	<body>
  		<div style="margin-top: 5px">
@@ -26,7 +33,7 @@ pageEncoding="UTF-8"%>
  			<hr style="background: red; height: 2px">
  		</div>
  		<div id="tab1">
- 			<table class="layui-table" lay-skin="line">
+ 			<table class="layui-table" lay-skin="line,row" style="text-align: center; overflow: hidden;">
  				<tr style="font-weight: bold;">
  					<td>序号</td>
  					<td>种类</td>

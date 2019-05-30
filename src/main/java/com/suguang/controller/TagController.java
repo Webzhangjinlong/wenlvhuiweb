@@ -1,6 +1,8 @@
 package com.suguang.controller;
 
+import com.suguang.dao.ImageDao;
 import com.suguang.dao.TagDao;
+import com.suguang.domin.YmImage;
 import com.suguang.domin.YmPolicy;
 import com.suguang.util.YmStaticVariablesUtil;
 
@@ -30,6 +32,7 @@ public class TagController extends BaseController {
     @Autowired
     private TagDao tagDao;
 
+
     //展示所有活动
     @RequestMapping("/list")
     @Override
@@ -42,7 +45,7 @@ public class TagController extends BaseController {
     @RequestMapping("/delete")
     @Override
     protected String DeleteOne(HttpServletRequest request, Model model) {
-        String id = request.getParameter("id"); // 你加的那个？
+        String id = request.getParameter("id");
         tagDao.deleteById(Integer.parseInt(id));
 
         return "redirect:/tag/list";
@@ -86,7 +89,9 @@ public class TagController extends BaseController {
         String awardRules = request.getParameter("awardRules");
         String policyPurpose = request.getParameter("policyPurpose");
         String cotent = request.getParameter("cotent");
-        String image = request.getParameter("image");
+        String image = request.getParameter("image"); //这是undefind锕那这咋弄呢
+        String videourl = request.getParameter("videourl");
+        String videoBackurl = request.getParameter("videoBackurl");
         YmPolicy ymPolicy = new YmPolicy();
         if(id != null && id != ""){
             ymPolicy.setId(Integer.parseInt(id));
@@ -106,6 +111,8 @@ public class TagController extends BaseController {
         ymPolicy.setPolicyPurpose(policyPurpose);
         ymPolicy.setCotent(cotent);
         ymPolicy.setImage(image);
+        ymPolicy.setVideourl(videourl);
+        ymPolicy.setVideoBackurl(videoBackurl);
         YmPolicy policy = tagDao.save(ymPolicy);
         model.addAttribute("policy",policy);
         return "redirect:/tag/list";

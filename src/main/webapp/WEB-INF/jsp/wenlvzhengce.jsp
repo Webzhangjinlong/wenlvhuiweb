@@ -13,9 +13,16 @@ pageEncoding="UTF-8"%>
   		<script src="/layui/layui.js"></script>
 	</head>
 	<style type="text/css">
+		table{
+			table-layout: fixed;
+		}
 		td{
-	  		text-align: center;
-	  	}
+			width:100%;
+			word-break:keep-all;/* 不换行 */
+			white-space:nowrap;/* 不换行 */
+			overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+			text-overflow:ellipsis;
+		}
 	</style>
  	<body>
  		<div style="margin-top: 5px;">
@@ -26,7 +33,7 @@ pageEncoding="UTF-8"%>
  			<hr style="background: red; height: 2px">
  		</div>
  		<div id="tab1">
- 			<table class="layui-table" lay-skin="line">
+ 			<table class="layui-table" lay-skin="line,row" style="text-align: center; overflow: hidden;">
  				<tr style="font-weight: bold;">
  					<td>序号</td>
  					<td>类型</td>
@@ -39,28 +46,25 @@ pageEncoding="UTF-8"%>
  					<td>文章分类</td>
  					<td>操作</td>
  				</tr>
-				<c:forEach items="${tagList}" var="tag"  >
-				<tr style="font-weight: bold;">
-					<td>${ tag.id}</td>
-					<td>${ tag.title}</td>
-					<td>
-						<c:if test="${tag.status==1 }">转发</c:if>
-						<c:if test="${tag.status==2 }">自写</c:if>
-					</td>
-					<td>${ tag.source}</td>
-				</tr>
-				</c:forEach>
 				<c:forEach items="${wenlvlist}" var="wenlv">
  				<tr>
  					<td>${wenlv.id}</td>
  					<td>${wenlv.titleType}</td>
  					<td>${wenlv.title}</td>
- 					<td>${wenlv.status}</td>
+
+ 					<td>
+						<c:if test="${wenlv.status == 1}">转发</c:if>
+						<c:if test="${wenlv.status == 2}">自写</c:if>
+					</td>
  					<td>${wenlv.source}</td>
  					<td>${wenlv.relay}</td>
  					<td>${wenlv.browse}</td>
  					<td>${wenlv.createUser}</td>
- 					<td>${wenlv.textType}</td>
+ 					<td>
+						<c:if test="${wenlv.textType == 1}">咨询动态</c:if>
+						<c:if test="${wenlv.textType == 2}">政策解读</c:if>
+						<c:if test="${wenlv.textType == 3}">项目公告</c:if>
+					</td>
  					<td>
  						<button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ wenlv.id})">修改</button>
  						<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ wenlv.id})">删除</button>

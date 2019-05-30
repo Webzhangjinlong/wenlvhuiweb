@@ -1,13 +1,20 @@
 package com.suguang.domin;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 
 /**
  * 图片表
  */
+@Entity
 public class YmImage {
 
-	Integer id;// int(11) NOT NULL,
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;// int(11) NOT NULL,
 	Integer imgType;// int(255) DEFAULT NULL COMMENT '图片类型 1:空间 2：活动 3：艺人 4：培训机构',
 	Integer imageType;// int(11) DEFAULT NULL COMMENT '1 图片 2 视频',
 	String imgName; // 图片名
