@@ -56,6 +56,7 @@ public class CarftsmanController {
         String longitude = request.getParameter("longitude");
         String latitude = request.getParameter("latitude");
         String shopsDetail = request.getParameter("shopsDetail");
+        String imgUrl = request.getParameter("imgUrl");
 
         YmShops ymShops = new YmShops();
 
@@ -76,6 +77,8 @@ public class CarftsmanController {
 
         Date date = new Date();
         ymShops.setCreateDate(date);
+
+        ymShops.setImgUrl(imgUrl);
 
         YmShops save = craftsmanDao.save(ymShops);
         model.addAttribute("save",save);

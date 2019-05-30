@@ -82,6 +82,9 @@ public class WenLvController extends BaseController{
         String source = request.getParameter("source");
         String textType = request.getParameter("textType");
         String status = request.getParameter("status");
+
+        Date date = new Date();
+
         String cotent = request.getParameter("cotent");
         String image = request.getParameter("image");
         YmWenlv ymWenlv = new YmWenlv();

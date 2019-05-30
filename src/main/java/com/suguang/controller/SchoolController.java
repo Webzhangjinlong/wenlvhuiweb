@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 
 
@@ -80,6 +81,7 @@ public class SchoolController {
         ymSchool.setArea(area);
         ymSchool.setPhone(phone);
         ymSchool.setAddrDetail(addrDetail);
+        ymSchool.setCreateDate(new Date());
 
         YmSchool save = schoolDao.save(ymSchool);
         model.addAttribute("sureaddSchool",save);

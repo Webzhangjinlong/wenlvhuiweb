@@ -112,6 +112,7 @@ public class TagController extends BaseController {
         ymPolicy.setCotent(cotent);
         ymPolicy.setImage(image);
         ymPolicy.setVideourl(videourl);
+        ymPolicy.setCreateDate(new Date());
         ymPolicy.setVideoBackurl(videoBackurl);
         YmPolicy policy = tagDao.save(ymPolicy);
         model.addAttribute("policy",policy);

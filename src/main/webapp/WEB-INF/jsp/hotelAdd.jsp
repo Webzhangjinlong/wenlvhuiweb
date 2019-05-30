@@ -121,7 +121,7 @@ pageEncoding="UTF-8"%>
 				<div class="form-group" style="margin-top: 30px">
 					<label class="col-sm-1 control-label">餐馆账号:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  name="restaurantName" value="${hotel.restaurantName}" placeholder="">
+						<input class="form-control" id="focusedInput" type="text"  name=" " value="${hotel.restaurantName}" placeholder="">
 					</div>
 						<label class="col-sm-1 control-label">餐馆密码:</label>
 					<div class="col-sm-2">
