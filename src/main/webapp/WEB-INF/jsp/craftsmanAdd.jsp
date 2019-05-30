@@ -169,7 +169,7 @@ pageEncoding="UTF-8"%>
         }
 	</script>
 	<script src="/layui/layui.js"></script>
-	<script>
+	<script >
 		layui
 				.use(
 						'upload',

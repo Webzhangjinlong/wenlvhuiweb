@@ -34,6 +34,58 @@
     }
 </style>
 <body>
+<script type="text/javascript">
+   function chan() {
+       var tagName = document.getElementById("tagName").value;
+       var tagType = document.getElementById("tagType").value;
+       var tagSource = document.getElementById("tagSource").value;
+       var tagStatus = document.getElementById("tagStatus").value;
+       var tagPeopleNum = document.getElementById("tagPeopleNum").value;
+       var tagDefault = document.getElementById("tagDefault").value;
+       var tagSign = document.getElementById("tagSign").value;
+       var tagPolicyDate = document.getElementById("tagPolicyDate").value;
+       var prize = document.getElementById("text-elem6010805869237978").value;
+       var tagAddr = document.getElementById("tagAddr").value;
+       if(tagName == "" || tagName == null){
+            alert("请输入活动名称!");
+           return false;
+      }if(tagType == "" || tagType == 0){
+           alert("请选择活动种类!")
+           return false;
+       }if(tagSource == "" || tagSource == null){
+           alert("请输入活动来源!")
+           return false;
+       }if(tagStatus == "" || tagStatus == 0){
+           alert("请选择创建类型!")
+           return false;
+       }if(tagPeopleNum == "" || tagPeopleNum == null){
+           alert("请输入活动人数!")
+           return false;
+       }if(tagDefault == "" || tagDefault == 0){
+           alert("请选择活动状态!")
+           return false;
+       }if(tagSign == "" || tagSign == null){
+           alert("请输入报名时间!")
+           return false;
+       }if(tagPolicyDate == "" || tagPolicyDate == null){
+           alert("请输入活动开始时间!")
+           return false;
+       }if(prize == "" || prize == null){
+           alert("请输入活动奖品!")
+           return false;
+       }if(tagAddr == "" || tagAddr == null){
+           alert("请输入活动详细地址!")
+           return false;
+       }
+           $("#cotent").val(editor1.txt.html());
+           $("#prize").val(editor2.txt.html());
+           $("#policyRule").val(editor3.txt.html());
+           $("#awardRules").val(editor4.txt.html());
+           $("#policyPurpose").val(editor5.txt.html());
+           $("#form1").submit();
+   }
+
+</script>
 <div style="margin-top: 5px">
     <font style="color: #000; font-size: 12px; margin-left: 10px">
         ★ 添加活动
@@ -86,12 +138,12 @@
         <div class="form-group">
             <label class="col-sm-1 control-label">活动来源:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="focusedInput" type="text" name="source" value="${tagupdate.source}"
+                <input class="form-control" id="tagSource" type="text" name="source" value="${tagupdate.source}"
                        placeholder="请输入活动来源">
             </div>
             <label class="col-sm-1 control-label">创建类型:</label>
             <div class="col-sm-2">
-                <select name="status" value="${tagupdate.status}" class="form-control">
+                <select name="status" id="tagStatus" value="${tagupdate.status}" class="form-control">
                     <c:if test="${tagupdate.status == 1}">
                         <option value="1" name="status">转发</option>
                     </c:if>
@@ -107,12 +159,12 @@
         <div class="form-group">
             <label class="col-sm-1 control-label">参与人数:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="focusedInput" name="peopleNum" type="text"
+                <input class="form-control" id="tagPeopleNum" name="peopleNum" type="text"
                        value="${ tagupdate.peopleNum}" placeholder="请输入参与人数">
             </div>
             <label class="col-sm-1 control-label">活动状态:</label>
             <div class="col-sm-2">
-                <select name="giveDefault" value="${tagupdate.giveDefault}" class="form-control">
+                <select name="giveDefault" id="tagDefault" value="${tagupdate.giveDefault}" class="form-control">
                     <c:if test="${tagupdate.giveDefault == 1}">
                         <option value="1" name="giveDefault">进行中</option>
                     </c:if>
@@ -132,19 +184,19 @@
         <div class="form-group">
             <label class="col-sm-1 control-label">报名时间:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="focusedInput" type="text" name="signDate" value="${tagupdate.signDate}"
+                <input class="form-control" id="tagSign" type="text" name="signDate" value="${tagupdate.signDate}"
                        placeholder="年-月-日">
             </div>
             <label class="col-sm-1 control-label">活动时间:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="focusedInput" type="text" name="policyDate"
+                <input class="form-control" id="tagPolicyDate" type="text" name="policyDate"
                        value="${tagupdate.policyDate}" placeholder="年-月-日">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">详细地址:</label>
             <div class="col-sm-5">
-                <input class="form-control" id="focusedInput" type="text" name="policyAddr"
+                <input class="form-control" id="tagAddr" type="text" name="policyAddr"
                        value="${tagupdate.policyAddr}" placeholder="请输入详细地址">
             </div>
         </div>
@@ -225,7 +277,7 @@
             <input type="hidden" id="cotent" name="cotent">
         </div>
         <div style="margin-top: 10px; margin-left: 650px;">
-            <button type="button" onclick="chan()" class="layui-btn layui-btn-sm">确定添加/修改</button>
+            <button type="button" id="button" onclick="chan()" class="layui-btn layui-btn-sm">确定添加/修改</button>
         </div>
     </form>
 </div>
@@ -271,14 +323,6 @@
     editor5.create();
 </script>
 <script type="text/javascript">
-    function chan() {
-        $("#cotent").val(editor1.txt.html());
-        $("#prize").val(editor2.txt.html());
-        $("#policyRule").val(editor3.txt.html());
-        $("#awardRules").val(editor4.txt.html());
-        $("#policyPurpose").val(editor5.txt.html());
-        $("#form1").submit();
-    }
 </script>
 </body>
 <script>

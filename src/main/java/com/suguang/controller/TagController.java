@@ -113,6 +113,7 @@ public class TagController extends BaseController {
         ymPolicy.setImage(image);
         ymPolicy.setVideourl(videourl);
         ymPolicy.setVideoBackurl(videoBackurl);
+        ymPolicy.setCreateDate(new Date());
         YmPolicy policy = tagDao.save(ymPolicy);
         model.addAttribute("policy",policy);
         return "redirect:/tag/list";
