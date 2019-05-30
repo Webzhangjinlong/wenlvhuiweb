@@ -60,28 +60,22 @@ pageEncoding="UTF-8"%>
 <script src="/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到$本地，上述js路径需要改成你本地的 -->
 <script>
-	var count = "${schoolList.totalElements}"
+	var count = "${schoolList.totalElements}";
+	console.log(count)
 layui.use('laypage', function(){
   var laypage = layui.laypage;
-  
+  var curr = location.search == "" ? 1 :location.search.split("?page=")[1].split("&")[0];
   //执行一个laypage实例
   laypage.render({
     elem: 'test1', //注意，这里的 test1 是 ID，不用加 # 号
     count:count,
+      curr: curr, //获取起始页
       jump: function(obj, first){
-          if(!first){
-           return   //do something
+          if(first){
+              return
           }
         var  href ='/school/list?page='+obj.curr+'&size='+obj.limit
-          //obj包含了当前分页的所有参数，比如：
-          console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
 		  location.href=href;
-          console.log(obj.limit); //得到每页显示的条数
-
-          //首次不执行
-
-		  
-
       }
   });
 });
