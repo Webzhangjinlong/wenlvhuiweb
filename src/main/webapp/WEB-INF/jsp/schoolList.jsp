@@ -11,37 +11,48 @@ pageEncoding="UTF-8"%>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
   <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+	<style type="text/css">
+		table{
+			table-layout: fixed;
+		}
+		td{
+			width:100%;
+			word-break:keep-all;/* 不换行 */
+			white-space:nowrap;/* 不换行 */
+			overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+			text-overflow:ellipsis;
+		}
+		td:hover{
+			overflow: visible;
+		}
+	</style>
 </head>
 <body>
 <div style="margin-top: 10px">
- 			<font style="color: #000; font-size: 12px; margin-left: 10px">
- 				★ 学校列表
- 			</font>
- 			<br>
- 			<hr style="background: red; height: 2px">
- 		</div>
- <div style="margin-top: 20px;">
-	<table class="layui-table" lay-skin="line,row" id="schoolTable" style="text-align: center;">
+	<font style="color: #000; font-size: 12px; margin-left: 10px">
+		★ 学校列表
+	</font>
+	<br>
+	<hr style="background: red; height: 2px">
+</div>
+ <div>
+	<table class="layui-table" lay-skin="line" id="schoolTable" style="text-align: center;">
  				<tr style="font-weight: bold;">
- 					<td style="width: 5%">编号</td>
- 					<td style="width: 10%">机构名称</td>
- 					<td style="width: 10%">机构类型</td>
- 					<td style="width: 10%">联系电话</td>
- 					<td style="width: 5%">省</td>
- 					<td style="width: 5%">市</td>
- 					<td style="width: 5%">区</td>
- 					<td style="width: 15%">详细地址</td>
- 					<td style="width: 15%">创建时间</td>
- 					<td style="width: 10%">操作</td>
+ 					<td>机构名称</td>
+ 					<td>机构类型</td>
+ 					<td>联系电话</td>
+ 					<td>市</td>
+ 					<td>区</td>
+ 					<td>详细地址</td>
+ 					<td>创建时间</td>
+ 					<td>操作</td>
  				</tr>
 
 		<c:forEach items="${schoolList.content}" var="school"  >
  				<tr>
- 					<td>${ school.id}</td>
  					<td>${ school.name}</td>
  					<td>${ school.schoolType}</td>
  					<td>${ school.phone}</td>
- 					<td>${ school.province}</td>
  					<td>${ school.city}</td>
  					<td>${ school.area}</td>
  					<td>${ school.addrDetail}</td>
@@ -64,7 +75,7 @@ pageEncoding="UTF-8"%>
 	console.log(count)
 layui.use('laypage', function(){
   var laypage = layui.laypage;
-  var curr = location.search == "" ? 1 :location.search.split("?page=")[1].split("&")[0];
+  var curr = location.search == "" ? 0 :location.search.split("?page=")[1].split("&")[0];
   //执行一个laypage实例
   laypage.render({
     elem: 'test1', //注意，这里的 test1 是 ID，不用加 # 号

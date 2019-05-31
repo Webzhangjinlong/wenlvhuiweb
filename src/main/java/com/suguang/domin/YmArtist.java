@@ -1,9 +1,14 @@
 package com.suguang.domin;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class YmArtist  extends YmEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private Integer artistType;
@@ -20,53 +25,12 @@ public class YmArtist  extends YmEntity {
 
     private Integer artistStatus;
 
-    private String typeName;
-
-
-    private List<YmArtist> commentList= new ArrayList<YmArtist>();
-    private List<YmImage> videoList = new ArrayList<YmImage>();
-    private List<YmExperience> experienceList = new ArrayList<YmExperience>();
-    private List<YmImage> imgList = new ArrayList<YmImage>();
-    
-    
-    
-    
-    
-    
-    public List<YmImage> getImgList() {
-		return imgList;
-	}
-
-	public void setImgList(List<YmImage> imgList) {
-		this.imgList = imgList;
-	}
-
-	public String getTypeName() {
-		return typeName;
-	}
-
-	public void setTypeName(String typeName) {
-		this.typeName = typeName;
-	}
-
 	public String getBackgroundUrl() {
 		return backgroundUrl;
 	}
 
 	public void setBackgroundUrl(String backgroundUrl) {
 		this.backgroundUrl = backgroundUrl;
-	}
-
-	public List<YmArtist> getCommentList() {
-		return commentList;
-	}
-
-	public List<YmImage> getVideoList() {
-		return videoList;
-	}
-
-	public List<YmExperience> getExperienceList() {
-		return experienceList;
 	}
 
 	public Integer getId() {
@@ -123,18 +87,5 @@ public class YmArtist  extends YmEntity {
 
     public void setArtistStatus(Integer artistStatus) {
         this.artistStatus = artistStatus;
-    }
-
-    public void setCommentList(List<YmArtist> commentList) {
-        this.commentList = commentList;
-    }
-
-    public void setVideoList(List<YmImage> videoList) {
-        this.videoList = videoList;
-    }
-
-
-    public void setExperienceList(List<YmExperience> experienceList) {
-        this.experienceList = experienceList;
     }
 }

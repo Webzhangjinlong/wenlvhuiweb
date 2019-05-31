@@ -38,9 +38,8 @@ pageEncoding="UTF-8"%>
 		  <li class="layui-nav-item">
 		  	<a href="javascript:;">艺人管理</a>
 			  	<dl class="layui-nav-child">
-			      <dd><a href="/artist/list">艺人列表</a></dd>
-			      <dd><a href="">添加艺人</a></dd>
-			      <dd><a href="">修改艺人</a></dd>
+			      <dd><a href="/artist/artistList" target="showframe">艺人列表</a></dd>
+			      <dd><a href="/artist/artistAdd"  target="showframe">添加艺人</a></dd>
 			    </dl>
 		    </li>
 		    <li class="layui-nav-item">

@@ -71,7 +71,7 @@
            alert("请输入活动开始时间!")
            return false;
        }if(prize == "" || prize == null){
-           alert("请输入活动奖品!")
+           alert("请输入活动奖品!") 0
            return false;
        }if(tagAddr == "" || tagAddr == null){
            alert("请输入活动详细地址!")
@@ -86,12 +86,12 @@
    }
 
 </script>
-<div style="margin-top: 5px">
-    <font style="color: #000; font-size: 12px; margin-left: 10px">
+<div style="margin-top: 10px">
+    <font style=" color: #000; font-size: 12px; margin-left: 10px">
         ★ 添加活动
     </font>
     <br>
-    <hr style="background: red; height: 2px; margin-top: 5px">
+    <hr style="background: red; height: 2px">
 </div>
 <div>
     <form class="form-horizontal" id="form1" role="form" action="/tag/tagAddById" method="post">

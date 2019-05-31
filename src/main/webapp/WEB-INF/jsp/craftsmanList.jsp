@@ -23,43 +23,38 @@ pageEncoding="UTF-8"%>
     text-overflow:ellipsis;
     }
 	  td:hover{
-		  overflow: visible;
-		  width: auto;
-	  }
+			overflow: visible;
+		}
 
   </style>
 </head>
 <body>
-<div style="margin-top: 10px">
+		<div style="margin-top: 10px">
  			<font style="color: #000; font-size: 12px; margin-left: 10px">
  				★ 匠人列表
  			</font>
  			<br>
  			<hr style="background: red; height: 2px">
  		</div>
- <div style="margin-top: 20px;">
+ <div>
 	<table class="layui-table" lay-skin="line" style="text-align: center; overflow: hidden;">
  				<tr style="font-weight: bold;">
- 					<td style="width: 5%">编号</td>
- 					<td style="width: 10%">匠人名称</td>
- 					<td style="width: 10%">匠人标语</td>
- 					<td style="width: 6%">省</td>
- 					<td style="width: 5%">市</td>
- 					<td style="width: 7%">区</td>
- 					<td style="width: 7%">经度</td>
- 					<td style="width: 7%">纬度</td>
- 					<td style="width: 15%">详细地址</td>
- 					<td style="width: 10%">创建时间</td>
- 					<td style="width: 8%">创建人</td>
- 					<td style="width: 10%">操作</td>
+ 					<td>匠人名称</td>
+ 					<td>匠人标语</td>
+ 					<td>市</td>
+ 					<td>区</td>
+ 					<td>经度</td>
+ 					<td>纬度</td>
+ 					<td>详细地址</td>
+ 					<td>创建时间</td>
+ 					<td>创建人</td>
+ 					<td>操作</td>
  				</tr>
 
 		<c:forEach items="${list}" var="list"  >
- 				<tr class="ofDiv" nowrap="nowrap">
- 					<td>${ list.id}</td>
+ 				<tr>
  					<td>${ list.shopsName}</td>
  					<td>${ list.shopsSlogan}</td>
- 					<td>${ list.province}</td>
  					<td>${ list.city}</td>
  					<td>${ list.area}</td>
  					<td>${ list.longitude}</td>
@@ -68,7 +63,7 @@ pageEncoding="UTF-8"%>
  					<td>${ list.createDate}</td>
  					<td>${ list.createUser}</td>
  					<td>
- 						<button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ list.id})">修改</button>
+ 						<button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ list.id})">修改/详情</button>
  						<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ list.id})">删除</button>
  					</td>
  				</tr>

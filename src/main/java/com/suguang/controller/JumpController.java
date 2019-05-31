@@ -21,4 +21,8 @@ public class JumpController {
         return "left";
     }
 
+    @RequestMapping("/userAdd")
+    public String userAdd(){
+        return "userAdd";
+    }
 }

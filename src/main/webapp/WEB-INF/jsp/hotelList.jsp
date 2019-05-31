@@ -23,19 +23,21 @@ pageEncoding="UTF-8"%>
 			overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
 			text-overflow:ellipsis;
 		}
+		td:hover{
+			overflow: visible;
+		}
 	</style>
  	<body>
- 		<div style="margin-top: 5px">
- 			<font style="color: #000; font-size: 12px; margin-top: 10px">
- 				★ 餐馆列表
- 			</font>
- 			<br>
- 			<hr style="background: red; height: 2px">
- 		</div>
+	<div style="margin-top: 10px">
+		<font style="color: #000; font-size: 12px; margin-left: 10px">
+			★ 餐馆列表
+		</font>
+		<br>
+		<hr style="background: red; height: 2px">
+	</div>
  		<div id="tab1">
- 			<table class="layui-table" lay-skin="line,row" style="text-align: center; overflow: hidden;">
+ 			<table class="layui-table" lay-skin="line" style="text-align: center; overflow: hidden;">
  				<tr style="font-weight: bold;">
- 					<td>序号</td>
  					<td>种类</td>
  					<td>标签</td>
  					<td>平均消费</td>
@@ -50,7 +52,6 @@ pageEncoding="UTF-8"%>
 
 				<c:forEach items="${hotelList}" var="list"  >
  				<tr>
- 					<td>${ list.id}</td>
  					<td>${ list.restaurantType}</td>
  					<td>${ list.restaurantTag}</td>
  					<td>${ list.averageConsumption}</td>

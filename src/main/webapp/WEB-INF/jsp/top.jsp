@@ -38,9 +38,9 @@ pageEncoding="UTF-8"%>
 		<div id="top">
 			<ul class="layui-nav" lay-filter="">
 			  <li class="layui-nav-item"><a href="/user/list" target="showframe">会员列表</a></li>
-			  <li class="layui-nav-item"><a href="/user/userAdd" target="showframe">添加会员</a></li>
-			  <li class="layui-nav-item"><a href="/scwj/demo"  target="showframe">大数据</a></li>
-			  <li class="layui-nav-item"><a href="">社区</a></li>
+			  <li class="layui-nav-item"><a href="/index/userAdd" target="showframe">添加会员</a></li>
+			  <li class="layui-nav-item"><a href="/scwj/demo" target="showframe">嗨游列表</a></li>
+			  <li class="layui-nav-item"><a href="" target="showframe">路线添加</a></li>
 			</ul>
 	 	</div>
 	</body>

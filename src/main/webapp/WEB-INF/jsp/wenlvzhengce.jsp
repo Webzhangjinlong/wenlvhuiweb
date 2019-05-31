@@ -23,19 +23,21 @@ pageEncoding="UTF-8"%>
 			overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
 			text-overflow:ellipsis;
 		}
+		td:hover{
+			overflow: visible;
+		}
 	</style>
  	<body>
- 		<div style="margin-top: 5px;">
- 			<font style=" color: #000; font-size: 12px; margin-left: 20px">
- 				★ 政策列表
- 			</font>
- 			<br>
- 			<hr style="background: red; height: 2px">
- 		</div>
+	<div style="margin-top: 10px">
+		<font style="color: #000; font-size: 12px; margin-left: 10px">
+			★ 政策列表
+		</font>
+		<br>
+		<hr style="background: red; height: 2px">
+	</div>
  		<div id="tab1">
- 			<table class="layui-table" lay-skin="line,row" style="text-align: center; overflow: hidden;">
+ 			<table class="layui-table" lay-skin="line" style="text-align: center; overflow: hidden;">
  				<tr style="font-weight: bold;">
- 					<td>序号</td>
  					<td>类型</td>
  					<td>标题</td>
  					<td>状态</td>
@@ -48,7 +50,6 @@ pageEncoding="UTF-8"%>
  				</tr>
 				<c:forEach items="${wenlvlist}" var="wenlv">
  				<tr>
- 					<td>${wenlv.id}</td>
  					<td>${wenlv.titleType}</td>
  					<td>${wenlv.title}</td>
 
@@ -66,7 +67,7 @@ pageEncoding="UTF-8"%>
 						<c:if test="${wenlv.textType == 3}">项目公告</c:if>
 					</td>
  					<td>
- 						<button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ wenlv.id})">修改</button>
+ 						<button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ wenlv.id})">修改/详情</button>
  						<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ wenlv.id})">删除</button>
  					</td>
 

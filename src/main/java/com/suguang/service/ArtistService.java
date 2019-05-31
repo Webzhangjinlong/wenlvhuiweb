@@ -1,6 +1,8 @@
 package com.suguang.service;
 
+import com.suguang.dao.ArtistPageDao;
 import com.suguang.dao.PageDao;
+import com.suguang.domin.YmArtist;
 import com.suguang.domin.YmSchool;
 import com.suguang.util.Paging;
 import org.hibernate.SQLQuery;
@@ -19,7 +21,7 @@ import java.util.List;
  */
 
 @Service
-public class SchoolService {
+public class ArtistService {
     @Autowired
     PageDao pageDao;
     @PersistenceContext
@@ -29,9 +31,9 @@ public class SchoolService {
      * 查询所有活动
      * @return
      */
-//    public List<YmSchool> findAllStudent(){
+//    public List<YmArtist> findAllStudent(){
 //
-//        return pageDao.findAll();
+//        return ArtistPageDao
 //    }
 
 
@@ -41,11 +43,11 @@ public class SchoolService {
      * @param page
      * @return
      */
-    public Paging<YmSchool> findAllSchoolByPage(int page, int size){
+    public Paging<YmArtist> findAllArtistByPage(int page, int size){
 
         PageRequest pageRequest = new PageRequest(page, size);
 
-        return (Paging<YmSchool>) pageDao.findAll(pageRequest);
+        return (Paging<YmArtist>) pageDao.findAll(pageRequest);
     }
 
     /**
@@ -57,7 +59,7 @@ public class SchoolService {
 
 		/*分页查询数据*/
         Query query = em.createNativeQuery("SELECT * FROM ym_school s LIMIT " + page*size + "," + size);
-        List<YmSchool> schoolList = query.unwrap(SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
+        List<YmArtist> artistList = query.unwrap(SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
 
 		/*查询总共的数据条目*/
         query = em.createNativeQuery("SELECT COUNT(*) FROM ym_school");
@@ -66,8 +68,8 @@ public class SchoolService {
 
 		/*构建自定义Page对象*/
         Paging pageUtil = new Paging(size, page, totalElements);
-        pageUtil.setNumberOfElements(schoolList.size());
-        pageUtil.setContent(schoolList);
+        pageUtil.setNumberOfElements(artistList.size());
+        pageUtil.setContent(artistList);
 
         return pageUtil;
     }

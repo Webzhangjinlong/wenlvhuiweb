@@ -30,7 +30,7 @@
  	<body>
 	<div style="margin-top: 10px">
 		<font style="color: #000; font-size: 12px; margin-left: 10px">
-			★ 活动列表
+			★ 艺人列表
 		</font>
 		<br>
 		<hr style="background: red; height: 2px">
@@ -38,44 +38,44 @@
  		<div id="tab1">
  			<table class="layui-table" lay-skin="line" style="text-align: center; overflow: hidden;">
  				<tr style="font-weight: bold;">
- 					<td>标题</td>
+ 					<td>姓名</td>
+ 					<td>类型</td>
+ 					<td>电话</td>
  					<td>状态</td>
- 					<td>来源</td>
- 					<td>转发数</td>
- 					<td>浏览量</td>
- 					<td>活动状态</td>
- 					<td>创建时间</td>
- 					<td>文章类型</td>
  					<td>操作</td>
  				</tr>
 
-				<c:forEach items="${tagList}" var="tag"  >
+				<c:forEach items="${artistList}" var="artist"  >
 					<tr style="font-weight: bold;">
-						<td>${ tag.title}</td>
+						<td>${artist.artistName}</td>
 						<td>
-							<c:if test="${tag.status==1 }">转发</c:if>
-							<c:if test="${tag.status==2 }">自写</c:if>
+							<c:if test="${artist.artistType == 10}">乐器</c:if>
+							<c:if test="${artist.artistType == 11}">绘画</c:if>
+							<c:if test="${artist.artistType == 12}">烹饪</c:if>
+							<c:if test="${artist.artistType == 13}">旅行</c:if>
+							<c:if test="${artist.artistType == 14}">摄影</c:if>
+							<c:if test="${artist.artistType == 15}">手工</c:if>
+							<c:if test="${artist.artistType == 16}">唱歌</c:if>
+							<c:if test="${artist.artistType == 17}">书法</c:if>
+							<c:if test="${artist.artistType == 18}">刺绣</c:if>
+							<c:if test="${artist.artistType == 19}">健身</c:if>
+							<c:if test="${artist.artistType == 21}">乒乓球</c:if>
+							<c:if test="${artist.artistType == 22}">舞蹈</c:if>
+							<c:if test="${artist.artistType == 23}">剪纸</c:if>
+							<c:if test="${artist.artistType == 26}">武术</c:if>
+							<c:if test="${artist.artistType == 27}">游泳</c:if>
+							<c:if test="${artist.artistType == 28}">广场舞</c:if>
+							<c:if test="${artist.artistType == 29}">街舞</c:if>
+							<c:if test="${artist.artistType == 30}">口技</c:if>
 						</td>
-						<td>${ tag.source}</td>
-						<td>${ tag.relay}</td>
-						<td>${ tag.browse}</td>
+						<td>${artist.artistPhone}</td>
 						<td>
-							<c:if test="${ tag.giveDefault == 1}">进行中</c:if>
-							<c:if test="${ tag.giveDefault == 2}">已结束</c:if>
-							<c:if test="${ tag.giveDefault == 3}">未开始</c:if>
-						</td>
-						<td>${tag.createDate}</td>
-						<td>
-							<c:if test="${tag.textType == 1}">惠民</c:if>
-							<c:if test="${tag.textType == 2}">演出</c:if>
-							<c:if test="${tag.textType == 3}">亲子</c:if>
-							<c:if test="${tag.textType == 4}">赛事</c:if>
-							<c:if test="${tag.textType == 5}">历史</c:if>
-							<c:if test="${tag.textType == 6}">社区</c:if>
+							<c:if test="${artist.artistStatus == 1}">认证成功</c:if>
+							<c:if test="${artist.artistStatus == 0}">未认证</c:if>
 						</td>
 						<td>
-							<button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ tag.id})">修改/详情</button>
-							<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ tag.id})">删除</button>
+							<button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ artist.id})">修改/详情</button>
+							<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ artist.id})">删除</button>
 						</td>
 					</tr>
 				</c:forEach>
@@ -87,13 +87,13 @@
  	<script type="text/javascript">
  		function deleteById(id){
  		    alert("您已成功删除！");
-            window.location.href="/tag/delete?id="+id;
+            window.location.href="/artist/delete?id="+id;
         }
  	</script>
 
 	<script>
 		function updateById(id) {
-			window.location.href="/tag/update?id="+id;
+			window.location.href="/artist/update?id="+id;
         }
 
 	</script>

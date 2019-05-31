@@ -77,7 +77,6 @@
                        placeholder="区">
             </div>
 
-<<<<<<< HEAD
 			</div>
 			<div class="form-group">
 				<label class="col-sm-1 control-label">详细地址:</label>
