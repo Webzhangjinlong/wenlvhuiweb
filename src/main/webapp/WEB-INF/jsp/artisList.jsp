@@ -66,6 +66,7 @@
 							<c:if test="${artist.artistType == 27}">游泳</c:if>
 							<c:if test="${artist.artistType == 28}">广场舞</c:if>
 							<c:if test="${artist.artistType == 29}">街舞</c:if>
+
 							<c:if test="${artist.artistType == 30}">口技</c:if>
 						</td>
 						<td>${artist.artistPhone}</td>

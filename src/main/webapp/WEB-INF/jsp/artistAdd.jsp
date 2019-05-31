@@ -36,6 +36,11 @@
 <body>
 <script type="text/javascript">
    function chan() {
+       var artistName = document.getElementById("artistName").value;
+       if(artistName == "" || artistName == null){
+           alert("请输入艺人名称!");
+           return false;
+       }
            $("#cotent").val(editor1.txt.html());
            $("#artistDetails").val(editor5.txt.html());
            $("#form1").submit();
@@ -49,14 +54,14 @@
     <hr style="background: red; height: 2px">
 </div>
 <div>
-    <form class="form-horizontal" id="form1" role="form" action="/tag/tagAddById" method="post">
+    <form class="form-horizontal" id="form1" role="form" action="" method="post">
         <div>
             <input type="hidden" name="id" value="">
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">艺人名称:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="tagName" type="text" name="title" value=""
+                <input class="form-control" id="artistName" type="text" name="title" value=""
                        placeholder="请输入艺人名称">
             </div>
             <label class="col-sm-1 control-label">艺人类型:</label>

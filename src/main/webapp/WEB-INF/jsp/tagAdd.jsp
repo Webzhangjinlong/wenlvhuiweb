@@ -69,9 +69,6 @@
        }if(tagPolicyDate == "" || tagPolicyDate == null){
            alert("请输入活动开始时间!")
            return false;
-       }if(prize == "" || prize == null){
-           alert("请输入活动奖品!")
-           return false;
        }if(tagAddr == "" || tagAddr == null){
            alert("请输入活动详细地址!")
            return false;
@@ -112,25 +109,25 @@
                     <c:if test="${tagupdate.textType == 2}">
                         <option name="textType" value="1">演出</option>
                     </c:if>
-                    <c:if test="${tagupdate.textType == 4}">
-                        <option name="textType" value="1">亲子</option>
-                    </c:if>
-                    <%--<c:if test="${tagupdate.textType == 4}">--%>
-                        <%--<option name="textType" value="1">赛事</option>--%>
-                    <%--</c:if>--%>
-                    <c:if test="${tagupdate.textType == 5}">
-                        <option name="textType" value="1">历史</option>
-                    </c:if>
                     <c:if test="${tagupdate.textType == 3}">
+                        <option name="textType" value="3">亲子</option>
+                    </c:if>
+                    <c:if test="${tagupdate.textType == 4}">
+                        <option name="textType" value="1">赛事</option>
+                    </c:if>
+                    <c:if test="${tagupdate.textType == 5}">
+                        <option name="textType" value="5">历史</option>
+                    </c:if>
+                    <c:if test="${tagupdate.textType == 6}">
                         <option name="textType" value="1">社区</option>
                     </c:if>
                     <option value="0" name="textType">--请选择--</option>
                     <option value="1" name="textType">惠民</option>
                     <option value="2" name="textType">演出</option>
-                    <option value="4" name="textType">亲子</option>
-                    <%--<option value="4" name="textType">赛事</option>--%>
+                    <option value="3" name="textType">亲子</option>
+                    <option value="4" name="textType">赛事</option>
                     <option value="5" name="textType">历史</option>
-                    <option value="3" name="textType">社区</option>
+                    <option value="6" name="textType">社区</option>
                 </select>
             </div>
         </div>
