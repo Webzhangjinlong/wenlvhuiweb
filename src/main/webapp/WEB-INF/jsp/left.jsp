@@ -47,6 +47,8 @@ pageEncoding="UTF-8"%>
 			  	<dl class="layui-nav-child">
 			      <dd><a href="/hotel/list" target="showframe">餐馆列表</a></dd>
 			      <dd><a href="/hotel/add" target="showframe">添加餐馆</a></dd>
+					<dd><a href="/hotel/foodList" target="showframe">菜品列表</a></dd>
+					<dd><a href="/hotel/add" target="showframe">添加餐馆</a></dd>
 			    </dl>
 		    </li>
 		     <li class="layui-nav-item">

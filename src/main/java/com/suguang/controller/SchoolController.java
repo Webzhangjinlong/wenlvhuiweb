@@ -32,14 +32,15 @@ public class SchoolController {
 
     //查询所有活动
     @GetMapping("/list")
-
     public String getAllByPage(HttpServletRequest request, Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size) {
-        request.getSession().setAttribute("page", page);
-        request.getSession().setAttribute("size", size);
-        if (page!=null) {
-            Page<YmSchool> sourceCode = schoolService.getSchool(page, size);
-            model.addAttribute("schoolList", sourceCode);
-        }
+        int pageNum = page == null ? 1 : page;
+        int sizeNum = size == null ? 10 : size;
+        request.getSession().setAttribute("page", pageNum);
+        request.getSession().setAttribute("size", sizeNum);
+
+        Page<YmSchool> sourceCode = schoolService.getSchool(pageNum, sizeNum);
+        model.addAttribute("schoolList", sourceCode);
+
 
         return "schoolList";
     }
@@ -52,7 +53,8 @@ public class SchoolController {
 
         Integer page1 = (Integer) request.getSession().getAttribute("page");
         Integer size1 = (Integer) request.getSession().getAttribute("size");
-        return "redirect:/school/list?page="+page1+"&size="+size1;
+        return "redirect:/school/list?page=" + page1 + "&size=" + size1;
+//        return "redirect:/school/list";
     }
 
     //通过id获取修改页面，并将要修改的数据在修改页面渲染
@@ -97,8 +99,9 @@ public class SchoolController {
         model.addAttribute("schoolList", save);
         Integer page1 = (Integer) request.getSession().getAttribute("page");
         Integer size1 = (Integer) request.getSession().getAttribute("size");
+        return "redirect:/school/list?page=" + page1 + "&size=" + size1;
 
-        return "redirect:/school/list?page="+page1+"&size="+size1;
+//        return "redirect:/school/list";
     }
 
 }
