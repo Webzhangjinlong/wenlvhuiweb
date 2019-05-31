@@ -32,6 +32,42 @@ pageEncoding="UTF-8"%>
 		}
     </style>
 	<body>
+
+	<script type="text/javascript">
+        function chan() {
+            var wenTitle = document.getElementById("wenTitle").value;
+            var wenTitleType = document.getElementById("wenTitleType").value;
+            var wenSource = document.getElementById("wenSource").value;
+            var wenCreateDate = document.getElementById("wenCreateDate").value;
+            var wenTextType = document.getElementById("wenTextType").value;
+            var wenStatus = document.getElementById("wenStatus").value;
+
+            if(wenTitle == "" || wenTitle == null){
+                alert("请输入活动名称!");
+                return false;
+            }if(wenTitleType == "" || wenTitleType == 0){
+                alert("请选择活动种类!")
+                return false;
+            }if(wenSource == "" || wenSource == null){
+                alert("请输入活动来源!")
+                return false;
+            }if(wenCreateDate == "" || wenCreateDate == 0){
+                alert("请选择创建类型!")
+                return false;
+            }if(wenTextType == "" || wenTextType == null){
+                alert("请输入活动人数!")
+                return false;
+            }if(wenStatus == "" || wenStatus == 0){
+                alert("请选择活动状态!")
+                return false;
+            }
+            $("#cotent").val(editor1.txt.html());
+            $("#demo1").val(editor2.txt.html());
+            $("#form1").submit();
+        }
+
+	</script>
+
 	<div style="margin-top: 5px">
 		<font style="color: #000; font-size: 12px; margin-left: 10px">
 			★ 添加政策
@@ -40,36 +76,36 @@ pageEncoding="UTF-8"%>
 		<hr style="background: red; height: 2px; margin-top: 5px">
 	</div>
  		<div>
-			<form class="form-horizontal" role="form" action="/wenlv/addSure" id="form1">
+			<form class="form-horizontal" role="form" action="/wenlv/addSure" id="form1" method="post">
 				<div>
 					<input type="hidden" name="id" value="${wenlv.id}">
 				</div>
 				<div class="form-group">
 					<label class="col-sm-1 control-label">政策标题:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  name="title" value="${wenlv.title}" placeholder="请输入政策标题">
+						<input class="form-control" id="wenTitle" type="text"  name="title" value="${wenlv.title}" placeholder="请输入政策标题">
 					</div>
 						<label class="col-sm-1 control-label">政策类型:</label>
 						<div class="col-sm-2">
-							<input class="form-control" id="focusedInput" type="text"  name="titleType" value="${wenlv.titleType}" placeholder="请输入政策类型">
+							<input class="form-control" id="wenTitleType" type="text"  name="titleType" value="${wenlv.titleType}" placeholder="请输入政策类型">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-1 control-label">政策来源:</label>
 					<div class="col-sm-5">
-						<input class="form-control" name="source" value="${wenlv.source}" id="focusedInput" type="text"  placeholder="请输入政策来源">
+						<input class="form-control" name="source" value="${wenlv.source}" id="wenSource" type="text"  placeholder="请输入政策来源">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-1 control-label">创建时间:</label>
 					<div class="col-sm-5">
-						<input class="form-control" name="source" value="${wenlv.createDate}" id="focusedInput" type="text"  placeholder="" disabled>
+						<input class="form-control" name="createDate" value="${wenlv.createDate}" id="wenCreateDate" type="text"  placeholder="" disabled>
 					</div>
 				</div>
 				<div class="form-group">
 						<label class="col-sm-1 control-label">文章类型:</label>
 						<div class="col-sm-2">
-						<select class="form-control" name="textType" value="${wenlv.textType}">
+						<select id="wenTextType" class="form-control" name="textType" value="${wenlv.textType}">
 
 							<c:if test="${wenlv.textType == 1}">
 								<option name="textType" value="1">咨询动态</option>
@@ -89,7 +125,7 @@ pageEncoding="UTF-8"%>
 						</div>
 					<label class="col-sm-1 control-label">创建类型:</label>
 					<div class="col-sm-2">
-						<select class="form-control" name="status" value="${wenlv.status}">
+						<select id="wenStatus" class="form-control" name="status" value="${wenlv.status}">
 							<c:if test="${wenlv.status == 1}">
 								<option name="status" value="1">转发</option>
 							</c:if>
@@ -122,11 +158,13 @@ pageEncoding="UTF-8"%>
 					<input type="hidden" id="cotent" name="cotent">
 		    	</div>
 		    	<div style="margin-top: 10px; margin-left: 650px;">
-		    		<button class="layui-btn layui-btn-sm" onclick="chan()" >确定添加/修改</button>
+		    		<button id="button" class="layui-btn layui-btn-sm" onclick="chan()" >确定添加/修改</button>
 		    	</div>
 			</form>
  		</div>
-    <script type="text/javascript" src="/js/wangEditor.js"></script>
+
+
+	<script type="text/javascript" src="/js/wangEditor.js"></script>
 	<script type="text/javascript">
         var E = window.wangEditor;
         var editor1 = new E('#div1', '#div2');

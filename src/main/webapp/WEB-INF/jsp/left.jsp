@@ -53,7 +53,7 @@ pageEncoding="UTF-8"%>
 		  	<a href="javascript:;">学校管理</a>
 			  	<dl class="layui-nav-child">
 			      <dd><a href="/school/list?page=1&size=10" target="showframe">学校列表</a></dd>
-			      <dd><a href="/school/update" target="showframe">添加学校</a></dd>
+			      <dd><a href="/school/add" target="showframe">添加学校</a></dd>
 			    </dl>
 		    </li>
 		</ul>

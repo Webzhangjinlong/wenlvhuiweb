@@ -1,23 +1,18 @@
 package com.suguang.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-
 import com.suguang.dao.SchoolDao;
 import com.suguang.domin.YmSchool;
 
 import com.suguang.service.SchoolService;
-import com.suguang.util.Paging;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -29,6 +24,7 @@ import java.util.List;
 @RequestMapping("/school")
 public class SchoolController {
 
+
     @Autowired
     SchoolService schoolService;
     @Autowired
@@ -37,34 +33,47 @@ public class SchoolController {
     //查询所有活动
     @GetMapping("/list")
 
-    public String getAllByPage(Model model,@RequestParam("page") int page, @RequestParam("size") int size){
-        Paging schoolPage = schoolService.findAllSchoolByMypage(page, size);
-       model.addAttribute("schoolList",schoolPage);
-//        //JSONObject jsonObject = (JSONObject) JSON.toJSON(schoolPage);
+    public String getAllByPage(HttpServletRequest request, Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size) {
+        request.getSession().setAttribute("page", page);
+        request.getSession().setAttribute("size", size);
+        if (page!=null) {
+            Page<YmSchool> sourceCode = schoolService.getSchool(page, size);
+            model.addAttribute("schoolList", sourceCode);
+        }
+
         return "schoolList";
     }
 
     //删除学校信息
     @RequestMapping("/delete")
-    public String schoolDelete(HttpServletRequest request){
+    public String schoolDelete(HttpServletRequest request) {
         String id = request.getParameter("id");
         schoolDao.deleteById(Integer.parseInt(id));
-        return "redirect:/school/list";
+
+        Integer page1 = (Integer) request.getSession().getAttribute("page");
+        Integer size1 = (Integer) request.getSession().getAttribute("size");
+        return "redirect:/school/list?page="+page1+"&size="+size1;
     }
 
     //通过id获取修改页面，并将要修改的数据在修改页面渲染
     @RequestMapping("/update")
-    public String schoolpreUpdate(HttpServletRequest request,Model model){
+    public String schoolpreUpdate(HttpServletRequest request, Model model) {
         String id = request.getParameter("id");
+
         YmSchool ymSchool = schoolDao.getById(Integer.parseInt(id));
-        model.addAttribute("addSchool",ymSchool);
+        model.addAttribute("addSchool", ymSchool);
         return "schoolAdd";
 
     }
 
+    @RequestMapping("/add")
+    public String add() {
+        return "schoolAdd";
+    }
+
     //将信息保存，返回到列表页
-    @RequestMapping("/saveupdate")
-    public String schoolSaveUpdate(HttpServletRequest request,Model model){
+    @RequestMapping(value = "/saveupdate")
+    public String schoolSaveUpdate(HttpServletRequest request, Model model) {
         String id = request.getParameter("id");
         String name = request.getParameter("name");
         String schoolType = request.getParameter("schoolType");
@@ -84,15 +93,12 @@ public class SchoolController {
         ymSchool.setCreateDate(new Date());
 
         YmSchool save = schoolDao.save(ymSchool);
-        model.addAttribute("sureaddSchool",save);
-        return "redirect:/school/list";
+
+        model.addAttribute("schoolList", save);
+        Integer page1 = (Integer) request.getSession().getAttribute("page");
+        Integer size1 = (Integer) request.getSession().getAttribute("size");
+
+        return "redirect:/school/list?page="+page1+"&size="+size1;
     }
 
-
-//    @GetMapping("/get/myPage")
-//    public JSONObject getAllByMyPage(HttpServletRequest request, HttpServletResponse response, @RequestParam("page") int page, @RequestParam("size") int size){
-//        Paging pageUtil = schoolService.findAllSchoolByMypage(page, size);
-//        JSONObject jsonObject = (JSONObject) JSON.toJSON(pageUtil);
-//        return jsonObject;
-//    }
 }

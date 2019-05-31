@@ -155,6 +155,9 @@ pageEncoding="UTF-8"%>
         editor1.customConfig.uploadImgServer = '/upload';
         editor1.create();
     </script>
+
+
+
     <script>
 		layui.use('upload', function(){
 		  var upload = layui.upload;

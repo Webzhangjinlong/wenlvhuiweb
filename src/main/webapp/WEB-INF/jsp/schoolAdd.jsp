@@ -49,11 +49,11 @@
 				<div class="form-group">
 					<label class="col-sm-1 control-label">学校名称:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text" name="name" value="${addSchool.title}" value="" placeholder="请输入学校名称">
+						<input class="form-control" id="focusedInput" type="text" name="name" value="${addSchool.name}" value="" placeholder="请输入学校名称">
 					</div>
 						<label class="col-sm-1 control-label">学校类别:</label>
 						<div class="col-sm-2">
-							<select class="form-control" name="schoolType" value="${addSchool.status}">
+							<select class="form-control" name="schoolType" value="${addSchool.schoolType}">
 											<option value="0" name="schoolType">--请选择--</option>
 											<option value="0" name="schoolType">唱歌</option>
 											<option value="0" name="schoolType">跳舞</option>
@@ -64,23 +64,23 @@
 				<div class="form-group">
 					<label class="col-sm-1 control-label">市:</label>
 					<div class="col-sm-2">
-						<input class="form-control" name="city" value="${addSchool.city}" id="focusedInput" type="text"  value="" placeholder="请输入市">
+						<input class="form-control" name="city" value="${addSchool.city}" id="focusedInput" type="text"  value="${addSchool.city}" placeholder="请输入市">
 					</div>
 					<label class="col-sm-1 control-label">区:</label>
 					<div class="col-sm-2">
-						<input class="form-control" name="area" value="${addSchool.area}" id="focusedInput" type="text"  value="" placeholder="请输入区">
+						<input class="form-control" name="area" value="${addSchool.area}" id="focusedInput" type="text"  value="${addSchool.area}" placeholder="请输入区">
 					</div>
 				</div>
 				<div class="form-group"style="margin-top: 32px">
 						<label class="col-sm-1 control-label">联系电话:</label>
 						<div class="col-sm-2">
-							<input class="form-control" name="phone" value="${addSchool.phone}" id="focusedInput" type="text"  value="" placeholder="请输入联系电话">
+							<input class="form-control" name="phone" value="${addSchool.phone}" id="focusedInput" type="text"  value="${addSchool.phone}" placeholder="请输入联系电话">
 						</div>
 				</div>
 				<div class="form-group"style="margin-top: 32px">
 						<label class="col-sm-1 control-label">详细地址:</label>
 						<div class="col-sm-5">
-							<input class="form-control" name="addrDetail" value="${addSchool.addrDetail}" id="focusedInput" type="text"  value="" placeholder="请输入详细地址">
+							<input class="form-control" name="addrDetail" value="${addSchool.addrDetail}" id="focusedInput" type="text"  value="${addSchool.addrDetail}" placeholder="请输入详细地址">
 						</div>
 				</div>
 				<div class="form-group" style="margin-top: 30px">
