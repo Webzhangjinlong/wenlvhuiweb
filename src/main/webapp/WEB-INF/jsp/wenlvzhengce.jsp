@@ -45,11 +45,12 @@
 				<td>来源</td>
 				<td>转发数</td>
 				<td>浏览量</td>
-				<td>创建人</td>
+				<%--<td>创建人</td>--%>
 				<td>文章分类</td>
 				<td>操作</td>
 			</tr>
-			<c:forEach items="${wenlvlist.content}" var="wenlv">
+			<c:forEach items="${wenlvlist.content}" var="wenlv" >
+
 			<tr>
 				<td>${wenlv.titleType}</td>
 				<td>${wenlv.title}</td>
@@ -61,7 +62,7 @@
 				<td>${wenlv.source}</td>
 				<td>${wenlv.relay}</td>
 				<td>${wenlv.browse}</td>
-				<td>${wenlv.createUser}</td>
+				<%--<td>${wenlv.createUser}</td>--%>
 				<td>
 					<c:if test="${wenlv.textType == 1}">咨询动态</c:if>
 					<c:if test="${wenlv.textType == 2}">政策解读</c:if>
@@ -73,7 +74,9 @@
 				</td>
 
 			</tr>
+
 			</c:forEach>
+
 		</table>
 		<div id="test1" style="margin-left: 900px"></div>
 	</div>

@@ -29,14 +29,15 @@ public class SchoolController {
     SchoolService schoolService;
     @Autowired
     SchoolDao schoolDao;
+    private int pageNum;
+    private int sizeNum;
 
     //查询所有活动
     @GetMapping("/list")
     public String getAllByPage(HttpServletRequest request, Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size) {
-        int pageNum = page == null ? 1 : page;
-        int sizeNum = size == null ? 10 : size;
-        request.getSession().setAttribute("page", pageNum);
-        request.getSession().setAttribute("size", sizeNum);
+        pageNum = page == null ? 1 : page;
+        sizeNum = size == null ? 10 : size;
+      
 
         Page<YmSchool> sourceCode = schoolService.getSchool(pageNum, sizeNum);
         model.addAttribute("schoolList", sourceCode);
@@ -51,9 +52,8 @@ public class SchoolController {
         String id = request.getParameter("id");
         schoolDao.deleteById(Integer.parseInt(id));
 
-        Integer page1 = (Integer) request.getSession().getAttribute("page");
-        Integer size1 = (Integer) request.getSession().getAttribute("size");
-        return "redirect:/school/list?page=" + page1 + "&size=" + size1;
+     
+        return "redirect:/school/list?page=" + pageNum + "&size=" + sizeNum;
 //        return "redirect:/school/list";
     }
 
@@ -101,9 +101,8 @@ public class SchoolController {
         YmSchool save = schoolDao.save(ymSchool);
 
         model.addAttribute("schoolList", save);
-        Integer page1 = (Integer) request.getSession().getAttribute("page");
-        Integer size1 = (Integer) request.getSession().getAttribute("size");
-        return "redirect:/school/list?page=" + page1 + "&size=" + size1;
+       
+        return "redirect:/school/list?page=" + pageNum + "&size=" + sizeNum;
 
 //        return "redirect:/school/list";
     }

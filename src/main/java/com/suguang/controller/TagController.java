@@ -39,14 +39,15 @@ public class TagController {
     @Autowired
     TagService tagService;
 
+    private Integer sizeNum;
+    private Integer pageNum;
+
 
     //查询所有活动
     @GetMapping("/list")
     public String getAllByPage(HttpServletRequest request, Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size) {
-        int pageNum = page == null ? 1 : page;
-        int sizeNum = size == null ? 10 : size;
-        request.getSession().setAttribute("page", pageNum);
-        request.getSession().setAttribute("size", sizeNum);
+        pageNum = page == null ? 1 : page;
+        sizeNum = size == null ? 10 : size;
 
         Page<YmPolicy> sourceCode = tagService.getTag(pageNum, sizeNum);
         model.addAttribute("tagList", sourceCode);
@@ -60,9 +61,8 @@ public class TagController {
         String id = request.getParameter("id");
         tagDao.deleteById(Integer.parseInt(id));
 
-        Integer page1 = (Integer) request.getSession().getAttribute("page");
-        Integer size1 = (Integer) request.getSession().getAttribute("size");
-        return "redirect:/tag/list?page=" + page1 + "&size=" + size1;
+       
+        return "redirect:/tag/list?page=" + pageNum + "&size=" + sizeNum;
 
     }
 
@@ -104,6 +104,7 @@ public class TagController {
         String image = request.getParameter("image"); //这是undefind锕那这咋弄呢
         String videourl = request.getParameter("videourl");
         String videoBackurl = request.getParameter("videoBackurl");
+        String browse = request.getParameter("browse");
         YmPolicy ymPolicy = new YmPolicy();
         if(id != null && id != ""){
             ymPolicy.setId(Integer.parseInt(id));
@@ -127,12 +128,19 @@ public class TagController {
         ymPolicy.setCreateDate(new Date());
         ymPolicy.setVideoBackurl(videoBackurl);
         ymPolicy.setCreateDate(new Date());
+        ymPolicy.setBrowse(Integer.parseInt(browse));
         YmPolicy policy = tagDao.save(ymPolicy);
         model.addAttribute("policy",policy);
 
-        Integer page1 = (Integer) request.getSession().getAttribute("page");
-        Integer size1 = (Integer) request.getSession().getAttribute("size");
-        return "redirect:/tag/list?page=" + page1 + "&size=" + size1;
+        if (pageNum==null) {
+            pageNum =1;
+        }
+        if (sizeNum ==null) {
+            sizeNum =10;
+        }
+
+      
+        return "redirect:/tag/list?page=" + pageNum + "&size=" + sizeNum;
 
     }
 

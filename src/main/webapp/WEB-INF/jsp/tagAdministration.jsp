@@ -43,7 +43,6 @@
             <td>标题</td>
             <td>状态</td>
             <td>来源</td>
-            <td>转发数</td>
             <td>浏览量</td>
             <td>活动状态</td>
             <td>创建时间</td>
@@ -59,7 +58,6 @@
                     <c:if test="${tag.status==2 }">自写</c:if>
                 </td>
                 <td>${ tag.source}</td>
-                <td>${ tag.relay}</td>
                 <td>${ tag.browse}</td>
                 <td>
                     <c:if test="${ tag.giveDefault == 1}">进行中</c:if>

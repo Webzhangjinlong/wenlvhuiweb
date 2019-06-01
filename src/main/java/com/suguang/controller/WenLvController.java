@@ -1,7 +1,8 @@
 package com.suguang.controller;
 
+import com.suguang.dao.UserDao;
 import com.suguang.dao.WenLvDao;
-import com.suguang.domin.YmSchool;
+import com.suguang.domin.YmUser;
 import com.suguang.domin.YmWenlv;
 import com.suguang.service.WenLvService;
 import com.suguang.util.YmStaticVariablesUtil;
@@ -21,7 +22,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.text.ParseException;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -34,19 +37,20 @@ public class WenLvController {
     @Autowired
     private WenLvDao wenLvDao;
     @Autowired
+    private UserDao userDao;
+    @Autowired
     private WenLvService wenLvService;
+    private Integer sizeNum;
+    private Integer pageNum;
 
     //获取政策列表
     @GetMapping("/list")
     public String getAllByPage(HttpServletRequest request, Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size) {
-        int pageNum = page == null ? 1 : page;
-        int sizeNum = size == null ? 10 : size;
-
-        request.getSession().setAttribute("page", pageNum);
-        request.getSession().setAttribute("size", sizeNum);
-
+        pageNum = page == null ? 1 : page;
+        sizeNum = size == null ? 10 : size;
         Page<YmWenlv> sourceCode = wenLvService.getWenLv(pageNum, sizeNum);
         model.addAttribute("wenlvlist", sourceCode);
+
         return "wenlvzhengce";
     }
 
@@ -57,9 +61,8 @@ public class WenLvController {
         String id = request.getParameter("id");
         wenLvDao.deleteById(Integer.parseInt(id));
 
-        Integer page1 = (Integer) request.getSession().getAttribute("page");
-        Integer size1 = (Integer) request.getSession().getAttribute("size");
-        return "redirect:/wenlv/list?page=" + page1 + "&size=" + size1;
+
+        return "redirect:/wenlv/list?page=" + pageNum + "&size=" + sizeNum;
 
     }
 
@@ -112,12 +115,17 @@ public class WenLvController {
         ymWenlv.setCotent(cotent);
         ymWenlv.setImage(image);
         ymWenlv.setCreateDate(new Date());
+
         YmWenlv wenlv = wenLvDao.save(ymWenlv);
         model.addAttribute("wenlv", wenlv);
+        if (pageNum==null) {
+            pageNum =1;
+        }
+        if (sizeNum ==null) {
+            sizeNum =10;
+        }
+        return "redirect:/wenlv/list?page=" + pageNum + "&size=" + sizeNum;
 
-        Integer page1 = (Integer) request.getSession().getAttribute("page");
-        Integer size1 = (Integer) request.getSession().getAttribute("size");
-        return "redirect:/wenlv/list?page=" + page1 + "&size=" + size1;
     }
 
     //返回服务器资源

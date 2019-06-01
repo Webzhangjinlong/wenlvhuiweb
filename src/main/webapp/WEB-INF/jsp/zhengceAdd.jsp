@@ -72,7 +72,21 @@ pageEncoding="UTF-8"%>
                 alert("请选择创建类型!");
                 return false;
             }
+
+
             $("#cotent").val(editor1.txt.html());
+
+//            $.ajax({
+//                type: "POST",
+//                url: "/wenlv/addSure",
+//                data: $("#form1").serialize(),
+//                dataType: "json",
+//                success: function(data){
+//                    alert("aaa")
+//                    window.history.go(-1);
+//                }
+//            });
+
             $("#form1").submit();
         }
 	</script>

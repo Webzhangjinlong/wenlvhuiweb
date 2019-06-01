@@ -45,6 +45,8 @@
        var tagSign = document.getElementById("tagSign").value;
        var tagPolicyDate = document.getElementById("tagPolicyDate").value;
        var tagAddr = document.getElementById("tagAddr").value;
+       var browse = document.getElementById("browse").value;
+
        if(tagName == "" || tagName == null){
             alert("请输入活动名称!");
            return false;
@@ -71,6 +73,9 @@
            return false;
        }if(tagAddr == "" || tagAddr == null){
            alert("请输入活动详细地址!")
+           return false;
+       }if(browse == "" || browse == null){
+           alert("请输入活动浏览量!")
            return false;
        }
            $("#cotent").val(editor1.txt.html());
@@ -191,9 +196,14 @@
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">详细地址:</label>
-            <div class="col-sm-5">
+            <div class="col-sm-2">
                 <input class="form-control" id="tagAddr" type="text" name="policyAddr"
                        value="${tagupdate.policyAddr}" placeholder="请输入详细地址">
+            </div>
+            <label class="col-sm-1 control-label">浏览量:</label>
+            <div class="col-sm-2">
+                <input class="form-control" id="browse" type="text" name="browse"
+                       value="${tagupdate.browse}" placeholder="请输入浏览量">
             </div>
         </div>
         <div class="layui-upload" style="margin-left: 20px;margin-top: 20px">
@@ -203,7 +213,7 @@
             <p id="p1" class="layui-btn layui-btn-warm layui-btn-radius" style="margin-top: 11px">${tagupdate.videourl}</p>
         </div>
         <div style="margin-left: 22px;">
-            <label class="control-label">活动奖品:</label><br>
+            <label class="control-label">活动奖品（必填）:</label><br>
         </div>
         <div style="margin-left: 22px; margin-top: 10px">
             <div id="jiangp" class="toolbar"></div>
@@ -214,7 +224,7 @@
             <input type="hidden" id="prize" name="prize">
         </div>
         <div style="margin-left: 22px;">
-            <label class="control-label">活动规则:</label><br>
+            <label class="control-label">活动规则（必填）:</label><br>
         </div>
         <div style="margin-left: 22px; margin-top: 10px">
             <div id="hdgz" class="toolbar"></div>
@@ -225,7 +235,7 @@
             <input type="hidden" id="policyRule" name="policyRule">
         </div>
         <div style="margin-left: 22px;">
-            <label class="control-label">获奖规则:</label><br>
+            <label class="control-label">获奖规则（必填）:</label><br>
         </div>
         <div style="margin-left: 22px; margin-top: 10px">
             <div id="hjgz" class="toolbar"></div>
@@ -236,7 +246,7 @@
             <input type="hidden" id="awardRules" name="awardRules">
         </div>
         <div style="margin-left: 22px;">
-            <label class="control-label">活动宗旨:</label><br>
+            <label class="control-label">活动宗旨（必填）:</label><br>
         </div>
         <div style="margin-left: 22px; margin-top: 10px">
             <div id="hdzz" class="toolbar"></div>
@@ -263,7 +273,7 @@
             <p id="demoText1"></p>
         </div>
         <div style="margin-left: 22px;">
-            <label class="control-label">活动内容详情:</label><br>
+            <label class="control-label">活动内容详情（必填）:</label><br>
         </div>
         <div style="margin-left: 22px; margin-top: 10px">
             <div id="div1" class="toolbar"></div>
@@ -290,33 +300,21 @@
 <script type="text/javascript">
     var E = window.wangEditor;
     var editor2 = new E('#jiangp', '#jiangp1');
-    editor2.customConfig.uploadImgServer = '/uploadflv/upload';
-    editor2.customConfig.uploadFileName = 'file';
-    editor2.customConfig.uploadImgMaxSize = 10 * 1024 * 1024;
     editor2.create();
 </script>
 <script type="text/javascript">
     var E = window.wangEditor;
     var editor3 = new E('#hdgz', '#hdgz1');
-    editor3.customConfig.uploadImgServer = '/uploadflv/upload';
-    editor3.customConfig.uploadFileName = 'file';
-    editor3.customConfig.uploadImgMaxSize = 10 * 1024 * 1024;
     editor3.create();
 </script>
 <script type="text/javascript">
     var E = window.wangEditor;
     var editor4 = new E('#hjgz', '#hjgz1');
-    editor4.customConfig.uploadImgServer = '/uploadflv/upload';
-    editor4.customConfig.uploadFileName = 'file';
-    editor4.customConfig.uploadImgMaxSize = 10 * 1024 * 1024;
     editor4.create();
 </script>
 <script type="text/javascript">
     var E = window.wangEditor;
     var editor5 = new E('#hdzz', '#hdzz1');
-    editor5.customConfig.uploadImgServer = '/uploadflv/upload';
-    editor5.customConfig.uploadFileName = 'file';
-    editor5.customConfig.uploadImgMaxSize = 10 * 1024 * 1024;
     editor5.create();
 </script>
 <script type="text/javascript">

@@ -21,11 +21,15 @@ public class YmArtist  extends YmEntity {
 
     private String artistPhone;
 
-    private String artistDetails;
+   private String artistDetails;
 
     private Integer artistStatus;
 
-	public String getBackgroundUrl() {
+
+
+
+
+    public String getBackgroundUrl() {
 		return backgroundUrl;
 	}
 

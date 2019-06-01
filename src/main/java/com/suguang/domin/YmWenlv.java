@@ -48,6 +48,8 @@ public class YmWenlv extends YmEntity {
 
     //private Integer is_up; // 判断当前用户是否点赞   1 ： 点赞   0：未点赞
 
+    
+
 
     public String getTextType() {
         return textType;

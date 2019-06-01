@@ -30,16 +30,17 @@ public class HotelController {
     private HotelDao hotelDao;
     @Autowired
     private HotelService hotelService;
+    private int pageNum;
+    private int sizeNum;
 
 
     //查询所有
     @GetMapping("/list")
     public String getAllByPage(HttpServletRequest request, Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size) {
-        int pageNum = page == null ? 1 : page;
-        int sizeNum = size == null ? 10 : size;
+        pageNum = page == null ? 1 : page;
+        sizeNum = size == null ? 10 : size;
 
-        request.getSession().setAttribute("page", pageNum);
-        request.getSession().setAttribute("size", sizeNum);
+        
 
         Page<YmRestaurant> sourceCode = hotelService.getHotel(pageNum, sizeNum);
         model.addAttribute("hotelList", sourceCode);
@@ -106,9 +107,8 @@ public class HotelController {
         YmRestaurant save = hotelDao.save(ymRestaurant);
         model.addAttribute("hotel", save);
 
-        Integer page1 = (Integer) request.getSession().getAttribute("page");
-        Integer size1 = (Integer) request.getSession().getAttribute("size");
-        return "redirect:/hotel/list?page=" + page1 + "&size=" + size1;
+     
+        return "redirect:/hotel/list?page=" + pageNum + "&size=" + sizeNum;
        // return "redirect:/hotel/list";
     }
 
@@ -119,9 +119,8 @@ public class HotelController {
         if(id != null && !id.equals("") && !id.equals("null")) {
             hotelDao.deleteById(Integer.parseInt(id));
 
-            Integer page1 = (Integer) request.getSession().getAttribute("page");
-            Integer size1 = (Integer) request.getSession().getAttribute("size");
-            return "redirect:/hotel/list?page=" + page1 + "&size=" + size1;
+       
+            return "redirect:/hotel/list?page=" + pageNum + "&size=" + sizeNum;
            // return "redirect:/hotel/list";
         }
         return "/";
