@@ -32,6 +32,16 @@ public class SchoolController {
     private int pageNum;
     private int sizeNum;
 
+    @RequestMapping("/schoolImageList")
+    public String imageList(){
+        return "schoolImageList";
+    }
+
+    @RequestMapping("/schoolImageAdd")
+    public String imageAdd(){
+        return "schoolImageAdd";
+    }
+
     //查询所有活动
     @GetMapping("/list")
     public String getAllByPage(HttpServletRequest request, Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size) {

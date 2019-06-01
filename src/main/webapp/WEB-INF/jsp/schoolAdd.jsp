@@ -23,22 +23,22 @@
         .text {
             border: 1px solid #ccc;
             width:730px;
-            height: 200px;
+            height: 100px;
         }
         .layui-upload-img {
-		    width: 132px;
+		    width: 130px;
 		    height: 92px;
 		    margin: 0 10px 10px 0;
 }
     </style>
 	<body>
-	<div style="margin-top: 5px">
- 			<font style="color: #000; font-size: 12px; margin-top: 10px">
- 				★ 添加学校
- 			</font>
- 			<br>
- 			<hr style="background: red; height: 2px">
- 		</div>
+	<div style="margin-top: 10px">
+		<font style="color: #000; font-size: 12px; margin-left: 10px">
+			★ 添加学校
+		</font>
+		<br>
+		<hr style="background: red; height: 2px">
+	</div>
  		<div>
 			<form class="form-horizontal" role="form" action="/school/saveupdate">
 
@@ -94,7 +94,7 @@
 					</div>
 				</div>
 				<div>
-				<div class="layui-upload" style="float: right; margin-right: 300px; margin-top: -250px">
+				<div class="layui-upload" style="float: right; margin-right: 400px; margin-top: -250px">
 					<button type="button" class="layui-btn" id="test1">上传学校logo图：</button>
 					<div class="layui-upload-list">
 						<img class="layui-upload-img" id="demo1">
@@ -104,156 +104,307 @@
 					<input id="image" name="image" type="hidden" />
 					<p id="demoText"></p>
 				</div>
-				<div class="layui-upload"  style="margin-left: 20px">
-				  <button type="button" class="layui-btn" id="test2">上传学校图片：</button> 
-					<blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;width: 80%;">
-					    预览图：
-				    <div class="layui-upload-list" id="demo2" style="height:15%"></div>
-				 	</blockquote>
-				</div
-				</div>
-				<div class="layui-upload" style="margin-left: 20px; width: 80%">
-				  <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button> 
-				  <div class="layui-upload-list">
-				    <table class="layui-table">
-				      <thead>
-				        <tr><th>文件名</th>
-				        <th>大小</th>
-				        <th>状态</th>
-				        <th>操作</th>
-				      </tr></thead>
-				      <tbody id="demoList"></tbody>
-				    </table>
-				  </div>
-				  <button type="button" class="layui-btn" id="testListAction">开始上传</button>
-				</div> 
-				<div style="margin-left: 22px;">
-				<label class="control-label">学校详情:</label><br>
-				</div>
-				<div style="margin-left: 22px; margin-top: 10px">
-				    <div id="div1" class="toolbar"></div>
-					    <div style="padding: 5px 0; color: #ccc"></div>
-					    <div id="div2" class="text"> <!--可使用 min-height 实现编辑区域自动增加高度-->
-		    		</div>
+					<div class="layui-upload" style="float: right; margin-right: 200px; margin-top: -250px">
+						<button type="button" class="layui-btn" id="test4">上传学校背景图：</button>
+						<div class="layui-upload-list">
+							<img class="layui-upload-img" id="demo4">
+							<div id="div4">
+							</div>
+						</div>
+						<input id="image1" name="image" type="hidden" />
+						<p id="demoText3"></p>
+					</div>
+		    	<div style="margin-top: 10px; margin-left: 550px;">
+		    		<button class="layui-btn layui-btn-sm">确定添加/修改</button>
 		    	</div>
-		    	<div style="margin-top: 10px; margin-left: 600px;">
-		    		
-		    		<button class="layui-btn layui-btn-sm">确定添加</button>
-		    		<button class="layui-btn layui-btn-sm layui-btn-danger">确定修改</button>
-		    	</div>
+				</div>
 			</form>
  		</div>
-    <script type="text/javascript" src="/js/wangEditor.min.js"></script>
-    <script type="text/javascript">
-        var E = window.wangEditor;
-        var editor1 = new E('#div1', '#div2'); 
-        editor1.customConfig.uploadImgServer = '/upload';
-        editor1.create();
-    </script>
-    <script>
-			layui.use('upload', function(){
-			  var $ = layui.jquery
-			  ,upload = layui.upload;
-			  
-			  //普通图片上传
-			  var uploadInst = upload.render({
-			    elem: '#test1'
-			    ,url: '/upload/'
-			    ,before: function(obj){
-			      //预读本地文件示例，不支持ie8
-			      obj.preview(function(index, file, result){
-			        $('#demo1').attr('src', result); //图片链接（base64）
-			      });
-			    }
-			    ,done: function(res){
-			      //如果上传失败
-			      if(res.code > 0){
-			        return layer.msg('上传失败');
-			      }
-			      //上传成功
-			    }
-			    ,error: function(){
-			      //演示失败状态，并实现重传
-			      var demoText = $('#demoText');
-			      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-			      demoText.find('.demo-reload').on('click', function(){
-			        uploadInst.upload();
-			      });
-			    }
-			  });
-			  
-			  //多图片上传
-			  upload.render({
-			    elem: '#test2'
-			    ,url: '/upload/'
-			    ,multiple: true
-			    ,before: function(obj){
-			      //预读本地文件示例，不支持ie8
-			      obj.preview(function(index, file, result){
-			        $('#demo2').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
-			      });
-			    }
-			    ,done: function(res){
-			      //上传完毕
-			    }
-			  });
-			  
-			  //多文件列表示例
-  var demoListView = $('#demoList')
-  ,uploadListIns = upload.render({
-    elem: '#testList'
-    ,url: '/upload/'
-    ,accept: 'file'
-    ,multiple: true
-    ,auto: false
-    ,bindAction: '#testListAction'
-    ,choose: function(obj){   
-      var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
-      //读取本地文件
-      obj.preview(function(index, file, result){
-        var tr = $(['<tr id="upload-'+ index +'">'
-          ,'<td>'+ file.name +'</td>'
-          ,'<td>'+ (file.size/1014).toFixed(1) +'kb</td>'
-          ,'<td>等待上传</td>'
-          ,'<td>'
-            ,'<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
-            ,'<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
-          ,'</td>'
-        ,'</tr>'].join(''));
-        
-        //单个重传
-        tr.find('.demo-reload').on('click', function(){
-          obj.upload(index, file);
+	<!-- 学校图片列表 -->
+	<div>
+		<div>
+		<div style="margin-left: 20px">
+			<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schoolImage">
+				添加图片
+			</button>
+		</div>
+		<table class="layui-table" lay-skin="line" style="text-align: center; overflow: hidden; width: 80%">
+			<tr style="font-weight: bold;">
+				<td>名称</td>
+				<td>状态</td>
+				<td>描述</td>
+				<td>操作</td>
+			</tr>
+			<tr>
+				<td>学生照片</td>
+				<td>图片</td>
+				<td>学生上学期间的照片</td>
+				<td>
+					<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schoolImage">修改/详情
+					</button>
+					<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="">删除</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+		<div>
+			<div style="margin-left: 20px">
+				<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schoolVideo">
+					添加视频
+				</button>
+			</div>
+			<table class="layui-table" lay-skin="line" style="text-align: center; overflow: hidden; width: 80%">
+				<tr style="font-weight: bold;">
+					<td>名称</td>
+					<td>状态</td>
+					<td>描述</td>
+					<td>操作</td>
+				</tr>
+				<tr>
+					<td>学生视频</td>
+					<td>视频</td>
+					<td>学生上学期间的视频</td>
+					<td>
+						<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schoolVideo">修改/详情
+						</button>
+						<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="">删除</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<!-- 添加学校图片模态框 -->
+	<div class="modal fade" id="schoolImage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						学校图片添加
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form id="modelImage" action="/school/saveupdate">
+						<div class="layui-form-item" style="margin-left: 20px;">
+							<label class="layui-form-label" style="width: 100px">图片名称</label>
+							<div class="layui-input-inline">
+								<input type="password" name="password" required lay-verify="required" placeholder="请输入图片描述！" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item" style="margin-left: 20px;">
+							<label class="layui-form-label" style="width: 100px">图片状态</label>
+							<div class="layui-input-inline">
+								<select name="status" id="tagStatus" value="" class="form-control">
+									<option value="1" name="status">图片</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-form-item" style="margin-left: 20px;">
+							<label class="layui-form-label" style="width: 100px">图片描述</label>
+							<div class="layui-input-inline">
+								<input type="password" name="password" required lay-verify="required" placeholder="请输入图片描述！" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-upload" style="margin-left: 48px">
+							<button type="button" class="layui-btn" id="test2">上传图片：</button>
+							<div class="layui-upload-list" >
+								<img class="layui-upload-img" id="demo2">
+								<p id="demoText1"></p>
+							</div>
+						</div>
+					</form>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+					</button>
+					<button type="button" class="btn btn-primary">
+						提交更改
+					</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+	</div>
+	</div>
+	<!-- 添加学校视频模态框 -->
+	<div class="modal fade" id="schoolVideo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h4 class="modal-title" id="myModalLabel1">
+						学校视频添加
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form id="modelVideo" action="/school/saveupdate">
+						<div class="layui-form-item" style="margin-left: 20px;">
+							<label class="layui-form-label" style="width: 100px">视频名称</label>
+							<div class="layui-input-inline">
+								<input type="password" name="password" required lay-verify="required" placeholder="请输入视频描述！" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item" style="margin-left: 20px;">
+							<label class="layui-form-label" style="width: 100px">视频状态</label>
+							<div class="layui-input-inline">
+								<select name="status" id="" value="" class="form-control">
+									<option value="1" name="status">视频</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-form-item" style="margin-left: 20px;">
+							<label class="layui-form-label" style="width: 100px">视频描述</label>
+							<div class="layui-input-inline">
+								<input type="password" name="password" required lay-verify="required" placeholder="请输入视频描述！" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-upload" style="margin-left: 48px">
+							<button type="button" class="layui-btn" id="test3">上传视频封面图：</button>
+							<div class="layui-upload-list" >
+								<img class="layui-upload-img" id="demo3">
+								<p id="demoText2"></p>
+							</div>
+						</div>
+						<div class="layui-upload" style="margin-left: 20px;">
+							<button type="button" class="layui-btn layui-btn-normal" id="test8">选择学校视频</button>
+							<input type="hidden" id="videourl" name="videourl" value="" >
+							<button type="button" class="layui-btn" id="test9">开始上传</button><br>
+							<p id="p1" class="layui-btn layui-btn-warm layui-btn-radius" style="margin-top: 11px"></p>
+						</div>
+					</form>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<button type="button" class="btn btn-primary">
+							提交更改
+						</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal -->
+		</div>
+	</div>
+ </body>
+	<script type="text/javascript" src="/js/wangEditor.js"></script>
+		<script type="text/javascript">
+            var E = window.wangEditor;
+            var editor1 = new E('#divTitle', '#divContene');
+            editor1.customConfig.uploadImgServer = '/upload';
+            editor1.create();
+		</script>
+		<script>
+        layui.use('upload', function() {
+            var $ = layui.jquery
+                , upload = layui.upload;
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: '#test1'
+                ,url: '/upload/'
+                ,before: function(obj){
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function(index, file, result){
+                        $('#demo1').attr('src', result); //图片链接（base64）
+                    });
+                }
+                ,done: function(res){
+                    //如果上传失败
+                    if(res.code > 0){
+                        return layer.msg('上传失败');
+                    }
+                    //上传成功
+                }
+                ,error: function(){
+                    //演示失败状态，并实现重传
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function(){
+                        uploadInst.upload();
+                    });
+                }
+            });
         });
-        
-        //删除
-        tr.find('.demo-delete').on('click', function(){
-          delete files[index]; //删除对应的文件
-          tr.remove();
-          uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+	</script>
+	<script>
+        layui.use('upload', function() {
+                var $ = layui.jquery
+                    , upload = layui.upload;
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: '#test2'
+                ,url: '/upload/'
+                ,before: function(obj){
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function(index, file, result){
+                        $('#demo2').attr('src', result); //图片链接（base64）
+                    });
+                }
+                ,done: function(res){
+                    //如果上传失败
+                    if(res.code > 0){
+                        return layer.msg('上传失败');
+                    }
+                    //上传成功
+                }
+                ,error: function(){
+                    //演示失败状态，并实现重传
+                    var demoText = $('#demoText1');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function(){
+                        uploadInst.upload();
+                    });
+                }
+            });
+            });
+        </script>
+	<script>
+        layui.use('upload', function() {
+            var $ = layui.jquery
+                , upload = layui.upload;
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: '#test3'
+                ,url: '/upload/'
+                ,before: function(obj){
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function(index, file, result){
+                        $('#demo3').attr('src', result); //图片链接（base64）
+                    });
+                }
+                ,done: function(res){
+                    //如果上传失败
+                    if(res.code > 0){
+                        return layer.msg('上传失败');
+                    }
+                    //上传成功
+                }
+                ,error: function(){
+                    //演示失败状态，并实现重传
+                    var demoText = $('#demoText2');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function(){
+                        uploadInst.upload();
+                    });
+                }
+            });
+            //选完文件后不自动上传
+            upload.render({
+                elem: '#test8'
+                ,url: '/uploadflv/upload'
+                ,accept: 'video'
+                ,auto:false
+                //,multiple: true
+                ,bindAction: '#test9'
+                ,done: function(res){
+                    console.log(res.data[0])
+                    if(res.code > 0){
+                        return layer.msg('上传失败！')
+                    }
+                    $("#videourl").val('' + res.data[0]);
+                    $("#p1").text('' + res.data[0])
+                    return layer.msg('上传成功！')
+                }
+            });
         });
-        
-        demoListView.append(tr);
-      });
-    }
-    ,done: function(res, index, upload){
-      if(res.code == 0){ //上传成功
-        var tr = demoListView.find('tr#upload-'+ index)
-        ,tds = tr.children();
-        tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
-        tds.eq(3).html(''); //清空操作
-        return delete this.files[index]; //删除文件队列已经上传成功的文件
-      }
-      this.error(index, upload);
-    }
-    ,error: function(index, upload){
-      var tr = demoListView.find('tr#upload-'+ index)
-      ,tds = tr.children();
-      tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
-      tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
-    }
-  });
-			  });
-</script>
-</body>
+	</script>
 </html>

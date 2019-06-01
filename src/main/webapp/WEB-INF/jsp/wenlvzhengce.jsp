@@ -43,9 +43,8 @@
 				<td>标题</td>
 				<td>状态</td>
 				<td>来源</td>
-				<td>转发数</td>
 				<td>浏览量</td>
-				<%--<td>创建人</td>--%>
+				<td>创建时间</td>
 				<td>文章分类</td>
 				<td>操作</td>
 			</tr>
@@ -60,9 +59,8 @@
 					<c:if test="${wenlv.status == 2}">自写</c:if>
 				</td>
 				<td>${wenlv.source}</td>
-				<td>${wenlv.relay}</td>
 				<td>${wenlv.browse}</td>
-				<%--<td>${wenlv.createUser}</td>--%>
+				<td>${wenlv.createDate}</td>
 				<td>
 					<c:if test="${wenlv.textType == 1}">咨询动态</c:if>
 					<c:if test="${wenlv.textType == 2}">政策解读</c:if>

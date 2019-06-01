@@ -34,42 +34,33 @@
     <font style="color: #000; font-size: 12px; margin-left: 10px">
         ★ 学校列表
     </font>
+    <button class="layui-btn layui-btn-xs layui-btn-warm" style="margin-left: 1100px" onclick="imageAdd()">添加图片</button>
     <br>
     <hr style="background: red; height: 2px">
 </div>
 <div>
     <table class="layui-table" lay-skin="line" id="schoolTable" style="text-align: center;">
         <tr style="font-weight: bold;">
-            <td style="width: 12%">机构名称</td>
-            <td style="width: 10%">机构类型</td>
-            <td style="width: 12%">联系电话</td>
-            <td style="width: 8%">市</td>
-            <td style="width: 8%">区</td>
-            <td style="width: 18%">详细地址</td>
-            <td style="width: 15%">创建时间</td>
-            <td style="width: 17%">操作</td>
+            <td>图片名称</td>
+            <td>类型</td>
+            <td>上传时间</td>
+            <td>描述</td>
+            <td>操作</td>
         </tr>
-
-        <c:forEach items="${schoolList.content}" var="school">
             <tr>
-                <td>${ school.name}</td>
-                <td>${ school.schoolType}</td>
-                <td>${ school.phone}</td>
-                <td>${ school.city}</td>
-                <td>${ school.area}</td>
-                <td>${ school.addrDetail}</td>
-                <td>${ school.createDate}</td>
+                <td>达萨达</td>
+                <td>图片</td>
+                <td></td>
+                <td>达萨达</td>
                 <td>
                     <button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ school.id})">修改
                     </button>
                     <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ school.id})">删除
                     </button>
-                    <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="imageList()">图片列表
-                    </button>
                 </td>
             </tr>
-        </c:forEach>
     </table>
+
     <div id="test1" style="margin-left: 900px">
     </div>
 </div>
@@ -77,7 +68,6 @@
 <script src="/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到$本地，上述js路径需要改成你本地的 -->
 <script>
-    var count = "${schoolList.totalElements}";
     console.log(count)
     layui.use('laypage', function () {
         var laypage = layui.laypage;
@@ -108,8 +98,8 @@
         window.location.href = "/school/delete?id=" + id;
     }
 
-    function imageList() {
-        window.location.href = "/school/schoolImageList";
+    function imageAdd() {
+        window.location.href = "/school/schoolImageAdd";
     }
 </script>
 

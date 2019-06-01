@@ -23,7 +23,7 @@ pageEncoding="UTF-8"%>
         .text {
             border: 1px solid #ccc;
             width:730px;
-            height: 200px;
+            height: 100px;
         }
 		.layui-upload-img {
 			width: 132px;
@@ -56,6 +56,8 @@ pageEncoding="UTF-8"%>
             var zcType = document.getElementById("zcType").value;
             var zcSource = document.getElementById("zcSource").value;
             var zcStatus = document.getElementById("zcStatus").value;
+            var image = document.getElementById("image").value;
+
             if(zcName == "" || zcName == null){
                 alert("请输入政策标题!");
                 return false;
@@ -71,22 +73,11 @@ pageEncoding="UTF-8"%>
             }if(zcStatus == "" || zcStatus == 0) {
                 alert("请选择创建类型!");
                 return false;
+            }if(image == "" || image == 0) {
+                alert("请选择上传图片!");
+                return false;
             }
-
-
             $("#cotent").val(editor1.txt.html());
-
-//            $.ajax({
-//                type: "POST",
-//                url: "/wenlv/addSure",
-//                data: $("#form1").serialize(),
-//                dataType: "json",
-//                success: function(data){
-//                    alert("aaa")
-//                    window.history.go(-1);
-//                }
-//            });
-
             $("#form1").submit();
         }
 	</script>
@@ -169,7 +160,7 @@ pageEncoding="UTF-8"%>
 					<p id="demoText"></p>
 				</div>
 				<div style="margin-left: 22px;">
-				<label class="control-label">政策内容详情:</label><br>
+				<label class="control-label">政策内容详情（必填）:</label><br>
 				</div>
 				<div style="margin-left: 22px; margin-top: 10px">
 				    <div id="div1" class="toolbar"></div>
@@ -184,7 +175,7 @@ pageEncoding="UTF-8"%>
 		    	</div>
 			</form>
  		</div>
-		<input type="radio" name="up" value="1" onclick="image1('1')" checked="checked"> 图片
+		<input type="radio" name="up" value="1" onclick="image1('1')" checked="checked"> 图片x
 		<input type="radio" name="up" value="2" onclick="image1('2')"> 视频
 		<div id="div01">
 666
@@ -235,6 +226,5 @@ $("#div01").show()
                 }
             });
         });
-
 	</script>
 </html>
