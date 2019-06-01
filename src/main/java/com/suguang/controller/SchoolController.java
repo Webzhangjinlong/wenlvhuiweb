@@ -1,6 +1,8 @@
 package com.suguang.controller;
 
+import com.suguang.dao.ImgDao;
 import com.suguang.dao.SchoolDao;
+import com.suguang.domin.YmImage;
 import com.suguang.domin.YmSchool;
 
 import com.suguang.service.SchoolService;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -27,10 +30,11 @@ public class SchoolController {
 
     @Autowired
     SchoolService schoolService;
+
     @Autowired
     SchoolDao schoolDao;
-    private int pageNum;
-    private int sizeNum;
+    private Integer pageNum;
+    private Integer sizeNum;
 
     @RequestMapping("/schoolImageList")
     public String imageList(){
@@ -47,7 +51,7 @@ public class SchoolController {
     public String getAllByPage(HttpServletRequest request, Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size) {
         pageNum = page == null ? 1 : page;
         sizeNum = size == null ? 10 : size;
-      
+
 
         Page<YmSchool> sourceCode = schoolService.getSchool(pageNum, sizeNum);
         model.addAttribute("schoolList", sourceCode);
@@ -111,10 +115,16 @@ public class SchoolController {
         YmSchool save = schoolDao.save(ymSchool);
 
         model.addAttribute("schoolList", save);
+
+        if (pageNum==null) {
+            pageNum =1;
+        }
+        if (sizeNum ==null) {
+            sizeNum =10;
+        }
        
         return "redirect:/school/list?page=" + pageNum + "&size=" + sizeNum;
 
-//        return "redirect:/school/list";
     }
 
 }

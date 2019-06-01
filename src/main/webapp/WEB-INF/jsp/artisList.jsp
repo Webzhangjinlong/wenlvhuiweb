@@ -43,38 +43,18 @@
             <td>姓名</td>
             <td>类型</td>
             <td>电话</td>
-            <td>状态</td>
+            <td>艺人状态</td>
             <td>操作</td>
         </tr>
 
-        <c:forEach items="${artistList.content}" var="artist">
+        <c:forEach items="${YmArtistList.content}" var="artist">
             <tr style="font-weight: bold;">
                 <td>${artist.artistName}</td>
-                <td>
-                    <c:if test="${artist.artistType == 10}">乐器</c:if>
-                    <c:if test="${artist.artistType == 11}">绘画</c:if>
-                    <c:if test="${artist.artistType == 12}">烹饪</c:if>
-                    <c:if test="${artist.artistType == 13}">旅行</c:if>
-                    <c:if test="${artist.artistType == 14}">摄影</c:if>
-                    <c:if test="${artist.artistType == 15}">手工</c:if>
-                    <c:if test="${artist.artistType == 16}">唱歌</c:if>
-                    <c:if test="${artist.artistType == 17}">书法</c:if>
-                    <c:if test="${artist.artistType == 18}">刺绣</c:if>
-                    <c:if test="${artist.artistType == 19}">健身</c:if>
-                    <c:if test="${artist.artistType == 21}">乒乓球</c:if>
-                    <c:if test="${artist.artistType == 22}">舞蹈</c:if>
-                    <c:if test="${artist.artistType == 23}">剪纸</c:if>
-                    <c:if test="${artist.artistType == 26}">武术</c:if>
-                    <c:if test="${artist.artistType == 27}">游泳</c:if>
-                    <c:if test="${artist.artistType == 28}">广场舞</c:if>
-                    <c:if test="${artist.artistType == 29}">街舞</c:if>
-
-                    <c:if test="${artist.artistType == 30}">口技</c:if>
-                </td>
+                <td>${artist.artistType}</td>
                 <td>${artist.artistPhone}</td>
                 <td>
-                    <c:if test="${artist.artistStatus == 1}">认证成功</c:if>
-                    <c:if test="${artist.artistStatus == 0}">未认证</c:if>
+                    <c:if test="${artist.artistStatus == 1}">认证</c:if>
+                    <c:if test="${artist.artistStatus == 2}">未认证</c:if>
                 </td>
                 <td>
                     <button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ artist.id})">修改/详情
@@ -103,7 +83,7 @@
 
 </script>
 <script>
-    var count = "${artistList.totalElements}";
+    var count = "${YmArtistList.totalElements}";
     console.log(count)
     layui.use('laypage', function () {
         var laypage = layui.laypage;
@@ -117,7 +97,7 @@
                 if (first) {
                     return
                 }
-                var href = '/artist/list?page=' + obj.curr + '&size=' + obj.limit
+                var href = '/artist/artistList?page=' + obj.curr + '&size=' + obj.limit
                 location.href = href;
             }
         });

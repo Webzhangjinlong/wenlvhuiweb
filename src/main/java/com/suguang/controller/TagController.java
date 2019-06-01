@@ -127,7 +127,7 @@ public class TagController {
         ymPolicy.setVideourl(videourl);
         ymPolicy.setCreateDate(new Date());
         ymPolicy.setVideoBackurl(videoBackurl);
-        ymPolicy.setCreateDate(new Date());
+
         ymPolicy.setBrowse(Integer.parseInt(browse));
         YmPolicy policy = tagDao.save(ymPolicy);
         model.addAttribute("policy",policy);

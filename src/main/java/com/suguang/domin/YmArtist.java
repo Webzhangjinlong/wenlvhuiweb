@@ -11,7 +11,7 @@ public class YmArtist  extends YmEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer artistType;
+    private String artistType;
 
     private String artistName;
 
@@ -23,11 +23,23 @@ public class YmArtist  extends YmEntity {
 
    private String artistDetails;
 
+   private String artistExperience;
+
+
+
+
     private Integer artistStatus;
 
 
 
 
+    public String getArtistExperience() {
+        return artistExperience;
+    }
+
+    public void setArtistExperience(String artistExperience) {
+        this.artistExperience = artistExperience;
+    }
 
     public String getBackgroundUrl() {
 		return backgroundUrl;
@@ -45,11 +57,11 @@ public class YmArtist  extends YmEntity {
         this.id = id;
     }
 
-    public Integer getArtistType() {
+    public String  getArtistType() {
         return artistType;
     }
 
-    public void setArtistType(Integer artistType) {
+    public void setArtistType(String artistType) {
         this.artistType = artistType;
     }
 

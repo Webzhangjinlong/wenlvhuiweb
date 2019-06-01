@@ -27,10 +27,10 @@ public class CarftsmanController {
     private CraftsmanDao craftsmanDao;
     @Autowired
     private CarftsmanService carftsmanService;
-    private int pageNum;
-    private int sizeNum;
+    private Integer pageNum;
+    private Integer sizeNum;
 
-    //查询所有商家，显示商家列表
+    //匠人
     @GetMapping("/list")
     public String getAllByPage(HttpServletRequest request, Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size) {
         pageNum = page == null ? 1 : page;
@@ -96,6 +96,13 @@ public class CarftsmanController {
 
         YmShops save = craftsmanDao.save(ymShops);
         model.addAttribute("save", save);
+
+        if (pageNum==null) {
+            pageNum =1;
+        }
+        if (sizeNum ==null) {
+            sizeNum =10;
+        }
 
         return "redirect:/craftsman/list?page=" + pageNum + "&size=" + sizeNum;
 

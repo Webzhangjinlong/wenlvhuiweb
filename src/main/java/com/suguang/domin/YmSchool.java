@@ -35,6 +35,7 @@ public class YmSchool {
 
     private Date createDate;
 
+
     public Integer getId() {
         return id;
     }

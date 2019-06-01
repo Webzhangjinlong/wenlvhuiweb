@@ -30,8 +30,8 @@ public class HotelController {
     private HotelDao hotelDao;
     @Autowired
     private HotelService hotelService;
-    private int pageNum;
-    private int sizeNum;
+    private Integer pageNum;
+    private Integer sizeNum;
 
 
     //查询所有
@@ -40,20 +40,10 @@ public class HotelController {
         pageNum = page == null ? 1 : page;
         sizeNum = size == null ? 10 : size;
 
-        
-
         Page<YmRestaurant> sourceCode = hotelService.getHotel(pageNum, sizeNum);
         model.addAttribute("hotelList", sourceCode);
         return "hotelList";
     }
-
-//    //查询所有
-//    @RequestMapping("/list")
-//    public String findList(Model model){
-//        List<YmRestaurant> all = hotelDao.findAll();
-//        model.addAttribute("hotelList", all);
-//        return "hotelList";
-//    }
 
     //修改
     //获取修改页，并且将需要修改的信息回显在修改页上
@@ -107,9 +97,14 @@ public class HotelController {
         YmRestaurant save = hotelDao.save(ymRestaurant);
         model.addAttribute("hotel", save);
 
+        if (pageNum==null) {
+            pageNum =1;
+        }
+        if (sizeNum ==null) {
+            sizeNum =10;
+        }
      
         return "redirect:/hotel/list?page=" + pageNum + "&size=" + sizeNum;
-       // return "redirect:/hotel/list";
     }
 
     //餐厅删除
@@ -119,9 +114,7 @@ public class HotelController {
         if(id != null && !id.equals("") && !id.equals("null")) {
             hotelDao.deleteById(Integer.parseInt(id));
 
-       
             return "redirect:/hotel/list?page=" + pageNum + "&size=" + sizeNum;
-           // return "redirect:/hotel/list";
         }
         return "/";
     }

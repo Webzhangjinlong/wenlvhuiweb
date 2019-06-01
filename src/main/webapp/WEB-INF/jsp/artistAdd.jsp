@@ -54,31 +54,39 @@
     <hr style="background: red; height: 2px">
 </div>
 <div>
-    <form class="form-horizontal" id="form1" role="form" action="" method="post">
+    <form class="form-horizontal" id="form1" role="form" action="/artist/saveupdate" method="post">
+
         <div>
-            <input type="hidden" name="id" value="">
+            <input type="hidden" name="id" value="${addYmArtist.id}">
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">艺人名称:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="artistName" type="text" name="title" value=""
+                <input class="form-control" id="artistName" type="text" name="artistName" value="${addYmArtist.artistName}"
                        placeholder="请输入艺人名称">
             </div>
             <label class="col-sm-1 control-label">艺人类型:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="tagName" type="text" name="title" value=""
+                <input class="form-control" id="artistType" type="text" name="type" value="${addYmArtist.artistType}"
                        placeholder="请输入艺人类型">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">艺人电话:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="tagSource" type="text" name="source" value=""
+                <input class="form-control" id="tagSource" type="text" name="phone" value="${addYmArtist.artistPhone}"
                        placeholder="请输入艺人电话">
             </div>
             <label class="col-sm-1 control-label">艺人状态:</label>
             <div class="col-sm-2">
-                <select name="status" id="tagStatus" value="" class="form-control">
+                <select name="status" id="tagStatus" value="${addYmArtist.artistStatus}" class="form-control">
+
+                    <c:if test="${addYmArtist.artistStatus == 1}">
+                        <option value="1" name="status">认证成功</option>
+                    </c:if>
+                    <c:if test="${addYmArtist.artistStatus == 2}">
+                        <option value="2" name="status">未认证</option>
+                    </c:if>
                     <option value="0" name="status">--请选择--</option>
                     <option value="1" name="status">认证成功</option>
                     <option value="2" name="status">未认证</option>
@@ -88,25 +96,22 @@
         <div class="form-group">
             <label class="col-sm-1 control-label">艺人账号:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="tagName" type="text" name="title" value=""
+                <input class="form-control" id="tagName" type="text" name="num" value="${addYmArtist.artistPhone}"
                        placeholder="请输入艺人账号">
             </div>
-            <label class="col-sm-1 control-label">艺人密码:</label>
-            <div class="col-sm-2">
-                <input class="form-control" id="tagName" type="text" name="title" value=""
-                       placeholder="请输入艺人密码">
-            </div>
+
         </div>
         <div style="margin-left: 22px;">
             <label class="control-label">艺人介绍:</label><br>
+
         </div>
         <div style="margin-left: 22px; margin-top: 10px">
             <div id="yrjs" class="toolbar"></div>
             <div style="padding: 5px 0; color: #ccc"></div>
             <div id="yrjs1" class="text">
-                <p></p>
+                <p >${addYmArtist.artistDetails}</p>
             </div>
-            <input type="hidden" id="artistDetails" name="artistDetails">
+            <input type="hidden" id="artistDetails" name="artistDetails"value="${addYmArtist.artistDetails}">
         </div>
         <div class="layui-upload" style="float: right; margin-right: 400px; margin-top: -320px">
             <button type="button" class="layui-btn" id="test1">上传艺人封面图</button>
@@ -136,7 +141,7 @@
             <div id="div1" class="toolbar"></div>
             <div style="padding: 5px 0; color: #ccc"></div>
             <div id="div2" class="text">
-                <p>${tagupdate.cotent}</p>
+                <p >${addYmArtist.artistExperience}</p>
             </div>
             <input type="hidden" id="cotent" name="cotent">
         </div>
@@ -186,6 +191,7 @@
                     return layer.msg('上传失败！')
                 }
                 $('#image').val('' + res.data[0]);
+                console.log($("input[name='image]").val())
                 return layer.msg('上传成功！')
             }
             , error: function () {

@@ -21,7 +21,7 @@ public class YmImage {
 	Integer pid;// int(11) DEFAULT NULL COMMENT '父id',
 	String imgUrl;// varchar(255) DEFAULT NULL COMMENT '图片路径',
 	Date upDate;// datetime DEFAULT NULL COMMENT '上传时间',
-	String backupField1;// varchar(255) DEFAULT NULL COMMENT '备用字段',
+	//String backupField1;// varchar(255) DEFAULT NULL COMMENT '备用字段',
 	Integer paixu ; //排序
 	String detalis;
 	String videoUrl;
@@ -84,12 +84,12 @@ public class YmImage {
 	public void setUpDate(Date upDate) {
 		this.upDate = upDate;
 	}
-	public String getBackupField1() {
-		return backupField1;
-	}
-	public void setBackupField1(String backupField1) {
-		this.backupField1 = backupField1;
-	}
+//	public String getBackupField1() {
+//		return backupField1;
+//	}
+//	public void setBackupField1(String backupField1) {
+//		this.backupField1 = backupField1;
+//	}
 	public Integer getPaixu() {
 		return paixu;
 	}
