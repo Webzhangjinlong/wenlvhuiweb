@@ -4,15 +4,20 @@ import com.suguang.dao.ImageDao;
 import com.suguang.dao.TagDao;
 import com.suguang.domin.YmImage;
 import com.suguang.domin.YmPolicy;
+import com.suguang.domin.YmSchool;
+import com.suguang.service.TagService;
 import com.suguang.util.YmStaticVariablesUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,38 +32,45 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/tag")
-public class TagController extends BaseController {
+public class TagController {
 
     @Autowired
     private TagDao tagDao;
+    @Autowired
+    TagService tagService;
 
 
-    //展示所有活动
-    @RequestMapping("/list")
-    @Override
-    protected String getList(HttpServletRequest request, Model model) {
-        List<YmPolicy> all = tagDao.findAll();
-        model.addAttribute("tagList",all);
+    //查询所有活动
+    @GetMapping("/list")
+    public String getAllByPage(HttpServletRequest request, Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size) {
+        int pageNum = page == null ? 1 : page;
+        int sizeNum = size == null ? 10 : size;
+        request.getSession().setAttribute("page", pageNum);
+        request.getSession().setAttribute("size", sizeNum);
+
+        Page<YmPolicy> sourceCode = tagService.getTag(pageNum, sizeNum);
+        model.addAttribute("tagList", sourceCode);
+
         return "tagAdministration";
     }
 
     @RequestMapping("/delete")
-    @Override
+
     protected String DeleteOne(HttpServletRequest request, Model model) {
         String id = request.getParameter("id");
         tagDao.deleteById(Integer.parseInt(id));
 
-        return "redirect:/tag/list";
+        Integer page1 = (Integer) request.getSession().getAttribute("page");
+        Integer size1 = (Integer) request.getSession().getAttribute("size");
+        return "redirect:/tag/list?page=" + page1 + "&size=" + size1;
+
     }
 
-    @Override
-    protected String InsertOne(HttpServletRequest request, Model model) {
-        return null;
-    }
+
 
     //返回修改页面，并且查询到需要修改的数据
     @RequestMapping("/update")
-    @Override
+
     protected String UpdataOne(HttpServletRequest request, Model model) {
         String id = request.getParameter("id");
         YmPolicy ymPolicy = tagDao.getById(Integer.parseInt(id));
@@ -117,7 +129,11 @@ public class TagController extends BaseController {
         ymPolicy.setCreateDate(new Date());
         YmPolicy policy = tagDao.save(ymPolicy);
         model.addAttribute("policy",policy);
-        return "redirect:/tag/list";
+
+        Integer page1 = (Integer) request.getSession().getAttribute("page");
+        Integer size1 = (Integer) request.getSession().getAttribute("size");
+        return "redirect:/tag/list?page=" + page1 + "&size=" + size1;
+
     }
 
     //添加活动

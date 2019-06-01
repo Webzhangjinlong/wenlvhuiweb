@@ -41,8 +41,10 @@ public class WenLvController {
     public String getAllByPage(HttpServletRequest request, Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size) {
         int pageNum = page == null ? 1 : page;
         int sizeNum = size == null ? 10 : size;
+
         request.getSession().setAttribute("page", pageNum);
         request.getSession().setAttribute("size", sizeNum);
+
         Page<YmWenlv> sourceCode = wenLvService.getWenLv(pageNum, sizeNum);
         model.addAttribute("wenlvlist", sourceCode);
         return "wenlvzhengce";
@@ -55,7 +57,10 @@ public class WenLvController {
         String id = request.getParameter("id");
         wenLvDao.deleteById(Integer.parseInt(id));
 
-        return "redirect:/wenlv/list";
+        Integer page1 = (Integer) request.getSession().getAttribute("page");
+        Integer size1 = (Integer) request.getSession().getAttribute("size");
+        return "redirect:/wenlv/list?page=" + page1 + "&size=" + size1;
+
     }
 
 
@@ -93,8 +98,6 @@ public class WenLvController {
         String textType = request.getParameter("textType");
         String status = request.getParameter("status");
 
-        Date date = new Date();
-
         String cotent = request.getParameter("cotent");
         String image = request.getParameter("image");
         YmWenlv ymWenlv = new YmWenlv();
@@ -108,9 +111,13 @@ public class WenLvController {
         ymWenlv.setStatus(status);
         ymWenlv.setCotent(cotent);
         ymWenlv.setImage(image);
+        ymWenlv.setCreateDate(new Date());
         YmWenlv wenlv = wenLvDao.save(ymWenlv);
         model.addAttribute("wenlv", wenlv);
-        return "redirect:/wenlv/list";
+
+        Integer page1 = (Integer) request.getSession().getAttribute("page");
+        Integer size1 = (Integer) request.getSession().getAttribute("size");
+        return "redirect:/wenlv/list?page=" + page1 + "&size=" + size1;
     }
 
     //返回服务器资源

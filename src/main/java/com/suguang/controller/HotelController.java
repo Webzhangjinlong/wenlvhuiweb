@@ -3,11 +3,16 @@ package com.suguang.controller;
 import com.suguang.dao.HotelDao;
 import com.suguang.domin.YmFood;
 import com.suguang.domin.YmRestaurant;
+import com.suguang.domin.YmWenlv;
+import com.suguang.service.HotelService;
 import org.apache.ibatis.ognl.DynamicSubscript;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -23,14 +28,31 @@ import static org.apache.ibatis.ognl.DynamicSubscript.all;
 public class HotelController {
     @Autowired
     private HotelDao hotelDao;
+    @Autowired
+    private HotelService hotelService;
+
 
     //查询所有
-    @RequestMapping("/list")
-    public String findList(Model model){
-        List<YmRestaurant> all = hotelDao.findAll();
-        model.addAttribute("hotelList", all);
+    @GetMapping("/list")
+    public String getAllByPage(HttpServletRequest request, Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size) {
+        int pageNum = page == null ? 1 : page;
+        int sizeNum = size == null ? 10 : size;
+
+        request.getSession().setAttribute("page", pageNum);
+        request.getSession().setAttribute("size", sizeNum);
+
+        Page<YmRestaurant> sourceCode = hotelService.getHotel(pageNum, sizeNum);
+        model.addAttribute("hotelList", sourceCode);
         return "hotelList";
     }
+
+//    //查询所有
+//    @RequestMapping("/list")
+//    public String findList(Model model){
+//        List<YmRestaurant> all = hotelDao.findAll();
+//        model.addAttribute("hotelList", all);
+//        return "hotelList";
+//    }
 
     //修改
     //获取修改页，并且将需要修改的信息回显在修改页上
@@ -82,7 +104,12 @@ public class HotelController {
         ymRestaurant.setLongitude(longitude);
         ymRestaurant.setLatitude(latitude);
         YmRestaurant save = hotelDao.save(ymRestaurant);
-        return "redirect:/hotel/list";
+        model.addAttribute("hotel", save);
+
+        Integer page1 = (Integer) request.getSession().getAttribute("page");
+        Integer size1 = (Integer) request.getSession().getAttribute("size");
+        return "redirect:/hotel/list?page=" + page1 + "&size=" + size1;
+       // return "redirect:/hotel/list";
     }
 
     //餐厅删除
@@ -91,7 +118,11 @@ public class HotelController {
         String id = request.getParameter("id");
         if(id != null && !id.equals("") && !id.equals("null")) {
             hotelDao.deleteById(Integer.parseInt(id));
-            return "redirect:/hotel/list";
+
+            Integer page1 = (Integer) request.getSession().getAttribute("page");
+            Integer size1 = (Integer) request.getSession().getAttribute("size");
+            return "redirect:/hotel/list?page=" + page1 + "&size=" + size1;
+           // return "redirect:/hotel/list";
         }
         return "/";
     }

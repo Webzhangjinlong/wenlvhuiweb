@@ -85,14 +85,18 @@ public class SchoolController {
         String addrDetail = request.getParameter("addrDetail");
         YmSchool ymSchool = new YmSchool();
 
-        ymSchool.setId(Integer.parseInt(id));
+        if (id != null && id != "") {
+            ymSchool.setId(Integer.parseInt(id));
+        }
+
         ymSchool.setName(name);
         ymSchool.setSchoolType(Integer.parseInt(schoolType));
         ymSchool.setCity(city);
         ymSchool.setArea(area);
         ymSchool.setPhone(phone);
         ymSchool.setAddrDetail(addrDetail);
-        ymSchool.setCreateDate(new Date());
+        Date date = new Date();
+        ymSchool.setCreateDate(date);
 
         YmSchool save = schoolDao.save(ymSchool);
 
