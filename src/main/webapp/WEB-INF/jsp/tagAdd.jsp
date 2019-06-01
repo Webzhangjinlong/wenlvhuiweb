@@ -196,6 +196,12 @@
                        value="${tagupdate.policyAddr}" placeholder="请输入详细地址">
             </div>
         </div>
+        <div class="layui-upload" style="margin-left: 20px;margin-top: 20px">
+            <button type="button" class="layui-btn layui-btn-normal" id="test8">选择活动视频</button>
+            <input type="hidden" id="videourl" name="videourl" value="${tagupdate.videourl}" >
+            <button type="button" class="layui-btn" id="test9">开始上传</button>
+            <p id="p1" class="layui-btn layui-btn-warm layui-btn-radius" style="margin-top: 11px">${tagupdate.videourl}</p>
+        </div>
         <div style="margin-left: 22px;">
             <label class="control-label">活动奖品:</label><br>
         </div>
@@ -245,22 +251,17 @@
             <div class="layui-upload-list">
                 <img class="layui-upload-img" id="demo1" src="${tagupdate.image}">
             </div>
-            <input id="image" name="image" type="hidden"/>
+            <input id="image" name="image" value="${tagupdate.image}" type="hidden"/>
             <p id="demoText"></p>
         </div>
         <div class="layui-upload" style="float: right; margin-right: 300px; margin-top: -920px">
             <button type="button" class="layui-btn" id="test2">上传视频封面图</button>
             <div class="layui-upload-list">
-                <img class="layui-upload-img" id="demo2" src="${tagupdate.videourl}">
+                <img class="layui-upload-img" id="demo2" src="${tagupdate.videoBackurl}">
             </div>
-            <input id="videourl" name="videourl" type="hidden"/>
+            <input id="videoBackurl" name="videoBackurl" value="${tagupdate.videoBackurl}" type="hidden"/>
             <p id="demoText1"></p>
         </div>
-            <div class="layui-upload" style="float: right; margin-top: -760px; margin-right: 150px">
-                <button type="button" class="layui-btn layui-btn-normal" id="test8">选择活动视频</button>
-                <input class="layui-upload-file" type="file" accept="undefined" name="file">
-                <button type="button" class="layui-btn" id="test9">开始上传</button>
-            </div>
         <div style="margin-left: 22px;">
             <label class="control-label">活动内容详情:</label><br>
         </div>
@@ -376,7 +377,7 @@
                 if (res.code > 0) {
                     return layer.msg('上传失败！')
                 }
-                $('#videourl').val('' + res.data[0]);
+                $('#videoBackurl').val('' + res.data[0]);
                 return layer.msg('上传成功！')
             }
             , error: function () {
@@ -391,13 +392,19 @@
         //选完文件后不自动上传
         upload.render({
             elem: '#test8'
-            ,url: '/upload/'
+            ,url: '/uploadflv/upload'
             ,accept: 'video'
-            ,auto: false
+            ,auto:false
             //,multiple: true
             ,bindAction: '#test9'
             ,done: function(res){
-                console.log(res)
+                console.log(res.data[0])
+                if(res.code > 0){
+                    return layer.msg('上传失败！')
+                }
+                $("#videourl").val('' + res.data[0]);
+                $("#p1").text('' + res.data[0])
+                return layer.msg('上传成功！')
             }
         });
     });

@@ -33,6 +33,23 @@ pageEncoding="UTF-8"%>
     </style>
 	<body>
 	<script type="text/javascript">
+		$(function () {
+		    $("#div01").hide();
+		    $("#div02").hide();
+
+        })
+		function image1(str) {
+			if(str == 1){
+                $("#div01").show();
+                $("#div02").hide();
+			}else if(str == 2){
+                $("#div01").show();
+                $("#div02").show();
+			}
+
+
+        }
+
         function chan() {
             var zcName = document.getElementById("zcName").value;
             var zcTitleType = document.getElementById("zcTitleType").value;
@@ -134,7 +151,7 @@ pageEncoding="UTF-8"%>
 					<div class="layui-upload-list">
 						<img class="layui-upload-img" id="demo1" src="${wenlv.image}">
 					</div>
-					<input id="image" name="image" type="hidden"/>
+					<input id="image" name="image" type="hidden" value="${wenlv.image}"/>
 					<p id="demoText"></p>
 				</div>
 				<div style="margin-left: 22px;">
@@ -153,6 +170,14 @@ pageEncoding="UTF-8"%>
 		    	</div>
 			</form>
  		</div>
+		<input type="radio" name="up" value="1" onclick="image1('1')" checked="checked"> 图片
+		<input type="radio" name="up" value="2" onclick="image1('2')"> 视频
+		<div id="div01">
+666
+		</div>
+		<div id="div02">
+777
+		</div>
     <script type="text/javascript" src="/js/wangEditor.js"></script>
 	<script type="text/javascript">
         var E = window.wangEditor;
@@ -167,7 +192,7 @@ pageEncoding="UTF-8"%>
         layui.use('upload', function () {
             var $ = layui.jquery
                 , upload = layui.upload;
-
+$("#div01").show()
             //普通图片上传
             var uploadInst = upload.render({
                 elem: '#test1'

@@ -75,7 +75,7 @@
 			</tr>
 			</c:forEach>
 		</table>
-		<div id="test1"></div>
+		<div id="test1" style="margin-left: 900px"></div>
 	</div>
 <script src="/layui/layui.js" charset="utf-8"></script>
 <script>
