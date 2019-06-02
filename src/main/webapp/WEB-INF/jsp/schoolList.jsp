@@ -64,8 +64,6 @@
                     </button>
                     <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ school.id})">删除
                     </button>
-                    <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="imageList()">图片列表
-                    </button>
                 </td>
             </tr>
         </c:forEach>
@@ -108,9 +106,6 @@
         window.location.href = "/school/delete?id=" + id;
     }
 
-    function imageList() {
-        window.location.href = "/school/schoolImageList";
-    }
 </script>
 
 </html>

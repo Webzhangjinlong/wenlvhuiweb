@@ -41,7 +41,7 @@
            alert("请输入艺人名称!");
            return false;
        }
-           $("#cotent").val(editor1.txt.html());
+           $("#artistExperience").val(editor1.txt.html());
            $("#artistDetails").val(editor5.txt.html());
            $("#form1").submit();
    }
@@ -111,22 +111,22 @@
             <div id="yrjs1" class="text">
                 <p >${addYmArtist.artistDetails}</p>
             </div>
-            <input type="hidden" id="artistDetails" name="artistDetails"value="${addYmArtist.artistDetails}">
+            <input type="hidden" id="artistDetails" name="artistDetails" value="${addYmArtist.artistDetails}">
         </div>
         <div class="layui-upload" style="float: right; margin-right: 400px; margin-top: -320px">
             <button type="button" class="layui-btn" id="test1">上传艺人封面图</button>
             <div class="layui-upload-list">
-                <img class="layui-upload-img" id="demo1" src="">
+                <img class="layui-upload-img" id="demo1" src="${addYmArtist.backgroundUrl}">
             </div>
-            <input id="image" name="image" type="hidden"/>
+            <input id="backgroundUrl" name="backgroundUrl" type="hidden" value="${addYmArtist.backgroundUrl}"/>
             <p id="demoText"></p>
         </div>
         <div class="layui-upload" style="float: right; margin-right: 200px; margin-top: -320px">
             <button type="button" class="layui-btn" id="test2">上传艺人logo</button>
             <div class="layui-upload-list">
-                <img class="layui-upload-img" id="demo2" src="">
+                <img class="layui-upload-img" id="demo2" src="${addYmArtist.artistLogourl}">
             </div>
-            <input id="videourl" name="videourl" type="hidden"/>
+            <input id="artistLogourl" name="artistLogourl" type="hidden" value="${addYmArtist.artistLogourl}"/>
             <p id="demoText1"></p>
         </div>
             <div class="layui-upload" style="float: right; margin-top: -760px; margin-right: 150px">
@@ -141,9 +141,9 @@
             <div id="div1" class="toolbar"></div>
             <div style="padding: 5px 0; color: #ccc"></div>
             <div id="div2" class="text">
-                <p >${addYmArtist.artistExperience}</p>
+                <p>${addYmArtist.artistExperience}</p>
             </div>
-            <input type="hidden" id="cotent" name="cotent">
+            <input type="hidden" id="artistExperience" name="artistExperience" value="${addYmArtist.artistExperience}">
         </div>
         <div style="margin-top: 10px; margin-left: 650px;">
             <button type="button" id="button" onclick="chan()" class="layui-btn layui-btn-sm">确定添加/修改</button>
@@ -190,8 +190,7 @@
                 if (res.code > 0) {
                     return layer.msg('上传失败！')
                 }
-                $('#image').val('' + res.data[0]);
-                console.log($("input[name='image]").val())
+                $('#backgroundUrl').val('' + res.data[0]);
                 return layer.msg('上传成功！')
             }
             , error: function () {
@@ -226,7 +225,7 @@
                 if (res.code > 0) {
                     return layer.msg('上传失败！')
                 }
-                $('#videourl').val('' + res.data[0]);
+                $('#artistLogourl').val('' + res.data[0]);
                 return layer.msg('上传成功！')
             }
             , error: function () {

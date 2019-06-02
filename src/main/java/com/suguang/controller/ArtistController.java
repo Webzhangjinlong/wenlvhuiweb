@@ -83,8 +83,10 @@ public class ArtistController {
         String type = request.getParameter("type");
         String phone = request.getParameter("phone");
         String status = request.getParameter("status");
-        String num = request.getParameter("num");
         String artistDetails = request.getParameter("artistDetails");
+        String artistExperience = request.getParameter("artistExperience");
+        String backgroundUrl = request.getParameter("backgroundUrl");
+        String artistLogourl = request.getParameter("artistLogourl");
 
         YmArtist ymYmArtist = new YmArtist();
         if (id != null && id != "") {
@@ -95,7 +97,9 @@ public class ArtistController {
         ymYmArtist.setArtistPhone(phone);
         ymYmArtist.setArtistStatus(Integer.parseInt(status));
         ymYmArtist.setArtistDetails(artistDetails);
-
+        ymYmArtist.setArtistExperience(artistExperience);
+        ymYmArtist.setBackgroundUrl(backgroundUrl);
+        ymYmArtist.setArtistLogourl(artistLogourl);
 
         YmArtist save = YmArtistDao.save(ymYmArtist);
 

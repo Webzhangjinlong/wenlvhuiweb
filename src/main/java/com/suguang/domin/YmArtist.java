@@ -25,9 +25,6 @@ public class YmArtist  extends YmEntity {
 
    private String artistExperience;
 
-
-
-
     private Integer artistStatus;
 
 

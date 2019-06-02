@@ -2,6 +2,10 @@ package com.suguang.domin;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,8 +14,10 @@ import java.util.List;
 /**
  * 图书表
  */
+@Entity
 public class YmBook extends YmEntity {
-	
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
 	    Integer id  ;// int(11) NOT NULL COMMENT '主键',
 	    String bookName  ;//  varchar(255) DEFAULT NULL COMMENT '书名',
 	    String bookAuther  ;//  varchar(255) DEFAULT NULL COMMENT '作者',
@@ -29,20 +35,11 @@ public class YmBook extends YmEntity {
 	    Integer recommendClass; //推荐星级
 	    
 	    
-	    YmUser user = new YmUser();
-	    
-	    List<YmComment> commentList = new ArrayList<YmComment>();
-	    List<YmDataDictionary> tagList = new ArrayList<YmDataDictionary>();
+
 	    
 	    
 	    
 	    
-		public YmUser getUser() {
-			return user;
-		}
-		public void setUser(YmUser user) {
-			this.user = user;
-		}
 		public Integer getId() {
 			return id;
 		}
@@ -126,19 +123,6 @@ public class YmBook extends YmEntity {
 		}
 		public void setRecommendClass(Integer recommendClass) {
 			this.recommendClass = recommendClass;
-		}
-		public List<YmComment> getCommentList() {
-			return commentList;
-		}
-		public void setCommentList(List<YmComment> commentList) {
-			this.commentList = commentList;
-		}
-
-		public List<YmDataDictionary> getTagList() {
-			return tagList;
-		}
-		public void setTagList(List<YmDataDictionary> tagList) {
-			this.tagList = tagList;
 		}
 
 	    

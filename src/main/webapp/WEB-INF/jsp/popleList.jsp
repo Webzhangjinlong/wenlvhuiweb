@@ -35,17 +35,14 @@ pageEncoding="UTF-8"%>
  		<div id="tab1">
  			<table class="layui-table" lay-skin="line,row" style="text-align: center; overflow: hidden;">
  				<tr style="font-weight: bold;">
- 					<td style="width: 5%">编号</td>
  					<td style="width: 5%">账号</td>
  					<td style="width: 5%">电话</td>
  					<td style="width: 8%">使用状态</td>
  					<td style="width: 8%">是否验证</td>
  					<td style="width: 8%">创建时间</td>
- 					<td style="width: 8%">会员来源</td>
  					<td style="width: 5%">昵称</td>
  					<td style="width: 8%">真实姓名</td>
  					<td style="width: 5%">性别</td>
- 					<td style="width: 8%">会员等级</td>
  					<td style="width: 5%">生日</td>
  					<td style="width: 6%">最后登陆</td>
  					<td style="width: 6%">会员类型</td>
@@ -53,7 +50,6 @@ pageEncoding="UTF-8"%>
  				</tr>
 				<c:forEach items="${userList}" var="list">
  				<tr>
- 					<td>${list.id}</td>
  					<td>${list.username}</td>
  					<td>${list.phone}</td>
  					<td>
@@ -65,20 +61,12 @@ pageEncoding="UTF-8"%>
 						<c:if test="${list.isMobileCheck == 0}">否</c:if>
 					</td>
  					<td>${list.created}</td>
-					<td>
-						<c:if test="${list.sourceType == 1}">管理</c:if>
-						<c:if test="${list.sourceType == 2}">网页</c:if>
-						<c:if test="${list.sourceType == 3}">安卓</c:if>
-						<c:if test="${list.sourceType == 4}">苹果</c:if>
-						<c:if test="${list.sourceType == 5}">微信</c:if>
-					</td>
  					<td>${list.nickName}</td>
  					<td>${list.name}</td>
 					<td>
 						<c:if test="${list.sex == 1}">男</c:if>
 						<c:if test="${list.sex == 2}">女</c:if>
 					</td>
- 					<td>${list.userLevel}</td>
  					<td>${list.birthday}</td>
  					<td>${list.lastLoginTime}</td>
 					<td>

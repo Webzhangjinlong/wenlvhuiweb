@@ -54,10 +54,17 @@ pageEncoding="UTF-8"%>
 		     <li class="layui-nav-item">
 		  	<a href="javascript:;">学校管理</a>
 			  	<dl class="layui-nav-child">
-			      <dd><a href="/school/list?page=1&size=10" target="showframe">学校列表</a></dd>
+			      <dd><a href="/school/list" target="showframe">学校列表</a></dd>
 			      <dd><a href="/school/add" target="showframe">添加学校</a></dd>
 			    </dl>
 		    </li>
+			<li class="layui-nav-item">
+				<a href="javascript:;">图书管理</a>
+				<dl class="layui-nav-child">
+					<dd><a href="/book/list" target="showframe">图书列表</a></dd>
+					<dd><a href="/book/add" target="showframe">添加图书</a></dd>
+				</dl>
+			</li>
 		</ul>
 	</body>
 	<script>
