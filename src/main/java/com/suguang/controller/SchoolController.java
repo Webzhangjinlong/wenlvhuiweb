@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -35,6 +36,9 @@ public class SchoolController {
     SchoolDao schoolDao;
     private Integer pageNum;
     private Integer sizeNum;
+    @Autowired
+    private ImgDao imgDao;
+    private String schoolid;
 
     @RequestMapping("/schoolImageList")
     public String imageList(){
@@ -60,6 +64,25 @@ public class SchoolController {
         return "schoolList";
     }
 
+    //删除对应图片
+    @RequestMapping("/deleteImg")
+    public String imgDelete(HttpServletRequest request,Model model){
+        //图片ID
+        String id = request.getParameter("id");
+        imgDao.deleteById(Integer.parseInt(id));
+
+        return "redirect:/school/update?id="+schoolid;
+        //此处删除之后又重定向到学校列表页，不合理，应该重定向到修改的回显页面
+    }
+    //删除对应视频
+    @RequestMapping("/deleteVideo")
+    public String videoDelete(HttpServletRequest request){
+        String id = request.getParameter("id");
+        imgDao.deleteById(Integer.parseInt(id));
+        return "redirect:/school/update?id="+schoolid;
+    }
+
+
     //删除学校信息
     @RequestMapping("/delete")
     public String schoolDelete(HttpServletRequest request) {
@@ -67,17 +90,31 @@ public class SchoolController {
         schoolDao.deleteById(Integer.parseInt(id));
 
      
-        return "redirect:/school/list?page=" + pageNum + "&size=" + sizeNum;
+        return "redirect:/school/schoolAdd";
 //        return "redirect:/school/list";
     }
 
     //通过id获取修改页面，并将要修改的数据在修改页面渲染
     @RequestMapping("/update")
     public String schoolpreUpdate(HttpServletRequest request, Model model) {
-        String id = request.getParameter("id");
+        schoolid = request.getParameter("id");
+        List<YmImage> byImgTypeAndPid = imgDao.getByImgTypeAndPid(4, Integer.parseInt(schoolid));
+        ArrayList<YmImage> ymImages = new ArrayList<>();
+        ArrayList<YmImage> ymvideo = new ArrayList<>();
+        YmImage byImgTypeAndPidAndImageType = imgDao.getByImgTypeAndPidAndImageType(4, Integer.parseInt(schoolid), 3);
+        for (YmImage ymImage : byImgTypeAndPid) {
+            if (ymImage.getImageType()==2) {
+                ymvideo.add(ymImage);
+            }else{
+                ymImages.add(ymImage);
+            }
 
-        YmSchool ymSchool = schoolDao.getById(Integer.parseInt(id));
+        }
+        YmSchool ymSchool = schoolDao.getById(Integer.parseInt(schoolid));
         model.addAttribute("addSchool", ymSchool);
+        model.addAttribute("byImgTypeAndPidAndImageType", byImgTypeAndPidAndImageType);
+        model.addAttribute("ymImages", ymImages);
+        model.addAttribute("ymvideo", ymvideo);
         return "schoolAdd";
 
     }
@@ -126,5 +163,48 @@ public class SchoolController {
         return "redirect:/school/list?page=" + pageNum + "&size=" + sizeNum;
 
     }
+
+    //添加图片模态框
+    @RequestMapping("/addImg")
+    public String addImg(HttpServletRequest request,Model model){
+        //学校ID
+        String id = request.getParameter("id");
+        String imgName = request.getParameter("details");
+        String detalis = request.getParameter("AddImageDetalis");
+
+        YmImage ymImage = new YmImage();
+        ymImage.setImageType(1);
+        ymImage.setImgType(4);
+        ymImage.setPid(Integer.parseInt(id));
+        ymImage.setImgName(imgName);
+        ymImage.setDetalis(detalis);
+
+        YmImage save = imgDao.save(ymImage);
+        model.addAttribute("photo",save);
+
+        return "redirect:/school/update?id="+schoolid;
+    }
+
+    //添加视频模态框
+    @RequestMapping("/addVideo")
+    public String addVideo(HttpServletRequest request,Model model){
+        //学校ID
+        String id = request.getParameter("id");
+        String imgName = request.getParameter("details");
+        String detalis = request.getParameter("AddImageDetalis");
+
+        YmImage ymImage = new YmImage();
+        ymImage.setImageType(2);
+        ymImage.setImgType(4);
+        ymImage.setPid(Integer.parseInt(id));
+        ymImage.setImgName(imgName);
+        ymImage.setDetalis(detalis);
+
+        YmImage save = imgDao.save(ymImage);
+        model.addAttribute("photo",save);
+
+        return "redirect:/school/update?id="+schoolid;
+    }
+
 
 }

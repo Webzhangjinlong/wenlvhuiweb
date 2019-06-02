@@ -124,7 +124,7 @@
 	<div>
 		<div>
 		<div style="margin-left: 20px">
-			<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schoolImage">
+			<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schoolImage" >
 				添加图片
 			</button>
 		</div>
@@ -135,21 +135,25 @@
 				<td>描述</td>
 				<td>操作</td>
 			</tr>
+
+			<c:forEach items="${ymImages}" var="ymImages">
 			<tr>
-				<td>学生照片</td>
-				<td>图片</td>
-				<td>学生上学期间的照片</td>
+				<td>${ymImages.imgName}</td>
+				<td>${ymImages.imageType}</td>
+				<td>${ymImages.detalis}</td>
 				<td>
-					<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schoolImage">修改/详情
-					</button>
-					<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="">删除</button>
+					<%--<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schoolImage">修改/详情--%>
+					<%--</button>--%>
+					<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteImgById(${ ymImages.id})">删除</button>
 				</td>
+
 			</tr>
+			</c:forEach>
 		</table>
 	</div>
 		<div>
 			<div style="margin-left: 20px">
-				<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schoolVideo">
+				<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schoolVideo" >
 					添加视频
 				</button>
 			</div>
@@ -160,16 +164,19 @@
 					<td>描述</td>
 					<td>操作</td>
 				</tr>
+
+				<c:forEach items="${ymvideo}" var="ymvideo">
 				<tr>
-					<td>学生视频</td>
-					<td>视频</td>
-					<td>学生上学期间的视频</td>
+					<td>${ymvideo.imgName}</td>
+					<td>${ymvideo.imageType}</td>
+					<td>${ymvideo.detalis}</td>
 					<td>
-						<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schoolVideo">修改/详情
-						</button>
-						<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="">删除</button>
+						<%--<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schoolVideo">修改/详情--%>
+						<%--</button>--%>
+						<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteVideoById(${ ymvideo.id})">删除</button>
 					</td>
 				</tr>
+				</c:forEach>
 			</table>
 		</div>
 	</div>
@@ -187,10 +194,14 @@
 				</div>
 				<div class="modal-body">
 					<form id="modelImage" action="/school/saveupdate">
+
+						<div>
+							<input type="hidden" name="id" value="">
+						</div>
 						<div class="layui-form-item" style="margin-left: 20px;">
 							<label class="layui-form-label" style="width: 100px">图片名称</label>
 							<div class="layui-input-inline">
-								<input type="password" name="password" required lay-verify="required" placeholder="请输入图片描述！" autocomplete="off" class="layui-input">
+								<input type="text" id="details" name="details"  required lay-verify="required" placeholder="请输入图片名称！" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-form-item" style="margin-left: 20px;">
@@ -204,24 +215,25 @@
 						<div class="layui-form-item" style="margin-left: 20px;">
 							<label class="layui-form-label" style="width: 100px">图片描述</label>
 							<div class="layui-input-inline">
-								<input type="password" name="password" required lay-verify="required" placeholder="请输入图片描述！" autocomplete="off" class="layui-input">
+								<input type="text" id="AddImageDetalis" name="AddImageDetalis" required lay-verify="required" placeholder="请输入图片描述！" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-upload" style="margin-left: 48px">
 							<button type="button" class="layui-btn" id="test2">上传图片：</button>
 							<div class="layui-upload-list" >
-								<img class="layui-upload-img" id="demo2">
+								<img class="layui-upload-img" id="demo2"src="${artist.artistName}">
 								<p id="demoText1"></p>
 							</div>
 						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+							</button>
+							<button type="button" class="btn btn-primary"onclick="addImgById(${ addSchool.id})">
+								提交更改
+							</button>
+						</div>
 					</form>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
-					</button>
-					<button type="button" class="btn btn-primary" id="imageAdd">
-						提交更改
-					</button>
-				</div>
+
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal -->
 	</div>
@@ -240,10 +252,15 @@
 				</div>
 				<div class="modal-body">
 					<form id="modelVideo" action="/school/saveupdate">
+
+						<div>
+							<input type="hidden" name="id" value="">
+						</div>
+
 						<div class="layui-form-item" style="margin-left: 20px;">
 							<label class="layui-form-label" style="width: 100px">视频名称</label>
 							<div class="layui-input-inline">
-								<input type="password" name="password" required lay-verify="required" placeholder="请输入视频描述！" autocomplete="off" class="layui-input">
+								<input type="text" id="details1" name="details" required lay-verify="required" placeholder="请输入视频名称！" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-form-item" style="margin-left: 20px;">
@@ -257,7 +274,7 @@
 						<div class="layui-form-item" style="margin-left: 20px;">
 							<label class="layui-form-label" style="width: 100px">视频描述</label>
 							<div class="layui-input-inline">
-								<input type="password" name="password" required lay-verify="required" placeholder="请输入视频描述！" autocomplete="off" class="layui-input">
+								<input type="text" id="AddImageDetalis1" name="AddImageDetalis" required lay-verify="required" placeholder="请输入视频描述！" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-upload" style="margin-left: 48px">
@@ -270,22 +287,47 @@
 						<div class="layui-upload" style="margin-left: 20px;">
 							<button type="button" class="layui-btn layui-btn-normal" id="test8">选择学校视频</button>
 							<input type="hidden" id="videourl" name="videourl" value="" >
-							<button type="button" class="layui-btn" id="test9">开始上传</button><br>
+							<button type="button" class="layui-btn" id="test9" >开始上传</button><br>
 							<p id="p1" class="layui-btn layui-btn-warm layui-btn-radius" style="margin-top: 11px"></p>
 						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+							</button>
+							<button type="button" class="btn btn-primary" onclick="addVideoById(${ addSchool.id})">
+								提交更改
+							</button>
+						</div>
 					</form>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
-						</button>
-						<button type="button" class="btn btn-primary" id="videoAdd">
-							提交更改
-						</button>
-					</div>
+
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal -->
 		</div>
 	</div>
  </body>
+
+	<script type="text/javascript">
+        function deleteVideoById(id){
+			window.location.href="/school/deleteVideo?id="+id;
+		}
+
+        function deleteImgById(id){
+            window.location.href="/school/deleteImg?id="+id;
+        }
+
+        function addImgById(id){
+            var details = document.getElementById("details").value;
+            var AddImageDetalis = document.getElementById("AddImageDetalis").value;
+            window.location.href="/school/addImg?id="+id+"&details="+details+"&AddImageDetalis="+AddImageDetalis;
+        }
+
+        function addVideoById(id){
+            var details = document.getElementById("details1").value;
+            var AddImageDetalis = document.getElementById("AddImageDetalis1").value;
+            window.location.href="/school/addVideo?id="+id+"&details="+details+"&AddImageDetalis="+AddImageDetalis;
+        }
+	</script>
+
 	<script type="text/javascript" src="/js/wangEditor.js"></script>
 		<script type="text/javascript">
             var E = window.wangEditor;
@@ -324,15 +366,6 @@
                 }
             });
         });
-
-        $("#imageAdd").on('click',function () {
-            $('#modelImage').submit()
-            location.reload();
-        })
-		$("#videoAdd").on('click',function () {
-            $('#modelVideo').submit()
-            location.reload();
-        })
 	</script>
 	<script>
         layui.use('upload', function() {
