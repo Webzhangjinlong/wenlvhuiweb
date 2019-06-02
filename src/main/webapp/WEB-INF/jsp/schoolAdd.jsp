@@ -218,7 +218,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
 					</button>
-					<button type="button" class="btn btn-primary">
+					<button type="button" class="btn btn-primary" id="imageAdd">
 						提交更改
 					</button>
 				</div>
@@ -277,7 +277,7 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
 						</button>
-						<button type="button" class="btn btn-primary">
+						<button type="button" class="btn btn-primary" id="videoAdd">
 							提交更改
 						</button>
 					</div>
@@ -324,6 +324,15 @@
                 }
             });
         });
+
+        $("#imageAdd").on('click',function () {
+            $('#modelImage').submit()
+            location.reload();
+        })
+		$("#videoAdd").on('click',function () {
+            $('#modelVideo').submit()
+            location.reload();
+        })
 	</script>
 	<script>
         layui.use('upload', function() {
