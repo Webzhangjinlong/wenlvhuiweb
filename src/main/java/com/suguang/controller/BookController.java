@@ -28,21 +28,35 @@ public class BookController {
     @Autowired
     BookService bookService;
 
-    private int pageNum;
-    private int sizeNum;
+    private Integer pageNum;
+    private Integer sizeNum;
 
+
+    //按照分页查询所有书
     @RequestMapping("/list")
     public String getAllByPage(HttpServletRequest request, Model model, @RequestParam(value = "page", required = false) Integer page,
                                @RequestParam(value = "size", required = false) Integer size){
         pageNum = page == null ? 1 : page;
         sizeNum = size == null ? 10 : size;
         Page<YmBook> sourceCode = bookService.getBook(pageNum, sizeNum);
-        model.addAttribute("book", sourceCode);
+        model.addAttribute("bookList", sourceCode);
         return "bookList";
     }
 
-    @RequestMapping("/add")
-    public String bookAdd(){
+    //删除书籍
+    @RequestMapping("/delete")
+    public String deleteBook(HttpServletRequest request){
+        String id = request.getParameter("id");
+        bookDao.deleteById(Integer.parseInt(id));
+        return "redirect:/book/list?page=" + pageNum + "&size=" + sizeNum;
+    }
+
+    //获取书的信息，并且回显到添加页面
+    @RequestMapping("/update")
+    public String update(HttpServletRequest request,Model model){
+        String id = request.getParameter("id");
+        YmBook ymBook = bookDao.getById(Integer.parseInt(id));
+        model.addAttribute("ymBook",ymBook);
         return "bookAdd";
     }
 }

@@ -89,9 +89,7 @@ public class SchoolController {
         String id = request.getParameter("id");
         schoolDao.deleteById(Integer.parseInt(id));
 
-     
-        return "redirect:/school/schoolAdd";
-//        return "redirect:/school/list";
+        return "redirect:/school/list?page=" + pageNum + "&size=" + sizeNum;
     }
 
     //通过id获取修改页面，并将要修改的数据在修改页面渲染
