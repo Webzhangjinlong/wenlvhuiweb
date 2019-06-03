@@ -102,9 +102,6 @@ public class BookController {
         ymBook.setBookAuther(bookAuther);
         ymBook.setPublishDate(publishDate);
 
-        ymUser.setUsername(recommendUser);
-
-
         ymBook.setRecommendUser(Integer.parseInt(recommendUser));
         //ymBook.setBookPrice(bookPrice);注意此处的类型
         ymBook.setRecommendedNumber(Integer.parseInt(recommendedNumber));
@@ -114,9 +111,7 @@ public class BookController {
         ymBook.setRecommendClass(Integer.parseInt(recommendClass));
         ymBook.setLibraryAddress(libraryAddress);
 
-        YmUser user = userDao.save(ymUser);
         YmBook save = bookDao.save(ymBook);
-        model.addAttribute("user",user);
         model.addAttribute("addUpdate", save);
         if (pageNum == null) {
             pageNum = 1;
