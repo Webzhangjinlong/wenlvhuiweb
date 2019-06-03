@@ -46,29 +46,35 @@
         var addrDetail = document.getElementById("addrDetail").value;
         var longitude = document.getElementById("longitude").value;
         var latitude = document.getElementById("latitude").value;
-        if(shopsName == "" || shopsName == null){
+        if (shopsName == "" || shopsName == null) {
             alert("请输入匠人名称!");
             return false;
         }
-        if(createUser == "" || createUser == null){
+        if (createUser == "" || createUser == null) {
             alert("请输入创建人!");
             return false;
-        }if(shopsSlogan == "" || shopsSlogan == null){
+        }
+        if (shopsSlogan == "" || shopsSlogan == null) {
             alert("请输入匠人标语!");
             return false;
-        }if(city == "" || city == null){
+        }
+        if (city == "" || city == null) {
             alert("请输入匠人所在城市!");
             return false;
-        }if(area == "" || area == null){
+        }
+        if (area == "" || area == null) {
             alert("请输入匠人请输入匠人所在区/镇!");
             return false;
-        }if(addrDetail == "" || addrDetail == null){
+        }
+        if (addrDetail == "" || addrDetail == null) {
             alert("请输入匠人详细地址!");
             return false;
-        }if(longitude == "" || longitude == null){
+        }
+        if (longitude == "" || longitude == null) {
             alert("请输入经度!");
             return false;
-        }if(latitude == "" || latitude == null){
+        }
+        if (latitude == "" || latitude == null) {
             alert("请输入纬度!");
             return false;
         }
@@ -118,114 +124,136 @@
                        placeholder="区">
             </div>
 
-			</div>
-			<div class="form-group">
-				<label class="col-sm-1 control-label">详细地址:</label>
-				<div class="col-sm-5">
-					<input class="form-control" id="addrDetail" type="text" name="addrDetail" value="${show.addrDetail}"
-						placeholder="请输入详细地址">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-1 control-label">经度:</label>
-				<div class="col-sm-2">
-					<input class="form-control" id="longitude" type="text" name="longitude" value="${show.longitude}"
-						placeholder="请输入经度">
-				</div>
-				<label class="col-sm-1 control-label">纬度:</label>
-				<div class="col-sm-2">
-					<input class="form-control" id="latitude" type="text" name="latitude" value="${show.latitude}"
-						placeholder="纬度">
-				</div>
-				<div class="col-sm-2">
-					<a href="https://lbs.amap.com/console/show/picker"
-						class="form-control">♡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点我查看经纬度</a>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-1 control-label">详细地址:</label>
-				<div class="col-sm-5">
-					<textarea class="form-control" rows="3"></textarea>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-1 control-label" style="margin-top: 30px;">匠人介绍:</label>
-				<div style="margin-left: 120px">
-					<div id="div1" class="toolbar"></div>
-					<div style="padding: 5px 0; color: #ccc"></div>
-					<div id="div2" class="text">
-						<p>${show.shopsDetail}</p>
-					</div>
-					<input type="hidden" id="shopsDetail" name="shopsDetail">
-				</div>
-			</div>
-			<div class="layui-upload"  style="float: right ; margin-top: -480px; margin-right: 350px">
-				<button type="button" class="layui-btn" id="test1">请上传店铺logo</button>
-				<div class="layui-upload-list">
-					<img class="layui-upload-img" id="demo1">
-					<p id="demoText"></p>
-				</div>
-			</div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">详细地址:</label>
+            <div class="col-sm-5">
+                <input class="form-control" id="addrDetail" type="text" name="addrDetail" value="${show.addrDetail}"
+                       placeholder="请输入详细地址">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">经度:</label>
+            <div class="col-sm-2">
+                <input class="form-control" id="longitude" type="text" name="longitude" value="${show.longitude}"
+                       placeholder="请输入经度">
+            </div>
+            <label class="col-sm-1 control-label">纬度:</label>
+            <div class="col-sm-2">
+                <input class="form-control" id="latitude" type="text" name="latitude" value="${show.latitude}"
+                       placeholder="纬度">
+            </div>
+            <div class="col-sm-2">
+                <a href="https://lbs.amap.com/console/show/picker"
+                   class="form-control">♡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点我查看经纬度</a>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">详细地址:</label>
+            <div class="col-sm-5">
+                <textarea class="form-control" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label" style="margin-top: 30px;">匠人介绍:</label>
+            <div style="margin-left: 120px">
+                <div id="div1" class="toolbar"></div>
+                <div style="padding: 5px 0; color: #ccc"></div>
+                <div id="div2" class="text">
+                    <p>${show.shopsDetail}</p>
+                </div>
+                <input type="hidden" id="shopsDetail" name="shopsDetail">
+            </div>
+        </div>
+        <div class="layui-upload" style="float: right ; margin-top: -480px; margin-right: 350px">
+            <button type="button" class="layui-btn" id="test1">请上传店铺logo</button>
+            <div class="layui-upload-list">
+                <img class="layui-upload-img" id="demo1">
+                <p id="demoText"></p>
+            </div>
+        </div>
 
-			<div style=" margin-left: 700px;">
-		    		<button type="button" id="button" class="layui-btn layui-btn-sm" onclick="chan()">确定添加/修改</button>
-		    	</div>
-		</form>
-	</div>
-	<div>
-		<div style="margin-left: 20px">
-			<button class="btn btn-primary btn-sm" onclick="shopUpdate()" >
-				添加商品
-			</button>
-		</div>
-		<table class="layui-table" lay-skin="line" style="margin-left: 20px; width: 80%">
-			<thead>
-			<tr>
-				<th>商品名</th>
-				<th>商品标价</th>
-				<th>商品卖点</th>
-				<th>当前售价</th>
-				<th>是否上架</th>
-				<th>创建时间</th>
-				<th>操作</th>
-			</tr>
-			</thead>
-			<tbody>
-			<c:forEach items="${productList}" var="productList">
-			<tr>
-				<th>${productList.productName}</th>
-				<th>${productList.price}</th>
-				<th>${productList.productPoint}</th>
-				<th>${productList.priceDq}</th>
-				<th>
-					<c:if test="${productList.status == 1}">上架</c:if>
-					<c:if test="${productList.status == 2}">下架</c:if>
-				</th>
-				<th>${productList.createDate}</th>
-				<th>
-					<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="shopUpdate()">修改</button>
-					<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="">删除</button>
-				</th>
-			</tr>
-			</c:forEach>
-			</tbody>
-		</table>
-	</div>
-	<script type="text/javascript" src="/js/wangEditor.js"></script>
-	<script type="text/javascript">
-		var E = window.wangEditor;
-		var editor1 = new E('#div1', '#div2');
-        editor1.customConfig.uploadImgServer = '/uploadflv/upload';
-        editor1.customConfig.uploadFileName = 'file';
-        editor1.customConfig.uploadImgMaxSize = 10 * 1024 * 1024;
-		editor1.create();
-	</script>
-	<script type="text/javascript">
-		function shopUpdate() {
-			window.location.href="/craftsman/shopUpdate";
-        }
-	</script>
+        <div style=" margin-left: 700px;">
+            <button type="button" id="button" class="layui-btn layui-btn-sm" onclick="chan()">确定添加/修改</button>
+        </div>
+    </form>
+</div>
+<div>
+    <div style="margin-left: 20px">
+        <button class="btn btn-primary btn-sm" onclick="addProduct(${ show.id})">
+            添加商品
+        </button>
+    </div>
+    <table class="layui-table" lay-skin="line" style="margin-left: 20px; width: 80%">
+        <thead>
+        <tr>
+            <th>商品名</th>
+            <th>商品标价</th>
+            <th>商品卖点</th>
+            <th>当前售价</th>
+            <th>是否上架</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${productList}" var="productList">
+            <tr>
+                <th>${productList.productName}</th>
+                <th>${productList.price}</th>
+                <th>${productList.productPoint}</th>
+                <th>${productList.priceDq}</th>
+                <th>
+                    <c:if test="${productList.status == 1}">上架啦</c:if>
+                    <c:if test="${productList.status == 2}">下架啦</c:if>
+                </th>
+                <th>${productList.createDate}</th>
+                <th>
+                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="updateById(${ productList.id})">修改</button>
+                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ productList.id})">删除</button>
+                </th>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
 <script type="text/javascript" src="/js/wangEditor.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor;
+    var editor1 = new E('#div1', '#div2');
+    editor1.customConfig.uploadImgServer = '/uploadflv/upload';
+    editor1.customConfig.uploadFileName = 'file';
+    editor1.customConfig.uploadImgMaxSize = 10 * 1024 * 1024;
+    editor1.create();
+</script>
+<script type="text/javascript">
+    function shopUpdate() {
+        window.location.href = "/craftsman/shopUpdate";
+    }
+</script>
+<script type="text/javascript" src="/js/wangEditor.js"></script>
+
+<script type="text/javascript">
+    function deleteById(id) {
+        alert("您已成功删除！");
+        window.location.href = "/craftsman/deletePro?id=" + id;
+    }
+</script>
+
+<script>
+    function updateById(id) {
+        window.location.href = "/craftsman/updatePro?id=" + id;
+    }
+
+</script>
+
+<script>
+    function addProduct(id) {
+        window.location.href = "/craftsman/addPro?id=" + id;
+    }
+
+</script>
+
 <script>
     layui.use('upload', function () {
         var $ = layui.jquery

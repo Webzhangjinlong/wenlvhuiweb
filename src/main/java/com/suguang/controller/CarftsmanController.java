@@ -5,7 +5,6 @@ import com.suguang.dao.ProductDao;
 import com.suguang.dao.UserDao;
 import com.suguang.domin.*;
 import com.suguang.service.CarftsmanService;
-import org.apache.ibatis.ognl.DynamicSubscript;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -15,10 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-
-import static org.apache.ibatis.ognl.DynamicSubscript.all;
 
 /**
  * Created by 11491 on 2019/5/29.
@@ -37,6 +35,7 @@ public class CarftsmanController {
     ProductDao productDao;
     private Integer pageNum;
     private Integer sizeNum;
+    private String Shopid;
 
     @RequestMapping("/shopUpdate")
     public String shopUpdate(){
@@ -58,10 +57,10 @@ public class CarftsmanController {
 
     @RequestMapping("/show")
     public String craftsmanUpdate(HttpServletRequest request, Model model) {
-        String id = request.getParameter("id");
-        YmShops ymShops = craftsmanDao.getById(Integer.parseInt(id));
+        Shopid = request.getParameter("id");
+        YmShops ymShops = craftsmanDao.getById(Integer.parseInt(Shopid));
         model.addAttribute("show", ymShops);
-        List<YmProduct> all = productDao.findAll();
+        List<YmProduct> all = productDao.getByShopsId(Integer.parseInt(Shopid));
         model.addAttribute("productList", all);
         return "craftsmanAdd";
     }
@@ -134,4 +133,66 @@ public class CarftsmanController {
         return "redirect:/craftsman/list?page=" + pageNum + "&size=" + sizeNum;
         // return "redirect:/craftsman/list";
     }
+
+    //修改商品,此处为商品的回显
+    @RequestMapping("/updatePro")
+    public String deletePro(HttpServletRequest request,Model model){
+        String id = request.getParameter("id");
+        YmProduct ymProduct = productDao.getById(Integer.parseInt(id));
+        model.addAttribute("product",ymProduct);
+        return "craftsmanShopAdd";
+    }
+
+    //添加和修改更新商品，且保存数据库
+    @RequestMapping("/productadd")
+    public String productadd(HttpServletRequest request,Model model){
+        String id = request.getParameter("id");
+        String productName = request.getParameter("productName");
+        String skuId = request.getParameter("skuId");
+        String price = request.getParameter("price");
+        String priceDq = request.getParameter("priceDq");
+        String browse = request.getParameter("browse");
+        String status = request.getParameter("status");
+        String productPoint = request.getParameter("productPoint");
+
+        YmProduct ymProduct = new YmProduct();
+        //商品介绍未写
+//        request.getParameter("");
+//        request.getParameter("");
+//        request.getParameter("");
+//        request.getParameter("");
+        if (id != null && id != "") {
+            ymProduct.setId(Integer.parseInt(id));
+        }
+        ymProduct.setProductName(productName);
+        ymProduct.setSkuId(skuId);
+        BigDecimal bigDecimal = new BigDecimal(Double.parseDouble(price));
+        ymProduct.setPrice(bigDecimal);
+        ymProduct.setShopsId(Integer.parseInt(Shopid));
+        BigDecimal bigDecimal1 = new BigDecimal(Double.parseDouble(priceDq));
+        ymProduct.setPriceDq(bigDecimal1);
+        ymProduct.setBrowse(Integer.parseInt(browse));
+        ymProduct.setStatus(Integer.parseInt(status));
+        ymProduct.setProductPoint(productPoint);
+        productDao.save(ymProduct);
+        return "redirect:/craftsman/show?id="+Shopid;
+    }
+
+    //删除商品信息
+    @RequestMapping("/deletePro")
+    public String deletePro(HttpServletRequest request){
+        String id = request.getParameter("id");
+        productDao.deleteById(Integer.parseInt(id));
+        return "redirect:/craftsman/show?id="+Shopid;
+    }
+
+    //添加商品信息，首先返回页面
+    @RequestMapping("/addPro")
+    public String addPro(){
+        return "craftsmanShopAdd";
+    }
+
+
+
+
 }
