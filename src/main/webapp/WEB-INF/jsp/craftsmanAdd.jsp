@@ -4,17 +4,18 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>欢迎进入文旅惠餐馆管理系统</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <link rel="stylesheet"
-          href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="/layui/layui.js"></script>
+	meta charset="utf-8">
+	<title>欢迎进入文旅惠餐馆管理系统</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="/layui/css/layui.css" media="all">
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="/layui/layui.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 </head>
 <style type="text/css">
     .toolbar {
@@ -93,11 +94,15 @@
                 <input class="form-control" id="shopsName" type="text" name="shopsName" value="${show.shopsName}"
                        placeholder="请输入匠人名称">
             </div>
-            <label class="col-sm-1 control-label">创建人:</label>
-            <div class="col-sm-2">
-                <input class="form-control" id="createUser" type="text" name="createUser" value="${show.createUser}"
-                       placeholder="请输入创建人">
-            </div>
+			<label class="col-sm-1 control-label">推荐人:</label>
+			<div class="col-sm-2">
+				<select class="selectpicker show-tick form-control"   name="recommendUser" data-live-search="true">
+					<option  value="-1">请选择</option>
+					<c:forEach items="${user}" var="user" >
+						<option value="${user.id}">${user.nickName}</option>
+					</c:forEach>
+				</select>
+			</div>
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">匠人标语:</label>
@@ -192,16 +197,16 @@
 			</thead>
 			<tbody>
 			<tr>
-				<th>老张的原味内裤</th>
-				<th>0.5</th>
-				<th>原味哦</th>
-				<th>0.5</th>
-				<th>是</th>
-				<th>2019-02-01</th>
-				<th>
+				<td>老张的原味内裤</td>
+				<td>0.5</td>
+				<td>原味哦</td>
+				<td>0.5</td>
+				<td>是</td>
+				<td>2019-02-01</td>
+				<td>
 					<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="shopUpdate()">修改</button>
 					<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="">删除</button>
-				</th>
+				</td>
 			</tr>
 			</tbody>
 		</table>

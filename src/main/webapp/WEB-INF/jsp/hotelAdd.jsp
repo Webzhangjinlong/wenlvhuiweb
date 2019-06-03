@@ -23,17 +23,20 @@ pageEncoding="UTF-8"%>
         .text {
             border: 1px solid #ccc;
             width:730px;
-            height: 200px;
+            height: 100px;
         }
+		.layui-upload-img {
+			width: 132px;
+			height: 92px;
+			margin: 0 10px 10px 0;
+		}
     </style>
-	<body>
-	<div style="margin-top: 5px">
- 			<font style="color: #000; font-size: 12px; margin-top: 10px">
- 				★ 添加餐馆
- 			</font>
- 			<br>
- 			<hr style="background: red; height: 2px">
- 		</div>
+	<body style="width: 98%">
+	<div style="margin-top: 10px">
+		<font style="color: #000; font-size: 12px; margin-left: 10px">
+			★ 添加餐馆 </font> <br>
+		<hr style="background: red; height: 2px; margin-top: 5px">
+	</div>
  		<div>
 			<form class="form-horizontal" role="form" action="/hotel/preUpdate">
 				<div>
@@ -49,14 +52,8 @@ pageEncoding="UTF-8"%>
 						<div class="col-sm-2">
 						<input class="form-control" id="focusedInput" type="text"  name="restaurantType" value="${hotel.restaurantType}" placeholder="请输入餐馆类别">
 					</div>
-						<div style="margin-left: 750px; margin-top: 20px">
-							<button type="button" class="layui-btn" id="test1">
-							  <i class="layui-icon">&#xe67c;</i>餐馆图片:
-							</button>
-								<img src="/img/icon.jpg" class="img-circle" style="margin-left: 25px;width: 60px; height: 60px">
-						</div>
 				</div>
-				<div class="form-group" style="margin-top: -30px">
+				<div class="form-group">
 					<label class="col-sm-1 control-label">平均消费:</label>
 					<div class="col-sm-2">
 						<input class="form-control" id="focusedInput" type="text"  name="averageConsumption" value="${hotel.averageConsumption}" placeholder="请输入平均消费">
@@ -89,7 +86,7 @@ pageEncoding="UTF-8"%>
 							</select>
 						</div>
 				</div>
-				<div class="form-group"style="margin-top: 32px">
+				<div class="form-group">
 						<label class="col-sm-1 control-label">市:</label>
 						<div class="col-sm-2">
 							<input class="form-control" id="focusedInput" type="text"  name="city" value="${hotel.city}" placeholder="请输入市">
@@ -99,13 +96,13 @@ pageEncoding="UTF-8"%>
 							<input class="form-control" id="focusedInput" type="text"  name="area" value="${hotel.area}" placeholder="请输入区">
 						</div>
 				</div>
-				<div class="form-group"style="margin-top: 32px">
+				<div class="form-group">
 						<label class="col-sm-1 control-label">详细地址:</label>
 						<div class="col-sm-5">
 							<input class="form-control" id="focusedInput" type="text" name="addrDetail" value="${hotel.addrDetail}" placeholder="请输入详细地址">
 						</div>
 				</div>
-				<div class="form-group" style="margin-top: 30px">
+				<div class="form-group">
 					<label class="col-sm-1 control-label">经度:</label>
 					<div class="col-sm-2">
 						<input class="form-control" id="focusedInput" type="text"  name="longitude" value="${hotel.longitude}" placeholder="请输入经度">
@@ -114,18 +111,16 @@ pageEncoding="UTF-8"%>
 					<div class="col-sm-2">
 						<input class="form-control" id="focusedInput" type="text"  name="latitude" value="${hotel.latitude}" placeholder="请输入纬度">
 					</div>
-					<div style="margin-top: 8px">
-						<a href="https://lbs.amap.com/console/show/picker">查看经纬度</a>
+					<div class="col-sm-2">
+						<a href="https://lbs.amap.com/console/show/picker"
+						   class="form-control">♡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点我查看经纬度</a>
 						</div>
 				</div>
-				<div class="form-group" style="margin-top: 30px">
-					<label class="col-sm-1 control-label">餐馆账号:</label>
-					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  name=" " value="${hotel.restaurantName}" placeholder="">
-					</div>
-						<label class="col-sm-1 control-label">餐馆密码:</label>
-					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  name="restaurantName" value="${hotel.restaurantName}" placeholder="">
+				<div class="layui-upload" style="float: right; margin-right: 400px; margin-top: -240px">
+					<button type="button" class="layui-btn" id="test1">上传餐馆封面图</button>
+					<div class="layui-upload-list">
+						<img class="layui-upload-img" id="demo1">
+						<p id="demoText"></p>
 					</div>
 				</div>
 				<div style="margin-left: 22px;">
@@ -143,37 +138,79 @@ pageEncoding="UTF-8"%>
 		    		<button class="layui-btn layui-btn-sm layui-btn-danger">确定修改</button>
 		    	</div>
 			</form>
-			<div style="margin-left: 690px; margin-top: -30px">
- 			</div>
- 			<div style="margin-left: 443px; margin-top: -30px">
- 			</div>
- 		</div>
-    <script type="text/javascript" src="/js/wangEditor.min.js"></script>
+			<div>
+			<div style="margin-left: 20px">
+				<button class="btn btn-primary btn-sm" onclick="foodUpdate()" >
+					添加菜品
+				</button>
+			</div>
+			<table class="layui-table" lay-skin="line"  style="margin-left: 20px; width: 80%">
+				<thead>
+				<tr>
+					<th>菜品名称</th>
+					<th>菜品类别</th>
+					<th>菜品价格</th>
+					<th>操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>老张的原味炒鸡蛋</td>
+					<td>不得不吃</td>
+					<td>13</td>
+					<td>
+						<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="foodUpdate()">修改</button>
+						<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="">删除</button>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+			</div>
+		</div>
+    <script type="text/javascript" src="/js/wangEditor.js"></script>
     <script type="text/javascript">
         var E = window.wangEditor;
         var editor1 = new E('#div1', '#div2'); 
         editor1.customConfig.uploadImgServer = '/upload';
         editor1.create();
     </script>
+	<script type="text/javascript">
+		function foodUpdate() {
+			window.location.href="/hotel/foodUpdate"
+        }
+	</script>
+	<script>
+        layui.use('upload', function() {
+            var $ = layui.jquery
+                , upload = layui.upload;
 
-
-
-    <script>
-		layui.use('upload', function(){
-		  var upload = layui.upload;
-		   
-		  //执行实例
-		  var uploadInst = upload.render({
-		    elem: '#test1' //绑定元素
-		    ,url: '/upload/' //上传接口
-		    ,done: function(res){
-		      //上传完毕回调
-		    }
-		    ,error: function(){
-		      //请求异常回调
-		    }
-		  });
-		});
-</script>
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: '#test1'
+                , url: '/upload/'
+                , before: function (obj) {
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function (index, file, result) {
+                        $('#demo1').attr('src', result); //图片链接（base64）
+                    });
+                }
+                , done: function (res) {
+                    //如果上传失败
+                    if (res.code > 0) {
+                        return layer.msg('上传失败');
+                    }
+                    //上传成功
+                }
+                , error: function () {
+                    //演示失败状态，并实现重传
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function () {
+                        uploadInst.upload();
+                    });
+                }
+            });
+        });
+	</script>
 </body>
 </html>

@@ -9,11 +9,11 @@ pageEncoding="UTF-8"%>
 		<meta name="renderer" content="webkit">
   		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  		<link rel="stylesheet" href="layui/css/layui.css"  media="all">
+  		<link rel="stylesheet" href="/layui/css/layui.css"  media="all">
   		<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
 		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  		<script src="layui/layui.js"></script>
+  		<script src="/layui/layui.js"></script>
 	</head>
 	<style type="text/css">
         .toolbar {
@@ -23,17 +23,20 @@ pageEncoding="UTF-8"%>
         .text {
             border: 1px solid #ccc;
             width:730px;
-            height: 200px;
+            height: 100px;
         }
+		.layui-upload-img {
+			width: 132px;
+			height: 92px;
+			margin: 0 10px 10px 0;
+		}
     </style>
-	<body>
-	<div style="margin-top: 5px">
- 			<font style="color: #000; font-size: 12px; margin-top: 10px">
- 				★ 添加菜品
- 			</font>
- 			<br>
- 			<hr style="background: red; height: 2px">
- 		</div>
+	<body style="width: 98%">
+	<div style="margin-top: 10px">
+		<font style="color: #000; font-size: 12px; margin-left: 10px">
+			★ 添加菜品 </font> <br>
+		<hr style="background: red; height: 2px; margin-top: 5px">
+	</div>
  		<div>
 			<form class="form-horizontal" role="form">
 				<div class="form-group">
@@ -60,10 +63,10 @@ pageEncoding="UTF-8"%>
 							<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入推荐人数">
 						</div>
 				</div>
-				<div style="margin-left: 40px;">
+				<div style="margin-left: 20px;">
 				<label class="control-label">菜品介绍:</label><br>
 				</div>
-				<div style="margin-left: 40px; margin-top: 10px">
+				<div style="margin-left: 20px; margin-top: 10px">
 				    <div id="div1" class="toolbar"></div>
 					    <div style="padding: 5px 0; color: #ccc"></div>
 					    <div id="div2" class="text"> <!--可使用 min-height 实现编辑区域自动增加高度-->
@@ -76,7 +79,7 @@ pageEncoding="UTF-8"%>
 			</form>
  		</div>
 
-    <script type="text/javascript" src="js/wangEditor.min.js"></script>
+    <script type="text/javascript" src="/js/wangEditor.js"></script>
     <script type="text/javascript">
         var E = window.wangEditor;
         var editor1 = new E('#div1', '#div2');
