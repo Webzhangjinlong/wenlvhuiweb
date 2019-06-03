@@ -35,7 +35,7 @@
         margin: 0 10px 10px 0;
     }
 </style>
-<body  style="width: 98%">
+<body>
 <script type="text/javascript">
     function chan() {
         $("#cotent").val(editor1.txt.html());
@@ -72,9 +72,9 @@
             </div>
             <label class="col-sm-1 control-label">推荐人:</label>
             <div class="col-sm-2">
-            <select class="selectpicker show-tick form-control"   name="recommendUser" data-live-search="true">
-                <option  value="-1">请选择</option>
-                <c:forEach items="${user}" var="user" >
+                <select class="selectpicker show-tick form-control"   name="recommendUser"   data-live-search="true">
+                    <option  value="-1">请选择</option>
+                    <c:forEach items="${user}" var="user" >
 
                         <option value="${user.id}">${user.nickName}</option>
 
@@ -184,41 +184,41 @@
             <label class="col-sm-1 control-label">文章类型:</label>
             <div class="col-sm-5">
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox1" value="option1"> 小说
+                    <input type="checkbox"  name="book_tag" id="inlineCheckbox1" value="36"> 小说
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox2" value="option2"> 历史
+                    <input type="checkbox" name="book_tag" id="inlineCheckbox2" value="37"> 历史
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox3" value="option3"> 周刊
+                    <input type="checkbox" name="book_tag" id="inlineCheckbox3" value="38"> 周刊
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox4" value="option3"> 科学
+                    <input type="checkbox" name="book_tag" id="inlineCheckbox4" value="39"> 科学
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox5" value="option3"> 教材
+                    <input type="checkbox" name="book_tag" id="inlineCheckbox5" value="40"> 教材
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox6" value="option3"> 儿童
+                    <input type="checkbox" name="book_tag" id="inlineCheckbox6" value="41"> 儿童
                 </label>
                 <br>
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox7" value="option3"> 社会
+                    <input type="checkbox" name="book_tag" id="inlineCheckbox7" value="42"> 社会
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox8" value="option3"> 法律
+                    <input type="checkbox" name="book_tag" id="inlineCheckbox8" value="43"> 法律
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox9" value="option3"> 艺术
+                    <input type="checkbox" name="book_tag" id="inlineCheckbox9" value="44"> 艺术
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox10" value="option3"> 传记
+                    <input type="checkbox" name="book_tag" id="inlineCheckbox10" value="45"> 传记
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox11" value="option3"> 经济
+                    <input type="checkbox" name="book_tag" id="inlineCheckbox11" value="46"> 经济
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox12" value="option3"> 生活
+                    <input type="checkbox" name="book_tag" id="inlineCheckbox12" value="47"> 生活
                 </label>
             </div>
         </div>

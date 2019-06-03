@@ -1,9 +1,11 @@
 package com.suguang.controller;
 
 import com.suguang.dao.CraftsmanDao;
-import com.suguang.domin.YmSchool;
-import com.suguang.domin.YmShops;
+import com.suguang.dao.ProductDao;
+import com.suguang.dao.UserDao;
+import com.suguang.domin.*;
 import com.suguang.service.CarftsmanService;
+import org.apache.ibatis.ognl.DynamicSubscript;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 
+import static org.apache.ibatis.ognl.DynamicSubscript.all;
+
 /**
  * Created by 11491 on 2019/5/29.
  */
@@ -27,6 +31,10 @@ public class CarftsmanController {
     private CraftsmanDao craftsmanDao;
     @Autowired
     private CarftsmanService carftsmanService;
+    @Autowired
+    UserDao userDao;
+    @Autowired
+    ProductDao productDao;
     private Integer pageNum;
     private Integer sizeNum;
 
@@ -53,12 +61,16 @@ public class CarftsmanController {
         String id = request.getParameter("id");
         YmShops ymShops = craftsmanDao.getById(Integer.parseInt(id));
         model.addAttribute("show", ymShops);
+        List<YmProduct> all = productDao.findAll();
+        model.addAttribute("productList", all);
         return "craftsmanAdd";
     }
 
     //直接从主页面跳转至添加页面
     @RequestMapping("/addpage")
-    public String addpage() {
+    public String addpage(Model model) {
+//        List<YmUser> all = userDao.findAll();
+//        model.addAttribute("user",all);
         return "craftsmanAdd";
     }
 
