@@ -1,8 +1,14 @@
 package com.suguang.domin;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class YmSpaceDetail {
-
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
   private Integer spaceId;
   private String name;

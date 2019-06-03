@@ -1,5 +1,6 @@
 package com.suguang.controller;
 
+import com.suguang.dao.FoodDao;
 import com.suguang.dao.HotelDao;
 import com.suguang.domin.YmFood;
 import com.suguang.domin.YmRestaurant;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.util.List;
 
 import static org.apache.ibatis.ognl.DynamicSubscript.all;
@@ -30,8 +32,12 @@ public class HotelController {
     private HotelDao hotelDao;
     @Autowired
     private HotelService hotelService;
+    @Autowired
+    private FoodDao foodDao;
+
     private Integer pageNum;
     private Integer sizeNum;
+    private String hotelid;
 
 
     //查询所有
@@ -49,10 +55,12 @@ public class HotelController {
     //获取修改页，并且将需要修改的信息回显在修改页上
     @RequestMapping("/update")
     public String showUpdate(HttpServletRequest request,Model model){
-        String id = request.getParameter("id");
-        if(id != null && !id.equals("") && !id.equals("null")){
-            YmRestaurant result = hotelDao.getById(Integer.parseInt(id));
+        hotelid = request.getParameter("id");
+        if(hotelid != null && !hotelid.equals("") && !hotelid.equals("null")){
+            YmRestaurant result = hotelDao.getById(Integer.parseInt(hotelid));
             model.addAttribute("hotel",result);
+            List<YmFood> foods = foodDao.getByRestaurantId(Integer.parseInt(hotelid));
+            model.addAttribute("foodList",foods);
             return "hotelAdd";
         }
         return "";
@@ -117,6 +125,56 @@ public class HotelController {
             return "redirect:/hotel/list?page=" + pageNum + "&size=" + sizeNum;
         }
         return "/";
+    }
+
+    //通过饭店id获取菜品，并且渲染页面
+    @RequestMapping("/updateFood")
+    public String updateFood(HttpServletRequest request,Model model){
+        String id = request.getParameter("id");
+        YmFood ymFood = foodDao.getById(Integer.parseInt(id));
+        model.addAttribute("ymFood",ymFood);
+        return "hotelFoodAdd";
+    }
+
+    //修改添加菜品
+    @RequestMapping("/addUpdate")
+    public String addUpdate(HttpServletRequest request,Model model){
+        String id = request.getParameter("id");
+        String foodName = request.getParameter("foodName");
+        String foodType = request.getParameter("foodType");
+        String foodPrice = request.getParameter("foodPrice");
+        String upNum = request.getParameter("upNum");
+
+        YmFood ymFood = new YmFood();
+
+        if (id != null && !id.equals("") && !id.equals("null")) {
+            ymFood.setId(Integer.parseInt(id));
+        }
+        ymFood.setFoodName(foodName);
+        ymFood.setRestaurantId(Integer.parseInt(hotelid));
+        ymFood.setFoodType(Integer.parseInt(foodType));
+        BigDecimal bigDecimal1 = new BigDecimal(Double.parseDouble(foodPrice));
+        ymFood.setFoodPrice(bigDecimal1);
+        ymFood.setUpNum(Integer.parseInt(upNum));
+        //富文本和上传视频图片未写
+        foodDao.save(ymFood);
+
+        return "redirect:/hotel/update?id="+hotelid;
+
+    }
+
+    //跳转添加页面
+    @RequestMapping("/addFood")
+    public String addFood(HttpServletRequest request){
+        return "hotelFoodAdd";
+    }
+
+    //删除菜单菜品
+    @RequestMapping("/deleteFood")
+    public String deleteFood(HttpServletRequest request){
+        String id = request.getParameter("id");
+        foodDao.deleteById(Integer.parseInt(id));
+        return "redirect:/hotel/update?id="+hotelid;
     }
 
 

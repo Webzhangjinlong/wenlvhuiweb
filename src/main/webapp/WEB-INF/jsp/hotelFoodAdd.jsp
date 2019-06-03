@@ -38,29 +38,42 @@ pageEncoding="UTF-8"%>
 		<hr style="background: red; height: 2px; margin-top: 5px">
 	</div>
  		<div>
-			<form class="form-horizontal" role="form">
+			<form class="form-horizontal" role="form" action="/hotel/addUpdate">
+
+				<div>
+					<input type="hidden" name="id" value="${ymFood.id}">
+				</div>
+
 				<div class="form-group">
 					<label class="col-sm-1 control-label">美食名称</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入美食名称">
+						<input class="form-control" id="foodName" type="text"  name="foodName" value="${ymFood.foodName}"  placeholder="请输入美食名称">
 					</div>
 						<label class="col-sm-1 control-label">食物类别</label>
 						<div class="col-sm-2">
-							<select class="form-control">
-									<option>--请选择--</option>
-									<option>不得不吃</option>
-									<option>不容错过</option>
+							<select class="form-control" name="foodType" value="${ymFood.foodType}">
+
+								<c:if test="${ymFood.foodType == 1}">
+									<option value="1" name="foodType">不得不吃</option>
+								</c:if>
+								<c:if test="${ymFood.foodType == 2}">
+									<option value="2" name="foodType">不容错过</option>
+								</c:if>
+
+									<option value="0" name="foodType">--请选择--</option>
+									<option value="1" name="foodType">不得不吃</option>
+									<option value="2" name="foodType">不容错过</option>
 							</select>
 						</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-1 control-label">菜品价格</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入菜品价格">
+						<input class="form-control" id="foodPrice" type="text"  name="foodPrice" value="${ymFood.foodPrice}" placeholder="请输入菜品价格">
 					</div>
 						<label class="col-sm-1 control-label">推荐人数</label>
 						<div class="col-sm-2">
-							<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入推荐人数">
+							<input class="form-control" id="upNum" type="text"  name="upNum" value="${ymFood.upNum}" placeholder="请输入推荐人数">
 						</div>
 				</div>
 				<div class="layui-upload" style="margin-left: 20px;margin-top: 20px">

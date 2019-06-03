@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by 11491 on 2019/5/29.
@@ -100,6 +101,7 @@ public class CarftsmanController {
         ymShops.setShopsSlogan(shopsSlogan);
         ymShops.setCity(city);
         ymShops.setArea(area);
+
         ymShops.setAddrDetail(addrDetail);
         ymShops.setLongitude(longitude);
         ymShops.setLatitude(latitude);
@@ -174,6 +176,8 @@ public class CarftsmanController {
         ymProduct.setBrowse(Integer.parseInt(browse));
         ymProduct.setStatus(Integer.parseInt(status));
         ymProduct.setProductPoint(productPoint);
+        String string = UUID.randomUUID().toString();
+        ymProduct.setSkuId(string);
         productDao.save(ymProduct);
         return "redirect:/craftsman/show?id="+Shopid;
     }

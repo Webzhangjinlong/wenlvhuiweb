@@ -1,5 +1,9 @@
 package com.suguang.domin;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -7,8 +11,13 @@ import java.sql.Timestamp;
  * Author liruifeng
  * Date  2019-05-18
  */
+
+@Entity
 public class YmSpace implements Serializable {
+
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String spaceName;
     private Integer browse;

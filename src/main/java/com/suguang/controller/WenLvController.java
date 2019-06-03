@@ -1,11 +1,13 @@
 package com.suguang.controller;
 
 
+import com.suguang.dao.UserDao;
 import com.suguang.dao.WenLvDao;
 import com.suguang.domin.YmFood;
 import com.suguang.domin.YmUser;
 import com.suguang.domin.YmWenlv;
 
+import com.suguang.service.WenLvService;
 import com.suguang.util.YmStaticVariablesUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;

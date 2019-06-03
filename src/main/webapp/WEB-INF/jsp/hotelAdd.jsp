@@ -139,7 +139,7 @@ pageEncoding="UTF-8"%>
 			</form>
 			<div>
 			<div style="margin-left: 20px">
-				<button class="btn btn-primary btn-sm" onclick="foodUpdate()" >
+				<button class="btn btn-primary btn-sm" onclick="addFood(${ hotel.id})" >
 					添加菜品
 				</button>
 			</div>
@@ -153,15 +153,17 @@ pageEncoding="UTF-8"%>
 				</tr>
 				</thead>
 				<tbody>
+				<c:forEach items="${foodList}" var="foodList">
 				<tr>
-					<td>老张的原味炒鸡蛋</td>
-					<td>不得不吃</td>
-					<td>13</td>
+					<td>${foodList.foodName}</td>
+					<td>${foodList.foodType}</td>
+					<td>${foodList.foodPrice}</td>
 					<td>
-						<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="foodUpdate()">修改</button>
-						<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="">删除</button>
+						<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="updateById(${ foodList.id})">修改</button>
+						<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ foodList.id})">删除</button>
 					</td>
 				</tr>
+				</c:forEach>
 				</tbody>
 			</table>
 			</div>
@@ -173,6 +175,28 @@ pageEncoding="UTF-8"%>
         editor1.customConfig.uploadImgServer = '/upload';
         editor1.create();
     </script>
+
+	<script>
+        function addFood(id) {
+            window.location.href = "/hotel/addFood?id=" + id;
+        }
+
+	</script>
+
+	<script type="text/javascript">
+        function deleteById(id) {
+            alert("您已成功删除！");
+            window.location.href = "/hotel/deleteFood?id=" + id;
+        }
+	</script>
+	<script>
+        function updateById(id) {
+            window.location.href = "/hotel/updateFood?id=" + id;
+        }
+
+	</script>
+
+
 	<script type="text/javascript">
 		function foodUpdate() {
 			window.location.href="/hotel/foodUpdate"
