@@ -1,10 +1,7 @@
 package com.suguang.controller;
 
-import com.suguang.dao.ImageDao;
 import com.suguang.dao.TagDao;
-import com.suguang.domin.YmImage;
 import com.suguang.domin.YmPolicy;
-import com.suguang.domin.YmSchool;
 import com.suguang.service.TagService;
 import com.suguang.util.YmStaticVariablesUtil;
 
@@ -25,7 +22,6 @@ import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by 11491 on 2019/5/26.

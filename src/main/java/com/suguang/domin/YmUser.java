@@ -179,4 +179,6 @@ public class YmUser {
         this.lastLoginTime = lastLoginTime;
     }
 
+    public void setUsername() {
+    }
 }

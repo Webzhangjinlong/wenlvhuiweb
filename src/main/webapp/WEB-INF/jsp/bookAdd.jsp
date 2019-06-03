@@ -14,6 +14,8 @@
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/layui/layui.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 </head>
 <style type="text/css">
     .toolbar {
@@ -21,7 +23,7 @@
         width: 730px;
     }
 
-    .text {
+    .text1 {
         border: 1px solid #ccc;
         width: 730px;
         height: 100px;
@@ -48,7 +50,7 @@
     <hr style="background: red; height: 2px; margin-top: 5px">
 </div>
 <div>
-    <form class="form-horizontal" role="form" action="" id="form1">
+    <form class="form-horizontal" role="form" action="/book/addUpdate" id="form1">
         <div>
             <input type="hidden" name="id" value="${ymBook.id}">
         </div>
@@ -70,7 +72,14 @@
             </div>
             <label class="col-sm-1 control-label">推荐人:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="recommendUser" type="text" name="recommendUser" value="${ymBook.recommendUser}" placeholder="请输入推荐人">
+                <select class="selectpicker show-tick form-control"   name="tuijian" data-live-search="true">
+                    <option  value="-1">请选择</option>
+                    <c:forEach items="${user}" var="user" >
+
+                        <option value="${user.id}">${user.nickName}</option>
+
+                    </c:forEach>
+                </select>
             </div>
         </div>
         <div class="form-group">
@@ -233,7 +242,7 @@
         <div style="margin-left: 22px; margin-top: 10px">
             <div id="div1" class="toolbar"></div>
             <div style="padding: 5px 0; color: #ccc"></div>
-            <div id="div2" class="text">
+            <div id="div2" class="text1">
                 <p></p>
             </div>
             <input type="hidden" id="cotent" name="cotent">
