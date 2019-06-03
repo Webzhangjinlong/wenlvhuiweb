@@ -1,29 +1,58 @@
 package com.suguang.domin;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 
 /**
  * Created by 11491 on 2019/5/25.
  */
+@Entity
 public class YmWenBrigade {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer type;
-    private Double   adult;
-    private Double children;
-    private Double setMeal;
-    private String  adultDescribe;
+    private double adult;
+    private double children;
+    private double setMeal;
+    private String adultDescribe;
     private String childrenDescribe;
     private String mealDescribe;
     private String tripArrange;
-    private String  feeNotice;
+    private String feeNotice;
     private String securityTip;
-    private String reservedFields1;
-    private String reservedFields2;
+    private String name;
+    private String address;
     private Date createTime;
     private Integer recommend;
     private Integer browse;
-    private String img;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
     public Integer getRecommend() {
         return recommend;
@@ -49,7 +78,10 @@ public class YmWenBrigade {
         this.img = img;
     }
 
-    public Integer getId() {
+    private String img;
+
+
+    public long getId() {
         return id;
     }
 
@@ -57,7 +89,8 @@ public class YmWenBrigade {
         this.id = id;
     }
 
-    public Integer getType() {
+
+    public long getType() {
         return type;
     }
 
@@ -65,29 +98,33 @@ public class YmWenBrigade {
         this.type = type;
     }
 
-    public Double getAdult() {
+
+    public double getAdult() {
         return adult;
     }
 
-    public void setAdult(Double adult) {
+    public void setAdult(double adult) {
         this.adult = adult;
     }
 
-    public Double getChildren() {
+
+    public double getChildren() {
         return children;
     }
 
-    public void setChildren(Double children) {
+    public void setChildren(double children) {
         this.children = children;
     }
 
-    public Double getSetMeal() {
+
+    public double getSetMeal() {
         return setMeal;
     }
 
-    public void setSetMeal(Double setMeal) {
+    public void setSetMeal(double setMeal) {
         this.setMeal = setMeal;
     }
+
 
     public String getAdultDescribe() {
         return adultDescribe;
@@ -97,6 +134,7 @@ public class YmWenBrigade {
         this.adultDescribe = adultDescribe;
     }
 
+
     public String getChildrenDescribe() {
         return childrenDescribe;
     }
@@ -104,6 +142,7 @@ public class YmWenBrigade {
     public void setChildrenDescribe(String childrenDescribe) {
         this.childrenDescribe = childrenDescribe;
     }
+
 
     public String getMealDescribe() {
         return mealDescribe;
@@ -113,6 +152,7 @@ public class YmWenBrigade {
         this.mealDescribe = mealDescribe;
     }
 
+
     public String getTripArrange() {
         return tripArrange;
     }
@@ -120,6 +160,7 @@ public class YmWenBrigade {
     public void setTripArrange(String tripArrange) {
         this.tripArrange = tripArrange;
     }
+
 
     public String getFeeNotice() {
         return feeNotice;
@@ -129,35 +170,12 @@ public class YmWenBrigade {
         this.feeNotice = feeNotice;
     }
 
+
     public String getSecurityTip() {
         return securityTip;
     }
 
     public void setSecurityTip(String securityTip) {
         this.securityTip = securityTip;
-    }
-
-    public String getReservedFields1() {
-        return reservedFields1;
-    }
-
-    public void setReservedFields1(String reservedFields1) {
-        this.reservedFields1 = reservedFields1;
-    }
-
-    public String getReservedFields2() {
-        return reservedFields2;
-    }
-
-    public void setReservedFields2(String reservedFields2) {
-        this.reservedFields2 = reservedFields2;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
     }
 }
