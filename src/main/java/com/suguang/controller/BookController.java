@@ -7,14 +7,19 @@ import com.suguang.domin.YmBookTag;
 import com.suguang.domin.YmBook;
 import com.suguang.domin.YmUser;
 import com.suguang.service.BookService;
+import com.suguang.util.YmStaticVariablesUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
@@ -99,9 +104,9 @@ public class BookController {
         String bookTag = request.getParameter("bookTag");
         String indexShow = request.getParameter("indexShow");
         String recommendClass = request.getParameter("recommendClass");
-        //文章类型没写
         String libraryAddress = request.getParameter("libraryAddress");
-        //上传图书封面图没写
+        String imgUrl = request.getParameter("imgUrl");
+        String bookDetail = request.getParameter("bookDetail");
         //图书详情没写
         String[] book_tags = request.getParameterValues("book_tag");
 
@@ -129,6 +134,8 @@ public class BookController {
         ymBook.setIndexShow(Integer.parseInt(indexShow));
         ymBook.setRecommendClass(Integer.parseInt(recommendClass));
         ymBook.setLibraryAddress(libraryAddress);
+        ymBook.setImgUrl(imgUrl);
+        ymBook.setBookDetail(bookDetail);
 
         YmBook save = bookDao.save(ymBook);
 
@@ -152,5 +159,11 @@ public class BookController {
 
     }
 
+    //返回服务器资源
+    @RequestMapping(value = "export_xls", method = RequestMethod.GET)
+    public ResponseEntity<FileSystemResource> exportXls(HttpServletRequest request) {
+        String file = request.getParameter("file");
+        return UploadController.export(new File(YmStaticVariablesUtil.UPLOAD_PATH+file));
+    }
 
 }

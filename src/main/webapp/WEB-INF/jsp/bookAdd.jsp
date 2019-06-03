@@ -38,7 +38,7 @@
 <body>
 <script type="text/javascript">
     function chan() {
-        $("#cotent").val(editor1.txt.html());
+        $("#bookDetail").val(editor1.txt.html());
         $("#form1").submit();
     }
 </script>
@@ -231,9 +231,9 @@
         <div class="layui-upload" style="float: right; margin-right: 400px; margin-top: -300px">
             <button type="button" class="layui-btn" id="test1">上传图书封面图</button>
             <div class="layui-upload-list">
-                <img class="layui-upload-img" id="demo1" src="">
+                <img class="layui-upload-img" id="demo1" src="${ymBook.imgUrl}">
             </div>
-            <input id="image" name="image" type="hidden" value=""/>
+            <input id="imgUrl" name="imgUrl" type="hidden" value="${ymBook.imgUrl}"/>
             <p id="demoText"></p>
         </div>
         <div style="margin-left: 22px;">
@@ -243,9 +243,9 @@
             <div id="div1" class="toolbar"></div>
             <div style="padding: 5px 0; color: #ccc"></div>
             <div id="div2" class="text1">
-                <p></p>
+                <p>${ymBook.bookDetail}</p>
             </div>
-            <input type="hidden" id="cotent" name="cotent">
+            <input type="hidden" id="bookDetail" name="bookDetail">
         </div>
         <div style="margin-top: 10px; margin-left: 650px;">
             <button type="button" id="button" class="layui-btn layui-btn-sm" onclick="chan()">确定添加/修改</button>
@@ -279,7 +279,7 @@
                 if (res.code > 0) {
                     return layer.msg('上传失败！')
                 }
-                $('#image').val('' + res.data[0]);
+                $('#imgUrl').val('' + res.data[0]);
                 return layer.msg('上传成功！')
             }
             , error: function () {
