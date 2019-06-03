@@ -30,6 +30,10 @@
 		    height: 92px;
 		    margin: 0 10px 10px 0;
 }
+		.layui-table img {
+			max-width: 100px;
+			max-height: 50px;
+		}
     </style>
 	<body style="width: 98%">
 	<div style="margin-top: 10px">
@@ -54,10 +58,55 @@
 						<label class="col-sm-1 control-label">学校类别:</label>
 						<div class="col-sm-2">
 							<select class="form-control" name="schoolType" value="${addSchool.schoolType}">
+											<c:if test="${addSchool.schoolType == 16}">
+												<option value="16" name="schoolType">唱歌</option>
+											</c:if>
+											<c:if test="${addSchool.schoolType == 17}">
+												<option value="16" name="schoolType">书法</option>
+											</c:if>
+											<c:if test="${addSchool.schoolType == 18}">
+												<option value="16" name="schoolType">刺绣</option>
+											</c:if>
+											<c:if test="${addSchool.schoolType == 19}">
+												<option value="16" name="schoolType">健身</option>
+											</c:if>
+											<c:if test="${addSchool.schoolType == 20}">
+												<option value="16" name="schoolType">摄影</option>
+											</c:if>
+											<c:if test="${addSchool.schoolType == 21}">
+												<option value="16" name="schoolType">乒乓球</option>
+											</c:if>
+											<c:if test="${addSchool.schoolType == 22}">
+												<option value="16" name="schoolType">舞蹈</option>
+											</c:if>
+											<c:if test="${addSchool.schoolType == 23}">
+												<option value="16" name="schoolType">剪纸</option>
+											</c:if>
+											<c:if test="${addSchool.schoolType == 24}">
+												<option value="16" name="schoolType">乐器</option>
+											</c:if>
+											<c:if test="${addSchool.schoolType == 25}">
+												<option value="16" name="schoolType">绘画</option>
+											</c:if>
+											<c:if test="${addSchool.schoolType == 26}">
+												<option value="16" name="schoolType">武术</option>
+											</c:if>
+											<c:if test="${addSchool.schoolType == 27}">
+												<option value="16" name="schoolType">游泳</option>
+											</c:if>
 											<option value="0" name="schoolType">--请选择--</option>
-											<option value="0" name="schoolType">唱歌</option>
-											<option value="0" name="schoolType">跳舞</option>
-											<option value="0" name="schoolType">刺绣</option>
+											<option value="16" name="schoolType">唱歌</option>
+											<option value="17" name="schoolType">书法</option>
+											<option value="18" name="schoolType">刺绣</option>
+											<option value="19" name="schoolType">健身</option>
+											<option value="20" name="schoolType">摄影</option>
+											<option value="21" name="schoolType">乒乓球</option>
+											<option value="22" name="schoolType">舞蹈</option>
+											<option value="23" name="schoolType">剪纸</option>
+											<option value="24" name="schoolType">乐器</option>
+											<option value="25" name="schoolType">绘画</option>
+											<option value="26" name="schoolType">武术</option>
+											<option value="27" name="schoolType">游泳</option>
 							</select>
 					</div>
 				</div>
@@ -95,9 +144,9 @@
 					<div class="layui-upload" style="float: right; margin-right: 200px; margin-top: -190px">
 						<button type="button" class="layui-btn" id="test4">上传学校背景图：</button>
 						<div class="layui-upload-list">
-							<img class="layui-upload-img" id="demo4">
+							<img class="layui-upload-img" id="demo4" src="${byImgTypeAndPidAndImageType.imgUrl}">
 						</div>
-						<input id="image1" name="image" type="hidden" />
+						<input id="backImg" name="backImg" type="hidden" />
 						<p id="demoText3"></p>
 					</div>
                     <div class="form-group">
@@ -116,22 +165,37 @@
 	<div>
 		<div>
 		<div style="margin-left: 20px">
-			<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schoolImage" >
+			<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schoolImage" id="aa" onclick="idnull(${addSchool.id})">
 				添加图片
+				<script type="text/javascript">
+					function idnull(id) {
+						if(id == null || id == ""){
+						    alert("请添加完成学校之后在添加图片！")
+							document.getElementById("aa").disabled = true;
+						}
+						$('aa').onclick;
+                    }
+
+				</script>
 			</button>
 		</div>
 		<table class="layui-table" lay-skin="line" style="text-align: center; overflow: hidden; width: 80%">
 			<tr style="font-weight: bold;">
-				<td>名称</td>
-				<td>状态</td>
-				<td>描述</td>
-				<td>操作</td>
+				<td width="25">名称</td>
+				<td width="25">状态</td>
+				<td width="25">图片</td>
+				<td width="25">描述</td>
+				<td width="25">操作</td>
 			</tr>
 
 			<c:forEach items="${ymImages}" var="ymImages">
 			<tr>
 				<td>${ymImages.imgName}</td>
-				<td>${ymImages.imageType}</td>
+				<td>
+					<c:if test="${ymImages.imageType == 1}">图片</c:if>
+					<c:if test="${ymImages.imageType == 2}">视频</c:if>
+				</td>
+				<td style="width: 25px; height: 25px"><img src="${ymImages.imgUrl}"></td>
 				<td>${ymImages.detalis}</td>
 				<td>
 					<%--<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schoolImage">修改/详情--%>
@@ -145,22 +209,37 @@
 	</div>
 		<div>
 			<div style="margin-left: 20px">
-				<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schoolVideo" >
+				<button class="btn btn-primary btn-sm" data-toggle="modal" id="bb" data-target="#schoolVideo" onclick="videoNull(${addSchool.id})">
 					添加视频
+					<script type="text/javascript">
+                        function videoNull(id) {
+                            if(id == null || id == ""){
+                                alert("请添加完成学校之后在添加视频！")
+                                document.getElementById("bb").disabled = true;
+                            }
+                            $('bb').onclick;
+                        }
+
+					</script>
 				</button>
 			</div>
 			<table class="layui-table" lay-skin="line" style="text-align: center; overflow: hidden; width: 80%">
 				<tr style="font-weight: bold;">
-					<td>名称</td>
-					<td>状态</td>
-					<td>描述</td>
-					<td>操作</td>
+					<td width="25">名称</td>
+					<td width="25">状态</td>
+					<td width="25">图片</td>
+					<td width="25">描述</td>
+					<td width="25">操作</td>
 				</tr>
 
 				<c:forEach items="${ymvideo}" var="ymvideo">
 				<tr>
 					<td>${ymvideo.imgName}</td>
-					<td>${ymvideo.imageType}</td>
+					<td>
+						<c:if test="${ymvideo.imageType == 1}">图片</c:if>
+						<c:if test="${ymvideo.imageType == 2}">视频</c:if>
+					</td>
+					<td style="width: 25px; height: 25px"><img src="${ymvideo.imgUrl}"></td>
 					<td>${ymvideo.detalis}</td>
 					<td>
 						<%--<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schoolVideo">修改/详情--%>
@@ -207,13 +286,14 @@
 						<div class="layui-form-item" style="margin-left: 20px;">
 							<label class="layui-form-label" style="width: 100px">图片描述</label>
 							<div class="layui-input-inline">
-								<input type="text" id="AddImageDetalis" name="AddImageDetalis" placeholder="请输入图片描述！" class="layui-input">
+								<input type="text" id="imageDetalis" name="ImageDetalis" placeholder="请输入图片描述！" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-upload" style="margin-left: 48px">
 							<button type="button" class="layui-btn" id="test2">上传图片：</button>
 							<div class="layui-upload-list" >
-								<img class="layui-upload-img" id="demo2"src="${artist.artistName}">
+								<img class="layui-upload-img" id="demo2"src="">
+								<input id="imgUrl" name="imgUrl" type="hidden"/>
 								<p id="demoText1"></p>
 							</div>
 						</div>
@@ -252,7 +332,7 @@
 						<div class="layui-form-item" style="margin-left: 20px;">
 							<label class="layui-form-label" style="width: 100px">视频名称</label>
 							<div class="layui-input-inline">
-								<input type="text" id="videoName" name="videoName" placeholder="请输入视频名称！" class="layui-input">
+								<input type="text" id="videoImageName" name="videoImageName" placeholder="请输入视频名称！" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-form-item" style="margin-left: 20px;">
@@ -266,19 +346,20 @@
 						<div class="layui-form-item" style="margin-left: 20px;">
 							<label class="layui-form-label" style="width: 100px">视频描述</label>
 							<div class="layui-input-inline">
-								<input type="text" id="AddImageDetalis1" name="AddImageDetalis" placeholder="请输入视频描述！" class="layui-input">
+								<input type="text" id="videoDetails" name="videoDetails" placeholder="请输入视频描述！" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-upload" style="margin-left: 48px">
 							<button type="button" class="layui-btn" id="test3">上传视频封面图：</button>
 							<div class="layui-upload-list" >
 								<img class="layui-upload-img" id="demo3">
+								<input id="videoImgUrl" name="videoImgUrl" type="hidden"/>
 								<p id="demoText2"></p>
 							</div>
 						</div>
 						<div class="layui-upload" style="margin-left: 20px;">
 							<button type="button" class="layui-btn layui-btn-normal" id="test8">选择学校视频</button>
-							<input type="hidden" id="videourl" name="videourl" value="" >
+							<input type="hidden" id="videoUrl" name="videoUrl">
 							<button type="button" class="layui-btn" id="test9" >开始上传</button><br>
 							<p id="p1" class="layui-btn layui-btn-warm layui-btn-radius" style="margin-top: 11px"></p>
 						</div>
@@ -308,25 +389,21 @@
         }
 
         function addImgById(id){
-            var details = document.getElementById("details").value;
-            var AddImageDetalis = document.getElementById("AddImageDetalis").value;
-            window.location.href="/school/addImg?id="+id+"&details="+details+"&AddImageDetalis="+AddImageDetalis;
+            var imageName = document.getElementById("imageName").value;
+            var imageDetalis = document.getElementById("imageDetalis").value;
+            var imgUrl = document.getElementById("imgUrl").value;
+            window.location.href="/school/addImg?id="+id+"&imageName="+imageName+"&imageDetalis="+imageDetalis+"&imgUrl="+imgUrl;
         }
 
         function addVideoById(id){
-            var details = document.getElementById("details1").value;
-            var AddImageDetalis = document.getElementById("AddImageDetalis1").value;
-            window.location.href="/school/addVideo?id="+id+"&details="+details+"&AddImageDetalis="+AddImageDetalis;
+            var videoImageName = document.getElementById("videoImageName").value;
+            var videoDetails = document.getElementById("videoDetails").value;
+            var videoImgUrl = document.getElementById("videoImgUrl").value;
+            var videoUrl = document.getElementById("videoUrl").value;
+
+            window.location.href="/school/addVideo?id="+id+"&videoImageName="+videoImageName+"&videoDetails="+videoDetails+"&videoImgUrl="+videoImgUrl+"&videoUrl="+videoUrl;
         }
 	</script>
-
-	<script type="text/javascript" src="/js/wangEditor.js"></script>
-		<script type="text/javascript">
-            var E = window.wangEditor;
-            var editor1 = new E('#divTitle', '#divContene');
-            editor1.customConfig.uploadImgServer = '/upload';
-            editor1.create();
-		</script>
 		<script>
         layui.use('upload', function() {
             var $ = layui.jquery
@@ -366,7 +443,7 @@
             //普通图片上传
             var uploadInst = upload.render({
                 elem: '#test2'
-                ,url: '/upload/'
+                ,url: '/uploadflv/upload'
                 ,before: function(obj){
                     //预读本地文件示例，不支持ie8
                     obj.preview(function(index, file, result){
@@ -378,6 +455,7 @@
                     if(res.code > 0){
                         return layer.msg('上传失败');
                     }
+                    $('#imgUrl').val(''+ res.data[0]);
                     //上传成功
                 }
                 ,error: function(){
@@ -397,8 +475,41 @@
                 , upload = layui.upload;
             //普通图片上传
             var uploadInst = upload.render({
+                elem: '#test4'
+                ,url: '/uploadflv/upload'
+                ,before: function(obj){
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function(index, file, result){
+                        $('#demo4').attr('src', result); //图片链接（base64）
+                    });
+                }
+                ,done: function(res){
+                    //如果上传失败
+                    if(res.code > 0){
+                        return layer.msg('上传失败');
+                    }
+                    $('#backImg').val(''+ res.data[0]);
+                    //上传成功
+                }
+                ,error: function(){
+                    //演示失败状态，并实现重传
+                    var demoText = $('#demoText4');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function(){
+                        uploadInst.upload();
+                    });
+                }
+            });
+        });
+	</script>
+	<script>
+        layui.use('upload', function() {
+            var $ = layui.jquery
+                , upload = layui.upload;
+            //普通图片上传
+            var uploadInst = upload.render({
                 elem: '#test3'
-                ,url: '/upload/'
+                ,url: '/uploadflv/upload'
                 ,before: function(obj){
                     //预读本地文件示例，不支持ie8
                     obj.preview(function(index, file, result){
@@ -410,6 +521,7 @@
                     if(res.code > 0){
                         return layer.msg('上传失败');
                     }
+                    $('#videoImgUrl').val(''+res.data[0]);
                     //上传成功
                 }
                 ,error: function(){
@@ -434,7 +546,7 @@
                     if(res.code > 0){
                         return layer.msg('上传失败！')
                     }
-                    $("#videourl").val('' + res.data[0]);
+                    $("#videoUrl").val('' + res.data[0]);
                     $("#p1").text('' + res.data[0])
                     return layer.msg('上传成功！')
                 }

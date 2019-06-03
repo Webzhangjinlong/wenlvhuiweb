@@ -44,13 +44,15 @@ public class SchoolController {
     private ImgDao imgDao;
     private String schoolid;
 
+    private YmImage byImgTypeAndPidAndImageType;
+
     @RequestMapping("/schoolImageList")
-    public String imageList(){
+    public String imageList() {
         return "schoolImageList";
     }
 
     @RequestMapping("/schoolImageAdd")
-    public String imageAdd(){
+    public String imageAdd() {
         return "schoolImageAdd";
     }
 
@@ -70,20 +72,21 @@ public class SchoolController {
 
     //删除对应图片
     @RequestMapping("/deleteImg")
-    public String imgDelete(HttpServletRequest request,Model model){
+    public String imgDelete(HttpServletRequest request, Model model) {
         //图片ID
         String id = request.getParameter("id");
         imgDao.deleteById(Integer.parseInt(id));
 
-        return "redirect:/school/update?id="+schoolid;
+        return "redirect:/school/update?id=" + schoolid;
         //此处删除之后又重定向到学校列表页，不合理，应该重定向到修改的回显页面
     }
+
     //删除对应视频
     @RequestMapping("/deleteVideo")
-    public String videoDelete(HttpServletRequest request){
+    public String videoDelete(HttpServletRequest request) {
         String id = request.getParameter("id");
         imgDao.deleteById(Integer.parseInt(id));
-        return "redirect:/school/update?id="+schoolid;
+        return "redirect:/school/update?id=" + schoolid;
     }
 
 
@@ -103,11 +106,13 @@ public class SchoolController {
         List<YmImage> byImgTypeAndPid = imgDao.getByImgTypeAndPid(4, Integer.parseInt(schoolid));
         ArrayList<YmImage> ymImages = new ArrayList<>();
         ArrayList<YmImage> ymvideo = new ArrayList<>();
-        YmImage byImgTypeAndPidAndImageType = imgDao.getByImgTypeAndPidAndImageType(4, Integer.parseInt(schoolid), 3);
+        byImgTypeAndPidAndImageType = imgDao.getByImgTypeAndPidAndImageType(4, Integer.parseInt(schoolid), 3);
+
+
         for (YmImage ymImage : byImgTypeAndPid) {
-            if (ymImage.getImageType()==2) {
+            if (ymImage.getImageType() == 2) {
                 ymvideo.add(ymImage);
-            }else{
+            } else {
                 ymImages.add(ymImage);
             }
 
@@ -138,6 +143,20 @@ public class SchoolController {
         String addrDetail = request.getParameter("addrDetail");
         String details = request.getParameter("details");
         String logourl = request.getParameter("logourl");
+        String backImg = request.getParameter("backImg");
+        YmImage ymImage = new YmImage();
+
+        if (byImgTypeAndPidAndImageType != null ) {
+            ymImage.setId(byImgTypeAndPidAndImageType.getId());
+        }
+        ymImage.setImgUrl(backImg);
+        ymImage.setImgName("");
+        ymImage.setImgType(4);
+        ymImage.setImageType(3);
+        ymImage.setPid(Integer.parseInt(schoolid));
+        imgDao.save(ymImage);
+
+
         YmSchool ymSchool = new YmSchool();
 
         if (id != null && id != "") {
@@ -159,63 +178,68 @@ public class SchoolController {
 
         model.addAttribute("schoolList", save);
 
-        if (pageNum==null) {
-            pageNum =1;
+        if (pageNum == null) {
+            pageNum = 1;
         }
-        if (sizeNum ==null) {
-            sizeNum =10;
+        if (sizeNum == null) {
+            sizeNum = 10;
         }
-       
+
         return "redirect:/school/list?page=" + pageNum + "&size=" + sizeNum;
 
     }
 
     //添加图片模态框
     @RequestMapping("/addImg")
-    public String addImg(HttpServletRequest request,Model model){
+    public String addImg(HttpServletRequest request, Model model) {
         //学校ID
         String id = request.getParameter("id");
-        String imgName = request.getParameter("imgName");
-        String detalis = request.getParameter("details");
+        String imgName = request.getParameter("imageName");
+        String imageDetalis = request.getParameter("imageDetalis");
+        String imgUrl = request.getParameter("imgUrl");
 
         YmImage ymImage = new YmImage();
         ymImage.setImageType(1);
-        ymImage.setImgType(9);
+        ymImage.setImgType(4);
         ymImage.setPid(Integer.parseInt(id));
         ymImage.setImgName(imgName);
-        ymImage.setDetalis(detalis);
+        ymImage.setDetalis(imageDetalis);
+        ymImage.setImgUrl(imgUrl);
 
-        YmImage save = imgDao.save(ymImage);
-        model.addAttribute("photo",save);
+        imgDao.save(ymImage);
+//        model.addAttribute("photo",save);
 
-        return "redirect:/school/update?id="+schoolid;
+        return "redirect:/school/update?id=" + schoolid;
     }
 
     //添加视频模态框
     @RequestMapping("/addVideo")
-    public String addVideo(HttpServletRequest request,Model model){
+    public String addVideo(HttpServletRequest request, Model model) {
         //学校ID
         String id = request.getParameter("id");
-        String imgName = request.getParameter("details");
-        String detalis = request.getParameter("AddImageDetalis");
+        String videoDetails = request.getParameter("videoDetails");
+        String videoImageName = request.getParameter("videoImageName");
+        String videoUrl = request.getParameter("videoUrl");
+        String videoImgUrl = request.getParameter("videoImgUrl");
 
         YmImage ymImage = new YmImage();
         ymImage.setImageType(2);
         ymImage.setImgType(4);
         ymImage.setPid(Integer.parseInt(id));
-        ymImage.setImgName(imgName);
-        ymImage.setDetalis(detalis);
+        ymImage.setDetalis(videoDetails);
+        ymImage.setVideoUrl(videoUrl);
+        ymImage.setImgUrl(videoImgUrl);
+        ymImage.setImgName(videoImageName);
 
-        YmImage save = imgDao.save(ymImage);
-        model.addAttribute("photo",save);
+        imgDao.save(ymImage);
 
-        return "redirect:/school/update?id="+schoolid;
+        return "redirect:/school/update?id=" + schoolid;
     }
 
     //返回服务器资源
     @RequestMapping(value = "export_xls", method = RequestMethod.GET)
     public ResponseEntity<FileSystemResource> exportXls(HttpServletRequest request) {
         String file = request.getParameter("file");
-        return UploadController.export(new File(YmStaticVariablesUtil.UPLOAD_PATH+file));
+        return UploadController.export(new File(YmStaticVariablesUtil.UPLOAD_PATH + file));
     }
 }

@@ -53,7 +53,20 @@
         <c:forEach items="${schoolList.content}" var="school">
             <tr>
                 <td>${ school.name}</td>
-                <td>${ school.schoolType}</td>
+                <td>
+                    <c:if test="${school.schoolType == 16}">唱歌</c:if>
+                    <c:if test="${school.schoolType == 17}">书法</c:if>
+                    <c:if test="${school.schoolType == 18}">刺绣</c:if>
+                    <c:if test="${school.schoolType == 19}">健身</c:if>
+                    <c:if test="${school.schoolType == 20}">摄影</c:if>
+                    <c:if test="${school.schoolType == 21}">乒乓球</c:if>
+                    <c:if test="${school.schoolType == 22}">舞蹈</c:if>
+                    <c:if test="${school.schoolType == 23}">剪纸</c:if>
+                    <c:if test="${school.schoolType == 24}">乐器</c:if>
+                    <c:if test="${school.schoolType == 25}">绘画</c:if>
+                    <c:if test="${school.schoolType == 26}">武术</c:if>
+                    <c:if test="${school.schoolType == 27}">游泳</c:if>
+                </td>
                 <td>${ school.phone}</td>
                 <td>${ school.city}</td>
                 <td>${ school.area}</td>
