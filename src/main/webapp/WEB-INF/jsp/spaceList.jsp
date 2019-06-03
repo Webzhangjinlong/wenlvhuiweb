@@ -51,15 +51,16 @@
             <td>创建时间</td>
             <td>操作</td>
         </tr>
+        <c:forEach items="${YmSpaceList.content}" var="spaceList">
             <tr>
-                <td>空间名</td>
-                <td>标题</td>
-                <td>地址</td>
-                <td>经度</td>
-                <td>纬度</td>
-                <td>面积</td>
-                <td>电话</td>
-                <td>创建时间</td>
+                <td>${spaceList.spaceName}</td>
+                <td>${spaceList.spaceTitle}</td>
+                <td>${spaceList.addr}</td>
+                <td>${spaceList.longitude}</td>
+                <td>${spaceList.latitude}</td>
+                <td>${spaceList.spaceMeasure}</td>
+                <td>${spaceList.tel}</td>
+                <td>${spaceList.createDate}</td>
                 <td>
                     <button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ list.id})">修改/详情
                     </button>
@@ -67,6 +68,7 @@
                     </button>
                 </td>
             </tr>
+        </c:forEach>
     </table>
     <div id="test1" style="margin-left: 900px">
     </div>
@@ -74,7 +76,7 @@
 <script src="/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
-    var count = "${list.totalElements}";
+    var count = "${YmSpaceList.totalElements}";
     console.log(count)
     layui.use('laypage', function () {
         var laypage = layui.laypage;
@@ -88,7 +90,8 @@
                 if (first) {
                     return
                 }
-                var href = '/craftsman/list?page=' + obj.curr + '&size=' + obj.limit
+
+                var href = '/Space/list?page=' + obj.curr + '&size=' + obj.limit
                 location.href = href;
             }
         });
