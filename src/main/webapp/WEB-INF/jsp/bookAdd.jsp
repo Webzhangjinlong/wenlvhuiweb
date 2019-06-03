@@ -72,14 +72,14 @@
             </div>
             <label class="col-sm-1 control-label">推荐人:</label>
             <div class="col-sm-2">
-                <select class="selectpicker show-tick form-control"   name="tuijian" data-live-search="true">
-                    <option  value="-1">请选择</option>
-                    <c:forEach items="${user}" var="user" >
+            <select class="selectpicker show-tick form-control"   name="recommendUser" data-live-search="true">
+                <option  value="-1">请选择</option>
+                <c:forEach items="${user}" var="user" >
 
-                        <option value="${user.id}">${user.nickName}</option>
+                <option value="${user.id}">${user.nickName}</option>
 
-                    </c:forEach>
-                </select>
+                </c:forEach>
+            </select>
             </div>
         </div>
         <div class="form-group">

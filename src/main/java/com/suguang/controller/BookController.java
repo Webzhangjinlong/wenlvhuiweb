@@ -57,13 +57,17 @@ public class BookController {
     public String update(HttpServletRequest request, Model model) {
         String id = request.getParameter("id");
         YmBook ymBook = bookDao.getById(Integer.parseInt(id));
-        model.addAttribute("ymBook", ymBook);
+        model.addAttribute("ymBook",ymBook);
+        List<YmUser> all = userDao.findAll();
+        model.addAttribute("user",all);
         return "bookAdd";
     }
 
     //添加图书
     @RequestMapping("/add")
-    public String add() {
+    public String add(Model model) {
+        List<YmUser> all = userDao.findAll();
+        model.addAttribute("user",all);
         return "bookAdd";
     }
 
@@ -76,6 +80,7 @@ public class BookController {
         String publishDate = request.getParameter("publishDate");
         //推荐人
         String recommendUser = request.getParameter("recommendUser");
+        System.out.println(recommendUser);
         String bookPrice = request.getParameter("bookPrice");
         String recommendedNumber = request.getParameter("recommendedNumber");
         String sex = request.getParameter("sex");

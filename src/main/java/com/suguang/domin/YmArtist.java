@@ -16,7 +16,7 @@ public class YmArtist  extends YmEntity {
     private String artistName;
 
     private String backgroundUrl;
-    
+
     private String artistLogourl;
 
     private String artistPhone;
@@ -28,25 +28,7 @@ public class YmArtist  extends YmEntity {
     private Integer artistStatus;
 
 
-
-
-    public String getArtistExperience() {
-        return artistExperience;
-    }
-
-    public void setArtistExperience(String artistExperience) {
-        this.artistExperience = artistExperience;
-    }
-
-    public String getBackgroundUrl() {
-		return backgroundUrl;
-	}
-
-	public void setBackgroundUrl(String backgroundUrl) {
-		this.backgroundUrl = backgroundUrl;
-	}
-
-	public Integer getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -54,7 +36,7 @@ public class YmArtist  extends YmEntity {
         this.id = id;
     }
 
-    public String  getArtistType() {
+    public String getArtistType() {
         return artistType;
     }
 
@@ -67,7 +49,15 @@ public class YmArtist  extends YmEntity {
     }
 
     public void setArtistName(String artistName) {
-        this.artistName = artistName == null ? null : artistName.trim();
+        this.artistName = artistName;
+    }
+
+    public String getBackgroundUrl() {
+        return backgroundUrl;
+    }
+
+    public void setBackgroundUrl(String backgroundUrl) {
+        this.backgroundUrl = backgroundUrl;
     }
 
     public String getArtistLogourl() {
@@ -75,7 +65,7 @@ public class YmArtist  extends YmEntity {
     }
 
     public void setArtistLogourl(String artistLogourl) {
-        this.artistLogourl = artistLogourl == null ? null : artistLogourl.trim();
+        this.artistLogourl = artistLogourl;
     }
 
     public String getArtistPhone() {
@@ -83,7 +73,7 @@ public class YmArtist  extends YmEntity {
     }
 
     public void setArtistPhone(String artistPhone) {
-        this.artistPhone = artistPhone == null ? null : artistPhone.trim();
+        this.artistPhone = artistPhone;
     }
 
     public String getArtistDetails() {
@@ -91,7 +81,15 @@ public class YmArtist  extends YmEntity {
     }
 
     public void setArtistDetails(String artistDetails) {
-        this.artistDetails = artistDetails == null ? null : artistDetails.trim();
+        this.artistDetails = artistDetails;
+    }
+
+    public String getArtistExperience() {
+        return artistExperience;
+    }
+
+    public void setArtistExperience(String artistExperience) {
+        this.artistExperience = artistExperience;
     }
 
     public Integer getArtistStatus() {
