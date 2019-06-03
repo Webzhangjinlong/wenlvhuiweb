@@ -63,18 +63,39 @@ pageEncoding="UTF-8"%>
 							<input class="form-control" id="focusedInput" type="text"  value="" placeholder="请输入推荐人数">
 						</div>
 				</div>
-				<div style="margin-left: 20px;">
-				<label class="control-label">菜品介绍:</label><br>
+				<div class="layui-upload" style="margin-left: 20px;margin-top: 20px">
+					<button type="button" class="layui-btn layui-btn-normal" id="test8">选择活动视频</button>
+					<input type="hidden" id="videourl" name="videourl" value="" >
+					<button type="button" class="layui-btn" id="test9">开始上传</button>
+					<p id="p1" class="layui-btn layui-btn-warm layui-btn-radius" style="margin-top: 11px"></p>
 				</div>
-				<div style="margin-left: 20px; margin-top: 10px">
+				<div class="layui-upload" style="float: right; margin-right: 400px; margin-top: -170px">
+					<button type="button" class="layui-btn" id="test1">上传菜品封面图</button>
+					<div class="layui-upload-list">
+						<img class="layui-upload-img" id="demo1" src="">
+					</div>
+					<input id="image" name="image" value="" type="hidden"/>
+					<p id="demoText"></p>
+				</div>
+				<div class="layui-upload" style="float: right; margin-right: 200px; margin-top: -170px">
+					<button type="button" class="layui-btn" id="test2">上传视频封面图</button>
+					<div class="layui-upload-list">
+						<img class="layui-upload-img" id="demo2" src="">
+					</div>
+					<input id="videoBackurl" name="videoBackurl" value="" type="hidden"/>
+					<p id="demoText1"></p>
+				</div>
+				<div style="margin-left: 25px;">
+				<label class="control-label">菜品介绍</label><br>
+				</div>
+				<div style="margin-left: 25px; margin-top: 10px">
 				    <div id="div1" class="toolbar"></div>
 					    <div style="padding: 5px 0; color: #ccc"></div>
 					    <div id="div2" class="text"> <!--可使用 min-height 实现编辑区域自动增加高度-->
 		    		</div>
 		    	</div>
-		    	<div style="margin-top: 10px; margin-left: 600px;">
-		    		<button class="layui-btn layui-btn-sm">确定添加</button>
-		    		<button class="layui-btn layui-btn-sm layui-btn-warm">确定修改</button>
+		    	<div style="margin-top: 10px; margin-left: 650px;">
+		    		<button class="layui-btn layui-btn-sm">确定添加/修改</button>
 		    	</div>
 			</form>
  		</div>

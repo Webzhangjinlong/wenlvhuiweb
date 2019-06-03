@@ -132,10 +132,9 @@ pageEncoding="UTF-8"%>
 					    <div id="div2" class="text"> <!--可使用 min-height 实现编辑区域自动增加高度-->
 		    		</div>
 		    	</div>
-		    	<div style="margin-top: 10px; margin-left: 600px;">
+		    	<div style="margin-top: 10px; margin-left: 650px;">
 		    		
-		    		<button class="layui-btn layui-btn-sm">确定添加</button>
-		    		<button class="layui-btn layui-btn-sm layui-btn-danger">确定修改</button>
+		    		<button class="layui-btn layui-btn-sm">确定添加/修改</button>
 		    	</div>
 			</form>
 			<div>
