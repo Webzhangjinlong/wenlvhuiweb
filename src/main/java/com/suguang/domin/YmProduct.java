@@ -31,76 +31,76 @@ public class YmProduct implements Serializable {
 	private Date createDate;
 	private Integer createUser;
 
-	private String dataName;
+	//private String dataName;
 	
 	//存储店的地址
-	private String   province  ;
-	private String   city  ;
-	private String   area  ;
-	private String   addrDetail  ;
-	private String imgUrl;
-	private Integer isUp;
+	//private String   province  ;
+	//private String   city  ;
+	//private String   area  ;
+	//private String   addrDetail  ;
+	//private String imgUrl;
+	//private Integer isUp;
 	
 	
 	
 	//List<YmComment> commentList = new ArrayList<YmComment>(); // 商品集合
 
 
-	public Integer getIsUp() {
-		return isUp;
-	}
+//	public Integer getIsUp() {
+//		return isUp;
+//	}
+//
+//	public void setIsUp(Integer isUp) {
+//		this.isUp = isUp;
+//	}
 
-	public void setIsUp(Integer isUp) {
-		this.isUp = isUp;
-	}
+//	public String getDataName() {
+//		return dataName;
+//	}
+//
+//	public void setDataName(String dataName) {
+//		this.dataName = dataName;
+//	}
 
-	public String getDataName() {
-		return dataName;
-	}
+//	public String getProvince() {
+//		return province;
+//	}
+//
+//	public void setProvince(String province) {
+//		this.province = province;
+//	}
 
-	public void setDataName(String dataName) {
-		this.dataName = dataName;
-	}
+//	public String getCity() {
+//		return city;
+//	}
+//
+//	public void setCity(String city) {
+//		this.city = city;
+//	}
+//
+//	public String getArea() {
+//		return area;
+//	}
+//
+//	public void setArea(String area) {
+//		this.area = area;
+//	}
 
-	public String getProvince() {
-		return province;
-	}
+//	public String getAddrDetail() {
+//		return addrDetail;
+//	}
+//
+//	public void setAddrDetail(String addrDetail) {
+//		this.addrDetail = addrDetail;
+//	}
 
-	public void setProvince(String province) {
-		this.province = province;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getArea() {
-		return area;
-	}
-
-	public void setArea(String area) {
-		this.area = area;
-	}
-
-	public String getAddrDetail() {
-		return addrDetail;
-	}
-
-	public void setAddrDetail(String addrDetail) {
-		this.addrDetail = addrDetail;
-	}
-
-	public String getImgUrl() {
-		return imgUrl;
-	}
-
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
-	}
+//	public String getImgUrl() {
+//		return imgUrl;
+//	}
+//
+//	public void setImgUrl(String imgUrl) {
+//		this.imgUrl = imgUrl;
+//	}
 
 //	public List<YmComment> getCommentList() {
 //		return commentList;
