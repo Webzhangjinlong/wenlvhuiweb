@@ -1,20 +1,24 @@
 package com.suguang.controller;
 
+
+
+
 import com.suguang.dao.ImgDao;
 import com.suguang.dao.SchoolDao;
 import com.suguang.domin.YmImage;
 import com.suguang.domin.YmSchool;
-
 import com.suguang.service.SchoolService;
 import com.suguang.util.YmStaticVariablesUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -106,13 +110,13 @@ public class SchoolController {
         List<YmImage> byImgTypeAndPid = imgDao.getByImgTypeAndPid(4, Integer.parseInt(schoolid));
         ArrayList<YmImage> ymImages = new ArrayList<>();
         ArrayList<YmImage> ymvideo = new ArrayList<>();
-        byImgTypeAndPidAndImageType = imgDao.getByImgTypeAndPidAndImageType(4, Integer.parseInt(schoolid), 3);
+        imgDao.getByImgTypeAndPidAndImageType(4, Integer.parseInt(schoolid), 3);
 
 
         for (YmImage ymImage : byImgTypeAndPid) {
             if (ymImage.getImageType() == 2) {
                 ymvideo.add(ymImage);
-            } else {
+            } else if(ymImage.getImageType()==1){
                 ymImages.add(ymImage);
             }
 
