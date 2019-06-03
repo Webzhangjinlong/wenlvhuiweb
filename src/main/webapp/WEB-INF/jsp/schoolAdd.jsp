@@ -71,49 +71,41 @@
 						<input class="form-control" name="area" value="${addSchool.area}" id="focusedInput" type="text"  value="${addSchool.area}" placeholder="请输入区">
 					</div>
 				</div>
-				<div class="form-group"style="margin-top: 32px">
+				<div class="form-group">
 						<label class="col-sm-1 control-label">联系电话:</label>
 						<div class="col-sm-2">
-							<input class="form-control" name="phone" value="${addSchool.phone}" id="focusedInput" type="text"  value="${addSchool.phone}" placeholder="请输入联系电话">
+							<input class="form-control" name="phone" value="${addSchool.phone}" id="focusedInput" type="text" placeholder="请输入联系电话">
 						</div>
 				</div>
-				<div class="form-group"style="margin-top: 32px">
+				<div class="form-group">
 						<label class="col-sm-1 control-label">详细地址:</label>
 						<div class="col-sm-5">
-							<input class="form-control" name="addrDetail" value="${addSchool.addrDetail}" id="focusedInput" type="text"  value="${addSchool.addrDetail}" placeholder="请输入详细地址">
+							<input class="form-control" name="addrDetail" value="${addSchool.addrDetail}" id="addrDetail" type="text" placeholder="请输入详细地址">
 						</div>
-				</div>
-				<div class="form-group" style="margin-top: 30px">
-					<label class="col-sm-1 control-label">学校账号:</label>
-					<div class="col-sm-2">
-						<input class="form-control"  id="focusedInput" type="text"  value="" placeholder="">
-					</div>
-						<label class="col-sm-1 control-label">学校密码:</label>
-					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  value="" placeholder="">
-					</div>
 				</div>
 				<div>
-				<div class="layui-upload" style="float: right; margin-right: 400px; margin-top: -250px">
+				<div class="layui-upload" style="float: right; margin-right: 400px; margin-top: -190px">
 					<button type="button" class="layui-btn" id="test1">上传学校logo图：</button>
 					<div class="layui-upload-list">
-						<img class="layui-upload-img" id="demo1">
-						<div id="div3">
-						</div>
+						<img class="layui-upload-img" id="demo1" src="${addSchool.logourl}">
 					</div>
-					<input id="image" name="image" type="hidden" />
+					<input id="logourl" name="logourl" type="hidden" value="${addSchool.logourl}" />
 					<p id="demoText"></p>
 				</div>
-					<div class="layui-upload" style="float: right; margin-right: 200px; margin-top: -250px">
+					<div class="layui-upload" style="float: right; margin-right: 200px; margin-top: -190px">
 						<button type="button" class="layui-btn" id="test4">上传学校背景图：</button>
 						<div class="layui-upload-list">
 							<img class="layui-upload-img" id="demo4">
-							<div id="div4">
-							</div>
 						</div>
 						<input id="image1" name="image" type="hidden" />
 						<p id="demoText3"></p>
 					</div>
+                    <div class="form-group">
+                            <label class="col-sm-1 control-label">学校详情:</label>
+                        <div class="col-sm-5">
+                            <textarea class="form-control" rows="3" id="details" name="details" value="${addSchool.details}">${addSchool.details}</textarea>
+                        </div>
+                    </div>
 		    	<div style="margin-top: 10px; margin-left: 550px;">
 		    		<button class="layui-btn layui-btn-sm">确定添加/修改</button>
 		    	</div>
@@ -186,7 +178,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-						&times;
+						X
 					</button>
 					<h4 class="modal-title" id="myModalLabel">
 						学校图片添加
@@ -201,21 +193,21 @@
 						<div class="layui-form-item" style="margin-left: 20px;">
 							<label class="layui-form-label" style="width: 100px">图片名称</label>
 							<div class="layui-input-inline">
-								<input type="text" id="details" name="details"  required lay-verify="required" placeholder="请输入图片名称！" autocomplete="off" class="layui-input">
+								<input type="text" id="imageName" name="imageName" placeholder="请输入图片名称！" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-form-item" style="margin-left: 20px;">
 							<label class="layui-form-label" style="width: 100px">图片状态</label>
 							<div class="layui-input-inline">
-								<select name="status" id="tagStatus" value="" class="form-control">
-									<option value="1" name="status">图片</option>
+								<select name="schoolImage" id="tagStatus" value="" class="form-control">
+									<option value="1" name="schoolImage">图片</option>
 								</select>
 							</div>
 						</div>
 						<div class="layui-form-item" style="margin-left: 20px;">
 							<label class="layui-form-label" style="width: 100px">图片描述</label>
 							<div class="layui-input-inline">
-								<input type="text" id="AddImageDetalis" name="AddImageDetalis" required lay-verify="required" placeholder="请输入图片描述！" autocomplete="off" class="layui-input">
+								<input type="text" id="AddImageDetalis" name="AddImageDetalis" placeholder="请输入图片描述！" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-upload" style="margin-left: 48px">
@@ -260,21 +252,21 @@
 						<div class="layui-form-item" style="margin-left: 20px;">
 							<label class="layui-form-label" style="width: 100px">视频名称</label>
 							<div class="layui-input-inline">
-								<input type="text" id="details1" name="details" required lay-verify="required" placeholder="请输入视频名称！" autocomplete="off" class="layui-input">
+								<input type="text" id="videoName" name="videoName" placeholder="请输入视频名称！" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-form-item" style="margin-left: 20px;">
 							<label class="layui-form-label" style="width: 100px">视频状态</label>
 							<div class="layui-input-inline">
-								<select name="status" id="" value="" class="form-control">
-									<option value="1" name="status">视频</option>
+								<select name="schoolVideo" id="" value="" class="form-control">
+									<option value="1" name="schoolVideo">视频</option>
 								</select>
 							</div>
 						</div>
 						<div class="layui-form-item" style="margin-left: 20px;">
 							<label class="layui-form-label" style="width: 100px">视频描述</label>
 							<div class="layui-input-inline">
-								<input type="text" id="AddImageDetalis1" name="AddImageDetalis" required lay-verify="required" placeholder="请输入视频描述！" autocomplete="off" class="layui-input">
+								<input type="text" id="AddImageDetalis1" name="AddImageDetalis" placeholder="请输入视频描述！" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-upload" style="margin-left: 48px">
@@ -339,28 +331,28 @@
         layui.use('upload', function() {
             var $ = layui.jquery
                 , upload = layui.upload;
-            //普通图片上传
             var uploadInst = upload.render({
                 elem: '#test1'
-                ,url: '/upload/'
-                ,before: function(obj){
+                , url: '/uploadflv/upload'
+                , before: function (obj) {
                     //预读本地文件示例，不支持ie8
-                    obj.preview(function(index, file, result){
+                    obj.preview(function (index, file, result) {
                         $('#demo1').attr('src', result); //图片链接（base64）
                     });
                 }
-                ,done: function(res){
-                    //如果上传失败
-                    if(res.code > 0){
-                        return layer.msg('上传失败');
+                , done: function (res) {
+                    console.log(res.data[0]);
+                    if (res.code > 0) {
+                        return layer.msg('上传失败！')
                     }
-                    //上传成功
+                    $('#logourl').val('' + res.data[0]);
+                    return layer.msg('上传成功！')
                 }
-                ,error: function(){
+                , error: function () {
                     //演示失败状态，并实现重传
                     var demoText = $('#demoText');
                     demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                    demoText.find('.demo-reload').on('click', function(){
+                    demoText.find('.demo-reload').on('click', function () {
                         uploadInst.upload();
                     });
                 }

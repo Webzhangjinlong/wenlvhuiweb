@@ -6,17 +6,19 @@ import com.suguang.dao.YmArtistDao;
 import com.suguang.domin.YmArtist;
 import com.suguang.service.ArtistService;
 
+import com.suguang.util.YmStaticVariablesUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.File;
+import java.text.ParseException;
 import java.util.Date;
 
 /**
@@ -76,7 +78,7 @@ public class ArtistController {
 
     //将信息保存，返回到列表页
     @RequestMapping(value = "/saveupdate")
-    public String YmArtistSaveUpdate(HttpServletRequest request, Model model) {
+    public String YmArtistSaveUpdate(HttpServletRequest request, Model model) throws ParseException {
 
         String id = request.getParameter("id");
         String name = request.getParameter("artistName");
@@ -116,5 +118,11 @@ public class ArtistController {
 
     }
 
+    //返回服务器资源
+    @RequestMapping(value = "export_xls", method = RequestMethod.GET)
+    public ResponseEntity<FileSystemResource> exportXls(HttpServletRequest request) {
+        String file = request.getParameter("file");
+        return UploadController.export(new File(YmStaticVariablesUtil.UPLOAD_PATH+file));
+    }
 
 }

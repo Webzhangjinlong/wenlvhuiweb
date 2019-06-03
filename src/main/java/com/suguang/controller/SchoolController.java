@@ -6,14 +6,18 @@ import com.suguang.domin.YmImage;
 import com.suguang.domin.YmSchool;
 
 import com.suguang.service.SchoolService;
+import com.suguang.util.YmStaticVariablesUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -132,6 +136,8 @@ public class SchoolController {
         String area = request.getParameter("area");
         String phone = request.getParameter("phone");
         String addrDetail = request.getParameter("addrDetail");
+        String details = request.getParameter("details");
+        String logourl = request.getParameter("logourl");
         YmSchool ymSchool = new YmSchool();
 
         if (id != null && id != "") {
@@ -146,6 +152,8 @@ public class SchoolController {
         ymSchool.setAddrDetail(addrDetail);
         Date date = new Date();
         ymSchool.setCreateDate(date);
+        ymSchool.setLogourl(logourl);
+        ymSchool.setDetails(details);
 
         YmSchool save = schoolDao.save(ymSchool);
 
@@ -167,12 +175,12 @@ public class SchoolController {
     public String addImg(HttpServletRequest request,Model model){
         //学校ID
         String id = request.getParameter("id");
-        String imgName = request.getParameter("details");
-        String detalis = request.getParameter("AddImageDetalis");
+        String imgName = request.getParameter("imgName");
+        String detalis = request.getParameter("details");
 
         YmImage ymImage = new YmImage();
         ymImage.setImageType(1);
-        ymImage.setImgType(4);
+        ymImage.setImgType(9);
         ymImage.setPid(Integer.parseInt(id));
         ymImage.setImgName(imgName);
         ymImage.setDetalis(detalis);
@@ -204,5 +212,10 @@ public class SchoolController {
         return "redirect:/school/update?id="+schoolid;
     }
 
-
+    //返回服务器资源
+    @RequestMapping(value = "export_xls", method = RequestMethod.GET)
+    public ResponseEntity<FileSystemResource> exportXls(HttpServletRequest request) {
+        String file = request.getParameter("file");
+        return UploadController.export(new File(YmStaticVariablesUtil.UPLOAD_PATH+file));
+    }
 }

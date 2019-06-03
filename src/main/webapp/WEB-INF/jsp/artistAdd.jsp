@@ -37,8 +37,24 @@
 <script type="text/javascript">
    function chan() {
        var artistName = document.getElementById("artistName").value;
+       var artistType = document.getElementById("artistType").value;
+       var artistPhone = document.getElementById("artistPhone").value;
+       var artistStatus = document.getElementById("artistStatus").value;
+
        if(artistName == "" || artistName == null){
            alert("请输入艺人名称!");
+           return false;
+       }
+       if(artistType == "" || artistType == null){
+           alert("请输入艺人类别!");
+           return false;
+       }
+       if(artistPhone == "" || artistPhone == null){
+           alert("请输入艺人电话!");
+           return false;
+       }
+       if(artistStatus == "" || artistStatus == 0){
+           alert("请选择艺人状态!");
            return false;
        }
            $("#artistExperience").val(editor1.txt.html());
@@ -74,12 +90,12 @@
         <div class="form-group">
             <label class="col-sm-1 control-label">艺人电话:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="tagSource" type="text" name="phone" value="${addYmArtist.artistPhone}"
+                <input class="form-control" id="artistPhone" type="text" name="phone" value="${addYmArtist.artistPhone}"
                        placeholder="请输入艺人电话">
             </div>
             <label class="col-sm-1 control-label">艺人状态:</label>
             <div class="col-sm-2">
-                <select name="status" id="tagStatus" value="${addYmArtist.artistStatus}" class="form-control">
+                <select name="status" id="artistStatus" value="${addYmArtist.artistStatus}" class="form-control">
 
                     <c:if test="${addYmArtist.artistStatus == 1}">
                         <option value="1" name="status">认证成功</option>
@@ -93,16 +109,8 @@
                 </select>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-1 control-label">艺人账号:</label>
-            <div class="col-sm-2">
-                <input class="form-control" id="tagName" type="text" name="num" value="${addYmArtist.artistPhone}"
-                       placeholder="请输入艺人账号">
-            </div>
-
-        </div>
         <div style="margin-left: 22px;">
-            <label class="control-label">艺人介绍:</label><br>
+            <label class="control-label">艺人介绍（必填）:</label><br>
 
         </div>
         <div style="margin-left: 22px; margin-top: 10px">
@@ -113,7 +121,7 @@
             </div>
             <input type="hidden" id="artistDetails" name="artistDetails" value="${addYmArtist.artistDetails}">
         </div>
-        <div class="layui-upload" style="float: right; margin-right: 400px; margin-top: -320px">
+        <div class="layui-upload" style="float: right; margin-right: 400px; margin-top: -250px">
             <button type="button" class="layui-btn" id="test1">上传艺人封面图</button>
             <div class="layui-upload-list">
                 <img class="layui-upload-img" id="demo1" src="${addYmArtist.backgroundUrl}">
@@ -121,7 +129,7 @@
             <input id="backgroundUrl" name="backgroundUrl" type="hidden" value="${addYmArtist.backgroundUrl}"/>
             <p id="demoText"></p>
         </div>
-        <div class="layui-upload" style="float: right; margin-right: 200px; margin-top: -320px">
+        <div class="layui-upload" style="float: right; margin-right: 200px; margin-top: -250px">
             <button type="button" class="layui-btn" id="test2">上传艺人logo</button>
             <div class="layui-upload-list">
                 <img class="layui-upload-img" id="demo2" src="${addYmArtist.artistLogourl}">
