@@ -30,6 +30,11 @@ public class CarftsmanController {
     private Integer pageNum;
     private Integer sizeNum;
 
+    @RequestMapping("/shopUpdate")
+    public String shopUpdate(){
+        return "craftsmanShopAdd";
+    }
+
     //匠人
     @GetMapping("/list")
     public String getAllByPage(HttpServletRequest request, Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size) {

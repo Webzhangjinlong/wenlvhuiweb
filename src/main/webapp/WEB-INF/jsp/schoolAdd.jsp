@@ -31,7 +31,7 @@
 		    margin: 0 10px 10px 0;
 }
     </style>
-	<body>
+	<body style="width: 98%">
 	<div style="margin-top: 10px">
 		<font style="color: #000; font-size: 12px; margin-left: 10px">
 			★ 添加学校

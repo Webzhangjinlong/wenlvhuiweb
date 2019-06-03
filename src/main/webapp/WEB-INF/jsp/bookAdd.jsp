@@ -35,7 +35,7 @@
         margin: 0 10px 10px 0;
     }
 </style>
-<body>
+<body  style="width: 98%">
 <script type="text/javascript">
     function chan() {
         $("#cotent").val(editor1.txt.html());
