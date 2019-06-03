@@ -5,9 +5,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 /**
  * Author liruifeng Date 2019-05-05
  */
@@ -29,7 +27,25 @@ public class YmProduct implements Serializable {
 	private Integer categoryId;
 	private Integer status;
 	private Date createDate;
+
+	public java.util.Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(java.util.Date createDate) {
+		this.createDate = createDate;
+	}
+
 	private Integer createUser;
+	private String productImage;
+
+	public String getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(String productImage) {
+		this.productImage = productImage;
+	}
 
 	public YmProduct() {
 	}
@@ -122,14 +138,6 @@ public class YmProduct implements Serializable {
 		return status;
 	}
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-
-	public Date getCreateDate() {
-		return createDate;
-	}
-
 	public void setCreateUser(Integer createUser) {
 		this.createUser = createUser;
 	}
@@ -138,8 +146,5 @@ public class YmProduct implements Serializable {
 		return createUser;
 	}
 
-
-	
-	
 
 }

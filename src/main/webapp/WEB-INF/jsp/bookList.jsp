@@ -44,11 +44,10 @@
             <td>作者</td>
             <td>出版时间</td>
             <td>图书价格</td>
-            <td>推荐人</td>
             <td>推荐数量</td>
             <td>创建时间</td>
             <td>推荐星级</td>
-            <td>有货书馆</td>
+            <td>主页展示</td>
             <td>操作</td>
         </tr>
         <c:forEach items="${bookList.content}" var="bookList">
@@ -57,14 +56,13 @@
                 <td>${bookList.bookAuther}</td>
                 <td>${bookList.publishDate}</td>
                 <td>${bookList.bookPrice}</td>
-                <td>${bookList.recommendUser}</td><!--推荐人-->
                 <td>${bookList.recommendedNumber}</td>
                 <td>${bookList.createDate}</td>
                 <td>★★★</td>
 
                 <td>
-                    <c:if test="${bookList.indexShow == 1}">有书</c:if>
-                    <c:if test="${bookList.indexShow == 2}">没书</c:if>
+                    <c:if test="${bookList.indexShow == 1}">展示</c:if>
+                    <c:if test="${bookList.indexShow == 2}">不展示</c:if>
                 </td>
 
                 <td>

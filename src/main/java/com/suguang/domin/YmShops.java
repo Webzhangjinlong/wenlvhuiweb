@@ -25,9 +25,16 @@ public class YmShops {
 	String  latitude  ;
 	Date  createDate  ;
 	Integer  createUser ;
+	String experience;
 
+	public String getExperience() {
+		return experience;
+	}
 
-	//Integer is_up;
+	public void setExperience(String experience) {
+		this.experience = experience;
+	}
+//Integer is_up;
 	//Integer product_num;
 	//Integer up_num;
 //	List<YmProduct> productList = new ArrayList<YmProduct>(); // 商品集合

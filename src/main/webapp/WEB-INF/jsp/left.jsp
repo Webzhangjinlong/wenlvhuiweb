@@ -63,6 +63,13 @@ pageEncoding="UTF-8"%>
 					<dd><a href="/book/add" target="showframe">添加图书</a></dd>
 				</dl>
 			</li>
+			<li class="layui-nav-item">
+				<a href="javascript:;">空间管理</a>
+				<dl class="layui-nav-child">
+					<dd><a href="/space/list" target="showframe">空间列表</a></dd>
+					<dd><a href="/space/add" target="showframe">添加空间</a></dd>
+				</dl>
+			</li>
 		</ul>
 	</body>
 	<script>

@@ -33,23 +33,6 @@ pageEncoding="UTF-8"%>
     </style>
 	<script>
 		function chan() {
-		    var productName = document.getElementById("productName").value;
-		    var productPoint = document.getElementById("productPoint").value;
-		    var browse = document.getElementById("browse").value;
-		    var status = document.getElementById("status").value;
-		    if(productName == null || productName == "") {
-                alert("请输入商品名称!");
-                return false;
-            }if(productPoint == null || productPoint == ""){
-		        alert("请输入商品卖点!");
-		        return false;
-            }if(browse == null || browse == ""){
-		        alert("请输入浏览量，可以为0!");
-		        return false;
-            }if(status == null || status == 0){
-		        alert("选择是否上架");
-		        return false;
-			}
 			$("#productDatile").val(editor1.txt.html());
             $("#form1").submit();
         }
@@ -58,7 +41,7 @@ pageEncoding="UTF-8"%>
 	<body style="width: 98%">
 	<div style="margin-top: 10px">
 		<font style="color: #000; font-size: 12px; margin-left: 10px">
-			★ 匠人商品添加
+			★ 场馆添加
 		</font>
 		<br>
 		<hr style="background: red; height: 2px; margin-top: 0px">
@@ -69,49 +52,33 @@ pageEncoding="UTF-8"%>
 					<input type="hidden" name="id" value="${product.id}">
 				</div>
 				<div class="form-group">
-					<label class="col-sm-1 control-label">商品名称:</label>
+					<label class="col-sm-1 control-label">场馆名称:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="productName" type="text" name="productName" value="${product.productName}" placeholder="请输入商品名称">
+						<input class="form-control" id="productName" type="text" name="productName" value="${product.productName}" placeholder="请输入场馆名称">
 					</div>
-					<label class="col-sm-1 control-label">商品卖点:</label>
+					<label class="col-sm-1 control-label">容纳人数:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="productPoint" type="text"  name="productPoint" value="${product.productPoint}" placeholder="请输入商品卖点">
+						<input class="form-control" id="productPoint" type="text"  name="productPoint" value="${product.productPoint}" placeholder="请输入容纳人数">
 					</div>
 				</div>
 				<div class="form-group" style="margin-top: 20px">
-					<label class="col-sm-1 control-label">商品售价:</label>
+					<label class="col-sm-1 control-label">空间面积:</label>
 					<div class="col-sm-2">
-							<input class="form-control" id="price" type="text"  name="price" value="${product.price}" placeholder="请输入商品原价(必填)">
+							<input class="form-control" id="price" type="text"  name="price" value="${product.price}" placeholder="请输入空间面积">
 					</div>
-						<label class="col-sm-1 control-label">当前售价:</label>
+						<label class="col-sm-1 control-label">联系电话:</label>
 						<div class="col-sm-2">
-							<input class="form-control" id="priceDq" type="text"  name="priceDq" value="${product.priceDq}" placeholder="请输入商品当前售价(必填)">
+							<input class="form-control" id="priceDq" type="text"  name="priceDq" value="${product.priceDq}" placeholder="请输入联系电话">
 						</div>
 				</div>
 				<div class="form-group" style="margin-top: 20px">
-					<label class="col-sm-1 control-label">浏览量:</label>
-					<div class="col-sm-2">
-							<input class="form-control" id="browse" type="text"  name="browse" value="${product.browse}" placeholder="请输入商品浏览量">
+					<label class="col-sm-1 control-label">配套设施:</label>
+					<div class="col-sm-5">
+							<input class="form-control" id="browse" type="text"  name="browse" value="${product.browse}" placeholder="请输入配套设施">
 					</div>
-						<label class="col-sm-1 control-label">是否上架:</label>
-						<div class="col-sm-2">
-							<select class="form-control" id="status" name="status" value="${product.status}">
-
-								<c:if test="${product.status == 1}">
-									<option value="1" name="status">上架</option>
-								</c:if>
-								<c:if test="${product.status == 2}">
-									<option value="2" name="status">下架</option>
-								</c:if>
-
-								<option value="0" name="status">--请选择--</option>
-								<option value="1" name="status">上架</option>
-								<option value="2" name="status">下架</option>
-							</select>
-						</div>
 				</div>
 				<div style="margin-left: 20px; margin-top: 0px">
-				<label class="control-label">商品介绍（必填）:</label><br>
+				<label class="control-label">场馆介绍（必填）:</label><br>
 				</div>
 				<div style="margin-left: 20px; margin-top: 10px">
 				    <div id="div1" class="toolbar"></div>
@@ -122,10 +89,10 @@ pageEncoding="UTF-8"%>
 					<input type="hidden" id="productDatile" name="productDatile">
 		    	</div>
 				<div class="layui-upload"  style="float: right ; margin-top: -330px; margin-right: 400px">
-					<button type="button" class="layui-btn" id="test1">请上传商品封面图</button>
+					<button type="button" class="layui-btn" id="test1">请上传场馆封面图</button>
 					<div class="layui-upload-list">
-						<img class="layui-upload-img" id="demo1" src="${product.productImage}">
-						<input id="productImage" name="productImage" type="hidden" value="${product.productImage}"/>
+						<img class="layui-upload-img" id="demo1" src="">
+						<input id="productImage" name="productImage" type="hidden" value=""/>
 						<p id="demoText"></p>
 					</div>
 				</div>

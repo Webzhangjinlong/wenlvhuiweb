@@ -195,7 +195,7 @@
 					<c:if test="${ymImages.imageType == 1}">图片</c:if>
 					<c:if test="${ymImages.imageType == 2}">视频</c:if>
 				</td>
-				<td style="width: 25px; height: 25px"><img src="${ymImages.imgUrl}"></td>
+				<td><img src="${ymImages.imgUrl}"></td>
 				<td>${ymImages.detalis}</td>
 				<td>
 					<%--<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schoolImage">修改/详情--%>

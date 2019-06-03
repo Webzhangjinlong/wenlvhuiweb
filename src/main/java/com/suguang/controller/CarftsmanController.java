@@ -5,19 +5,23 @@ import com.suguang.dao.ProductDao;
 import com.suguang.dao.UserDao;
 import com.suguang.domin.*;
 import com.suguang.service.CarftsmanService;
+import com.suguang.util.YmStaticVariablesUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by 11491 on 2019/5/29.
@@ -79,7 +83,6 @@ public class CarftsmanController {
     public String addList(HttpServletRequest request, Model model) {
         String id = request.getParameter("id");
         String shopsName = request.getParameter("shopsName");
-        String createUser = request.getParameter("createUser");
         String shopsSlogan = request.getParameter("shopsSlogan");
         String city = request.getParameter("city");
         String area = request.getParameter("area");
@@ -87,8 +90,9 @@ public class CarftsmanController {
         String longitude = request.getParameter("longitude");
         String latitude = request.getParameter("latitude");
         String shopsDetail = request.getParameter("shopsDetail");
+        String experience = request.getParameter("experience");
         String imgUrl = request.getParameter("imgUrl");
-
+        String province = request.getParameter("province");
         YmShops ymShops = new YmShops();
 
         //此处一定要加判断ID是否为空，否怎会报错，即使不为空也报错
@@ -97,15 +101,15 @@ public class CarftsmanController {
         }
 
         ymShops.setShopsName(shopsName);
-        ymShops.setCreateUser(Integer.parseInt(createUser));
         ymShops.setShopsSlogan(shopsSlogan);
         ymShops.setCity(city);
         ymShops.setArea(area);
-
         ymShops.setAddrDetail(addrDetail);
         ymShops.setLongitude(longitude);
         ymShops.setLatitude(latitude);
         ymShops.setShopsDetail(shopsDetail);
+        ymShops.setExperience(experience);
+        ymShops.setProvince(province);
 
         Date date = new Date();
         ymShops.setCreateDate(date);
@@ -150,12 +154,13 @@ public class CarftsmanController {
     public String productadd(HttpServletRequest request,Model model){
         String id = request.getParameter("id");
         String productName = request.getParameter("productName");
-        String skuId = request.getParameter("skuId");
         String price = request.getParameter("price");
         String priceDq = request.getParameter("priceDq");
         String browse = request.getParameter("browse");
         String status = request.getParameter("status");
         String productPoint = request.getParameter("productPoint");
+        String productImage = request.getParameter("productImage");
+        String productDatile = request.getParameter("productDatile");
 
         YmProduct ymProduct = new YmProduct();
         //商品介绍未写
@@ -167,7 +172,6 @@ public class CarftsmanController {
             ymProduct.setId(Integer.parseInt(id));
         }
         ymProduct.setProductName(productName);
-        ymProduct.setSkuId(skuId);
         BigDecimal bigDecimal = new BigDecimal(Double.parseDouble(price));
         ymProduct.setPrice(bigDecimal);
         ymProduct.setShopsId(Integer.parseInt(Shopid));
@@ -176,8 +180,10 @@ public class CarftsmanController {
         ymProduct.setBrowse(Integer.parseInt(browse));
         ymProduct.setStatus(Integer.parseInt(status));
         ymProduct.setProductPoint(productPoint);
-        String string = UUID.randomUUID().toString();
-        ymProduct.setSkuId(string);
+        ymProduct.setProductImage(productImage);
+        ymProduct.setProductDatile(productDatile);
+        //Date date = new Date();
+        ymProduct.setCreateDate(new Date());
         productDao.save(ymProduct);
         return "redirect:/craftsman/show?id="+Shopid;
     }
@@ -197,6 +203,12 @@ public class CarftsmanController {
     }
 
 
+    //返回服务器资源
+    @RequestMapping(value = "export_xls", method = RequestMethod.GET)
+    public ResponseEntity<FileSystemResource> exportXls(HttpServletRequest request) {
+        String file = request.getParameter("file");
+        return UploadController.export(new File(YmStaticVariablesUtil.UPLOAD_PATH+file));
+    }
 
 
 }

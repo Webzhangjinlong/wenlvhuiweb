@@ -38,73 +38,42 @@
 <body>
 <script type="text/javascript">
     function chan() {
-        var shopsName = document.getElementById("shopsName").value;
-        var shopsSlogan = document.getElementById("shopsSlogan").value;
-        var city = document.getElementById("city").value;
-        var area = document.getElementById("area").value;
-        var addrDetail = document.getElementById("addrDetail").value;
-        var longitude = document.getElementById("longitude").value;
-        var latitude = document.getElementById("latitude").value;
-        if(shopsName == null || shopsName == ""){
-            alert("请输入匠人名称!");
-            return false;
-        }if(shopsSlogan == null || shopsSlogan == ""){
-            alert("请输入匠人标语!");
-            return false;
-        }if(city == null || city == ""){
-            alert("请输入匠人所在城市!");
-            return false;
-        }if(area == null || area == ""){
-            alert("请输入匠人所在区/县!");
-            return false;
-        }if(addrDetail == null || addrDetail == ""){
-            alert("请输入匠人详细地址!");
-            return false;
-        }if(longitude == null || longitude == ""){
-            alert("请输入经度!");
-            return false;
-        }if(latitude == null || latitude == ""){
-            alert("请输入纬度!");
-            return false;
-        }
-        $("#shopsDetail").val(editor1.txt.html());
-        $("#experience").val(editor2.txt.html());
         $("#form1").submit();
     }
 </script>
 <div style="margin-top: 10px">
     <font style="color: #000; font-size: 12px; margin-left: 10px">
-        ★ 添加匠人 </font> <br>
+        ★ 添加空间 </font> <br>
     <hr style="background: red; height: 2px; margin-top: 5px">
 </div>
 <div>
     <form class="form-horizontal" role="form" id="form1" action="/craftsman/addList">
 
         <div>
-            <input type="hidden" name="id" value="${show.id}">
+            <input type="hidden" name="id" value="${space.id}">
         </div>
         <div class="form-group">
-            <label class="col-sm-1 control-label">匠人名称:</label>
+            <label class="col-sm-1 control-label">空间名:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="shopsName" type="text" name="shopsName" value="${show.shopsName}"
-                       placeholder="请输入匠人名称">
+                <input class="form-control" id="shopsName" type="text" name="shopsName" value=""
+                       placeholder="请输入空间名">
             </div>
-            <label class="col-sm-1 control-label">匠人标语:</label>
+            <label class="col-sm-1 control-label">标题:</label>
             <div class="col-sm-2">
                 <input class="form-control" id="shopsSlogan" type="text" name="shopsSlogan" value="${show.shopsSlogan}"
-                       placeholder="请输入匠人标语">
+                       placeholder="请输入标题">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-1 control-label">市:</label>
+            <label class="col-sm-1 control-label">场馆面积:</label>
             <div class="col-sm-2">
                 <input class="form-control" id="city" type="text" name="city" value="${show.city}"
-                       placeholder="市">
+                       placeholder="场馆面积">
             </div>
-            <label class="col-sm-1 control-label">区:</label>
+            <label class="col-sm-1 control-label">开放时间:</label>
             <div class="col-sm-2">
                 <input class="form-control" id="area" type="text" name="area" value="${show.area}"
-                       placeholder="区">
+                       placeholder="开放时间">
             </div>
 
         </div>
@@ -113,6 +82,13 @@
             <div class="col-sm-5">
                 <input class="form-control" id="addrDetail" type="text" name="addrDetail" value="${show.addrDetail}"
                        placeholder="请输入详细地址">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">联系电话:</label>
+            <div class="col-sm-2">
+                <input class="form-control" id="addrDetail" type="text" name="addrDetail" value="${show.addrDetail}"
+                       placeholder="请输入联系电话">
             </div>
         </div>
         <div class="form-group">
@@ -132,40 +108,29 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-1 control-label" style="margin-top: 30px;">品牌经历:</label>
-            <div style="margin-left: 120px">
-                <div id="experience1" class="toolbar"></div>
-                <div style="padding: 5px 0; color: #ccc"></div>
-                <div id="experience2" class="text">
-                    <p>${show.experience}</p>
-                </div>
-                <input type="hidden" id="experience" name="experience">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-1 control-label" style="margin-top: 30px;">匠人介绍:</label>
+            <label class="col-sm-1 control-label" style="margin-top: 30px;">空间内容:</label>
             <div style="margin-left: 120px">
                 <div id="div1" class="toolbar"></div>
                 <div style="padding: 5px 0; color: #ccc"></div>
                 <div id="div2" class="text">
-                    <p>${show.shopsDetail}</p>
+                    <p></p>
                 </div>
                 <input type="hidden" id="shopsDetail" name="shopsDetail">
             </div>
         </div>
-        <div class="layui-upload" style="float: right ; margin-top: -500px; margin-right: 440px">
-            <button type="button" class="layui-btn" id="test1">请上传店铺logo</button>
+        <div class="layui-upload" style="float: right ; margin-top: -400px; margin-right: 440px">
+            <button type="button" class="layui-btn" id="test1">请上传空间头型</button>
             <div class="layui-upload-list">
-                <img class="layui-upload-img" id="demo1" src="${show.imgUrl}">
-                <input id="imgUrl" name="imgUrl" type="hidden" value="${show.imgUrl}"/>
+                <img class="layui-upload-img" id="demo1" src="">
+                <input id="imgUrl" name="imgUrl" type="hidden" value=""/>
                 <p id="demoText"></p>
             </div>
         </div>
-        <div class="layui-upload" style="float: right ; margin-top: -500px; margin-right: 250px">
-            <button type="button" class="layui-btn" id="test2">请上传店铺背景图</button>
+        <div class="layui-upload" style="float: right ; margin-top: -400px; margin-right: 250px">
+            <button type="button" class="layui-btn" id="test2">请上传空间背景</button>
             <div class="layui-upload-list">
-                <img class="layui-upload-img" id="demo2" src="${show.province}">
-                <input id="province" name="province" type="hidden" value="${show.province}"/>
+                <img class="layui-upload-img" id="demo2" src="">
+                <input id="province" name="province" type="hidden" value=""/>
                 <p id="demoText1"></p>
             </div>
         </div>
@@ -176,40 +141,59 @@
 </div>
 <div>
     <div style="margin-left: 20px">
-        <button class="btn btn-primary btn-sm" onclick="addProduct(${ show.id})">
-            添加商品
+        <button class="btn btn-primary btn-sm" onclick="addDetail()">
+            添加场馆
         </button>
     </div>
     <table class="layui-table" lay-skin="line" style="margin-left: 20px; width: 80%">
         <thead>
         <tr>
-            <th>商品名</th>
-            <th>商品标价</th>
-            <th>商品卖点</th>
-            <th>当前售价</th>
-            <th>是否上架</th>
+            <th>场馆名称</th>
+            <th>场馆图片</th>
+            <th>容纳人数</th>
+            <th>场馆面积</th>
+            <th>联系电话</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>老张的内裤工厂</td>
+                <td><img src="" alt="11"></td>
+                <td>265人</td>
+                <td>124平米</td>
+                <td>13895956234</td>
+                <td>
+                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="updateDetail()">修改</button>
+                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ productList.id})">删除</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="margin-left: 20px">
+        <button class="btn btn-primary btn-sm" onclick="addPolicy()">
+            添加活动
+        </button>
+    </div>
+    <table class="layui-table" lay-skin="line" style="margin-left: 20px; width: 80%">
+        <thead>
+        <tr>
+            <th>活动图片</th>
+            <th>浏览量</th>
             <th>创建时间</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${productList}" var="productList">
-            <tr>
-                <td>${productList.productName}</td>
-                <td>${productList.price}</td>
-                <td>${productList.productPoint}</td>
-                <td>${productList.priceDq}</td>
-                <td>
-                    <c:if test="${productList.status == 1}">上架啦</c:if>
-                    <c:if test="${productList.status == 2}">下架啦</c:if>
-                </td>
-                <td>${productList.createDate}</td>
-                <td>
-                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="updateById(${ productList.id})">修改</button>
-                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ productList.id})">删除</button>
-                </td>
-            </tr>
-        </c:forEach>
+        <tr>
+            <td><img src="" alt="11"></td>
+            <td>56</th>
+            <td>2013-02-03</td>
+            <td>
+                <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="updatePolicy()">修改</button>
+                <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById()">删除</button>
+            </td>
+        </tr>
         </tbody>
     </table>
 </div>
@@ -235,15 +219,15 @@
 </script>
 
 <script>
-    function updateById(id) {
-        window.location.href = "/craftsman/updatePro?id=" + id;
+    function addDetail() {
+        window.location.href = "/space/detailAdd";
     }
 
 </script>
 
 <script>
-    function addProduct(id) {
-        window.location.href = "/craftsman/addPro?id=" + id;
+    function addPolicy() {
+        window.location.href = "/space/policyAdd";
     }
 
 </script>
