@@ -32,7 +32,7 @@
 <body>
 <div style="margin-top: 10px">
     <font style="color: #000; font-size: 12px; margin-left: 10px">
-        ★ 餐馆列表
+        ★ 路线列表
     </font>
     <br>
     <hr style="background: red; height: 2px">
@@ -40,63 +40,45 @@
 <div id="tab1">
     <table class="layui-table" lay-skin="line" style="text-align: center; overflow: hidden;">
         <tr style="font-weight: bold;">
-            <td>餐馆名</td>
-            <td>种类</td>
-            <td>标签</td>
-            <td>平均消费</td>
-            <td>市</td>
-            <td>区</td>
-            <td>详细地址</td>
-            <td>星级</td>
-            <td>经度</td>
-            <td>纬度</td>
+            <td>路线名称</td>
+            <td>路线类型</td>
+            <td>成人票价</td>
+            <td>儿童票价</td>
+            <td>套票价</td>
             <td>操作</td>
         </tr>
-
-        <c:forEach items="${hotelList.content}" var="list">
-            <tr>
-                <td>${list.restaurantName}</td>
-                <td>${ list.restaurantType}</td>
-                <c:if test="${ list.restaurantTag == 1}">
-
-                </c:if>
+            <tr style="font-weight: bold;">
+                <td>黄沙古渡</td>
+                <td>周末嗨游</td>
+                <td>255</td>
+                <td>188</td>
+                <td>488</td>
                 <td>
-                    <c:if test="${ list.restaurantTag == 1}">
-                        必吃
-                    </c:if>
-                    <c:if test="${ list.restaurantTag == 2}">
-                        特色
-                    </c:if>
-                </td>
-                <td>${ list.averageConsumption}</td>
-                <td>${ list.city}</td>
-                <td>${ list.area}</td>
-                <td>${ list.addrDetail}</td>
-                <td>${ list.starClass}</td>
-                <td>${ list.longitude}</td>
-                <td>${ list.latitude}</td>
-                <td>
-                    <button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ list.id})">修改</button>
-                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ list.id})">删除
+                    <button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ tag.id})">修改/详情
                     </button>
+                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ tag.id})">删除</button>
                 </td>
             </tr>
-        </c:forEach>
     </table>
-    <div id="test1" style="margin-left: 900px"></div>
+    <div id="test1" style="margin-left: 900px">
+    </div>
 </div>
 
 <script type="text/javascript">
-    function updateById(id) {
-        window.location.href = "/hotel/update?id=" + id;
-    }
-
     function deleteById(id) {
-        window.location.href = "/hotel/delete?id=" + id;
+        alert("您已成功删除！");
+        window.location.href = "/tag/delete?id=" + id;
     }
 </script>
+
 <script>
-    var count = "${hotelList.totalElements}";
+    function updateById(id) {
+        window.location.href = "/tag/update?id=" + id;
+    }
+
+</script>
+<script>
+    var count = "${tagList.totalElements}";
     console.log(count)
     layui.use('laypage', function(){
         var laypage = layui.laypage;
@@ -110,12 +92,13 @@
                 if(first){
                     return
                 }
-                var  href ='/hotel/list?page='+obj.curr+'&size='+obj.limit
+                var  href ='/tag/list?page='+obj.curr+'&size='+obj.limit
                 location.href=href;
             }
         });
     });
 </script>
+
 </body>
 
 </html>

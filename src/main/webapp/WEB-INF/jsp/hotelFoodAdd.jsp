@@ -31,6 +31,12 @@ pageEncoding="UTF-8"%>
 			margin: 0 10px 10px 0;
 		}
     </style>
+	<script type="text/javascript">
+		function chan() {
+			$("#foodDetail").val(editor1.txt.html());
+			$("#form1").submit();
+        }
+	</script>
 	<body style="width: 98%">
 	<div style="margin-top: 10px">
 		<font style="color: #000; font-size: 12px; margin-left: 10px">
@@ -38,7 +44,7 @@ pageEncoding="UTF-8"%>
 		<hr style="background: red; height: 2px; margin-top: 5px">
 	</div>
  		<div>
-			<form class="form-horizontal" role="form" action="/hotel/addUpdate">
+			<form class="form-horizontal" id="form1" role="form" action="/hotel/addUpdate">
 
 				<div>
 					<input type="hidden" name="id" value="${ymFood.id}">
@@ -78,25 +84,17 @@ pageEncoding="UTF-8"%>
 				</div>
 				<div class="layui-upload" style="margin-left: 20px;margin-top: 20px">
 					<button type="button" class="layui-btn layui-btn-normal" id="test8">选择活动视频</button>
-					<input type="hidden" id="videourl" name="videourl" value="" >
+					<input type="hidden" id="videoUrl" name="videoUrl" value="${ymFood.videoUrl}" >
 					<button type="button" class="layui-btn" id="test9">开始上传</button>
-					<p id="p1" class="layui-btn layui-btn-warm layui-btn-radius" style="margin-top: 11px"></p>
+					<p id="p1" class="layui-btn layui-btn-warm layui-btn-radius" style="margin-top: 11px">${ymFood.videoUrl}</p>
 				</div>
 				<div class="layui-upload" style="float: right; margin-right: 400px; margin-top: -170px">
-					<button type="button" class="layui-btn" id="test1">上传菜品封面图</button>
+					<button type="button" class="layui-btn" id="test1">上传菜品/视频封面图</button>
 					<div class="layui-upload-list">
-						<img class="layui-upload-img" id="demo1" src="">
+						<img class="layui-upload-img" id="demo1" src="${ymFood.imgUrl}">
 					</div>
-					<input id="image" name="image" value="" type="hidden"/>
+					<input id="imgUrl" name="imgUrl" value="${ymFood.imgUrl}" type="hidden"/>
 					<p id="demoText"></p>
-				</div>
-				<div class="layui-upload" style="float: right; margin-right: 200px; margin-top: -170px">
-					<button type="button" class="layui-btn" id="test2">上传视频封面图</button>
-					<div class="layui-upload-list">
-						<img class="layui-upload-img" id="demo2" src="">
-					</div>
-					<input id="videoBackurl" name="videoBackurl" value="" type="hidden"/>
-					<p id="demoText1"></p>
 				</div>
 				<div style="margin-left: 25px;">
 				<label class="control-label">菜品介绍</label><br>
@@ -104,11 +102,13 @@ pageEncoding="UTF-8"%>
 				<div style="margin-left: 25px; margin-top: 10px">
 				    <div id="div1" class="toolbar"></div>
 					    <div style="padding: 5px 0; color: #ccc"></div>
-					    <div id="div2" class="text"> <!--可使用 min-height 实现编辑区域自动增加高度-->
+					    <div id="div2" class="text">
+							<p>${ymFood.foodDetail}</p>
 		    		</div>
+					<input type="hidden" id="foodDetail" name="foodDetail">
 		    	</div>
 		    	<div style="margin-top: 10px; margin-left: 650px;">
-		    		<button class="layui-btn layui-btn-sm">确定添加/修改</button>
+		    		<button class="layui-btn layui-btn-sm" onclick="chan()">确定添加/修改</button>
 		    	</div>
 			</form>
  		</div>
@@ -117,8 +117,58 @@ pageEncoding="UTF-8"%>
     <script type="text/javascript">
         var E = window.wangEditor;
         var editor1 = new E('#div1', '#div2');
-        editor1.customConfig.uploadImgServer = '/upload';
         editor1.create();
     </script>
 </body>
+	<script>
+        layui.use('upload', function () {
+            var $ = layui.jquery
+                , upload = layui.upload;
+            //普通图片上传
+            var uploadInst1 = upload.render({
+                elem: '#test1'
+                , url: '/uploadflv/upload'
+                , before: function (obj) {
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function (index, file, result) {
+                        $('#demo1').attr('src', result); //图片链接（base64）
+                    });
+                }
+                , done: function (res) {
+                    console.log(res.data[0]);
+                    if (res.code > 0) {
+                        return layer.msg('上传失败！')
+                    }
+                    $('#imgUrl').val('' + res.data[0]);
+                    return layer.msg('上传成功！')
+                }
+                , error: function () {
+                    //演示失败状态，并实现重传
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function () {
+                        uploadInst1.upload();
+                    });
+                }
+            });
+            //选完文件后不自动上传
+            upload.render({
+                elem: '#test8'
+                ,url: '/uploadflv/upload'
+                ,accept: 'video'
+                ,auto:false
+                //,multiple: true
+                ,bindAction: '#test9'
+                ,done: function(res){
+                    console.log(res.data[0])
+                    if(res.code > 0){
+                        return layer.msg('上传失败！')
+                    }
+                    $("#videoUrl").val('' + res.data[0]);
+                    $("#p1").text('' + res.data[0])
+                    return layer.msg('上传成功！')
+                }
+            });
+        });
+	</script>
 </html>

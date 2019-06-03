@@ -6,16 +6,21 @@ import com.suguang.domin.YmFood;
 import com.suguang.domin.YmRestaurant;
 import com.suguang.domin.YmWenlv;
 import com.suguang.service.HotelService;
+import com.suguang.util.YmStaticVariablesUtil;
 import org.apache.ibatis.ognl.DynamicSubscript;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -86,6 +91,10 @@ public class HotelController {
         String addrDetail = request.getParameter("addrDetail");
         String longitude = request.getParameter("longitude");
         String latitude = request.getParameter("latitude");
+        String restaurantImg = request.getParameter("restaurantImg");
+        String restaurantBackimage = request.getParameter("restaurantBackimage");
+        String restaurantTag = request.getParameter("restaurantTag");
+        String restaurantDetail = request.getParameter("restaurantDetail");
 
         YmRestaurant ymRestaurant = new YmRestaurant();
 
@@ -102,6 +111,10 @@ public class HotelController {
         ymRestaurant.setAddrDetail(addrDetail);
         ymRestaurant.setLongitude(longitude);
         ymRestaurant.setLatitude(latitude);
+        ymRestaurant.setRestaurantImg(restaurantImg);
+        ymRestaurant.setRestaurantBackimage(restaurantBackimage);
+        ymRestaurant.setRestaurantTag(Integer.parseInt(restaurantTag));
+        ymRestaurant.setRestaurantDetail(restaurantDetail);
         YmRestaurant save = hotelDao.save(ymRestaurant);
         model.addAttribute("hotel", save);
 
@@ -143,6 +156,9 @@ public class HotelController {
         String foodName = request.getParameter("foodName");
         String foodType = request.getParameter("foodType");
         String foodPrice = request.getParameter("foodPrice");
+        String imgUrl = request.getParameter("imgUrl");
+        String videoUrl = request.getParameter("videoUrl");
+        String foodDetail = request.getParameter("foodDetail");
         String upNum = request.getParameter("upNum");
 
         YmFood ymFood = new YmFood();
@@ -156,6 +172,9 @@ public class HotelController {
         BigDecimal bigDecimal1 = new BigDecimal(Double.parseDouble(foodPrice));
         ymFood.setFoodPrice(bigDecimal1);
         ymFood.setUpNum(Integer.parseInt(upNum));
+        ymFood.setImgUrl(imgUrl);
+        ymFood.setVideoUrl(videoUrl);
+        ymFood.setFoodDetail(foodDetail);
         //富文本和上传视频图片未写
         foodDao.save(ymFood);
 
@@ -177,5 +196,11 @@ public class HotelController {
         return "redirect:/hotel/update?id="+hotelid;
     }
 
+    //返回服务器资源
+    @RequestMapping(value = "export_xls", method = RequestMethod.GET)
+    public ResponseEntity<FileSystemResource> exportXls(HttpServletRequest request) {
+        String file = request.getParameter("file");
+        return UploadController.export(new File(YmStaticVariablesUtil.UPLOAD_PATH+file));
+    }
 
 }

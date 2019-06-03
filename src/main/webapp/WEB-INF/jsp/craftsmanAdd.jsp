@@ -176,8 +176,18 @@
 </div>
 <div>
     <div style="margin-left: 20px">
-        <button class="btn btn-primary btn-sm" onclick="addProduct(${ show.id})">
+        <button class="btn btn-primary btn-sm" id="aa" onclick="addProduct(${ show.id})">
             添加商品
+            <script type="text/javascript">
+                function addProduct(id) {
+                    if(id == null || id == ""){
+                        alert("请添加完成学校之后在添加图片！")
+                        document.getElementById("aa").disabled = true;
+                        return false;
+                    }
+                    window.location.href = "/craftsman/addPro?id=" + id;
+                }
+            </script>
         </button>
     </div>
     <table class="layui-table" lay-skin="line" style="margin-left: 20px; width: 80%">
@@ -237,13 +247,6 @@
 <script>
     function updateById(id) {
         window.location.href = "/craftsman/updatePro?id=" + id;
-    }
-
-</script>
-
-<script>
-    function addProduct(id) {
-        window.location.href = "/craftsman/addPro?id=" + id;
     }
 
 </script>

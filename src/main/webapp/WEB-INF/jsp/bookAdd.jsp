@@ -181,7 +181,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-1 control-label">文章类型:</label>
+            <label class="col-sm-2 control-label">文章类型(最少选择一个!):</label>
             <div class="col-sm-5">
                 <label class="checkbox-inline">
                     <input type="checkbox"  name="book_tag" id="inlineCheckbox1" value="36"> 小说

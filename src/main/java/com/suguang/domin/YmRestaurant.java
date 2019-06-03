@@ -34,14 +34,19 @@ public class YmRestaurant extends YmEntity {
 	Integer createUser  ;//  int(11) DEFAULT NULL COMMENT '创建人',
 //	Integer comment_num;   //评论数
 //	Integer up_num;		//点赞数
-	    
+	String restaurantBackimage;
 	//List<YmFood>  foodList = new ArrayList<YmFood>();
-	    
-	    
-	    
-	    
-	    
-		public Integer getAverageConsumption() {
+
+
+	public String getRestaurantBackimage() {
+		return restaurantBackimage;
+	}
+
+	public void setRestaurantBackimage(String restaurantBackimage) {
+		this.restaurantBackimage = restaurantBackimage;
+	}
+
+	public Integer getAverageConsumption() {
 			return averageConsumption;
 		}
 		public void setAverageConsumption(Integer averageConsumption) {
