@@ -34,6 +34,10 @@ public class HotelController {
     private Integer sizeNum;
 
 
+    @RequestMapping("/foodUpdate")
+    public String foodUpdate(){
+        return "hotelFoodAdd";
+    }
     //查询所有
     @GetMapping("/list")
     public String getAllByPage(HttpServletRequest request, Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size) {
