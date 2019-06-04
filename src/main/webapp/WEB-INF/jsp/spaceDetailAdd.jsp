@@ -47,34 +47,34 @@ pageEncoding="UTF-8"%>
 		<hr style="background: red; height: 2px; margin-top: 0px">
 	</div>
  		<div>
-			<form class="form-horizontal" role="form"  action="/craftsman/productadd" id="form1">
+			<form class="form-horizontal" role="form"  action="/space/spaceDetailsDetailsUpdate" id="form1">
 				<div>
-					<input type="hidden" name="id" value="${product.id}">
+					<input type="hidden" name="id" value="${YmSpaceDetail.id}">
 				</div>
 				<div class="form-group">
 					<label class="col-sm-1 control-label">场馆名称:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="productName" type="text" name="productName" value="${product.productName}" placeholder="请输入场馆名称">
+						<input class="form-control" id="name" type="text" name="name" value="${YmSpaceDetail.name}" placeholder="请输入场馆名称">
 					</div>
 					<label class="col-sm-1 control-label">容纳人数:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="productPoint" type="text"  name="productPoint" value="${product.productPoint}" placeholder="请输入容纳人数">
+						<input class="form-control" id="population" type="text"  name="population" value="${YmSpaceDetail.population}" placeholder="请输入容纳人数">
 					</div>
 				</div>
 				<div class="form-group" style="margin-top: 20px">
 					<label class="col-sm-1 control-label">空间面积:</label>
 					<div class="col-sm-2">
-							<input class="form-control" id="price" type="text"  name="price" value="${product.price}" placeholder="请输入空间面积">
+							<input class="form-control" id="spaceMeasure" type="text"  name="spaceMeasure" value="${YmSpaceDetail.spaceMeasure}" placeholder="请输入空间面积">
 					</div>
 						<label class="col-sm-1 control-label">联系电话:</label>
 						<div class="col-sm-2">
-							<input class="form-control" id="priceDq" type="text"  name="priceDq" value="${product.priceDq}" placeholder="请输入联系电话">
+							<input class="form-control" id="tel" type="text"  name="tel" value="${YmSpaceDetail.tel}" placeholder="请输入联系电话">
 						</div>
 				</div>
 				<div class="form-group" style="margin-top: 20px">
 					<label class="col-sm-1 control-label">配套设施:</label>
 					<div class="col-sm-5">
-							<input class="form-control" id="browse" type="text"  name="browse" value="${product.browse}" placeholder="请输入配套设施">
+							<input class="form-control" id="facilities" type="text"  name="facilities" value="${YmSpaceDetail.facilities}" placeholder="请输入配套设施">
 					</div>
 				</div>
 				<div style="margin-left: 20px; margin-top: 0px">
@@ -84,15 +84,15 @@ pageEncoding="UTF-8"%>
 				    <div id="div1" class="toolbar"></div>
 					    <div style="padding: 5px 0; color: #ccc"></div>
 					    <div id="div2" class="text">
-							<p>${product.productDatile}</p>
+							<p>${YmSpaceDetail.detail}</p>
 		    		</div>
-					<input type="hidden" id="productDatile" name="productDatile">
+					<input type="hidden" id="detail" name="detail">
 		    	</div>
 				<div class="layui-upload"  style="float: right ; margin-top: -330px; margin-right: 400px">
 					<button type="button" class="layui-btn" id="test1">请上传场馆封面图</button>
 					<div class="layui-upload-list">
-						<img class="layui-upload-img" id="demo1" src="">
-						<input id="productImage" name="productImage" type="hidden" value=""/>
+						<img class="layui-upload-img" id="demo1" src="${YmSpaceDetail.image}">
+						<input id="productImage" name="image" type="hidden" value="${YmSpaceDetail.image}"/>
 						<p id="demoText"></p>
 					</div>
 				</div>

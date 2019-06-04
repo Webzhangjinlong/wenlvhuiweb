@@ -60,18 +60,17 @@ public class YmSpaceController {
         String id = request.getParameter("id");
         ymSpaceDao.deleteById(Integer.parseInt(id));
 
-
-        return "redirect:/space/spaceList?page=" + pageNum + "&size=" + sizeNum;
+        return "redirect:/space/list?page=" + pageNum + "&size=" + sizeNum;
 
     }
 
     //通过id获取修改页面，并将要修改的数据在修改页面渲染
     @RequestMapping("/spaceDetails")
     public String SpaceDetails(HttpServletRequest request, Model model) {
-        String id = request.getParameter("id");
-        List<YmSpaceDetail> spaceDetailList = ymSpaceDetailDao.getBySpaceId(Integer.parseInt(id));
-        List<YmSpacePolicy> SpacePolicyList = ymSpacePolicyDao.getBySpaceId(Integer.parseInt(id));
-        YmSpace ymYmSpace = ymSpaceDao.getById(Integer.parseInt(id));
+        spaceId = request.getParameter("id");
+        List<YmSpaceDetail> spaceDetailList = ymSpaceDetailDao.getBySpaceId(Integer.parseInt(spaceId));
+        List<YmSpacePolicy> SpacePolicyList = ymSpacePolicyDao.getBySpaceId(Integer.parseInt(spaceId));
+        YmSpace ymYmSpace = ymSpaceDao.getById(Integer.parseInt(spaceId));
         model.addAttribute("spaceDetailList", spaceDetailList);
         model.addAttribute("addYmSpace", ymYmSpace);
         model.addAttribute("SpacePolicyList", SpacePolicyList);
@@ -88,31 +87,30 @@ public class YmSpaceController {
     @RequestMapping(value = "/SpaceDetailsUpdate")
     public String SpaceDetailsUpdate(HttpServletRequest request, Model model) throws ParseException {
 
-        spaceId = request.getParameter("id");
+        String id = request.getParameter("id");
         String spaceName = request.getParameter("spaceName");
-        String browse = request.getParameter("browse");
         String spaceTitle = request.getParameter("spaceTitle");
-        String dateil = request.getParameter("dateil");
-        String addr = request.getParameter("addr");
-        String longitude = request.getParameter("longitude");
-        String latitude = request.getParameter("latitude");
-        String HeadImage = request.getParameter("backupField1");
         String spaceMeasure = request.getParameter("spaceMeasure");
         String openDate = request.getParameter("openDate");
+        String addr = request.getParameter("addr");
         String tel = request.getParameter("tel");
+        String longitude = request.getParameter("longitude");
+        String latitude = request.getParameter("latitude");
+        String dateil = request.getParameter("dateil");
+        //空间头像，北京图没写
 
         YmSpace ymYmSpace = new YmSpace();
-        if (spaceId != null && spaceId != "") {
-            ymYmSpace.setId(Integer.parseInt(spaceId));
+        if (id != null && id != "") {
+            ymYmSpace.setId(Integer.parseInt(id));
         }
         ymYmSpace.setSpaceName(spaceName);
-        ymYmSpace.setBrowse(Integer.parseInt(browse));
+        //ymYmSpace.setBrowse(Integer.parseInt(browse));
         ymYmSpace.setSpaceTitle(spaceTitle);
         ymYmSpace.setDateil(dateil);
         ymYmSpace.setAddr(addr);
         ymYmSpace.setLongitude(longitude);
         ymYmSpace.setLatitude(latitude);
-        ymYmSpace.setBackupField1(HeadImage);
+        //ymYmSpace.setBackupField1(HeadImage);
         ymYmSpace.setSpaceMeasure(Integer.parseInt(spaceMeasure));
         ymYmSpace.setOpenDate(openDate);
         ymYmSpace.setTel(tel);
@@ -127,23 +125,23 @@ public class YmSpaceController {
             sizeNum = 10;
         }
 
-        return "redirect:/space/spaceList?page=" + pageNum + "&size=" + sizeNum;
+        return "redirect:/space/list?page=" + pageNum + "&size=" + sizeNum;
 
     }
 
-    //操作场馆
+    //操作场馆    跳转添加页面
     @RequestMapping("/spaceDetailAdd")
     public String SpaceDetailAdd() {
-        return "";
+        return "spaceDetailAdd";
     }
 
-    //通过id获取修改页面，并将要修改的数据在修改页面渲染
+    //通过id获取修改页面，并将要修改的数据在修改页面渲染,回显场馆的
     @RequestMapping("/spaceDetailDetails")
     public String SpaceDetailDetails(HttpServletRequest request, Model model) {
         String id = request.getParameter("id");
         YmSpaceDetail YmSpaceDetail = ymSpaceDetailDao.getById(Integer.parseInt(id));
         model.addAttribute("YmSpaceDetail", YmSpaceDetail);
-        return "redirect:/space/spaceList?id=" + spaceId;
+        return "spaceDetailAdd";
 
     }
 
@@ -151,42 +149,52 @@ public class YmSpaceController {
     public String SpaceDetailDelete(HttpServletRequest request) {
         String SpaceDetailId = request.getParameter("id");
         ymSpaceDetailDao.deleteById(Integer.parseInt(SpaceDetailId));
-        return "redirect:/space/spaceList?id=" + spaceId;
+        return "redirect:/space/spaceDetails?id=" + spaceId;
 
     }
 
+    //场馆增加或者修改保存数据
     @RequestMapping(value = "/spaceDetailsDetailsUpdate")
     public String SpaceDetailsDetailsUpdate(HttpServletRequest request, Model model) throws ParseException {
 
-        String spaceDetailsId = request.getParameter("SpaceDetailsId");
-        String SpaceDetailsName = request.getParameter("SpaceDetailsName");
-        String SpaceDetailsImage = request.getParameter("SpaceDetailsImage");
-        String SpaceDetailsPopulation = request.getParameter("SpaceDetailsPopulation");
-        String SpaceDetailsSpaceMeasure = request.getParameter("SpaceDetailsSpaceMeasure");
-        String SpaceDetailsTel = request.getParameter("SpaceDetailsTel");
-        String SpaceDetailsFacilities = request.getParameter("SpaceDetailsFacilities");
-        String SpaceDetailsDetail = request.getParameter("SpaceDetailsDetail");
+        String id = request.getParameter("id");
+        String name = request.getParameter("name");
+        String population = request.getParameter("population");
+        String spaceMeasure = request.getParameter("spaceMeasure");
+        String tel = request.getParameter("tel");
+        String facilities = request.getParameter("facilities");
+        String detail = request.getParameter("detail");
+        String image = request.getParameter("image");
         YmSpaceDetail ymSpaceDetail = new YmSpaceDetail();
-        if (spaceDetailsId != null && spaceDetailsId != "") {
-            ymSpaceDetail.setId(Integer.parseInt(spaceDetailsId));
+        if (id != null && id != "") {
+            ymSpaceDetail.setId(Integer.parseInt(id));
         }
+        ymSpaceDetail.toString();
         ymSpaceDetail.setSpaceId(Integer.parseInt(spaceId));
-        ymSpaceDetail.setName(SpaceDetailsName);
-        ymSpaceDetail.setImage(SpaceDetailsImage);
-        ymSpaceDetail.setSpaceMeasure(Integer.parseInt(SpaceDetailsPopulation));
-        ymSpaceDetail.setSpaceMeasure(Integer.parseInt(SpaceDetailsSpaceMeasure));
-        ymSpaceDetail.setTel(SpaceDetailsTel);
-        ymSpaceDetail.setFacilities(SpaceDetailsFacilities);
-        ymSpaceDetail.setDetail(SpaceDetailsDetail);
+        ymSpaceDetail.setName(name);
+        ymSpaceDetail.setImage(image);
+        ymSpaceDetail.setSpaceMeasure(Integer.parseInt(spaceMeasure));
+        ymSpaceDetail.setTel(tel);
+        ymSpaceDetail.setFacilities(facilities);
+        ymSpaceDetail.setDetail(detail);
+        ymSpaceDetail.setPopulation(Integer.parseInt(population));
+
+
         ymSpaceDetailDao.save(ymSpaceDetail);
-        return "redirect:/space/spaceList?id=" + spaceId;
+        return "redirect:/space/spaceDetails?id=" + spaceId;
 
     }
+
+
+
+
+
+
     //操作活动
 
     @RequestMapping("/spacePolicyAdd")
     public String SpacePolicyAdd() {
-        return "";
+        return "spacePolicyAdd";
     }
 
     //通过id获取修改页面，并将要修改的数据在修改页面渲染
@@ -195,7 +203,7 @@ public class YmSpaceController {
         String SpacePolicyId = request.getParameter("id");
         YmSpacePolicy ymSpacePolicy = ymSpacePolicyDao.getById(Integer.parseInt(SpacePolicyId));
         model.addAttribute("ymSpacePolicy", ymSpacePolicy);
-        return "redirect:/space/spaceList?id=" + spaceId;
+        return "spacePolicyAdd";
 
     }
 
@@ -203,29 +211,30 @@ public class YmSpaceController {
     public String SpacePolicyDelete(HttpServletRequest request) {
         String SpacePolicyId = request.getParameter("id");
         ymSpacePolicyDao.deleteById(Integer.parseInt(SpacePolicyId));
-        return "redirect:/space/spaceList?id=" + spaceId;
+        return "redirect:/space/spaceDetails?id=" + spaceId;
 
     }
 
     @RequestMapping(value = "/spacePolicyUpdate")
     public String SpacePolicyUpdate(HttpServletRequest request, Model model) throws ParseException {
-        String SpacePolicyId = request.getParameter("SpacePolicyId");
-        String SpacePolicyBrowse = request.getParameter("SpacePolicyBrowse");
-        String SpacePolicyDetail = request.getParameter("SpacePolicyDetail");
-        String SpacePolicyVideoUrl = request.getParameter("SpacePolicyVideoUrl");
-        String SpacePolicyVideoBackimg = request.getParameter("SpacePolicyVideoBackimg");
+        String policyid = request.getParameter("Policyid");
+        String policybrowse = request.getParameter("Policybrowse");
+        String policyvideoBackimg = request.getParameter("PolicyvideoBackimg");
+        String policyproductDatile = request.getParameter("PolicyproductDatile");
+        String policyImg = request.getParameter("PolicyImg");
+        request.getParameter("productImage");
         YmSpacePolicy ymSpacePolicy = new YmSpacePolicy();
-        if (SpacePolicyId != null && SpacePolicyId != "") {
-            ymSpacePolicy.setId(Integer.parseInt(SpacePolicyId));
+        if (policyid != null && policyid != "") {
+            ymSpacePolicy.setId(Integer.parseInt(policyid));
         }
         ymSpacePolicy.setSpaceId(Integer.parseInt(spaceId));
-        ymSpacePolicy.setBrowse(Integer.parseInt(SpacePolicyBrowse));
-        ymSpacePolicy.setSpacePolicyDetail(SpacePolicyDetail);
-        ymSpacePolicy.setVideoUrl(SpacePolicyVideoUrl);
-        ymSpacePolicy.setVideoBackimg(SpacePolicyVideoBackimg);
+        ymSpacePolicy.setBrowse(Integer.parseInt(policybrowse));
+        ymSpacePolicy.setSpacePolicyDetail(policyproductDatile);
+        ymSpacePolicy.setVideoUrl(policyImg);
+        ymSpacePolicy.setVideoBackimg(policyvideoBackimg);
 
         ymSpacePolicyDao.save(ymSpacePolicy);
-        return "redirect:/space/spaceList?id=" + spaceId;
+        return "redirect:/space/spaceDetails?id=" + spaceId;
 
     }
 
@@ -235,5 +244,7 @@ public class YmSpaceController {
         String file = request.getParameter("file");
         return UploadController.export(new File(YmStaticVariablesUtil.UPLOAD_PATH + file));
     }
+
+    //数据都能正常执行，但是报错处在 spaceId;
 
 }

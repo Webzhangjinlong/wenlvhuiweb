@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 public class YmSpacePolicy {
@@ -15,9 +16,17 @@ public class YmSpacePolicy {
   private String spacePolicyDetail;
   private String videoUrl;
   private String videoBackimg;
+  private Date creat_date;
 
+  public Date getCreat_date() {
+    return creat_date;
+  }
 
-  public long getId() {
+  public void setCreat_date(Date creat_date) {
+    this.creat_date = creat_date;
+  }
+
+  public Integer getId() {
     return id;
   }
 
@@ -26,7 +35,7 @@ public class YmSpacePolicy {
   }
 
 
-  public long getSpaceId() {
+  public Integer getSpaceId() {
     return spaceId;
   }
 
@@ -35,7 +44,7 @@ public class YmSpacePolicy {
   }
 
 
-  public long getBrowse() {
+  public Integer getBrowse() {
     return browse;
   }
 

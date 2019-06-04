@@ -35,14 +35,9 @@
 </style>
 <body>
 <script type="text/javascript">
-   function chan() {
-           $("#cotent").val(editor1.txt.html());
-           $("#prize").val(editor2.txt.html());
-           $("#policyRule").val(editor3.txt.html());
-           $("#awardRules").val(editor4.txt.html());
-           $("#policyPurpose").val(editor5.txt.html());
-           $("#form1").submit();
-   }
+    function chan() {
+        $("#form1").submit();
+    }
 </script>
 <div style="margin-top: 10px">
     <font style=" color: #000; font-size: 12px; margin-left: 10px">
@@ -52,88 +47,128 @@
     <hr style="background: red; height: 2px">
 </div>
 <div>
-    <form class="form-horizontal" id="form1" role="form" action="/tag/tagAddById" method="post">
+    <form class="form-horizontal" id="form1" role="form" action="/user/addupdate" method="post">
         <div>
-            <input type="hidden" name="id" value="${user.id}">
+            <input type="hidden" name="id" value="${ymUser.id}">
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">用户名:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="tagName" type="text" name="title" value=""
+                <input class="form-control" id="username" type="text" name="username" value="${ymUser.username}"
                        placeholder="请输入活用户名">
             </div>
             <label class="col-sm-1 control-label">密码:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="tagName" type="text" name="title" value=""
+                <input class="form-control" id="password" type="password" name="password" value="${ymUser.password}"
                        placeholder="请输入密码">
             </div>
-            </div>
+        </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">注册手机号:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="tagName" type="text" name="title" value=""
+                <input class="form-control" id="phone" type="text" name="phone" value="${ymUser.phone}"
                        placeholder="请输入注册手机号">
             </div>
             <label class="col-sm-1 control-label">使用状态:</label>
             <div class="col-sm-2">
-                <select name="giveDefault" id="tagDefault" value="" class="form-control">
-                    <option value="0" name="giveDefault">--请选择--</option>
-                    <option value="1" name="giveDefault">正常</option>
-                    <option value="2" name="giveDefault">非正常</option>
+                <select name="status" id="status" value="${ymUser.status}" class="form-control">
+                    <c:if test="${ymUser.status == Y}">
+                        <option value="y" name="status">正常</option>
+                    </c:if>
+                    <c:if test="${ymUser.status == N}">
+                        <option value="N" name="status">非正常</option>
+                    </c:if>
+                    <option value="0" name="status">--请选择--</option>
+                    <option value="Y" name="status">正常</option>
+                    <option value="N" name="status">非正常</option>
                 </select>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">用户类型:</label>
             <div class="col-sm-2">
-                <select name="giveDefault" id="tagDefault" value="" class="form-control">
-                    <option value="0" name="giveDefault">--请选择--</option>
-                    <option value="1" name="giveDefault">艺人</option>
-                    <option value="2" name="giveDefault">商家</option>
-                    <option value="3" name="giveDefault">餐馆</option>
-                    <option value="4" name="giveDefault">admin</option>
+                <select name="userType" id="userType" value="${ymUser.userType}" class="form-control">
+
+                    <c:if test="${ymUser.userType == 1}">
+                        <option value="1" name="userType">普通用户</option>
+                    </c:if>
+                    <c:if test="${ymUser.userType == 2}">
+                        <option value="2" name="userType">艺人</option>
+                    </c:if>
+                    <c:if test="${ymUser.userType == 3}">
+                        <option value="3" name="userType">商家</option>
+                    </c:if>
+                    <c:if test="${ymUser.userType == 4}">
+                        <option value="4" name="userType">餐厅</option>
+                    </c:if>
+                    <c:if test="${ymUser.userType == 9}">
+                        <option value="9" name="userType">admin</option>
+                    </c:if>
+
+                    <option value="0" name="userType">--请选择--</option>
+                    <option value="1" name="userType">普通会员</option>
+                    <option value="2" name="userType">艺人</option>
+                    <option value="3" name="userType">商家</option>
+                    <option value="4" name="userType">餐厅</option>
+                    <option value="9" name="userType">管理员</option>
                 </select>
             </div>
             <label class="col-sm-1 control-label">是否验证:</label>
             <div class="col-sm-2">
-                <select name="giveDefault" id="tagDefault" value="" class="form-control">
-                    <option value="0" name="giveDefault">--请选择--</option>
-                    <option value="1" name="giveDefault">是</option>
-                    <option value="2" name="giveDefault">否</option>
+                <select name="isMobileCheck" id="isMobileCheck" value="${ymUser.isMobileCheck}" class="form-control">
+
+                    <c:if test="${ymUser.isMobileCheck == 1}">
+                        <option value="1" name="isMobileCheck">是</option>
+                    </c:if>
+                    <c:if test="${ymUser.isMobileCheck == 2}">
+                        <option value="2" name="isMobileCheck">否</option>
+                    </c:if>
+
+                    <option value="0" name="isMobileCheck">--请选择--</option>
+                    <option value="1" name="isMobileCheck">是</option>
+                    <option value="2" name="isMobileCheck">否</option>
                 </select>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">昵称:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="tagName" type="text" name="title" value=""
+                <input class="form-control" id="nickName" type="text" name="nickName" value="${ymUser.nickName}"
                        placeholder="请输入用户昵称">
             </div>
             <label class="col-sm-1 control-label">真实姓名:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="tagName" type="text" name="title" value=""
+                <input class="form-control" id="name" type="text" name="name" value="${ymUser.name}"
                        placeholder="请输入真实姓名">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">性别:</label>
             <div class="col-sm-2">
-                <select name="giveDefault" id="tagDefault" value="" class="form-control">
-                    <option value="0" name="giveDefault">--请选择--</option>
-                    <option value="1" name="giveDefault">男</option>
-                    <option value="2" name="giveDefault">女</option>
+                <select name="sex" id="sex" value="${ymUser.sex}" class="form-control">
+
+                    <c:if test="${ymUser.sex == 1}">
+                        <option value="1" name="sex">男</option>
+                    </c:if>
+                    <c:if test="${ymUser.sex == 2}">
+                        <option value="2" name="sex">女</option>
+                    </c:if>
+
+                    <option value="0" name="sex">--请选择--</option>
+                    <option value="1" name="sex">男</option>
+                    <option value="2" name="sex">女</option>
                 </select>
             </div>
             <label class="col-sm-1 control-label">会员等级:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="tagName" type="text" name="title" value=""
+                <input class="form-control" id="userLevel" type="text" name="userLevel" value="${ymUser.userLevel}"
                        placeholder="请输入密码">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">生日:</label>
             <div class="col-sm-5">
-                <input class="form-control" id="tagName" type="text" name="title" value=""
+                <input class="form-control" id="birthday" type="text" name="birthday" value="${ymUser.birthday}"
                        placeholder="请输入会员生日">
             </div>
         </div>
@@ -142,7 +177,7 @@
             <div class="layui-upload-list">
                 <img class="layui-upload-img" id="demo1" src="">
             </div>
-            <input id="image" name="image" type="hidden"/>
+            <input id="image" name="image" type="hidden" value=""/>
             <p id="demoText"></p>
         </div>
         <div style="margin-top: 10px; margin-left: 550px;">

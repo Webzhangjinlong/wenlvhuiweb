@@ -62,9 +62,9 @@
                 <td>${spaceList.tel}</td>
                 <td>${spaceList.createDate}</td>
                 <td>
-                    <button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ list.id})">修改/详情
+                    <button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ spaceList.id})">修改/详情
                     </button>
-                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ list.id})">删除
+                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ spaceList.id})">删除
                     </button>
                 </td>
             </tr>
@@ -100,11 +100,11 @@
 
 <script type="text/javascript">
     function updateById(id) {
-        window.location.href = "/craftsman/show?id=" + id;
+        window.location.href = "/space/spaceDetails?id=" + id;
     }
 
     function deleteById(id) {
-        window.location.href = "/craftsman/delete?id=" + id;
+        window.location.href = "/space/spacedelete?id=" + id;
     }
 </script>
 </body>

@@ -8,7 +8,7 @@ import java.util.Date;
 @Entity
 public class YmUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;            // `id` bigint(20) NOT NULL AUTO_INCREMENT,
     @Column(name = "username")
     private String username;       // `username` varchar(50) NOT NULL COMMENT '用户名',
@@ -25,7 +25,6 @@ public class YmUser {
     private String sex;               // `sex` varchar(1) DEFAULT '0' COMMENT '性别，1男，2女',
     private String userLevel;         //`user_level` int(11) DEFAULT NULL COMMENT '会员等级',
 
-
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;            //`birthday` datetime DEFAULT NULL COMMENT '生日',
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -33,6 +32,9 @@ public class YmUser {
 
     private Integer userType;
     private Integer typeId;
+
+    public YmUser() {
+    }
 
 
     public Integer getUserType() {

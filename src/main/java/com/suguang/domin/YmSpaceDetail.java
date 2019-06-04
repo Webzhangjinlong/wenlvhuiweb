@@ -1,5 +1,6 @@
 package com.suguang.domin;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +21,7 @@ public class YmSpaceDetail {
   private String detail;
 
 
-  public long getId() {
+  public Integer getId() {
     return id;
   }
 
@@ -29,7 +30,7 @@ public class YmSpaceDetail {
   }
 
 
-  public long getSpaceId() {
+  public Integer getSpaceId() {
     return spaceId;
   }
 
@@ -56,7 +57,7 @@ public class YmSpaceDetail {
   }
 
 
-  public long getPopulation() {
+  public Integer getPopulation() {
     return population;
   }
 
@@ -65,7 +66,7 @@ public class YmSpaceDetail {
   }
 
 
-  public long getSpaceMeasure() {
+  public Integer getSpaceMeasure() {
     return spaceMeasure;
   }
 

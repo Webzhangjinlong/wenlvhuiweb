@@ -34,6 +34,10 @@
         height: 92px;
         margin: 0 10px 10px 0;
     }
+    .layui-table img {
+        max-width: 100px;
+        height: 50px;
+    }
 </style>
 <body>
 <script type="text/javascript">
@@ -47,32 +51,32 @@
     <hr style="background: red; height: 2px; margin-top: 5px">
 </div>
 <div>
-    <form class="form-horizontal" role="form" id="form1" action="/craftsman/addList">
+    <form class="form-horizontal" role="form" id="form1" action="/space/SpaceDetailsUpdate">
 
         <div>
-            <input type="hidden" name="id" value="${space.id}">
+            <input type="hidden" name="id" value="${addYmSpace.id}">
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">空间名:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="shopsName" type="text" name="shopsName" value=""
+                <input class="form-control" id="spaceName" type="text" name="spaceName" value="${addYmSpace.spaceName}"
                        placeholder="请输入空间名">
             </div>
             <label class="col-sm-1 control-label">标题:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="shopsSlogan" type="text" name="shopsSlogan" value="${show.shopsSlogan}"
+                <input class="form-control" id="spaceTitle" type="text" name="spaceTitle" value="${addYmSpace.spaceTitle}"
                        placeholder="请输入标题">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">场馆面积:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="city" type="text" name="city" value="${show.city}"
+                <input class="form-control" id="spaceMeasure" type="text" name="spaceMeasure" value="${addYmSpace.spaceMeasure}"
                        placeholder="场馆面积">
             </div>
             <label class="col-sm-1 control-label">开放时间:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="area" type="text" name="area" value="${show.area}"
+                <input class="form-control" id="openDate" type="text" name="openDate" value="${addYmSpace.openDate}"
                        placeholder="开放时间">
             </div>
 
@@ -80,26 +84,26 @@
         <div class="form-group">
             <label class="col-sm-1 control-label">详细地址:</label>
             <div class="col-sm-5">
-                <input class="form-control" id="addrDetail" type="text" name="addrDetail" value="${show.addrDetail}"
+                <input class="form-control" id="addr" type="text" name="addr" value="${addYmSpace.addr}"
                        placeholder="请输入详细地址">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">联系电话:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="addrDetail" type="text" name="addrDetail" value="${show.addrDetail}"
+                <input class="form-control" id="tel" type="text" name="tel" value="${addYmSpace.tel}"
                        placeholder="请输入联系电话">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">经度:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="longitude" type="text" name="longitude" value="${show.longitude}"
+                <input class="form-control" id="longitude" type="text" name="longitude" value="${addYmSpace.longitude}"
                        placeholder="请输入经度">
             </div>
             <label class="col-sm-1 control-label">纬度:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="latitude" type="text" name="latitude" value="${show.latitude}"
+                <input class="form-control" id="latitude" type="text" name="latitude" value="${addYmSpace.latitude}"
                        placeholder="纬度">
             </div>
             <div class="col-sm-2">
@@ -113,16 +117,16 @@
                 <div id="div1" class="toolbar"></div>
                 <div style="padding: 5px 0; color: #ccc"></div>
                 <div id="div2" class="text">
-                    <p></p>
+                    <p>${addYmSpace.dateil}</p>
                 </div>
-                <input type="hidden" id="shopsDetail" name="shopsDetail">
+                <input type="hidden" id="dateil" name="dateil">
             </div>
         </div>
         <div class="layui-upload" style="float: right ; margin-top: -400px; margin-right: 440px">
-            <button type="button" class="layui-btn" id="test1">请上传空间头型</button>
+            <button type="button" class="layui-btn" id="test1">请上传空间头像</button>
             <div class="layui-upload-list">
-                <img class="layui-upload-img" id="demo1" src="">
-                <input id="imgUrl" name="imgUrl" type="hidden" value=""/>
+                <img class="layui-upload-img" id="demo1" src="${addYmSpace.backupField1}">
+                <input id="imgUrl" name="imgUrl" type="hidden" value="${addYmSpace.backupField1}"/>
                 <p id="demoText"></p>
             </div>
         </div>
@@ -157,17 +161,19 @@
         </tr>
         </thead>
         <tbody>
+        <c:forEach items="${spaceDetailList}" var="spaceDetailList">
             <tr>
-                <td>老张的内裤工厂</td>
-                <td><img src="" alt="11"></td>
-                <td>265人</td>
-                <td>124平米</td>
-                <td>13895956234</td>
+                <td>${spaceDetailList.name}</td>
+                <td><img src="${spaceDetailList.image}"></td>
+                <td>${spaceDetailList.population}</td>
+                <td>${spaceDetailList.spaceMeasure}</td>
+                <td>${spaceDetailList.tel}</td>
                 <td>
-                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="updateDetail()">修改</button>
-                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ productList.id})">删除</button>
+                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="updateDetailsById(${ spaceDetailList.id})">修改</button>
+                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteDetailsById(${ spaceDetailList.id})">删除</button>
                 </td>
             </tr>
+        </c:forEach>
         </tbody>
     </table>
     <div style="margin-left: 20px">
@@ -180,23 +186,44 @@
         <tr>
             <th>活动图片</th>
             <th>浏览量</th>
-            <th>创建时间</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
+        <c:forEach items="${SpacePolicyList}" var="SpacePolicyList">
         <tr>
-            <td><img src="" alt="11"></td>
-            <td>56</th>
-            <td>2013-02-03</td>
+            <td><img src="${SpacePolicyList.videoBackimg}"></td>
+            <td>${SpacePolicyList.browse}</th>
             <td>
-                <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="updatePolicy()">修改</button>
-                <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById()">删除</button>
+                <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="updatePolicyById(${ SpacePolicyList.id})">修改</button>
+                <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deletePolicyById(${ SpacePolicyList.id})">删除</button>
             </td>
         </tr>
+        </c:forEach>
         </tbody>
     </table>
 </div>
+
+<script type="text/javascript">
+    function updateDetailsById(id){
+        window.location.href="/space/spaceDetailDetails?id="+id;
+    }
+    function deleteDetailsById(id){
+        window.location.href="/space/spaceDetailDelete?id="+id;
+    }
+
+</script>
+
+<script type="text/javascript">
+    function updatePolicyById(id){
+        window.location.href="/space/spacePolicyDetails?id="+id;
+    }
+    function deletePolicyById(id){
+        window.location.href="/space/spacePolicyDelete?id="+id;
+    }
+
+</script>
+
 <script type="text/javascript" src="/js/wangEditor.js"></script>
 <script type="text/javascript">
     var E = window.wangEditor;
@@ -220,14 +247,14 @@
 
 <script>
     function addDetail() {
-        window.location.href = "/space/detailAdd";
+        window.location.href = "/space/spaceDetailAdd";
     }
 
 </script>
 
 <script>
     function addPolicy() {
-        window.location.href = "/space/policyAdd";
+        window.location.href = "/space/spacePolicyAdd";
     }
 
 </script>

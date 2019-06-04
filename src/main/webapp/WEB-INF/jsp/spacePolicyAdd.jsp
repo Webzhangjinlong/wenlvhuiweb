@@ -47,21 +47,21 @@ pageEncoding="UTF-8"%>
 		<hr style="background: red; height: 2px; margin-top: 0px">
 	</div>
  		<div>
-			<form class="form-horizontal" role="form"  action="/craftsman/productadd" id="form1">
+			<form class="form-horizontal" role="form"  action="/space/spacePolicyUpdate" id="form1">
 				<div>
-					<input type="hidden" name="id" value="${product.id}">
+					<input type="hidden" name="Policyid" value="${ymSpacePolicy.id}">
 				</div>
 				<div class="form-group">
 					<label class="col-sm-1 control-label">浏览量:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="productName" type="text" name="productName" value="${product.productName}" placeholder="请输入浏览量">
+						<input class="form-control" id="browse" type="text" name="Policybrowse" value="${ymSpacePolicy.browse}" placeholder="请输入浏览量">
 					</div>
 				</div>
 				<div class="layui-upload" style="margin-left: 20px;margin-top: 20px">
 					<button type="button" class="layui-btn layui-btn-normal" id="test8">选择活动视频</button>
-					<input type="hidden" id="videourl" name="videourl" value="${tagupdate.videourl}" >
+					<input type="hidden" id="videoBackimg" name="PolicyvideoBackimg" value="${ymSpacePolicy.videoBackimg}" >
 					<button type="button" class="layui-btn" id="test9">开始上传</button>
-					<p id="p1" class="layui-btn layui-btn-warm layui-btn-radius" style="margin-top: 11px">${tagupdate.videourl}</p>
+					<p id="p1" class="layui-btn layui-btn-warm layui-btn-radius" style="margin-top: 11px">${ymSpacePolicy.videoBackimg}</p>
 				</div>
 				<div style="margin-left: 20px; margin-top: 0px">
 				<label class="control-label">活动详情（必填）:</label><br>
@@ -72,13 +72,13 @@ pageEncoding="UTF-8"%>
 					    <div id="div2" class="text">
 							<p>${product.productDatile}</p>
 		    		</div>
-					<input type="hidden" id="productDatile" name="productDatile">
+					<input type="hidden" id="productDatile" name="PolicyproductDatile">
 		    	</div>
 				<div class="layui-upload"  style="float: right ; margin-top: -290px; margin-right: 800px">
 					<button type="button" class="layui-btn" id="test1">请上传活动封面图</button>
 					<div class="layui-upload-list">
 						<img class="layui-upload-img" id="demo1" src="">
-						<input id="productImage" name="productImage" type="hidden" value=""/>
+						<input id="productImage" name="PolicyImg" type="hidden" value=""/>
 						<p id="demoText"></p>
 					</div>
 				</div>
