@@ -42,6 +42,44 @@
 <body>
 <script type="text/javascript">
     function chan() {
+        var spaceName = document.getElementById("spaceName").value;
+        var spaceTitle = document.getElementById("spaceTitle").value;
+        var spaceMeasure = document.getElementById("spaceMeasure").value;
+        var openDate = document.getElementById("openDate").value;
+        var addr = document.getElementById("addr").value;
+        var tel = document.getElementById("tel").value;
+        var browse = document.getElementById("browse").value;
+        var longitude = document.getElementById("longitude").value;
+        var latitude = document.getElementById("latitude").value;
+        if(spaceName == null || spaceName == ""){
+            alert("请输入空间名称");
+            return false;
+        }if(spaceTitle == null || spaceTitle == "") {
+            alert("请输入空间标题");
+            return false;
+        }if(spaceMeasure == null || spaceMeasure == "") {
+            alert("请输入空间面积");
+            return false;
+        }if(openDate == null || openDate == "") {
+            alert("请输入开放时间");
+            return false;
+        }if(addr == null || addr == "") {
+            alert("请输入详细地址");
+            return false;
+        }if(tel == null || tel == "") {
+            alert("请输入联系电话");
+            return false;
+        }if(browse == null || browse == "") {
+            alert("请输入浏览量");
+            return false;
+        }if(longitude == null || longitude == "") {
+            alert("请输入经度");
+            return false;
+        }if(latitude == null || latitude == "") {
+            alert("请输入纬度");
+            return false;
+        }
+        $("#dateil").val(editor1.txt.html());
         $("#form1").submit();
     }
 </script>
@@ -94,6 +132,11 @@
                 <input class="form-control" id="tel" type="text" name="tel" value="${addYmSpace.tel}"
                        placeholder="请输入联系电话">
             </div>
+            <label class="col-sm-1 control-label">浏览量:</label>
+            <div class="col-sm-2">
+                <input class="form-control" id="browse" type="text" name="browse" value="${addYmSpace.browse}"
+                       placeholder="请输入浏览量">
+            </div>
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">经度:</label>
@@ -112,7 +155,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-1 control-label" style="margin-top: 30px;">空间内容:</label>
+            <label class="col-sm-1 control-label" style="margin-top: 30px;">空间内容（必填）:</label>
             <div style="margin-left: 120px">
                 <div id="div1" class="toolbar"></div>
                 <div style="padding: 5px 0; color: #ccc"></div>
@@ -126,15 +169,15 @@
             <button type="button" class="layui-btn" id="test1">请上传空间头像</button>
             <div class="layui-upload-list">
                 <img class="layui-upload-img" id="demo1" src="${addYmSpace.backupField1}">
-                <input id="imgUrl" name="imgUrl" type="hidden" value="${addYmSpace.backupField1}"/>
+                <input id="backupField1" name="backupField1" type="hidden" value="${addYmSpace.backupField1}"/>
                 <p id="demoText"></p>
             </div>
         </div>
         <div class="layui-upload" style="float: right ; margin-top: -400px; margin-right: 250px">
             <button type="button" class="layui-btn" id="test2">请上传空间背景</button>
             <div class="layui-upload-list">
-                <img class="layui-upload-img" id="demo2" src="">
-                <input id="province" name="province" type="hidden" value=""/>
+                <img class="layui-upload-img" id="demo2" src="${addYmSpace.backImg}">
+                <input id="backImg" name="backImg" type="hidden" value="${addYmSpace.backImg}"/>
                 <p id="demoText1"></p>
             </div>
         </div>
@@ -145,8 +188,18 @@
 </div>
 <div>
     <div style="margin-left: 20px">
-        <button class="btn btn-primary btn-sm" onclick="addDetail()">
+        <button class="btn btn-primary btn-sm" onclick="addDetail(${addYmSpace.id})">
             添加场馆
+            <script type="text/javascript">
+                function addDetail(id) {
+                    if(id == null || id == ""){
+                        alert("请添加完成空间之后在添加场馆！")
+                        document.getElementById("aa").disabled = true;
+                        return false;
+                    }
+                    window.location.href = "/space/spaceDetailAdd";
+                }
+            </script>
         </button>
     </div>
     <table class="layui-table" lay-skin="line" style="margin-left: 20px; width: 80%">
@@ -177,8 +230,18 @@
         </tbody>
     </table>
     <div style="margin-left: 20px">
-        <button class="btn btn-primary btn-sm" onclick="addPolicy()">
+        <button class="btn btn-primary btn-sm" onclick="addPolicy(${addYmSpace.id})">
             添加活动
+            <script type="text/javascript">
+                function addPolicy(id) {
+                    if(id == null || id == ""){
+                        alert("请添加完成空间之后在添加场馆！")
+                        document.getElementById("aa").disabled = true;
+                        return false;
+                    }
+                    window.location.href = "/space/spacePolicyAdd";
+                }
+            </script>
         </button>
     </div>
     <table class="layui-table" lay-skin="line" style="margin-left: 20px; width: 80%">
@@ -193,7 +256,7 @@
         <c:forEach items="${SpacePolicyList}" var="SpacePolicyList">
         <tr>
             <td><img src="${SpacePolicyList.videoBackimg}"></td>
-            <td>${SpacePolicyList.browse}</th>
+            <td>${SpacePolicyList.browse}</td>
             <td>
                 <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="updatePolicyById(${ SpacePolicyList.id})">修改</button>
                 <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deletePolicyById(${ SpacePolicyList.id})">删除</button>
@@ -228,9 +291,6 @@
 <script type="text/javascript">
     var E = window.wangEditor;
     var editor1 = new E('#div1', '#div2');
-    editor1.customConfig.uploadImgServer = '/uploadflv/upload';
-    editor1.customConfig.uploadFileName = 'file';
-    editor1.customConfig.uploadImgMaxSize = 10 * 1024 * 1024;
     editor1.create();
 </script>
 <script type="text/javascript">
@@ -243,20 +303,6 @@
         alert("您已成功删除！");
         window.location.href = "/craftsman/deletePro?id=" + id;
     }
-</script>
-
-<script>
-    function addDetail() {
-        window.location.href = "/space/spaceDetailAdd";
-    }
-
-</script>
-
-<script>
-    function addPolicy() {
-        window.location.href = "/space/spacePolicyAdd";
-    }
-
 </script>
 
 <script>
@@ -279,7 +325,7 @@
                 if (res.code > 0) {
                     return layer.msg('上传失败！')
                 }
-                $('#imgUrl').val('' + res.data[0]);
+                $('#backupField1').val('' + res.data[0]);
                 return layer.msg('上传成功！')
             }
             , error: function () {
@@ -313,7 +359,7 @@
                 if (res.code > 0) {
                     return layer.msg('上传失败！')
                 }
-                $('#province').val('' + res.data[0]);
+                $('#backImg').val('' + res.data[0]);
                 return layer.msg('上传成功！')
             }
             , error: function () {

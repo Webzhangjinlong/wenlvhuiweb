@@ -181,7 +181,7 @@
             <script type="text/javascript">
                 function addProduct(id) {
                     if(id == null || id == ""){
-                        alert("请添加完成学校之后在添加图片！")
+                        alert("请添加完成匠人之后在添加匠人商品！")
                         document.getElementById("aa").disabled = true;
                         return false;
                     }

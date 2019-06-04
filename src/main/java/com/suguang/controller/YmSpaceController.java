@@ -4,7 +4,6 @@ import com.suguang.dao.YmSpaceDao;
 import com.suguang.dao.YmSpaceDetailDao;
 import com.suguang.dao.YmSpacePolicyDao;
 import com.suguang.domin.YmSpace;
-import com.suguang.domin.YmSpace;
 import com.suguang.domin.YmSpaceDetail;
 import com.suguang.domin.YmSpacePolicy;
 import com.suguang.service.YmSpaceService;
@@ -23,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -97,6 +97,9 @@ public class YmSpaceController {
         String longitude = request.getParameter("longitude");
         String latitude = request.getParameter("latitude");
         String dateil = request.getParameter("dateil");
+        String backImg = request.getParameter("backImg");
+        String backupField1 = request.getParameter("backupField1");
+        String browse = request.getParameter("browse");
         //空间头像，北京图没写
 
         YmSpace ymYmSpace = new YmSpace();
@@ -104,13 +107,15 @@ public class YmSpaceController {
             ymYmSpace.setId(Integer.parseInt(id));
         }
         ymYmSpace.setSpaceName(spaceName);
-        //ymYmSpace.setBrowse(Integer.parseInt(browse));
+        ymYmSpace.setBrowse(Integer.parseInt(browse));
         ymYmSpace.setSpaceTitle(spaceTitle);
         ymYmSpace.setDateil(dateil);
         ymYmSpace.setAddr(addr);
         ymYmSpace.setLongitude(longitude);
         ymYmSpace.setLatitude(latitude);
-        //ymYmSpace.setBackupField1(HeadImage);
+        ymYmSpace.setBackupField1(backupField1);
+        ymYmSpace.setBackImg(backImg);
+        ymYmSpace.setCreateDate(new Date());
         ymYmSpace.setSpaceMeasure(Integer.parseInt(spaceMeasure));
         ymYmSpace.setOpenDate(openDate);
         ymYmSpace.setTel(tel);
@@ -221,7 +226,7 @@ public class YmSpaceController {
         String policybrowse = request.getParameter("Policybrowse");
         String policyvideoBackimg = request.getParameter("PolicyvideoBackimg");
         String policyproductDatile = request.getParameter("PolicyproductDatile");
-        String policyImg = request.getParameter("PolicyImg");
+        String videoUrl = request.getParameter("videoUrl");
         request.getParameter("productImage");
         YmSpacePolicy ymSpacePolicy = new YmSpacePolicy();
         if (policyid != null && policyid != "") {
@@ -230,7 +235,7 @@ public class YmSpaceController {
         ymSpacePolicy.setSpaceId(Integer.parseInt(spaceId));
         ymSpacePolicy.setBrowse(Integer.parseInt(policybrowse));
         ymSpacePolicy.setSpacePolicyDetail(policyproductDatile);
-        ymSpacePolicy.setVideoUrl(policyImg);
+        ymSpacePolicy.setVideoUrl(videoUrl);
         ymSpacePolicy.setVideoBackimg(policyvideoBackimg);
 
         ymSpacePolicyDao.save(ymSpacePolicy);

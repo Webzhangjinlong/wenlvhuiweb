@@ -175,7 +175,7 @@ pageEncoding="UTF-8"%>
 					<script type="text/javascript">
                         function addFood(id) {
                             if(id == null || id == ""){
-                                alert("请添加完成学校之后在添加图片！")
+                                alert("请添加完成餐厅之后在添加菜品！")
                                 document.getElementById("aa").disabled = true;
                                 return false;
                             }

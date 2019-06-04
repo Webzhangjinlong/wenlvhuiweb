@@ -33,7 +33,28 @@ pageEncoding="UTF-8"%>
     </style>
 	<script>
 		function chan() {
-			$("#productDatile").val(editor1.txt.html());
+            var name = document.getElementById("name").value;
+            var population = document.getElementById("population").value;
+            var spaceMeasure = document.getElementById("spaceMeasure").value;
+            var tel = document.getElementById("tel").value;
+            var facilities = document.getElementById("facilities").value;
+            if(name == null || name == ""){
+                alert("请输入场馆名称");
+                return false;
+            }if(population == null || population == "") {
+                alert("请输入容纳人数");
+                return false;
+            }if(spaceMeasure == null || spaceMeasure == "") {
+                alert("请输入场馆面积");
+                return false;
+            }if(tel == null || tel == "") {
+                alert("请输入联系电话");
+                return false;
+            }if(facilities == null || facilities == "") {
+                alert("请输入配套设施");
+                return false;
+            }
+			$("#detail").val(editor1.txt.html());
             $("#form1").submit();
         }
 		
@@ -92,7 +113,7 @@ pageEncoding="UTF-8"%>
 					<button type="button" class="layui-btn" id="test1">请上传场馆封面图</button>
 					<div class="layui-upload-list">
 						<img class="layui-upload-img" id="demo1" src="${YmSpaceDetail.image}">
-						<input id="productImage" name="image" type="hidden" value="${YmSpaceDetail.image}"/>
+						<input id="image" name="image" type="hidden" value="${YmSpaceDetail.image}"/>
 						<p id="demoText"></p>
 					</div>
 				</div>
@@ -132,7 +153,7 @@ pageEncoding="UTF-8"%>
                     if (res.code > 0) {
                         return layer.msg('上传失败！')
                     }
-                    $('#productImage').val('' + res.data[0]);
+                    $('#image').val('' + res.data[0]);
                     return layer.msg('上传成功！')
                 }
                 , error: function () {

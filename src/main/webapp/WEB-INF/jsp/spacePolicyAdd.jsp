@@ -33,7 +33,12 @@ pageEncoding="UTF-8"%>
     </style>
 	<script>
 		function chan() {
-			$("#productDatile").val(editor1.txt.html());
+            var browse = document.getElementById("browse").value;
+            if(browse == null || browse == ""){
+                alert("请输入浏览量");
+                return false;
+            }
+			$("#PolicyproductDatile").val(editor1.txt.html());
             $("#form1").submit();
         }
 		
@@ -52,16 +57,16 @@ pageEncoding="UTF-8"%>
 					<input type="hidden" name="Policyid" value="${ymSpacePolicy.id}">
 				</div>
 				<div class="form-group">
-					<label class="col-sm-1 control-label">浏览量:</label>
+					<label class="col-sm-1 control-label">浏览量（必填）:</label>
 					<div class="col-sm-2">
 						<input class="form-control" id="browse" type="text" name="Policybrowse" value="${ymSpacePolicy.browse}" placeholder="请输入浏览量">
 					</div>
 				</div>
 				<div class="layui-upload" style="margin-left: 20px;margin-top: 20px">
 					<button type="button" class="layui-btn layui-btn-normal" id="test8">选择活动视频</button>
-					<input type="hidden" id="videoBackimg" name="PolicyvideoBackimg" value="${ymSpacePolicy.videoBackimg}" >
-					<button type="button" class="layui-btn" id="test9">开始上传</button>
-					<p id="p1" class="layui-btn layui-btn-warm layui-btn-radius" style="margin-top: 11px">${ymSpacePolicy.videoBackimg}</p>
+					<input type="hidden" id="videoUrl" name="videoUrl" value="${ymSpacePolicy.videoUrl}" >
+					<button type="button" class="layui-btn" id="test9">开始上传</button><br>
+					<p id="p1" class="layui-btn layui-btn-warm layui-btn-radius" style="margin-top: 11px">${ymSpacePolicy.videoUrl}</p>
 				</div>
 				<div style="margin-left: 20px; margin-top: 0px">
 				<label class="control-label">活动详情（必填）:</label><br>
@@ -72,22 +77,14 @@ pageEncoding="UTF-8"%>
 					    <div id="div2" class="text">
 							<p>${product.productDatile}</p>
 		    		</div>
-					<input type="hidden" id="productDatile" name="PolicyproductDatile">
+					<input type="hidden" id="PolicyproductDatile" name="PolicyproductDatile">
 		    	</div>
-				<div class="layui-upload"  style="float: right ; margin-top: -290px; margin-right: 800px">
+				<div class="layui-upload"  style="float: right ; margin-top: -330px; margin-right: 600px">
 					<button type="button" class="layui-btn" id="test1">请上传活动封面图</button>
 					<div class="layui-upload-list">
-						<img class="layui-upload-img" id="demo1" src="">
-						<input id="productImage" name="PolicyImg" type="hidden" value=""/>
+						<img class="layui-upload-img" id="demo1" src="${product.PolicyvideoBackimg}">
+						<input id="PolicyvideoBackimg" name="PolicyvideoBackimg" type="hidden" value=""/>
 						<p id="demoText"></p>
-					</div>
-				</div>
-				<div class="layui-upload"  style="float: right ; margin-top: -290px; margin-right: 600px">
-					<button type="button" class="layui-btn" id="test2">请上传视频封面图</button>
-					<div class="layui-upload-list">
-						<img class="layui-upload-img" id="demo2" src="">
-						<input id="productImage1" name="productImage" type="hidden" value=""/>
-						<p id="demoText1"></p>
 					</div>
 				</div>
 		    	<div style="margin-top: 10px; margin-left: 650px;">
@@ -126,7 +123,7 @@ pageEncoding="UTF-8"%>
                     if (res.code > 0) {
                         return layer.msg('上传失败！')
                     }
-                    $('#productImage').val('' + res.data[0]);
+                    $('#PolicyvideoBackimg').val('' + res.data[0]);
                     return layer.msg('上传成功！')
                 }
                 , error: function () {
@@ -136,6 +133,24 @@ pageEncoding="UTF-8"%>
                     demoText.find('.demo-reload').on('click', function () {
                         uploadInst.upload();
                     });
+                }
+            });
+            //选完文件后不自动上传
+            upload.render({
+                elem: '#test8'
+                ,url: '/uploadflv/upload'
+                ,accept: 'video'
+                ,auto:false
+                //,multiple: true
+                ,bindAction: '#test9'
+                ,done: function(res){
+                    console.log(res.data[0])
+                    if(res.code > 0){
+                        return layer.msg('上传失败！')
+                    }
+                    $("#videoUrl").val('' + res.data[0]);
+                    $("#p1").text('' + res.data[0])
+                    return layer.msg('上传成功！')
                 }
             });
         });

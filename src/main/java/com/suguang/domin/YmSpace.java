@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Author liruifeng
@@ -26,9 +27,12 @@ public class YmSpace implements Serializable {
     private String addr;
     private String longitude;
     private String latitude;
-    private Timestamp createDate;
+
+    private Date createDate;
+
     private String backupField1;
     private Integer spaceMeasure;
+    private String backImg;
     private String openDate;
     private String tel;
 
@@ -36,7 +40,23 @@ public class YmSpace implements Serializable {
     public YmSpace(){
     }
 
-    public void setId (Integer id) {this.id = id;} 
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getBackImg() {
+        return backImg;
+    }
+
+    public void setBackImg(String backImg) {
+        this.backImg = backImg;
+    }
+
+    public void setId (Integer id) {this.id = id;}
     public Integer getId(){ return id;} 
     public void setSpaceName (String spaceName) {this.spaceName = spaceName;} 
     public String getSpaceName(){ return spaceName;} 
@@ -52,9 +72,7 @@ public class YmSpace implements Serializable {
     public String getLongitude(){ return longitude;} 
     public void setLatitude (String latitude) {this.latitude = latitude;} 
     public String getLatitude(){ return latitude;} 
-    public void setCreateDate (Timestamp createDate) {this.createDate = createDate;} 
-    public Timestamp getCreateDate(){ return createDate;} 
-    public void setBackupField1 (String backupField1) {this.backupField1 = backupField1;} 
+    public void setBackupField1 (String backupField1) {this.backupField1 = backupField1;}
     public String getBackupField1(){ return backupField1;} 
     public void setSpaceMeasure (Integer spaceMeasure) {this.spaceMeasure = spaceMeasure;} 
     public Integer getSpaceMeasure(){ return spaceMeasure;} 
