@@ -1,10 +1,5 @@
 package com.suguang.util;
 
-
-import com.suguang.domin.FileEntity;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -13,11 +8,18 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.UUID;
 
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import com.suguang.domin.FileEntity;
 public class FileUploadUtil {
-	
-	
-	TransfMediaTool transfMediaTool = new TransfMediaTool();
+
+
+    TransfMediaTool transfMediaTool = new TransfMediaTool();
     // 文件最大500M
     private static long upload_maxsize = 800 * 1024 * 1024;
     // 文件允许格式
@@ -57,11 +59,11 @@ public class FileUploadUtil {
             System.out.println("文件为空");
         }
         if (bflag) {
-        	SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
             String logoPathDir = format.format(new Date());
             //String logoRealPathDir = request.getSession().getServletContext().getRealPath(logoPathDir);
             // 上传到本地磁盘
-            
+
             String logoRealPathDir = YmStaticVariablesUtil.UPLOAD_PATH+logoPathDir+"/";
             File logoSaveFile = new File(logoRealPathDir);
             if (!logoSaveFile.exists()) {
@@ -70,7 +72,7 @@ public class FileUploadUtil {
             String name = fileName.substring(0, fileName.lastIndexOf("."));
             System.out.println("文件名称：" + name);
             // 新的文件名
-            String newFileName = this.getName(fileName);
+            String newFileName =  UUID.randomUUID().toString(); // this.getName(fileName);
             // 文件扩展名
             String fileEnd = this.getFileExt(fileName);
             // 绝对路径
@@ -93,6 +95,7 @@ public class FileUploadUtil {
             String finalFileDir = "/"+builder.substring(0);
             // size存储为String
             String size = this.getSize(filedirs);
+
             // 源文件保存路径
             String aviPath = filedirs.getAbsolutePath();
             // 转码Avi
@@ -122,11 +125,12 @@ public class FileUploadUtil {
                     }
                 }
                 entity.setSize(size);
-                entity.setPath(finalFileDir);
+                entity.setPath(YmStaticVariablesUtil.REQUEST_PATH+finalFileDir);
                 entity.setTitleOrig(name);
                 entity.setTitleAlter(newFileName);
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                 entity.setUploadTime(timestamp);
+
                 return entity;
             } else {
                 return null;
