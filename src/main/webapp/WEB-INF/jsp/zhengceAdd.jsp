@@ -178,10 +178,10 @@ pageEncoding="UTF-8"%>
 		<input type="radio" name="up" value="1" onclick="image1('1')" checked="checked"> 图片x
 		<input type="radio" name="up" value="2" onclick="image1('2')"> 视频
 		<div id="div01">
-666
+
 		</div>
 		<div id="div02">
-777
+
 		</div>
     <script type="text/javascript" src="/js/wangEditor.js"></script>
 	<script type="text/javascript">

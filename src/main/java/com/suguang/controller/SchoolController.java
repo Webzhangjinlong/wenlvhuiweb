@@ -47,8 +47,8 @@ public class SchoolController {
     @Autowired
     private ImgDao imgDao;
     private String schoolid;
-
     private YmImage byImgTypeAndPidAndImageType;
+
 
     @RequestMapping("/schoolImageList")
     public String imageList() {
@@ -110,7 +110,7 @@ public class SchoolController {
         List<YmImage> byImgTypeAndPid = imgDao.getByImgTypeAndPid(4, Integer.parseInt(schoolid));
         ArrayList<YmImage> ymImages = new ArrayList<>();
         ArrayList<YmImage> ymvideo = new ArrayList<>();
-        imgDao.getByImgTypeAndPidAndImageType(4, Integer.parseInt(schoolid), 3);
+        byImgTypeAndPidAndImageType = imgDao.getByImgTypeAndPidAndImageType(4, Integer.parseInt(schoolid), 3);
 
 
         for (YmImage ymImage : byImgTypeAndPid) {
@@ -148,17 +148,7 @@ public class SchoolController {
         String details = request.getParameter("details");
         String logourl = request.getParameter("logourl");
         String backImg = request.getParameter("backImg");
-        YmImage ymImage = new YmImage();
 
-        if (byImgTypeAndPidAndImageType != null ) {
-            ymImage.setId(byImgTypeAndPidAndImageType.getId());
-        }
-        ymImage.setImgUrl(backImg);
-        ymImage.setImgName("");
-        ymImage.setImgType(4);
-        ymImage.setImageType(3);
-        ymImage.setPid(Integer.parseInt(schoolid));
-        imgDao.save(ymImage);
 
 
         YmSchool ymSchool = new YmSchool();
@@ -179,7 +169,18 @@ public class SchoolController {
         ymSchool.setDetails(details);
 
         YmSchool save = schoolDao.save(ymSchool);
+        YmImage ymImage = new YmImage();
 
+        if (byImgTypeAndPidAndImageType != null ) {
+            ymImage.setId(byImgTypeAndPidAndImageType.getId());
+        }
+        ymImage.setImgUrl(backImg);
+        ymImage.setPid(save.getId());
+        ymImage.setImgName("");
+        ymImage.setImgType(4);
+        ymImage.setImageType(3);
+        //ymImage.setPid(Integer.parseInt(schoolid));
+        imgDao.save(ymImage);
         model.addAttribute("schoolList", save);
 
         if (pageNum == null) {
