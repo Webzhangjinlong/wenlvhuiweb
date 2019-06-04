@@ -2,7 +2,7 @@ package com.suguang.controller;
 
 import com.suguang.dao.YmWenBrigadeDao;
 
-import com.suguang.domin.YmWenBrigade;
+import com.suguang.domin.YmWenbrigade;
 
 import com.suguang.service.YmWenBrigadeService;
 import com.suguang.util.YmStaticVariablesUtil;
@@ -21,7 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.text.ParseException;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Mr.King on 2019/6/4.
@@ -42,16 +41,15 @@ public class YmWenBrigadeController {
     public String YmWenBrigadeList(HttpServletRequest request, Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size) {
         pageNum = page == null ? 1 : page;
         sizeNum = size == null ? 10 : size;
-        Page<YmWenBrigade> sourceCode = ymWenBrigadeService.getWenBrigade(pageNum, sizeNum);
+        Page<YmWenbrigade> sourceCode = ymWenBrigadeService.getWenBrigade(pageNum, sizeNum);
         model.addAttribute("YmWenBrigadeList", sourceCode);
-        return "";
+        return "brigadeList";
     }
     //删除空间信息
     @RequestMapping("/WenBrigadeDelete")
     public String WenBrigadeDelete(HttpServletRequest request) {
         String id = request.getParameter("id");
         ymWenBrigadeDao.deleteById(Integer.parseInt(id));
-
 
         return "redirect:/WenBrigade/YmWenBrigadeList?page=" + pageNum + "&size=" + sizeNum;
 
@@ -61,18 +59,15 @@ public class YmWenBrigadeController {
     @RequestMapping("/WenBrigadeDetails")
     public String SpaceDetails(HttpServletRequest request, Model model) {
         String id = request.getParameter("id");
-
-        YmWenBrigade ymWenBrigade = ymWenBrigadeDao.getById(Integer.parseInt(id));
+        YmWenbrigade ymWenBrigade = ymWenBrigadeDao.getById(Integer.parseInt(id));
 
         model.addAttribute("ymWenBrigade", ymWenBrigade);
-
-        return "";
-
+        return "brigadeAdd";
     }
 
     @RequestMapping("/WenBrigadeAdd")
     public String SpaceAdd() {
-        return "";
+        return "brigadeAdd";
     }
 
     //将信息保存，返回到列表页
@@ -81,9 +76,9 @@ public class YmWenBrigadeController {
 
         WenBrigadeId = request.getParameter("id");
         String type = request.getParameter("type");
-        String adult = request.getParameter("adult");
         String children = request.getParameter("children");
         String setMeal = request.getParameter("setMeal");
+        String adult = request.getParameter("adult");
         String adultDescribe = request.getParameter("adultDescribe");
         String childrenDescribe = request.getParameter("childrenDescribe");
         String mealDescribe = request.getParameter("mealDescribe");
@@ -91,12 +86,12 @@ public class YmWenBrigadeController {
         String feeNotice = request.getParameter("feeNotice");
         String securityTip = request.getParameter("securityTip");
         String name = request.getParameter("name");
-        String address = request.getParameter("address");
+       // String address = request.getParameter("address");
         String recommend = request.getParameter("recommend");
         String browse = request.getParameter("browse");
         String img = request.getParameter("img");
 
-        YmWenBrigade ymWenBrigade = new YmWenBrigade();
+        YmWenbrigade ymWenBrigade = new YmWenbrigade();
         if (WenBrigadeId != null && WenBrigadeId != "") {
             ymWenBrigade.setId(Integer.parseInt(WenBrigadeId));
         }
@@ -112,12 +107,12 @@ public class YmWenBrigadeController {
         ymWenBrigade.setSecurityTip(securityTip);
         ymWenBrigade.setName(name);
         ymWenBrigade.setCreateTime(new Date());
-        ymWenBrigade.setAddress(address);
+        //ymWenBrigade.setAddress(address);
         ymWenBrigade.setRecommend(Integer.parseInt(recommend));
         ymWenBrigade.setBrowse(Integer.parseInt(browse));
         ymWenBrigade.setImg(img);
 
-        ymWenBrigadeDao.save(ymWenBrigade);
+        YmWenbrigade save = ymWenBrigadeDao.save(ymWenBrigade);
 
 
         if (pageNum == null) {

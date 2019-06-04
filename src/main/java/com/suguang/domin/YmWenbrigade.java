@@ -10,7 +10,7 @@ import java.util.Date;
  * Created by 11491 on 2019/5/25.
  */
 @Entity
-public class YmWenBrigade {
+public class YmWenbrigade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -81,7 +81,7 @@ public class YmWenBrigade {
     private String img;
 
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 

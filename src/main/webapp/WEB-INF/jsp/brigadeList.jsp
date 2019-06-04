@@ -47,18 +47,21 @@
             <td>套票价</td>
             <td>操作</td>
         </tr>
+
+        <c:forEach items="${YmWenBrigadeList.content}" var="YmWenBrigadeList">
             <tr style="font-weight: bold;">
-                <td>黄沙古渡</td>
-                <td>周末嗨游</td>
-                <td>255</td>
-                <td>188</td>
-                <td>488</td>
+                <td>${YmWenBrigadeList.name}</td>
+                <td>${YmWenBrigadeList.type}</td>
+                <td>${YmWenBrigadeList.adult}</td>
+                <td>${YmWenBrigadeList.children}</td>
+                <td>${YmWenBrigadeList.setMeal}</td>
                 <td>
-                    <button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ tag.id})">修改/详情
+                    <button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ YmWenBrigadeList.id})">修改/详情
                     </button>
-                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ tag.id})">删除</button>
+                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ YmWenBrigadeList.id})">删除</button>
                 </td>
             </tr>
+        </c:forEach>
     </table>
     <div id="test1" style="margin-left: 900px">
     </div>
@@ -67,18 +70,18 @@
 <script type="text/javascript">
     function deleteById(id) {
         alert("您已成功删除！");
-        window.location.href = "/tag/delete?id=" + id;
+        window.location.href = "/WenBrigade/WenBrigadeDelete?id=" + id;
     }
 </script>
 
 <script>
     function updateById(id) {
-        window.location.href = "/tag/update?id=" + id;
+        window.location.href = "/WenBrigade/WenBrigadeDetails?id=" + id;
     }
 
 </script>
 <script>
-    var count = "${tagList.totalElements}";
+    var count = "${YmWenBrigadeList.totalElements}";
     console.log(count)
     layui.use('laypage', function(){
         var laypage = layui.laypage;
@@ -92,7 +95,7 @@
                 if(first){
                     return
                 }
-                var  href ='/tag/list?page='+obj.curr+'&size='+obj.limit
+                var  href ='/WenBrigade/YmWenBrigadeList?page='+obj.curr+'&size='+obj.limit
                 location.href=href;
             }
         });

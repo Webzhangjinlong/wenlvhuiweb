@@ -53,69 +53,103 @@
     <hr style="background: red; height: 2px">
 </div>
 <div>
-    <form class="form-horizontal" id="form1" role="form" action="/tag/tagAddById" method="post">
+    <form class="form-horizontal" id="form1" role="form" action="/WenBrigade/WenBrigadeUpdate" method="post">
         <div>
-            <input type="hidden" name="id" value="${tagupdate.id}">
+            <input type="hidden" name="id" value="${ymWenBrigade.id}">
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">路线名称:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="tagName" type="text" name="title" value="${tagupdate.title}"
+                <input class="form-control" id="name" type="text" name="name" value="${ymWenBrigade.name}"
                        placeholder="请输入路线名称">
             </div>
             <label class="col-sm-1 control-label">路线类型:</label>
             <div class="col-sm-2">
-                <select id="tagType" name="textType" value="" class="form-control">
-                    <option value="0" name="textType">--请选择--</option>
-                    <option value="1" name="textType">周末嗨游</option>
-                    <option value="2" name="textType">农家嗨乐</option>
-                    <option value="3" name="textType">人气嗨爆</option>
-                    <option value="4" name="textType">野驴路线</option>
-                    <option value="5" name="textType">研学游</option>
+                <select id="type" name="type" value="${ymWenBrigade.type}" class="form-control">
+
+                    <c:if test="${ymWenBrigade.type == 1}">
+                        <option value="1" name="type">周末嗨游</option>
+                    </c:if>
+                    <c:if test="${ymWenBrigade.type == 2}">
+                        <option value="2" name="type">农家嗨乐</option>
+                    </c:if>
+                    <c:if test="${ymWenBrigade.type == 3}">
+                        <option value="3" name="type">人气嗨爆</option>
+                    </c:if>
+                    <c:if test="${ymWenBrigade.type == 4}">
+                        <option value="4" name="type">野驴路线</option>
+                    </c:if>
+                    <c:if test="${ymWenBrigade.type == 5}">
+                        <option value="5" name="type">研学游</option>
+                    </c:if>
+
+                    <option value="0" name="type">--请选择--</option>
+                    <option value="1" name="type">周末嗨游</option>
+                    <option value="2" name="type">农家嗨乐</option>
+                    <option value="3" name="type">人气嗨爆</option>
+                    <option value="4" name="type">野驴路线</option>
+                    <option value="5" name="type">研学游</option>
                 </select>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">儿童票价:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="tagSource" type="text" name="source" value=""
+                <input class="form-control" id="children" type="text" name="children" value="${ymWenBrigade.children}"
                        placeholder="请输入儿童票价">
             </div>
             <label class="col-sm-1 control-label">成人票价:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="tagSource" type="text" name="source" value=""
+                <input class="form-control" id="adult" type="text" name="adult" value="${ymWenBrigade.adult}"
                        placeholder="请输入成人票价">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-1 control-label">套票价:</label>
+            <label class="col-sm-1 control-label">套餐票价:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="tagPeopleNum" name="peopleNum" type="text"
-                       value="" placeholder="请输入套票价">
+                <input class="form-control" id="setMeal" name="setMeal" type="text"
+                       value="${ymWenBrigade.setMeal}" placeholder="请输入套票价">
             </div>
             <label class="col-sm-1 control-label">浏览数:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="tagPeopleNum" name="peopleNum" type="text"
-                       value="" placeholder="请输入浏览数">
+                <input class="form-control" id="browse" name="browse" type="text"
+                       value="${ymWenBrigade.browse}" placeholder="请输入浏览数">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">推荐指数:</label>
             <div class="col-sm-2">
-                <select  class="form-control" id="recommendClass" name="recommendClass" value="">
-                <option value="0" name="recommendClass">--请选择--</option>
-                <option value="1" name="recommendClass">★</option>
-                <option value="2" name="recommendClass">★★</option>
-                <option value="3" name="recommendClass">★★★</option>
-                <option value="3" name="recommendClass">★★★★</option>
-                <option value="3" name="recommendClass">★★★★★</option>
+                <select  class="form-control" id="recommend" name="recommend" value="${ymWenBrigade.recommend}">
+
+                    <c:if test="${ymWenBrigade.recommend == 1}">
+                        <option value="1" name="recommend">★</option>
+                    </c:if>
+                    <c:if test="${ymWenBrigade.recommend == 2}">
+                        <option value="2" name="recommend">★★</option>
+                    </c:if>
+                    <c:if test="${ymWenBrigade.recommend == 3}">
+                        <option value="3" name="recommend">★★★</option>
+                    </c:if>
+                    <c:if test="${ymWenBrigade.recommend == 4}">
+                        <option value="4" name="recommend">★★★★</option>
+                    </c:if>
+                    <c:if test="${ymWenBrigade.recommend == 5}">
+                        <option value="5" name="recommend">★★★★★</option>
+                    </c:if>
+
+                <option value="0" name="recommend">--请选择--</option>
+                <option value="1" name="recommend">★</option>
+                <option value="2" name="recommend">★★</option>
+                <option value="3" name="recommend">★★★</option>
+                <option value="4" name="recommend">★★★★</option>
+                <option value="5" name="recommend">★★★★★</option>
                 </select>
             </div>
-            <label class="col-sm-1 control-label">预留人名:</label>
-            <div class="col-sm-2">
-                <input class="form-control" id="tagPeopleNum" name="peopleNum" type="text"
-                       value="" placeholder="请输入预留人名">
-            </div>
+            <%--<label class="col-sm-1 control-label">预留人名:</label>--%>
+            <%--<div class="col-sm-2">--%>
+                <%--<input class="form-control" id="tagPeopleNum" name="peopleNum" type="text"--%>
+                       <%--value="${ymWenBrigade.sex == 2}" placeholder="请输入预留人名">--%>
+            <%--</div>--%>
         </div>
         <div style="margin-left: 22px;">
             <label class="control-label">成人票价描述（必填）:</label><br>
@@ -124,9 +158,9 @@
             <div id="jiangp" class="toolbar"></div>
             <div style="padding: 5px 0; color: #ccc"></div>
             <div id="jiangp1" class="text">
-                <p>${tagupdate.prize}</p>
+                <p>${ymWenBrigade.adultDescribe}</p>
             </div>
-            <input type="hidden" id="prize" name="prize">
+            <input type="hidden" id="adultDescribe" name="adultDescribe">
         </div>
         <div style="margin-left: 22px;">
             <label class="control-label">儿童票价描述（必填）:</label><br>
@@ -135,9 +169,9 @@
             <div id="hdgz" class="toolbar"></div>
             <div style="padding: 5px 0; color: #ccc"></div>
             <div id="hdgz1" class="text">
-                <p>${tagupdate.policyRule}</p>
+                <p>${ymWenBrigade.childrenDescribe}</p>
             </div>
-            <input type="hidden" id="policyRule" name="policyRule">
+            <input type="hidden" id="childrenDescribe" name="childrenDescribe">
         </div>
         <div style="margin-left: 22px;">
             <label class="control-label">套票价描述（必填）:</label><br>
@@ -146,9 +180,9 @@
             <div id="hjgz" class="toolbar"></div>
             <div style="padding: 5px 0; color: #ccc"></div>
             <div id="hjgz1" class="text">
-                <p>${tagupdate.awardRules}</p>
+                <p>${ymWenBrigade.mealDescribe}</p>
             </div>
-            <input type="hidden" id="awardRules" name="awardRules">
+            <input type="hidden" id="mealDescribe" name="mealDescribe">
         </div>
         <div style="margin-left: 22px;">
             <label class="control-label">行程安排（必填）:</label><br>
@@ -157,9 +191,9 @@
             <div id="hdzz" class="toolbar"></div>
             <div style="padding: 5px 0; color: #ccc"></div>
             <div id="hdzz1" class="text">
-                <p>${tagupdate.policyPurpose}</p>
+                <p>${ymWenBrigade.tripArrange}</p>
             </div>
-            <input type="hidden" id="policyPurpose" name="policyPurpose">
+            <input type="hidden" id="tripArrange" name="tripArrange">
         </div>
         <div style="margin-left: 22px;">
             <label class="control-label">费用须知（必填）:</label><br>
@@ -168,9 +202,9 @@
             <div id="fyxz" class="toolbar"></div>
             <div style="padding: 5px 0; color: #ccc"></div>
             <div id="fyxz1" class="text">
-                <p>${tagupdate.policyPurpose}</p>
+                <p>${ymWenBrigade.feeNotice}</p>
             </div>
-            <input type="hidden" id="policyPurpose" name="policyPurpose">
+            <input type="hidden" id="feeNotice" name="feeNotice">
         </div>
         <div style="margin-left: 22px;">
             <label class="control-label">安全提示（必填）:</label><br>
@@ -179,16 +213,16 @@
             <div id="aqts" class="toolbar"></div>
             <div style="padding: 5px 0; color: #ccc"></div>
             <div id="aqts1" class="text">
-                <p>${tagupdate.policyPurpose}</p>
+                <p>${ymWenBrigade.securityTip}</p>
             </div>
-            <input type="hidden" id="policyPurpose" name="policyPurpose">
+            <input type="hidden" id="securityTip" name="securityTip">
         </div>
         <div class="layui-upload" style="float: right; margin-right: 500px; margin-top: -1230px">
             <button type="button" class="layui-btn" id="test1">上传路线封面图</button>
             <div class="layui-upload-list">
-                <img class="layui-upload-img" id="demo1" src="${tagupdate.image}">
+                <img class="layui-upload-img" id="demo1" src="${ymWenBrigade.img}">
             </div>
-            <input id="image" name="image" value="${tagupdate.image}" type="hidden"/>
+            <input id="image" name="img" value="${ymWenBrigade.img}" type="hidden"/>
             <p id="demoText"></p>
         </div>
         <div style="margin-top: 10px; margin-left: 650px;">
