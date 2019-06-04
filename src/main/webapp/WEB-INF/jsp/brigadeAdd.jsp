@@ -37,10 +37,12 @@
 <script type="text/javascript">
    function chan() {
            $("#cotent").val(editor1.txt.html());
-           $("#prize").val(editor2.txt.html());
-           $("#policyRule").val(editor3.txt.html());
-           $("#awardRules").val(editor4.txt.html());
-           $("#policyPurpose").val(editor5.txt.html());
+           $("#adultDescribe").val(editor2.txt.html());
+           $("#childrenDescribe").val(editor3.txt.html());
+           $("#mealDescribe").val(editor4.txt.html());
+           $("#tripArrange").val(editor5.txt.html());
+           $("#feeNotice").val(editor6.txt.html());
+           $("#securityTip").val(editor7.txt.html());
            $("#form1").submit();
    }
 
@@ -222,7 +224,7 @@
             <div class="layui-upload-list">
                 <img class="layui-upload-img" id="demo1" src="${ymWenBrigade.img}">
             </div>
-            <input id="image" name="img" value="${ymWenBrigade.img}" type="hidden"/>
+            <input id="img" name="img" value="${ymWenBrigade.img}" type="hidden"/>
             <p id="demoText"></p>
         </div>
         <div style="margin-top: 10px; margin-left: 650px;">
@@ -261,13 +263,13 @@
 </script>
 <script type="text/javascript">
     var E = window.wangEditor;
-    var editor5 = new E('#fyxz', '#fyxz1');
-    editor5.create();
+    var editor6 = new E('#fyxz', '#fyxz1');
+    editor6.create();
 </script>
 <script type="text/javascript">
     var E = window.wangEditor;
-    var editor5 = new E('#aqts', '#aqts1');
-    editor5.create();
+    var editor7 = new E('#aqts', '#aqts1');
+    editor7.create();
 </script>
 <script type="text/javascript">
 </script>
@@ -292,7 +294,7 @@
                 if (res.code > 0) {
                     return layer.msg('上传失败！')
                 }
-                $('#image').val('' + res.data[0]);
+                $('#img').val('' + res.data[0]);
                 return layer.msg('上传成功！')
             }
             , error: function () {
@@ -306,57 +308,5 @@
         });
     });
 
-</script>
-
-<script>
-    layui.use('upload', function () {
-        var $ = layui.jquery
-            , upload = layui.upload;
-        //普通图片上传
-        var uploadInst1 = upload.render({
-            elem: '#test2'
-            , url: '/uploadflv/upload'
-            , before: function (obj) {
-                //预读本地文件示例，不支持ie8
-                obj.preview(function (index, file, result) {
-                    $('#demo2').attr('src', result); //图片链接（base64）
-                });
-            }
-            , done: function (res) {
-                console.log(res.data[0]);
-                if (res.code > 0) {
-                    return layer.msg('上传失败！')
-                }
-                $('#videoBackurl').val('' + res.data[0]);
-                return layer.msg('上传成功！')
-            }
-            , error: function () {
-                //演示失败状态，并实现重传
-                var demoText = $('#demoText1');
-                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                demoText.find('.demo-reload').on('click', function () {
-                    uploadInst1.upload();
-                });
-            }
-        });
-        //选完文件后不自动上传
-        upload.render({
-            elem: '#test8'
-            ,url: '/uploadflv/upload'
-            ,accept: 'video'
-            ,auto:false
-            //,multiple: true
-            ,bindAction: '#test9'
-            ,done: function(res){
-                console.log(res.data[0])
-                if(res.code > 0){
-                    return layer.msg('上传失败！')
-                }
-                $("#videourl").val('' + res.data[0]);
-                $("#p1").text('' + res.data[0])
-                return layer.msg('上传成功！')
-            }
-        });
-    });
 </script>
 </html>
