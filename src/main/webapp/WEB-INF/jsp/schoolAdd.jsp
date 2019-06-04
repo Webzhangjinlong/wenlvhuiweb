@@ -35,6 +35,12 @@
 			max-height: 50px;
 		}
     </style>
+	<script type="text/javascript">
+		function chan() {
+            $("#details").val(editor1.txt.html());
+            $("#form1").submit();
+        }
+	</script>
 	<body style="width: 98%">
 	<div style="margin-top: 10px">
 		<font style="color: #000; font-size: 12px; margin-left: 10px">
@@ -44,7 +50,7 @@
 		<hr style="background: red; height: 2px">
 	</div>
  		<div>
-			<form class="form-horizontal" role="form" action="/school/saveupdate">
+			<form class="form-horizontal" role="form" id="form1" action="/school/saveupdate">
 
 				<div>
 					<input type="hidden" name="id" value="${addSchool.id}">
@@ -151,12 +157,23 @@
 					</div>
                     <div class="form-group">
                             <label class="col-sm-1 control-label">学校详情:</label>
-                        <div class="col-sm-5">
-                            <textarea class="form-control" rows="3" id="details" name="details" value="${addSchool.details}">${addSchool.details}</textarea>
-                        </div>
+						<div style="margin-left: 30px; margin-top: 40px">
+							<div id="div1" class="toolbar"></div>
+							<div style="padding: 5px 0; color: #ccc"></div>
+							<div id="div2" class="text">
+								<p>${addSchool.details}</p>
+							</div>
+							<input type="hidden" id="details" name="details">
+						</div>
+						<script type="text/javascript" src="/js/wangEditor.js"></script>
+						<script type="text/javascript">
+                            var E = window.wangEditor;
+                            var editor1 = new E('#div1', '#div2');
+                            editor1.create();
+						</script>
                     </div>
 		    	<div style="margin-top: 10px; margin-left: 550px;">
-		    		<button class="layui-btn layui-btn-sm">确定添加/修改</button>
+		    		<button class="layui-btn layui-btn-sm" onclick="chan()">确定添加/修改</button>
 		    	</div>
 				</div>
 			</form>
