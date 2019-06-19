@@ -127,15 +127,23 @@
 					</div>
 				</div>
 				<div class="form-group">
-						<label class="col-sm-1 control-label">联系电话:</label>
+						<label class="col-sm-1 control-label">手机号:</label>
 						<div class="col-sm-2">
 							<input class="form-control" name="phone" value="${addSchool.phone}" id="focusedInput" type="text" placeholder="请输入联系电话">
+						</div>
+						<label class="col-sm-1 control-label">登陆密码:</label>
+						<div class="col-sm-2">
+							<input class="form-control" name="phone" value="" id="focusedInput" type="text" placeholder="请输入登陆密码">
 						</div>
 				</div>
 				<div class="form-group">
 						<label class="col-sm-1 control-label">详细地址:</label>
-						<div class="col-sm-5">
+						<div class="col-sm-2">
 							<input class="form-control" name="addrDetail" value="${addSchool.addrDetail}" id="addrDetail" type="text" placeholder="请输入详细地址">
+						</div>
+						<label class="col-sm-1 control-label">查看金额:</label>
+						<div class="col-sm-2">
+							<input class="form-control" name="addrDetail" value="" id="addrDetail" type="text" placeholder="请输入查看金额">
 						</div>
 				</div>
 				<div>
@@ -182,15 +190,15 @@
 	<div>
 		<div>
 		<div style="margin-left: 20px">
-			<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schoolImage" id="aa" onclick="idnull(${addSchool.id})">
+			<button class="btn btn-primary btn-sm" id="aa" onclick="imageAdd(${addSchool.id})">
 				添加图片
 				<script type="text/javascript">
-					function idnull(id) {
+					function imageAdd(id) {
 						if(id == null || id == ""){
 						    alert("请添加完成学校之后在添加图片！")
 							document.getElementById("aa").disabled = true;
 						}
-						$('aa').onclick;
+						window.location.href="/school/schoolImage"
                     }
 
 				</script>
@@ -215,8 +223,6 @@
 				<td><img src="${ymImages.imgUrl}"></td>
 				<td>${ymImages.detalis}</td>
 				<td>
-					<%--<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#schoolImage">修改/详情--%>
-					<%--</button>--%>
 					<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteImgById(${ ymImages.id})">删除</button>
 				</td>
 
@@ -226,15 +232,15 @@
 	</div>
 		<div>
 			<div style="margin-left: 20px">
-				<button class="btn btn-primary btn-sm" data-toggle="modal" id="bb" data-target="#schoolVideo" onclick="videoNull(${addSchool.id})">
+				<button class="btn btn-primary btn-sm" id="bb" onclick="videoAdd(${addSchool.id})">
 					添加视频
 					<script type="text/javascript">
-                        function videoNull(id) {
+                        function videoAdd(id) {
                             if(id == null || id == ""){
                                 alert("请添加完成学校之后在添加视频！")
                                 document.getElementById("bb").disabled = true;
                             }
-                            $('bb').onclick;
+                            window.location.href="/school/schoolVideo"
                         }
 
 					</script>
@@ -268,132 +274,6 @@
 			</table>
 		</div>
 	</div>
-	<!-- 添加学校图片模态框 -->
-	<div class="modal fade" id="schoolImage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-						X
-					</button>
-					<h4 class="modal-title" id="myModalLabel">
-						学校图片添加
-					</h4>
-				</div>
-				<div class="modal-body">
-					<form id="modelImage" action="/school/saveupdate">
-
-						<div>
-							<input type="hidden" name="id" value="">
-						</div>
-						<div class="layui-form-item" style="margin-left: 20px;">
-							<label class="layui-form-label" style="width: 100px">图片名称</label>
-							<div class="layui-input-inline">
-								<input type="text" id="imageName" name="imageName" placeholder="请输入图片名称！" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-form-item" style="margin-left: 20px;">
-							<label class="layui-form-label" style="width: 100px">图片状态</label>
-							<div class="layui-input-inline">
-								<select name="schoolImage" id="tagStatus" value="" class="form-control">
-									<option value="1" name="schoolImage">图片</option>
-								</select>
-							</div>
-						</div>
-						<div class="layui-form-item" style="margin-left: 20px;">
-							<label class="layui-form-label" style="width: 100px">图片描述</label>
-							<div class="layui-input-inline">
-								<input type="text" id="imageDetalis" name="ImageDetalis" placeholder="请输入图片描述！" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-upload" style="margin-left: 48px">
-							<button type="button" class="layui-btn" id="test2">上传图片：</button>
-							<div class="layui-upload-list" >
-								<img class="layui-upload-img" id="demo2"src="">
-								<input id="imgUrl" name="imgUrl" type="hidden"/>
-								<p id="demoText1"></p>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">关闭
-							</button>
-							<button type="button" class="btn btn-primary"onclick="addImgById(${ addSchool.id})">
-								提交更改
-							</button>
-						</div>
-					</form>
-
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal -->
-	</div>
-	</div>
-	<!-- 添加学校视频模态框 -->
-	<div class="modal fade" id="schoolVideo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-						&times;
-					</button>
-					<h4 class="modal-title" id="myModalLabel1">
-						学校视频添加
-					</h4>
-				</div>
-				<div class="modal-body">
-					<form id="modelVideo" action="/school/saveupdate">
-
-						<div>
-							<input type="hidden" name="id" value="">
-						</div>
-
-						<div class="layui-form-item" style="margin-left: 20px;">
-							<label class="layui-form-label" style="width: 100px">视频名称</label>
-							<div class="layui-input-inline">
-								<input type="text" id="videoImageName" name="videoImageName" placeholder="请输入视频名称！" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-form-item" style="margin-left: 20px;">
-							<label class="layui-form-label" style="width: 100px">视频状态</label>
-							<div class="layui-input-inline">
-								<select name="schoolVideo" id="" value="" class="form-control">
-									<option value="1" name="schoolVideo">视频</option>
-								</select>
-							</div>
-						</div>
-						<div class="layui-form-item" style="margin-left: 20px;">
-							<label class="layui-form-label" style="width: 100px">视频描述</label>
-							<div class="layui-input-inline">
-								<input type="text" id="videoDetails" name="videoDetails" placeholder="请输入视频描述！" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-upload" style="margin-left: 48px">
-							<button type="button" class="layui-btn" id="test3">上传视频封面图：</button>
-							<div class="layui-upload-list" >
-								<img class="layui-upload-img" id="demo3">
-								<input id="videoImgUrl" name="videoImgUrl" type="hidden"/>
-								<p id="demoText2"></p>
-							</div>
-						</div>
-						<div class="layui-upload" style="margin-left: 20px;">
-							<button type="button" class="layui-btn layui-btn-normal" id="test8">选择学校视频</button>
-							<input type="hidden" id="videoUrl" name="videoUrl">
-							<button type="button" class="layui-btn" id="test9" >开始上传</button><br>
-							<p id="p1" class="layui-btn layui-btn-warm layui-btn-radius" style="margin-top: 11px"></p>
-						</div>
-
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">关闭
-							</button>
-							<button type="button" class="btn btn-primary" onclick="addVideoById(${ addSchool.id})">
-								提交更改
-							</button>
-						</div>
-					</form>
-
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal -->
-		</div>
-	</div>
  </body>
 
 	<script type="text/javascript">
@@ -403,22 +283,6 @@
 
         function deleteImgById(id){
             window.location.href="/school/deleteImg?id="+id;
-        }
-
-        function addImgById(id){
-            var imageName = document.getElementById("imageName").value;
-            var imageDetalis = document.getElementById("imageDetalis").value;
-            var imgUrl = document.getElementById("imgUrl").value;
-            window.location.href="/school/addImg?id="+id+"&imageName="+imageName+"&imageDetalis="+imageDetalis+"&imgUrl="+imgUrl;
-        }
-
-        function addVideoById(id){
-            var videoImageName = document.getElementById("videoImageName").value;
-            var videoDetails = document.getElementById("videoDetails").value;
-            var videoImgUrl = document.getElementById("videoImgUrl").value;
-            var videoUrl = document.getElementById("videoUrl").value;
-
-            window.location.href="/school/addVideo?id="+id+"&videoImageName="+videoImageName+"&videoDetails="+videoDetails+"&videoImgUrl="+videoImgUrl+"&videoUrl="+videoUrl;
         }
 	</script>
 		<script>
@@ -455,39 +319,6 @@
 	</script>
 	<script>
         layui.use('upload', function() {
-                var $ = layui.jquery
-                    , upload = layui.upload;
-            //普通图片上传
-            var uploadInst = upload.render({
-                elem: '#test2'
-                ,url: '/uploadflv/upload'
-                ,before: function(obj){
-                    //预读本地文件示例，不支持ie8
-                    obj.preview(function(index, file, result){
-                        $('#demo2').attr('src', result); //图片链接（base64）
-                    });
-                }
-                ,done: function(res){
-                    //如果上传失败
-                    if(res.code > 0){
-                        return layer.msg('上传失败');
-                    }
-                    $('#imgUrl').val(''+ res.data[0]);
-                    //上传成功
-                }
-                ,error: function(){
-                    //演示失败状态，并实现重传
-                    var demoText = $('#demoText1');
-                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                    demoText.find('.demo-reload').on('click', function(){
-                        uploadInst.upload();
-                    });
-                }
-            });
-            });
-        </script>
-	<script>
-        layui.use('upload', function() {
             var $ = layui.jquery
                 , upload = layui.upload;
             //普通图片上传
@@ -515,57 +346,6 @@
                     demoText.find('.demo-reload').on('click', function(){
                         uploadInst.upload();
                     });
-                }
-            });
-        });
-	</script>
-	<script>
-        layui.use('upload', function() {
-            var $ = layui.jquery
-                , upload = layui.upload;
-            //普通图片上传
-            var uploadInst = upload.render({
-                elem: '#test3'
-                ,url: '/uploadflv/upload'
-                ,before: function(obj){
-                    //预读本地文件示例，不支持ie8
-                    obj.preview(function(index, file, result){
-                        $('#demo3').attr('src', result); //图片链接（base64）
-                    });
-                }
-                ,done: function(res){
-                    //如果上传失败
-                    if(res.code > 0){
-                        return layer.msg('上传失败');
-                    }
-                    $('#videoImgUrl').val(''+res.data[0]);
-                    //上传成功
-                }
-                ,error: function(){
-                    //演示失败状态，并实现重传
-                    var demoText = $('#demoText2');
-                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                    demoText.find('.demo-reload').on('click', function(){
-                        uploadInst.upload();
-                    });
-                }
-            });
-            //选完文件后不自动上传
-            upload.render({
-                elem: '#test8'
-                ,url: '/uploadflv/upload'
-                ,accept: 'video'
-                ,auto:false
-                //,multiple: true
-                ,bindAction: '#test9'
-                ,done: function(res){
-                    console.log(res.data[0])
-                    if(res.code > 0){
-                        return layer.msg('上传失败！')
-                    }
-                    $("#videoUrl").val('' + res.data[0]);
-                    $("#p1").text('' + res.data[0])
-                    return layer.msg('上传成功！')
                 }
             });
         });

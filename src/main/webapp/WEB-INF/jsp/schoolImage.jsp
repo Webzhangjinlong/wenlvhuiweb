@@ -40,7 +40,7 @@ pageEncoding="UTF-8"%>
 	<body style="width: 98%">
 	<div style="margin-top: 10px">
 		<font style="color: #000; font-size: 12px; margin-left: 10px">
-			★ 艺人视频添加
+			★ 学校图片添加
 		</font>
 		<br>
 		<hr style="background: red; height: 2px; margin-top: 0px">
@@ -51,32 +51,26 @@ pageEncoding="UTF-8"%>
 					<input type="hidden" name="Policyid" value="">
 				</div>
 				<div class="form-group">
-					<label class="col-sm-1 control-label">视频描述:</label>
+					<label class="col-sm-1 control-label">图片描述:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="browse" type="text" name="Policybrowse" value="" placeholder="请输入视频描述">
+						<input class="form-control" id="browse" type="text" name="" value="" placeholder="请输入图片描述">
 					</div>
 					<label class="col-sm-1 control-label">添加类型:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="browse1" type="text" name="Policybrowse" value="视频" >
+						<input class="form-control" id="browse1" type="text" name="" value="图片" >
 					</div>
 				</div>
-				<div class="layui-upload"  style="margin-left: 20px">
-					<button type="button" class="layui-btn" id="test1">请上传视频封面图</button>
+				<div class="layui-upload" style="margin-left: 20px">
+					<button type="button" class="layui-btn" id="test1">请上传学校图片</button>
 					<div class="layui-upload-list">
 						<img class="layui-upload-img" id="demo1" src="">
 						<input id="videoBackimg" name="videoBackimg" type="hidden" value=""/>
 						<p id="demoText"></p>
 					</div>
 				</div>
-				<div class="layui-upload" style="margin-left: 20px;margin-top: 20px">
-					<button type="button" class="layui-btn layui-btn-normal" id="test8">选择艺人视频</button>
-					<input type="hidden" id="videoUrl" name="videoUrl" value="" >
-					<button type="button" class="layui-btn" id="test9">开始上传</button><br>
-					<p id="p1" class="layui-btn layui-btn-warm layui-btn-radius" style="margin-top: 11px"></p>
-				</div>
-
-		    	<div style="margin-top: 10px; margin-left: 530px;">
+		    	<div style="margin-top: 10px; margin-left: 530px; margin-top: -50px">
 		    		<button class="layui-btn layui-btn-sm" onclick="chan()">确定添加/修改</button>
+		    		<%--<button class="layui-btn layui-btn-sm layui-btn-danger">确定修改</button>--%>
 		    	</div>
 			</form>
 			<div style="margin-left: 690px; margin-top: -30px">
@@ -120,24 +114,6 @@ pageEncoding="UTF-8"%>
                     demoText.find('.demo-reload').on('click', function () {
                         uploadInst.upload();
                     });
-                }
-            });
-            //选完文件后不自动上传
-            upload.render({
-                elem: '#test8'
-                ,url: '/uploadflv/upload'
-                ,accept: 'video'
-                ,auto:false
-                //,multiple: true
-                ,bindAction: '#test9'
-                ,done: function(res){
-                    console.log(res.data[0])
-                    if(res.code > 0){
-                        return layer.msg('上传失败！')
-                    }
-                    $("#").val('' + res.data[0]);
-                    $("#p1").text('' + res.data[0])
-                    return layer.msg('上传成功！')
                 }
             });
         });

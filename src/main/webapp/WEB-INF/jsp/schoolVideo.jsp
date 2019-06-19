@@ -40,7 +40,7 @@ pageEncoding="UTF-8"%>
 	<body style="width: 98%">
 	<div style="margin-top: 10px">
 		<font style="color: #000; font-size: 12px; margin-left: 10px">
-			★ 艺人视频添加
+			★ 学校视频添加
 		</font>
 		<br>
 		<hr style="background: red; height: 2px; margin-top: 0px">
@@ -69,7 +69,7 @@ pageEncoding="UTF-8"%>
 					</div>
 				</div>
 				<div class="layui-upload" style="margin-left: 20px;margin-top: 20px">
-					<button type="button" class="layui-btn layui-btn-normal" id="test8">选择艺人视频</button>
+					<button type="button" class="layui-btn layui-btn-normal" id="test8">选择学校视频</button>
 					<input type="hidden" id="videoUrl" name="videoUrl" value="" >
 					<button type="button" class="layui-btn" id="test9">开始上传</button><br>
 					<p id="p1" class="layui-btn layui-btn-warm layui-btn-radius" style="margin-top: 11px"></p>

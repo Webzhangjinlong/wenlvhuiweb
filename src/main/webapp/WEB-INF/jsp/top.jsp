@@ -37,6 +37,7 @@ pageEncoding="UTF-8"%>
 		</div>
 		<div id="top">
 			<font style="color: #f0f0f0">账号：</font>
+			&nbsp;&nbsp;&nbsp;&nbsp;
 			<font style="color: #f0f0f0">日期：</font>
 			<div id="linkweb" style=" display:inline; color: #ffffff"></div>
 		</div>
