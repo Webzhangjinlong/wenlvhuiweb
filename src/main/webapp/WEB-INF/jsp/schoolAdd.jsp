@@ -198,7 +198,8 @@
 						    alert("请添加完成学校之后在添加图片！")
 							document.getElementById("aa").disabled = true;
 						}
-						window.location.href="/school/schoolImage"
+						window.location.href="/school/schoolImage";
+                        $('aa').onclick;
                     }
 
 				</script>
@@ -240,7 +241,9 @@
                                 alert("请添加完成学校之后在添加视频！")
                                 document.getElementById("bb").disabled = true;
                             }
-                            window.location.href="/school/schoolVideo"
+
+                            $('bb').onclick;
+                            window.location.href="/school/schoolVideo";
                         }
 
 					</script>

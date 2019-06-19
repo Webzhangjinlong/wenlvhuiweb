@@ -75,9 +75,7 @@
                 <select class="selectpicker show-tick form-control"   name="recommendUser"   data-live-search="true">
                     <option  value="-1">请选择</option>
                     <c:forEach items="${user}" var="user" >
-
-                        <option value="${user.id}">${user.nickName}</option>
-
+                        <option value="${user.id}">${user.username}</option>
                     </c:forEach>
                 </select>
             </div>

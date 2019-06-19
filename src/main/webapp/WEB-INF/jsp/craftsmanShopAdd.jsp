@@ -134,11 +134,41 @@ pageEncoding="UTF-8"%>
 		    		<%--<button class="layui-btn layui-btn-sm layui-btn-danger">确定修改</button>--%>
 		    	</div>
 			</form>
-			<div style="margin-left: 690px; margin-top: -30px">
- 			</div>
- 			<div style="margin-left: 443px; margin-top: -30px">
- 			</div>
  		</div>
+	<div>
+		<div style="margin-left: 20px">
+			<button class="btn btn-primary btn-sm" id="" onclick="artistImageAdd()">
+				添加商品图片
+				<script type="text/javascript">
+				</script>
+			</button>
+		</div>
+		<table class="layui-table" lay-skin="line" style="margin-left: 20px; width: 80%">
+			<thead>
+			<tr>
+				<th>商品图片</th>
+				<th>图片描述</th>
+				<th>类型</th>
+				<th>操作</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<th><img src="#"></th>
+				<th>演出图片</th>
+				<th>图片</th>
+				<td>
+					<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="imageById()">修改</button>
+					<script type="text/javascript">
+                        function artistImageAdd() {
+                            window.location.href="/artist/image";
+                        }
+					</script>
+					<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById()">删除</button>
+				</td>
+			</tr>
+			</tbody>
+		</table>
     <script type="text/javascript" src="/js/wangEditor.js"></script>
     <script type="text/javascript">
         var E = window.wangEditor;

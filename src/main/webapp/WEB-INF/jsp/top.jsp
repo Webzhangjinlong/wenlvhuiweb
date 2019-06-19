@@ -36,13 +36,13 @@ pageEncoding="UTF-8"%>
 			</font>
 		</div>
 		<div id="top">
-			<font style="color: #f0f0f0">账号：</font>
+			<font style="color: #f0f0f0">账号：${user.username}</font>
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<font style="color: #f0f0f0">日期：</font>
-			<div id="linkweb" style=" display:inline; color: #ffffff"></div>
+			<div id="linkweb" style=" display:inline; color: #ffffff; margin-right: 20px"></div>
 		</div>
 		<script>
-            setInterval("document.getElementById('linkweb').innerHTML=new Date  ().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay  ());",1000);
+            setInterval("document.getElementById('linkweb').innerHTML=new Date().toLocaleString()+'   星期'+'日一二三四五六'.charAt(new Date().getDay  ());",1000);
 		</script>
 		<script>
             function showTime() {
