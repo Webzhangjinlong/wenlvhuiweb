@@ -40,6 +40,8 @@
        var artistType = document.getElementById("artistType").value;
        var artistPhone = document.getElementById("artistPhone").value;
        var artistStatus = document.getElementById("artistStatus").value;
+       var productPrice = document.getElementById("productPrice").value;
+       var password = document.getElementById("password").value;
 
        if(artistName == "" || artistName == null){
            alert("请输入艺人名称!");
@@ -112,12 +114,12 @@
         <div class="form-group">
             <label class="col-sm-1 control-label">查看价格:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="jage" type="text" name="" value=""
+                <input class="form-control" id="productPrice" type="text" name="productPrice" value="${addYmArtist.productPrice}"
                        placeholder="查看艺人需要的金额">
             </div>
             <label class="col-sm-1 control-label">艺人密码:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="artistpassword" type="text" name="type" value=""
+                <input class="form-control" id="password" type="text" name="password" value="${byTypeId.password}"
                        placeholder="请输入艺人密码">
             </div>
         </div>

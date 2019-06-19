@@ -10,7 +10,6 @@ public class YmUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;            // `id` bigint(20) NOT NULL AUTO_INCREMENT,
-    @Column(name = "username")
     private String username;       // `username` varchar(50) NOT NULL COMMENT '用户名',
     private String password;       // `password` varchar(32) NOT NULL COMMENT '密码，加密存储',
     private String phone;          //`phone` varchar(20) DEFAULT NULL COMMENT '注册手机号',
@@ -32,6 +31,8 @@ public class YmUser {
 
     private Integer userType;
     private Integer typeId;
+
+    //private String headPic;
 
     public YmUser() {
     }

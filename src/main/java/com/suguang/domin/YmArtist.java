@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class YmArtist  extends YmEntity {
+public class YmArtist extends YmEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -21,12 +21,31 @@ public class YmArtist  extends YmEntity {
 
     private String artistPhone;
 
-   private String artistDetails;
+    private String artistDetails;
 
-   private String artistExperience;
+    private String artistExperience;
 
     private Integer artistStatus;
 
+    private String productId;
+
+    private Double productPrice;
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public Double getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(Double productPrice) {
+        this.productPrice = productPrice;
+    }
 
     public Integer getId() {
         return id;

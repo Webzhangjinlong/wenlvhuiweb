@@ -1,9 +1,11 @@
 package com.suguang.controller;
 
 import com.suguang.Dto.SaveUpdateFormSubmit;
+import com.suguang.dao.UserDao;
 import com.suguang.dao.YmArtistDao;
 import com.suguang.dao.YmArtistDao;
 import com.suguang.domin.YmArtist;
+import com.suguang.domin.YmUser;
 import com.suguang.service.ArtistService;
 
 import com.suguang.util.YmStaticVariablesUtil;
@@ -20,6 +22,7 @@ import javax.validation.Valid;
 import java.io.File;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by 11491 on 2019/6/1.
@@ -29,11 +32,14 @@ import java.util.Date;
 public class ArtistController {
     @Autowired
     ArtistService YmArtistService;
-
     @Autowired
     YmArtistDao YmArtistDao;
+    @Autowired
+    UserDao userDao;
+
     private Integer pageNum;
     private Integer sizeNum;
+    private String id;
 
     @RequestMapping("/image")
     public String imageByid(){
@@ -51,7 +57,6 @@ public class ArtistController {
         pageNum = page == null ? 1 : page;
         sizeNum = size == null ? 10 : size;
 
-
         Page<YmArtist> sourceCode = YmArtistService.getYmArtist(pageNum, sizeNum);
         model.addAttribute("YmArtistList", sourceCode);
 
@@ -64,8 +69,6 @@ public class ArtistController {
     public String YmArtistDelete(HttpServletRequest request) {
         String id = request.getParameter("id");
         YmArtistDao.deleteById(Integer.parseInt(id));
-
-
         return "redirect:/artist/artistList?page=" + pageNum + "&size=" + sizeNum;
 //        return "redirect:/YmArtist/list";
     }
@@ -73,9 +76,11 @@ public class ArtistController {
     //通过id获取修改页面，并将要修改的数据在修改页面渲染
     @RequestMapping("/update")
     public String YmArtistpreUpdate(HttpServletRequest request, Model model) {
-        String id = request.getParameter("id");
+        id = request.getParameter("id");
 
         YmArtist ymYmArtist = YmArtistDao.getById(Integer.parseInt(id));
+        YmUser byTypeId = userDao.getByTypeId(Integer.parseInt(id));
+        model.addAttribute("byTypeId",byTypeId);
         model.addAttribute("addYmArtist", ymYmArtist);
         return "artistAdd";
 
@@ -99,11 +104,18 @@ public class ArtistController {
         String artistExperience = request.getParameter("artistExperience");
         String backgroundUrl = request.getParameter("backgroundUrl");
         String artistLogourl = request.getParameter("artistLogourl");
+        String productPrice = request.getParameter("productPrice");
+        String productId = UUID.randomUUID().toString();
+        String password = request.getParameter("password");
+
 
         YmArtist ymYmArtist = new YmArtist();
         if (id != null && id != "") {
             ymYmArtist.setId(Integer.parseInt(id));
         }
+
+        ymYmArtist.setProductId(productId);//生成唯一标识
+        ymYmArtist.setProductPrice(Double.parseDouble(productPrice));//厂品价格
         ymYmArtist.setArtistName(name);
         ymYmArtist.setArtistType(type);
         ymYmArtist.setArtistPhone(phone);
@@ -112,11 +124,32 @@ public class ArtistController {
         ymYmArtist.setArtistExperience(artistExperience);
         ymYmArtist.setBackgroundUrl(backgroundUrl);
         ymYmArtist.setArtistLogourl(artistLogourl);
-
         YmArtist save = YmArtistDao.save(ymYmArtist);
 
-        model.addAttribute("YmArtistList", save);
 
+        if (id.equals("")) {
+            YmUser ymUser = new YmUser();
+            ymUser.setHeadPic(artistLogourl);
+            ymUser.setPassword(password);
+            ymUser.setPhone(phone);
+            ymUser.setUsername(name);
+            ymUser.setNickName(name);
+            ymUser.setName(name);
+            ymUser.setTypeId(save.getId());
+            ymUser.setUserType(2);
+            userDao.save(ymUser);
+        }else{
+            YmUser byTypeId = userDao.getByTypeId(Integer.parseInt(id));
+            byTypeId.setHeadPic(artistLogourl);
+            byTypeId.setPassword(password);
+            byTypeId.setPhone(phone);
+            byTypeId.setUsername(name);
+            byTypeId.setNickName(name);
+            byTypeId.setName(name);
+            byTypeId.setTypeId(save.getId());
+            byTypeId.setUserType(2);
+            userDao.save(byTypeId);
+        }
         if (pageNum==null) {
             pageNum =1;
         }
