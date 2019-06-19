@@ -30,7 +30,7 @@ public class UploadController {
 	@RequestMapping(value = "/upload", method = { RequestMethod.POST, RequestMethod.GET })
 	@ResponseBody
 	public String upload(@RequestParam(value = "file", required = false) MultipartFile multipartFile,
-			HttpServletRequest request) {
+						 HttpServletRequest request) {
 		String message = "";
 		FileEntity entity = new FileEntity();
 		FileUploadUtil fileUploadTool = new FileUploadUtil();
@@ -39,9 +39,9 @@ public class UploadController {
 			entity = fileUploadTool.createFile(multipartFile, request);
 			List list= new ArrayList();
 			String path = entity.getPath();
-			list.add("export_xls?file="+path);
+			list.add(path);
 			if (entity != null) {
-               // service.saveFile(entity);
+				// service.saveFile(entity);
 				message = "上传成功";
 				result.put("errno", 0);
 				result.put("data", list);  //你这里是data  看到没嗯然后呢
@@ -72,13 +72,13 @@ public class UploadController {
 				.contentType(MediaType.parseMediaType("application/octet-stream")).body(new FileSystemResource(file));
 
 	}
-	
-	
+
+
 	//返回服务器资源
 	@RequestMapping(value = "export_xls", method = RequestMethod.GET)
 	public ResponseEntity<FileSystemResource> exportXls(HttpServletRequest request) {
 		String file = request.getParameter("file");
-		return export(new File(YmStaticVariablesUtil.UPLOAD_PATH+file));
+		return export(new File(file));
 	}
 
 }
