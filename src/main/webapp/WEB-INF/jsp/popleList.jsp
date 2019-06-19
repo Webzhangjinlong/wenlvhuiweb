@@ -24,38 +24,34 @@
         overflow: hidden; /* 内容超出宽度时隐藏超出部分的内容 */
         text-overflow: ellipsis;
     }
+
+    td:hover {
+        overflow: visible;
+    }
 </style>
 <body>
 <div style="margin-top: 5px">
     <font style="color: #000; font-size: 14px; margin-left: 10px; font-weight: bold">
         ★ 会员列表
     </font>
-    <button onclick="userAdd()" type="button" class="layui-btn layui-btn-sm layui-btn-normal" style="margin-left: 85%">
-        添加会员
-    </button>
-    <script type="text/javascript">
-        function userAdd() {
-            window.location.href="/user/add"
-        }
-    </script>
     <br>
     <hr style="background: red; height: 2px">
 </div>
 <div id="tab1">
-    <table class="layui-table" lay-skin="line,row" style="text-align: center; overflow: hidden;">
+    <table class="layui-table" lay-skin="line" style="text-align: center; overflow: hidden;">
         <tr style="font-weight: bold;">
-            <td style="width: 5%">账号</td>
-            <td style="width: 5%">电话</td>
-            <td style="width: 8%">使用状态</td>
-            <td style="width: 8%">是否验证</td>
-            <td style="width: 8%">创建时间</td>
-            <td style="width: 5%">昵称</td>
-            <td style="width: 8%">真实姓名</td>
-            <td style="width: 5%">性别</td>
-            <td style="width: 5%">生日</td>
-            <td style="width: 6%">最后登陆</td>
-            <td style="width: 6%">会员类型</td>
-            <td style="width: 10%">操作</td>
+            <td>账号</td>
+            <td>电话</td>
+            <td>使用状态</td>
+            <td>是否验证</td>
+            <td>创建时间</td>
+            <td>昵称</td>
+            <td>真实姓名</td>
+            <td>性别</td>
+            <td>生日</td>
+            <td>最后登陆</td>
+            <td>会员类型</td>
+            <td>操作</td>
         </tr>
         <c:forEach items="${userList.content}" var="userList">
             <tr>
@@ -86,7 +82,6 @@
                     <c:if test="${userList.userType == 4}">餐厅</c:if>
                 </td>
                 <td>
-                    <button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ userList.id})">修改</button>
                     <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ userList.id})">删除</button>
                 </td>
             </tr>
@@ -98,14 +93,9 @@
 </body>
 
 <script type="text/javascript">
-    function updateById(id) {
-        window.location.href = "/user/preupdate?id=" + id;
-    }
-
     function deleteById(id) {
         window.location.href = "/user/delete?id=" + id;
     }
-
 </script>
 
 <script>
