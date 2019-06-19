@@ -27,9 +27,17 @@
 </style>
 <body>
 <div style="margin-top: 5px">
-    <font style="color: #000; font-size: 12px; margin-top: 10px">
+    <font style="color: #000; font-size: 14px; margin-left: 10px; font-weight: bold">
         ★ 会员列表
     </font>
+    <button onclick="userAdd()" type="button" class="layui-btn layui-btn-sm layui-btn-normal" style="margin-left: 85%">
+        添加会员
+    </button>
+    <script type="text/javascript">
+        function userAdd() {
+            window.location.href="/user/add"
+        }
+    </script>
     <br>
     <hr style="background: red; height: 2px">
 </div>

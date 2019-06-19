@@ -101,6 +101,10 @@ public class TagController {
         String videourl = request.getParameter("videourl");
         String videoBackurl = request.getParameter("videoBackurl");
         String browse = request.getParameter("browse");
+        String longitude = request.getParameter("longitude");
+        String latitude = request.getParameter("latitude");
+        String detailsContent = request.getParameter("detailsContent");
+        String phone = request.getParameter("phone");
         YmPolicy ymPolicy = new YmPolicy();
         if(id != null && id != ""){
             ymPolicy.setId(Integer.parseInt(id));
@@ -123,6 +127,10 @@ public class TagController {
         ymPolicy.setVideourl(videourl);
         ymPolicy.setCreateDate(new Date());
         ymPolicy.setVideoBackurl(videoBackurl);
+        ymPolicy.setLongitude(longitude);
+        ymPolicy.setLatitude(latitude);
+        ymPolicy.setDetailsContent(detailsContent);
+        ymPolicy.setPhone(phone);
 
         ymPolicy.setBrowse(Integer.parseInt(browse));
         YmPolicy policy = tagDao.save(ymPolicy);

@@ -31,9 +31,17 @@
 </style>
 <body>
 <div style="margin-top: 10px">
-    <font style="color: #000; font-size: 12px; margin-left: 10px">
-        ★ 艺人列表
+    <font style="color: #000; font-size: 14px; margin-left: 10px; font-weight: bold">
+        ★ 文旅定制列表
     </font>
+    <button onclick="artistAdd()" type="button" class="layui-btn layui-btn-sm layui-btn-normal" style="margin-left: 80%">
+        添加培训机构
+    </button>
+    <script type="text/javascript">
+        function artistAdd() {
+            window.location.href="/artist/add"
+        }
+    </script>
     <br>
     <hr style="background: red; height: 2px">
 </div>

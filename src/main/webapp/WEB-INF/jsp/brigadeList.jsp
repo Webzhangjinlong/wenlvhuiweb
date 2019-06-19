@@ -31,10 +31,17 @@
 </style>
 <body>
 <div style="margin-top: 10px">
-    <font style="color: #000; font-size: 12px; margin-left: 10px">
-        ★ 路线列表
+    <font style="color: #000; font-size: 14px; margin-left: 10px; font-weight: bold">
+        ★ 文旅路线列表
     </font>
-    <br>
+    <button onclick="brigadeAdd()" type="button" class="layui-btn layui-btn-sm layui-btn-normal" style="margin-left: 80%">
+        添加文旅路线
+    </button>
+    <script type="text/javascript">
+        function brigadeAdd() {
+            window.location.href="/WenBrigade/WenBrigadeAdd"
+        }
+    </script>
     <hr style="background: red; height: 2px">
 </div>
 <div id="tab1">

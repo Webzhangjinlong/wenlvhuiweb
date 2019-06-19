@@ -160,6 +160,7 @@ public class HotelController {
         String videoUrl = request.getParameter("videoUrl");
         String foodDetail = request.getParameter("foodDetail");
         String upNum = request.getParameter("upNum");
+        String imgOrVideo = request.getParameter("imgOrVideo");
 
         YmFood ymFood = new YmFood();
 
@@ -175,6 +176,7 @@ public class HotelController {
         ymFood.setImgUrl(imgUrl);
         ymFood.setVideoUrl(videoUrl);
         ymFood.setFoodDetail(foodDetail);
+        ymFood.setImgOrVideo(Integer.parseInt(imgOrVideo));
         //富文本和上传视频图片未写
         foodDao.save(ymFood);
 

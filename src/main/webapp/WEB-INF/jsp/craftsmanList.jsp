@@ -32,10 +32,17 @@
 </head>
 <body>
 <div style="margin-top: 10px">
-    <font style="color: #000; font-size: 12px; margin-left: 10px">
-        ★ 匠人列表
+    <font style="color: #000; font-size: 14px; margin-left: 10px; font-weight: bold">
+        ★ 文创非遗列表
     </font>
-    <br>
+    <button onclick="craftsmanAdd()" type="button" class="layui-btn layui-btn-sm layui-btn-normal" style="margin-left: 80%">
+        添加文创非遗
+    </button>
+    <script type="text/javascript">
+        function craftsmanAdd() {
+            window.location.href="/craftsman/addpage"
+        }
+    </script>
     <hr style="background: red; height: 2px">
 </div>
 <div>
@@ -49,7 +56,6 @@
             <td>纬度</td>
             <td>详细地址</td>
             <td>创建时间</td>
-            <td>创建人</td>
             <td>操作</td>
         </tr>
 
@@ -63,7 +69,6 @@
                 <td>${ list.latitude}</td>
                 <td>${ list.addrDetail}</td>
                 <td>${ list.createDate}</td>
-                <td>${ list.createUser}</td>
                 <td>
                     <button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ list.id})">修改/详情
                     </button>

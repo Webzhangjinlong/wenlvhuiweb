@@ -14,62 +14,50 @@ pageEncoding="UTF-8"%>
 	</head>
 	<body style="background: #393D49">
 		<ul class="layui-nav layui-nav-tree">
+			<li class="layui-nav-item">
+				<a href="javascript:;">主页管理</a>
+				<dl class="layui-nav-child">
+					<dd><a href="/wenlv/list" target="showframe">文旅政策管理</a></dd>
+					<dd><a href="/artist/artistList" target="showframe">文旅定制管理</a></dd>
+					<dd><a href="/book/list" target="showframe">好书推荐管理</a></dd>
+					<dd><a href="/school/list" target="showframe">文艺培训管理</a></dd>
+					<dd><a href="/craftsman/list" target="showframe">文创非遗管理</a></dd>
+					<dd><a href="/hotel/list" target="showframe">地方美食管理</a></dd>
+					<dd><a href="/WenBrigade/YmWenBrigadeList" target="showframe">文旅路线管理</a></dd>
+				</dl>
+			</li>
 		  <li class="layui-nav-item">
-		    <a href="javascript:;">活动管理</a>
+		    <a href="javascript:;">空间管理</a>
 		    <dl class="layui-nav-child">
-		      <dd><a href="/tag/list" target="showframe">活动列表</a></dd>
-		      <dd><a href="/tag/tagAdd" target="showframe">添加活动</a></dd>
+		      <dd><a href="" target="showframe">空间列表</a></dd>
+		      <dd><a href="" target="showframe">添加空间</a></dd>
 		    </dl>
 		  </li>
 		  <li class="layui-nav-item">
-		    <a href="javascript:;">政策管理</a>
+		    <a href="javascript:;">活动管理</a>
 			    <dl class="layui-nav-child">
-			      <dd><a href="/wenlv/list" target="showframe">政策列表</a></dd>
-			      <dd><a href="/wenlv/addwenlv" target="showframe">添加政策</a></dd>
+			      <dd><a href="/tag/list" target="showframe">活动列表</a></dd>
+			      <dd><a href="/tag/tagAdd" target="showframe">添加活动</a></dd>
 			    </dl>
 		  </li>
 		  <li class="layui-nav-item">
-		  	<a href="javascript:;">匠人管理</a>
+		  	<a href="javascript:;">圈子管理</a>
 			  	<dl class="layui-nav-child">
-			      <dd><a href="/craftsman/list" target="showframe">匠人列表</a></dd>
-			      <dd><a href="/craftsman/addpage" target="showframe">添加匠人</a></dd>
+			      <dd><a href="" target="showframe">圈子列表</a></dd>
+			      <dd><a href="" target="showframe">添加圈子</a></dd>
 			    </dl>
 		    </li>
 		  <li class="layui-nav-item">
-		  	<a href="javascript:;">艺人管理</a>
+		  	<a href="javascript:;">系统管理</a>
 			  	<dl class="layui-nav-child">
-			      <dd><a href="/artist/artistList" target="showframe">艺人列表</a></dd>
-			      <dd><a href="/artist/add"  target="showframe">添加艺人</a></dd>
+			      <dd><a href="" target="showframe">广告管理</a></dd>
+			      <dd><a href=""  target="showframe">数据管理</a></dd>
+			      <dd><a href="/user/list"  target="showframe">会员管理</a></dd>
+			      <dd><a href=""  target="showframe">订单管理</a></dd>
+			      <dd><a href=""  target="showframe">支付管理</a></dd>
+			      <dd><a href=""  target="showframe">退出登陆</a></dd>
 			    </dl>
 		    </li>
-		    <li class="layui-nav-item">
-		  	<a href="javascript:;">餐馆管理</a>
-			  	<dl class="layui-nav-child">
-			      <dd><a href="/hotel/list" target="showframe">餐馆列表</a></dd>
-			      <dd><a href="/hotel/add" target="showframe">添加餐馆</a></dd>
-			    </dl>
-		    </li>
-		     <li class="layui-nav-item">
-		  	<a href="javascript:;">学校管理</a>
-			  	<dl class="layui-nav-child">
-			      <dd><a href="/school/list" target="showframe">学校列表</a></dd>
-			      <dd><a href="/school/add" target="showframe">添加学校</a></dd>
-			    </dl>
-		    </li>
-			<li class="layui-nav-item">
-				<a href="javascript:;">图书管理</a>
-				<dl class="layui-nav-child">
-					<dd><a href="/book/list" target="showframe">图书列表</a></dd>
-					<dd><a href="/book/add" target="showframe">添加图书</a></dd>
-				</dl>
-			</li>
-			<li class="layui-nav-item">
-				<a href="javascript:;">空间管理</a>
-				<dl class="layui-nav-child">
-					<dd><a href="/space/list" target="showframe">空间列表</a></dd>
-					<dd><a href="/space/add" target="showframe">添加空间</a></dd>
-				</dl>
-			</li>
 		</ul>
 	</body>
 	<script>

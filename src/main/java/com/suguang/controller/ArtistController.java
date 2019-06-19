@@ -35,6 +35,16 @@ public class ArtistController {
     private Integer pageNum;
     private Integer sizeNum;
 
+    @RequestMapping("/image")
+    public String imageByid(){
+        return "artistImage";
+    }
+
+    @RequestMapping("/video")
+    public String videoById(){
+        return "artistVideo";
+    }
+
     //查询所有活动
     @GetMapping("/artistList")
     public String getAllByPage(HttpServletRequest request, Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size) {

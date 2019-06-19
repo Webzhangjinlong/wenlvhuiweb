@@ -31,10 +31,17 @@
 </style>
 <body>
 <div style="margin-top: 10px">
-    <font style="color: #000; font-size: 12px; margin-left: 10px">
-        ★ 餐馆列表
+    <font style="color: #000; font-size: 14px; margin-left: 10px; font-weight: bold">
+        ★ 地方美食列表
     </font>
-    <br>
+    <button onclick="foodAdd()" type="button" class="layui-btn layui-btn-sm layui-btn-normal" style="margin-left: 80%">
+        添加地方美食
+    </button>
+    <script type="text/javascript">
+        function foodAdd() {
+            window.location.href="/hotel/add"
+        }
+    </script>
     <hr style="background: red; height: 2px">
 </div>
 <div id="tab1">

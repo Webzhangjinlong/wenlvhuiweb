@@ -110,12 +110,6 @@ pageEncoding="UTF-8"%>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-1 control-label">创建时间:</label>
-					<div class="col-sm-5">
-						<input class="form-control" name="source" value="${wenlv.createDate}" id="focusedInput" type="text"  placeholder="" disabled>
-					</div>
-				</div>
-				<div class="form-group">
 						<label class="col-sm-1 control-label">文章类型:</label>
 						<div class="col-sm-2">
 						<select class="form-control" id="zcType" name="textType" value="${wenlv.textType}">
@@ -175,14 +169,6 @@ pageEncoding="UTF-8"%>
 		    	</div>
 			</form>
  		</div>
-		<input type="radio" name="up" value="1" onclick="image1('1')" checked="checked"> 图片x
-		<input type="radio" name="up" value="2" onclick="image1('2')"> 视频
-		<div id="div01">
-666
-		</div>
-		<div id="div02">
-777
-		</div>
     <script type="text/javascript" src="/js/wangEditor.js"></script>
 	<script type="text/javascript">
         var E = window.wangEditor;

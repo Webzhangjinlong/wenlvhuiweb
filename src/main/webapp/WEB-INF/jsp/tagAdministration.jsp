@@ -68,10 +68,9 @@
                 <td>
                     <c:if test="${tag.textType == 1}">惠民</c:if>
                     <c:if test="${tag.textType == 2}">演出</c:if>
-                    <c:if test="${tag.textType == 3}">亲子</c:if>
-                    <c:if test="${tag.textType == 4}">赛事</c:if>
+                    <c:if test="${tag.textType == 3}">社区</c:if>
+                    <c:if test="${tag.textType == 4}">亲子</c:if>
                     <c:if test="${tag.textType == 5}">历史</c:if>
-                    <c:if test="${tag.textType == 6}">社区</c:if>
                 </td>
                 <td>
                     <button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ tag.id})">修改/详情

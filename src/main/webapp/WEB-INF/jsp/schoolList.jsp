@@ -31,9 +31,17 @@
 </head>
 <body>
 <div style="margin-top: 10px">
-    <font style="color: #000; font-size: 12px; margin-left: 10px">
-        ★ 学校列表
+    <font style="color: #000; font-size: 14px; margin-left: 10px; font-weight: bold">
+    ★ 文艺培训列表
     </font>
+    <button onclick="schoolAdd()" type="button" class="layui-btn layui-btn-sm layui-btn-normal" style="margin-left: 80%">
+        添加培训机构
+    </button>
+    <script type="text/javascript">
+        function schoolAdd() {
+            window.location.href="/school/add"
+        }
+    </script>
     <br>
     <hr style="background: red; height: 2px">
 </div>

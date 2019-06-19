@@ -224,19 +224,18 @@ public class YmSpaceController {
     public String SpacePolicyUpdate(HttpServletRequest request, Model model) throws ParseException {
         String policyid = request.getParameter("Policyid");
         String policybrowse = request.getParameter("Policybrowse");
-        String policyvideoBackimg = request.getParameter("PolicyvideoBackimg");
-        String policyproductDatile = request.getParameter("PolicyproductDatile");
+        String videoBackimg = request.getParameter("videoBackimg");
+        String spacePolicyDetail = request.getParameter("spacePolicyDetail");
         String videoUrl = request.getParameter("videoUrl");
-        request.getParameter("productImage");
         YmSpacePolicy ymSpacePolicy = new YmSpacePolicy();
         if (policyid != null && policyid != "") {
             ymSpacePolicy.setId(Integer.parseInt(policyid));
         }
         ymSpacePolicy.setSpaceId(Integer.parseInt(spaceId));
         ymSpacePolicy.setBrowse(Integer.parseInt(policybrowse));
-        ymSpacePolicy.setSpacePolicyDetail(policyproductDatile);
         ymSpacePolicy.setVideoUrl(videoUrl);
-        ymSpacePolicy.setVideoBackimg(policyvideoBackimg);
+        ymSpacePolicy.setVideoBackimg(videoBackimg);
+        ymSpacePolicy.setSpacePolicyDetail(spacePolicyDetail);
 
         ymSpacePolicyDao.save(ymSpacePolicy);
         return "redirect:/space/spaceDetails?id=" + spaceId;

@@ -140,12 +140,15 @@ public class BookController {
         YmBook save = bookDao.save(ymBook);
 
         System.out.println(Arrays.toString(book_tags));
-        for (int i = 0; i < book_tags.length ; i++) {
-           YmBookTag bot =  new YmBookTag();
-            bot.setBookId(save.getId());
-            bot.setDataId(Integer.parseInt(book_tags[i]));
-            bookTagDao.save(bot);
+        if (book_tags.length!=0) {
+            for (int i = 0; i < book_tags.length ; i++) {
+                YmBookTag bot =  new YmBookTag();
+                bot.setBookId(save.getId());
+                bot.setDataId(Integer.parseInt(book_tags[i]));
+                bookTagDao.save(bot);
+            }
         }
+
 
 
         model.addAttribute("addUpdate", save);

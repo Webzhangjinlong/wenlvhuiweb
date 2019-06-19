@@ -119,9 +119,9 @@
             <div id="yrjs1" class="text">
                 <p >${addYmArtist.artistDetails}</p>
             </div>
-            <input type="hidden" id="artistDetails" name="artistDetails" value="${addYmArtist.artistDetails}">
+            <input type="hidden" id="artistDetails" name="artistDetails">
         </div>
-        <div class="layui-upload" style="float: right; margin-right: 400px; margin-top: -250px">
+        <div class="layui-upload" style="float: right; margin-right: 400px; margin-top: -280px">
             <button type="button" class="layui-btn" id="test1">上传艺人封面图</button>
             <div class="layui-upload-list">
                 <img class="layui-upload-img" id="demo1" src="${addYmArtist.backgroundUrl}">
@@ -129,7 +129,7 @@
             <input id="backgroundUrl" name="backgroundUrl" type="hidden" value="${addYmArtist.backgroundUrl}"/>
             <p id="demoText"></p>
         </div>
-        <div class="layui-upload" style="float: right; margin-right: 200px; margin-top: -250px">
+        <div class="layui-upload" style="float: right; margin-right: 200px; margin-top: -280px">
             <button type="button" class="layui-btn" id="test2">上传艺人logo</button>
             <div class="layui-upload-list">
                 <img class="layui-upload-img" id="demo2" src="${addYmArtist.artistLogourl}">
@@ -137,11 +137,6 @@
             <input id="artistLogourl" name="artistLogourl" type="hidden" value="${addYmArtist.artistLogourl}"/>
             <p id="demoText1"></p>
         </div>
-            <div class="layui-upload" style="float: right; margin-top: -760px; margin-right: 150px">
-                <button type="button" class="layui-btn layui-btn-normal" id="test8">选择活动视频</button>
-                <input class="layui-upload-file" type="file" accept="undefined" name="file">
-                <button type="button" class="layui-btn" id="test9">开始上传</button>
-            </div>
         <div style="margin-left: 22px;">
             <label class="control-label">艺人经历:</label><br>
         </div>
@@ -151,12 +146,80 @@
             <div id="div2" class="text">
                 <p>${addYmArtist.artistExperience}</p>
             </div>
-            <input type="hidden" id="artistExperience" name="artistExperience" value="${addYmArtist.artistExperience}">
+            <input type="hidden" id="artistExperience" name="artistExperience">
         </div>
         <div style="margin-top: 10px; margin-left: 650px;">
             <button type="button" id="button" onclick="chan()" class="layui-btn layui-btn-sm">确定添加/修改</button>
         </div>
     </form>
+</div>
+<div>
+    <div style="margin-left: 20px">
+    <button class="btn btn-primary btn-sm" id="" onclick="artistImageAdd()">
+        添加艺人图片
+        <script type="text/javascript">
+        </script>
+    </button>
+</div>
+    <table class="layui-table" lay-skin="line" style="margin-left: 20px; width: 80%">
+        <thead>
+        <tr>
+            <th>艺人图片</th>
+            <th>图片描述</th>
+            <th>类型</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th><img src="#"></th>
+            <th>演出图片</th>
+            <th>图片</th>
+            <td>
+                <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="imageById()">修改</button>
+                <script type="text/javascript">
+                    function artistImageAdd() {
+                        window.location.href="/artist/image";
+                    }
+                </script>
+                <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById()">删除</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div style="margin-left: 20px">
+        <button class="btn btn-primary btn-sm" onclick="artistVideoAdd()">
+            添加艺人视频
+            <script type="text/javascript">
+            </script>
+        </button>
+    </div>
+    <table class="layui-table" lay-skin="line" style="margin-left: 20px; width: 80%">
+        <thead>
+        <tr>
+            <th>艺人图片</th>
+            <th>视频描述</th>
+            <th>类型</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th><img src="#"></th>
+            <th>演出视频</th>
+            <th>视频</th>
+            <td>
+                <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="videoById()">修改</button>
+                <script type="text/javascript">
+                    function artistVideoAdd() {
+                        window.location.href="/artist/video";
+                    }
+                </script>
+                <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById()">删除</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 <script type="text/javascript" src="/js/wangEditor.js"></script>
 <script type="text/javascript">

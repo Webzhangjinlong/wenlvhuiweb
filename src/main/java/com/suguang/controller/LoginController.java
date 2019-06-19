@@ -21,8 +21,9 @@ public class LoginController  {
     public String Userlogin(HttpServletRequest request){
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        YmUser ymUser = loginDao.getByPasswordAndUsername(username,password);
-        request.getSession().setAttribute("user",ymUser);
+
+        YmUser ymUser = loginDao.findByUsernameAndPassword(username, password);
+
 
         if(ymUser !=null){
             if(ymUser.getUserType()==3){
@@ -32,6 +33,7 @@ public class LoginController  {
                 return "hotelAddById";
             }if(ymUser.getUserType() == 9){
                 //返回管理员的主页
+                request.getSession().setAttribute("user",ymUser);
                 return "index";
             }
         }else{

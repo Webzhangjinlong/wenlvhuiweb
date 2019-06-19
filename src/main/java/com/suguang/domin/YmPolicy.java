@@ -60,6 +60,46 @@ public class YmPolicy extends YmEntity{
 
     private String videoBackurl;
 
+    private String longitude;
+
+    private String latitude;
+
+    private String detailsContent;
+
+    private String phone;
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getDetailsContent() {
+        return detailsContent;
+    }
+
+    public void setDetailsContent(String detailsContent) {
+        this.detailsContent = detailsContent;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     @Override
     public String toString() {
         return "YmPolicy{" +

@@ -82,6 +82,22 @@ pageEncoding="UTF-8"%>
 							<input class="form-control" id="upNum" type="text"  name="upNum" value="${ymFood.upNum}" placeholder="请输入推荐人数">
 						</div>
 				</div>
+				<div class="form-group">
+					<label class="col-sm-1 control-label">图片/视频</label>
+					<div class="col-sm-2">
+						<select class="form-control" name="imgOrVideo" value="${ymFood.imgOrVideo}">
+							<c:if test="${ymFood.imgOrVideo} == 1}">
+								<option value="1" name="imgOrVideo">图片</option>
+							</c:if>
+							<c:if test="${ymFood.imgOrVideo} == 2}">
+								<option value="2" name="imgOrVideo">视频</option>
+							</c:if>
+							<option value="0" name="imgOrVideo">--请选择--</option>
+							<option value="1" name="imgOrVideo">图片</option>
+							<option value="2" name="imgOrVideo">视频</option>
+						</select>
+					</div>
+				</div>
 				<div class="layui-upload" style="margin-left: 20px;margin-top: 20px">
 					<button type="button" class="layui-btn layui-btn-normal" id="test8">选择活动视频</button>
 					<input type="hidden" id="videoUrl" name="videoUrl" value="${ymFood.videoUrl}" >

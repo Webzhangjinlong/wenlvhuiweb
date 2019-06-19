@@ -115,24 +115,20 @@
                         <option name="textType" value="1">演出</option>
                     </c:if>
                     <c:if test="${tagupdate.textType == 3}">
-                        <option name="textType" value="3">亲子</option>
+                        <option name="textType" value="3">社区</option>
                     </c:if>
                     <c:if test="${tagupdate.textType == 4}">
-                        <option name="textType" value="1">赛事</option>
+                        <option name="textType" value="5">亲子</option>
                     </c:if>
                     <c:if test="${tagupdate.textType == 5}">
-                        <option name="textType" value="5">历史</option>
-                    </c:if>
-                    <c:if test="${tagupdate.textType == 6}">
-                        <option name="textType" value="1">社区</option>
+                        <option name="textType" value="1">历史</option>
                     </c:if>
                     <option value="0" name="textType">--请选择--</option>
                     <option value="1" name="textType">惠民</option>
                     <option value="2" name="textType">演出</option>
                     <option value="3" name="textType">亲子</option>
-                    <option value="4" name="textType">赛事</option>
-                    <option value="5" name="textType">历史</option>
-                    <option value="6" name="textType">社区</option>
+                    <option value="4" name="textType">历史</option>
+                    <option value="5" name="textType">社区</option>
                 </select>
             </div>
         </div>
@@ -206,6 +202,34 @@
                        value="${tagupdate.browse}" placeholder="请输入浏览量">
             </div>
         </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">经度:</label>
+            <div class="col-sm-2">
+                <input class="form-control" id="longitude" type="text" name="longitude"
+                       value="${tagupdate.longitude}" placeholder="请输入经度">
+            </div>
+            <label class="col-sm-1 control-label">纬度:</label>
+            <div class="col-sm-2">
+                <input class="form-control" id="latitude" type="text" name="latitude"
+                       value="${tagupdate.latitude}" placeholder="请输入浏览量">
+            </div>
+            <div class="col-sm-2">
+                <a href="https://lbs.amap.com/console/show/picker"
+                   class="form-control">♡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点我查看经纬度</a>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">视频描述:</label>
+            <div class="col-sm-2">
+                <input class="form-control" id="detailsContent" type="text" name="detailsContent" value="${tagupdate.detailsContent}"
+                       placeholder="请输入视频描述">
+            </div>
+            <label class="col-sm-1 control-label">活动电话:</label>
+            <div class="col-sm-2">
+                <input class="form-control" id="phone" type="text" name="phone"
+                       value="${tagupdate.phone}" placeholder="请输入活动电话">
+            </div>
+        </div>
         <div class="layui-upload" style="margin-left: 20px;margin-top: 20px">
             <button type="button" class="layui-btn layui-btn-normal" id="test8">选择活动视频</button>
             <input type="hidden" id="videourl" name="videourl" value="${tagupdate.videourl}" >
@@ -256,7 +280,7 @@
             </div>
             <input type="hidden" id="policyPurpose" name="policyPurpose">
         </div>
-        <div class="layui-upload" style="float: right; margin-right: 500px; margin-top: -920px">
+        <div class="layui-upload" style="float: right; margin-right: 500px; margin-top: -1090px">
             <button type="button" class="layui-btn" id="test1">上传活动封面图</button>
             <div class="layui-upload-list">
                 <img class="layui-upload-img" id="demo1" src="${tagupdate.image}">
@@ -264,7 +288,7 @@
             <input id="image" name="image" value="${tagupdate.image}" type="hidden"/>
             <p id="demoText"></p>
         </div>
-        <div class="layui-upload" style="float: right; margin-right: 300px; margin-top: -920px">
+        <div class="layui-upload" style="float: right; margin-right: 300px; margin-top: -1090px">
             <button type="button" class="layui-btn" id="test2">上传视频封面图</button>
             <div class="layui-upload-list">
                 <img class="layui-upload-img" id="demo2" src="${tagupdate.videoBackurl}">

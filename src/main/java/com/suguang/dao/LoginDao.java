@@ -15,4 +15,5 @@ public interface LoginDao extends JpaRepository<YmUser,Integer> {
 
      YmUser getByPasswordAndUsername(String username, String password);
 
+    YmUser findByUsernameAndPassword(String username, String password);
 }

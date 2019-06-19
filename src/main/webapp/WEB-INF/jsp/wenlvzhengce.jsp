@@ -30,9 +30,17 @@
 
 <body>
 <div style="margin-top: 10px">
-	<font style="color: #000; font-size: 12px; margin-left: 10px">
-		★ 政策列表
+	<font style="color: #000; font-size: 14px; margin-left: 10px; font-weight: bold">
+		★ 文旅政策列表
 	</font>
+	<button onclick="zhengceAdd()" type="button" class="layui-btn layui-btn-sm layui-btn-normal" style="margin-left: 80%">
+		添加文旅政策
+	</button>
+	<script type="text/javascript">
+        function zhengceAdd() {
+            window.location.href="/wenlv/addwenlv"
+        }
+	</script>
 	<br>
 	<hr style="background: red; height: 2px">
 </div>

@@ -36,13 +36,48 @@ pageEncoding="UTF-8"%>
 			</font>
 		</div>
 		<div id="top">
-			<ul class="layui-nav" lay-filter="">
-			  <li class="layui-nav-item"><a href="/user/list" target="showframe">会员列表</a></li>
-			  <li class="layui-nav-item"><a href="/user/add" target="showframe">添加会员</a></li>
-			  <li class="layui-nav-item"><a href="/WenBrigade/YmWenBrigadeList" target="showframe">嗨游列表</a></li>
-			  <li class="layui-nav-item"><a href="/WenBrigade/WenBrigadeAdd" target="showframe">路线添加</a></li>
-			</ul>
-	 	</div>
+			<font style="color: #f0f0f0">账号：</font>
+			<font style="color: #f0f0f0">日期：</font>
+			<div id="linkweb" style=" display:inline; color: #ffffff"></div>
+		</div>
+		<script>
+            setInterval("document.getElementById('linkweb').innerHTML=new Date  ().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay  ());",1000);
+		</script>
+		<script>
+            function showTime() {
+                var now = new Date();
+                var nowTime = now.toLocaleString();
+                var date = nowTime.substring(0,10);//截取日期
+                var time = nowTime.substring(10,20); //截取时间
+                var week = now.getDay(); //星期
+                var hour = now.getHours(); //小时
+                //判断星期几
+                var weeks = ["日","一","二","三","四","五","六"];
+                var getWeek = "星期" + weeks[week];
+                var sc;
+                //判断是AM or PM
+                if(hour >= 0 && hour < 5){
+                    sc = '凌晨';
+                }
+                else if(hour > 5 && hour <= 7){
+                    sc = '早上';
+                }
+                else if(hour > 7 && hour <= 11){
+                    sc = '上午';
+                }
+                else if(hour > 11 && hour <= 13){
+                    sc = '中午';
+                }
+                else if(hour> 13 && hour <= 18){
+                    sc = '下午';
+                }
+                else if(hour > 18 && hour <= 23){
+                    sc = '晚上';
+                }
+                document.getElementById('time').innerHTML ="当前时间：" + date+" " + getWeek +"&nbsp;"+"   "+sc+"  "+time;
+                setTimeout('showTime()',1000);
+            }
+		</script>
 	</body>
 	<script>
 		layui.use('element', function(){
