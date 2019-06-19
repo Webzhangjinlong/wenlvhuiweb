@@ -51,12 +51,14 @@ public class SchoolController {
 
 
     @RequestMapping("/schoolImageList")
-    public String imageList() {
+    public String imageList()
+    {
         return "schoolImageList";
     }
 
     @RequestMapping("/schoolImageAdd")
-    public String imageAdd() {
+    public String imageAdd()
+    {
         return "schoolImageAdd";
     }
 
