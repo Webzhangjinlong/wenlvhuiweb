@@ -109,6 +109,18 @@
                 </select>
             </div>
         </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">查看价格:</label>
+            <div class="col-sm-2">
+                <input class="form-control" id="jage" type="text" name="" value=""
+                       placeholder="查看艺人需要的金额">
+            </div>
+            <label class="col-sm-1 control-label">艺人密码:</label>
+            <div class="col-sm-2">
+                <input class="form-control" id="artistpassword" type="text" name="type" value=""
+                       placeholder="请输入艺人密码">
+            </div>
+        </div>
         <div style="margin-left: 22px;">
             <label class="control-label">艺人介绍（必填）:</label><br>
 
@@ -121,7 +133,7 @@
             </div>
             <input type="hidden" id="artistDetails" name="artistDetails">
         </div>
-        <div class="layui-upload" style="float: right; margin-right: 400px; margin-top: -280px">
+        <div class="layui-upload" style="float: right; margin-right: 400px; margin-top: -320px">
             <button type="button" class="layui-btn" id="test1">上传艺人封面图</button>
             <div class="layui-upload-list">
                 <img class="layui-upload-img" id="demo1" src="${addYmArtist.backgroundUrl}">
@@ -129,7 +141,7 @@
             <input id="backgroundUrl" name="backgroundUrl" type="hidden" value="${addYmArtist.backgroundUrl}"/>
             <p id="demoText"></p>
         </div>
-        <div class="layui-upload" style="float: right; margin-right: 200px; margin-top: -280px">
+        <div class="layui-upload" style="float: right; margin-right: 200px; margin-top: -320px">
             <button type="button" class="layui-btn" id="test2">上传艺人logo</button>
             <div class="layui-upload-list">
                 <img class="layui-upload-img" id="demo2" src="${addYmArtist.artistLogourl}">
