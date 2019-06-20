@@ -46,14 +46,14 @@ pageEncoding="UTF-8"%>
 		<hr style="background: red; height: 2px; margin-top: 0px">
 	</div>
  		<div>
-			<form class="form-horizontal" role="form"  action="" id="form1">
+			<form class="form-horizontal" role="form"  action="/artist/addVideo" id="form1">
 				<div>
 					<input type="hidden" name="Policyid" value="">
 				</div>
 				<div class="form-group">
 					<label class="col-sm-1 control-label">视频描述:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="browse" type="text" name="Policybrowse" value="" placeholder="请输入视频描述">
+						<input class="form-control" id="videoDetails" type="text" name="videoDetails" value="" placeholder="请输入视频描述">
 					</div>
 					<label class="col-sm-1 control-label">添加类型:</label>
 					<div class="col-sm-2">
@@ -64,7 +64,7 @@ pageEncoding="UTF-8"%>
 					<button type="button" class="layui-btn" id="test1">请上传视频封面图</button>
 					<div class="layui-upload-list">
 						<img class="layui-upload-img" id="demo1" src="">
-						<input id="videoBackimg" name="videoBackimg" type="hidden" value=""/>
+						<input id="videoImgUrl" name="videoImgUrl" type="hidden" value=""/>
 						<p id="demoText"></p>
 					</div>
 				</div>
@@ -76,7 +76,7 @@ pageEncoding="UTF-8"%>
 				</div>
 
 		    	<div style="margin-top: 10px; margin-left: 530px;">
-		    		<button class="layui-btn layui-btn-sm" onclick="chan()">确定添加/修改</button>
+		    		<button class="layui-btn layui-btn-sm" onclick="addVideoById(${ addYmArtist.id})">确定添加/修改</button>
 		    	</div>
 			</form>
 			<div style="margin-left: 690px; margin-top: -30px">
@@ -85,6 +85,18 @@ pageEncoding="UTF-8"%>
  			</div>
  		</div>
     <script type="text/javascript" src="/js/wangEditor.js"></script>
+
+	<script type="text/javascript">
+        function addVideoById(id){
+            // var imageName = document.getElementById("imageName").value;
+            var videoDetails = document.getElementById("videoDetails").value;
+            var videoImgUrl = document.getElementById("videoImgUrl").value;
+            var videoUrl = document.getElementById("videoUrl").value;
+            window.location.href="/artist/addVideo?id="+id+"&videoDetails="+videoDetails+"&videoImgUrl="+videoImgUrl+"&videoUrl="+videoUrl;
+        }
+
+	</script>
+
     <script type="text/javascript">
         var E = window.wangEditor;
         var editor1 = new E('#div1', '#div2'); 

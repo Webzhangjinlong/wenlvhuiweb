@@ -5,8 +5,10 @@ package com.suguang.controller;
 
 import com.suguang.dao.ImgDao;
 import com.suguang.dao.SchoolDao;
+import com.suguang.dao.UserDao;
 import com.suguang.domin.YmImage;
 import com.suguang.domin.YmSchool;
+import com.suguang.domin.YmUser;
 import com.suguang.service.SchoolService;
 import com.suguang.util.YmStaticVariablesUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -46,7 +49,10 @@ public class SchoolController {
     private Integer sizeNum;
     @Autowired
     private ImgDao imgDao;
-    private String schoolid;
+    @Autowired
+    private UserDao userDao;
+
+    private Integer schoolid;
     private YmImage byImgTypeAndPidAndImageType;
 
 
@@ -59,7 +65,15 @@ public class SchoolController {
     @RequestMapping("/schoolImageAdd")
     public String imageAdd()
     {
-        return "schoolImageAdd";
+        if (schoolid==null) {
+            return "schoolAdd";
+        }
+        return "schoolImage";
+    }
+
+    @RequestMapping("/schoolVideo")
+    public String videoAdd(){
+        return "schoolVideo";
     }
 
     //查询所有活动
@@ -108,12 +122,12 @@ public class SchoolController {
     //通过id获取修改页面，并将要修改的数据在修改页面渲染
     @RequestMapping("/update")
     public String schoolpreUpdate(HttpServletRequest request, Model model) {
-        schoolid = request.getParameter("id");
-        List<YmImage> byImgTypeAndPid = imgDao.getByImgTypeAndPid(4, Integer.parseInt(schoolid));
+        schoolid = Integer.parseInt(request.getParameter("id"));
+        List<YmImage> byImgTypeAndPid = imgDao.getByImgTypeAndPid(4, schoolid);
         ArrayList<YmImage> ymImages = new ArrayList<>();
         ArrayList<YmImage> ymvideo = new ArrayList<>();
-        byImgTypeAndPidAndImageType = imgDao.getByImgTypeAndPidAndImageType(4, Integer.parseInt(schoolid), 3);
-
+        byImgTypeAndPidAndImageType = imgDao.getByImgTypeAndPidAndImageType(4, schoolid, 3);
+        YmUser byTypeId = userDao.getByTypeId(schoolid);
 
         for (YmImage ymImage : byImgTypeAndPid) {
             if (ymImage.getImageType() == 2) {
@@ -123,7 +137,9 @@ public class SchoolController {
             }
 
         }
-        YmSchool ymSchool = schoolDao.getById(Integer.parseInt(schoolid));
+        YmSchool ymSchool = schoolDao.getById(schoolid);
+
+        model.addAttribute("UserList",byTypeId);
         model.addAttribute("addSchool", ymSchool);
         model.addAttribute("byImgTypeAndPidAndImageType", byImgTypeAndPidAndImageType);
         model.addAttribute("ymImages", ymImages);
@@ -150,7 +166,9 @@ public class SchoolController {
         String details = request.getParameter("details");
         String logourl = request.getParameter("logourl");
         String backImg = request.getParameter("backImg");
-
+        String password = request.getParameter("password");
+        String productPrice = request.getParameter("productPrice");
+        String productId = UUID.randomUUID().toString();
 
 
         YmSchool ymSchool = new YmSchool();
@@ -169,8 +187,35 @@ public class SchoolController {
         ymSchool.setCreateDate(date);
         ymSchool.setLogourl(logourl);
         ymSchool.setDetails(details);
+        ymSchool.setProductPrice(Double.parseDouble(productPrice));
+        ymSchool.setProductId(productId);
 
         YmSchool save = schoolDao.save(ymSchool);
+
+        if (id.equals("")) {
+            YmUser ymUser = new YmUser();
+            ymUser.setHeadPic(logourl);
+            ymUser.setPassword(password);
+            ymUser.setPhone(phone);
+            ymUser.setUsername(name);
+            ymUser.setNickName(name);
+            ymUser.setName(name);
+            ymUser.setTypeId(save.getId());
+            ymUser.setUserType(2);
+            userDao.save(ymUser);
+        }else{
+            YmUser byTypeId = userDao.getByTypeId(Integer.parseInt(id));
+            byTypeId.setHeadPic(logourl);
+            byTypeId.setPassword(password);
+            byTypeId.setPhone(phone);
+            byTypeId.setUsername(name);
+            byTypeId.setNickName(name);
+            byTypeId.setName(name);
+            byTypeId.setTypeId(save.getId());
+            byTypeId.setUserType(2);
+            userDao.save(byTypeId);
+        }
+
         YmImage ymImage = new YmImage();
 
         if (byImgTypeAndPidAndImageType != null ) {
@@ -200,7 +245,7 @@ public class SchoolController {
     @RequestMapping("/addImg")
     public String addImg(HttpServletRequest request, Model model) {
         //学校ID
-        String id = request.getParameter("id");
+
         String imgName = request.getParameter("imageName");
         String imageDetalis = request.getParameter("imageDetalis");
         String imgUrl = request.getParameter("imgUrl");
@@ -208,13 +253,11 @@ public class SchoolController {
         YmImage ymImage = new YmImage();
         ymImage.setImageType(1);
         ymImage.setImgType(4);
-        ymImage.setPid(Integer.parseInt(id));
+        ymImage.setPid(schoolid);
         ymImage.setImgName(imgName);
         ymImage.setDetalis(imageDetalis);
         ymImage.setImgUrl(imgUrl);
-
         imgDao.save(ymImage);
-//        model.addAttribute("photo",save);
 
         return "redirect:/school/update?id=" + schoolid;
     }
@@ -223,20 +266,20 @@ public class SchoolController {
     @RequestMapping("/addVideo")
     public String addVideo(HttpServletRequest request, Model model) {
         //学校ID
-        String id = request.getParameter("id");
+
         String videoDetails = request.getParameter("videoDetails");
-        String videoImageName = request.getParameter("videoImageName");
+        //String videoImageName = request.getParameter("videoImageName");
         String videoUrl = request.getParameter("videoUrl");
         String videoImgUrl = request.getParameter("videoImgUrl");
 
         YmImage ymImage = new YmImage();
         ymImage.setImageType(2);
         ymImage.setImgType(4);
-        ymImage.setPid(Integer.parseInt(id));
+        ymImage.setPid(schoolid);
         ymImage.setDetalis(videoDetails);
         ymImage.setVideoUrl(videoUrl);
         ymImage.setImgUrl(videoImgUrl);
-        ymImage.setImgName(videoImageName);
+        //ymImage.setImgName(videoImageName);
 
         imgDao.save(ymImage);
 

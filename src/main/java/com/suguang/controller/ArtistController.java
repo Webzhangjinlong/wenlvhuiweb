@@ -1,10 +1,12 @@
 package com.suguang.controller;
 
 import com.suguang.Dto.SaveUpdateFormSubmit;
+import com.suguang.dao.ImgDao;
 import com.suguang.dao.UserDao;
 import com.suguang.dao.YmArtistDao;
 import com.suguang.dao.YmArtistDao;
 import com.suguang.domin.YmArtist;
+import com.suguang.domin.YmImage;
 import com.suguang.domin.YmUser;
 import com.suguang.service.ArtistService;
 
@@ -21,7 +23,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.File;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -36,10 +40,12 @@ public class ArtistController {
     YmArtistDao YmArtistDao;
     @Autowired
     UserDao userDao;
+    @Autowired
+    ImgDao imgDao;
 
     private Integer pageNum;
     private Integer sizeNum;
-    private String id;
+    private String artistid;
 
     @RequestMapping("/image")
     public String imageByid(){
@@ -76,10 +82,29 @@ public class ArtistController {
     //通过id获取修改页面，并将要修改的数据在修改页面渲染
     @RequestMapping("/update")
     public String YmArtistpreUpdate(HttpServletRequest request, Model model) {
-        id = request.getParameter("id");
+        artistid = request.getParameter("id");
 
-        YmArtist ymYmArtist = YmArtistDao.getById(Integer.parseInt(id));
-        YmUser byTypeId = userDao.getByTypeId(Integer.parseInt(id));
+        List<YmImage> byImgTypeAndPid = imgDao.getByImgTypeAndPid(3, Integer.parseInt(artistid));
+
+        ArrayList<YmImage> ymImages = new ArrayList<>();
+        ArrayList<YmImage> ymvideo = new ArrayList<>();
+
+        //图片不能正常回显,视频不能正常回显
+        for (YmImage ymImage : byImgTypeAndPid) {
+            if (ymImage.getImageType() == 2) {
+                ymvideo.add(ymImage);
+            } else if(ymImage.getImageType()==1){
+                ymImages.add(ymImage);
+            }
+
+        }
+
+        YmArtist ymYmArtist = YmArtistDao.getById(Integer.parseInt(artistid));
+
+        model.addAttribute("ymImages",ymImages);
+        model.addAttribute("ymvideo", ymvideo);
+
+        YmUser byTypeId = userDao.getByTypeId(Integer.parseInt(artistid));
         model.addAttribute("byTypeId",byTypeId);
         model.addAttribute("addYmArtist", ymYmArtist);
         return "artistAdd";
@@ -159,6 +184,69 @@ public class ArtistController {
 
         return "redirect:/artist/artistList?page=" + pageNum + "&size=" + sizeNum;
 
+    }
+
+    //删除对应图片
+    @RequestMapping("/deleteImg")
+    public String imgDelete(HttpServletRequest request, Model model) {
+        //图片ID
+        String id = request.getParameter("id");
+        imgDao.deleteById(Integer.parseInt(id));
+
+        return "redirect:/artist/update?id=" + artistid;
+
+    }
+
+    //删除对应视频
+    @RequestMapping("/deleteVideo")
+    public String videoDelete(HttpServletRequest request) {
+        String id = request.getParameter("id");
+        imgDao.deleteById(Integer.parseInt(id));
+        return "redirect:/artist/update?id=" + artistid;
+    }
+
+    //添加图片模态框
+    @RequestMapping("/addImg")
+    public String addImg(HttpServletRequest request, Model model) {
+        //艺人ID
+        String imgName = request.getParameter("imageName");
+        String imageDetalis = request.getParameter("imageDetalis");
+        String imgUrl = request.getParameter("imgUrl");
+
+        YmImage ymImage = new YmImage();
+        ymImage.setImageType(1);
+        ymImage.setImgType(3);
+        ymImage.setPid(Integer.parseInt(artistid));
+        ymImage.setImgName(imgName);
+        ymImage.setDetalis(imageDetalis);
+        ymImage.setImgUrl(imgUrl);
+        imgDao.save(ymImage);
+
+        return "redirect:/artist/update?id=" + artistid;
+    }
+
+    //添加视频模态框
+    @RequestMapping("/addVideo")
+    public String addVideo(HttpServletRequest request, Model model) {
+        //学校ID
+
+        String videoDetails = request.getParameter("videoDetails");
+        //String videoImageName = request.getParameter("videoImageName");
+        String videoUrl = request.getParameter("videoUrl");
+        String videoImgUrl = request.getParameter("videoImgUrl");
+
+        YmImage ymImage = new YmImage();
+        ymImage.setImageType(2);
+        ymImage.setImgType(3);
+        ymImage.setPid(Integer.parseInt(artistid));
+        ymImage.setDetalis(videoDetails);
+        ymImage.setVideoUrl(videoUrl);
+        ymImage.setImgUrl(videoImgUrl);
+        //ymImage.setImgName(videoImageName);
+
+        imgDao.save(ymImage);
+
+        return "redirect:/artist/update?id=" + artistid;
     }
 
     //返回服务器资源

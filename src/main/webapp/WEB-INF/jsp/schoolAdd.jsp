@@ -133,7 +133,7 @@
 						</div>
 						<label class="col-sm-1 control-label">登陆密码:</label>
 						<div class="col-sm-2">
-							<input class="form-control" name="phone" value="" id="focusedInput" type="text" placeholder="请输入登陆密码">
+							<input class="form-control" name="password" value="${UserList.password}" id="password" type="text" placeholder="请输入登陆密码">
 						</div>
 				</div>
 				<div class="form-group">
@@ -143,7 +143,7 @@
 						</div>
 						<label class="col-sm-1 control-label">查看金额:</label>
 						<div class="col-sm-2">
-							<input class="form-control" name="addrDetail" value="" id="addrDetail" type="text" placeholder="请输入查看金额">
+							<input class="form-control" name="productPrice" value="${addSchool.productPrice}" id="productPrice" type="text" placeholder="请输入查看金额">
 						</div>
 				</div>
 				<div>
@@ -198,7 +198,7 @@
 						    alert("请添加完成学校之后在添加图片！")
 							document.getElementById("aa").disabled = true;
 						}
-						window.location.href="/school/schoolImage"
+						window.location.href="/school/schoolImageAdd"
                     }
 
 				</script>
