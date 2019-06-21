@@ -29,8 +29,8 @@ pageEncoding="UTF-8"%>
 		  <li class="layui-nav-item">
 		    <a href="javascript:;">空间管理</a>
 		    <dl class="layui-nav-child">
-		      <dd><a href="" target="showframe">空间列表</a></dd>
-		      <dd><a href="" target="showframe">添加空间</a></dd>
+		      <dd><a href="/space/list" target="showframe">空间列表</a></dd>
+		      <dd><a href="/space/add" target="showframe">添加空间</a></dd>
 		    </dl>
 		  </li>
 		  <li class="layui-nav-item">
@@ -43,8 +43,7 @@ pageEncoding="UTF-8"%>
 		  <li class="layui-nav-item">
 		  	<a href="javascript:;">圈子管理</a>
 			  	<dl class="layui-nav-child">
-			      <dd><a href="" target="showframe">圈子列表</a></dd>
-			      <dd><a href="" target="showframe">添加圈子</a></dd>
+			      <dd><a href="/circle/list" target="showframe">圈子列表</a></dd>
 			    </dl>
 		    </li>
 		  <li class="layui-nav-item">

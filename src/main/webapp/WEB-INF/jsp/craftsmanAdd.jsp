@@ -132,6 +132,18 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="col-sm-1 control-label">手机号:</label>
+            <div class="col-sm-2">
+                <input class="form-control" id="longitude" type="text" name="longitude" value=""
+                       placeholder="请输入手机号">
+            </div>
+            <label class="col-sm-1 control-label">登陆密码:</label>
+            <div class="col-sm-2">
+                <input class="form-control" id="latitude" type="text" name="latitude" value=""
+                       placeholder="请输入登陆密码">
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-sm-1 control-label" style="margin-top: 30px;">品牌经历:</label>
             <div style="margin-left: 120px">
                 <div id="experience1" class="toolbar"></div>
@@ -153,7 +165,7 @@
                 <input type="hidden" id="shopsDetail" name="shopsDetail">
             </div>
         </div>
-        <div class="layui-upload" style="float: right ; margin-top: -500px; margin-right: 440px">
+        <div class="layui-upload" style="float: right ; margin-top: -550px; margin-right: 440px">
             <button type="button" class="layui-btn" id="test1">请上传店铺logo</button>
             <div class="layui-upload-list">
                 <img class="layui-upload-img" id="demo1" src="${show.imgUrl}">
@@ -161,7 +173,7 @@
                 <p id="demoText"></p>
             </div>
         </div>
-        <div class="layui-upload" style="float: right ; margin-top: -500px; margin-right: 250px">
+        <div class="layui-upload" style="float: right ; margin-top: -550px; margin-right: 250px">
             <button type="button" class="layui-btn" id="test2">请上传店铺背景图</button>
             <div class="layui-upload-list">
                 <img class="layui-upload-img" id="demo2" src="${show.province}">

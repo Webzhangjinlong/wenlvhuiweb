@@ -136,7 +136,21 @@ pageEncoding="UTF-8"%>
 						   class="form-control">♡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点我查看经纬度</a>
 						</div>
 				</div>
-				<div class="layui-upload" style="float: right; margin-right: 500px; margin-top: -240px">
+				<div class="form-group">
+					<label class="col-sm-1 control-label">手机号:</label>
+					<div class="col-sm-2">
+						<input class="form-control" id="focusedInput" type="text"  name="longitude" value="" placeholder="请输入手机号">
+					</div>
+					<label class="col-sm-1 control-label">登陆密码:</label>
+					<div class="col-sm-2">
+						<input class="form-control" id="focusedInput" type="text"  name="latitude" value="" placeholder="请输入登陆密码">
+					</div>
+					<div class="col-sm-2">
+						<a href="https://lbs.amap.com/console/show/picker"
+						   class="form-control">♡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点我查看经纬度</a>
+					</div>
+				</div>
+				<div class="layui-upload" style="float: right; margin-right: 500px; margin-top: -290px">
 					<button type="button" class="layui-btn" id="test1">上传餐馆背景图</button>
 					<div class="layui-upload-list">
 						<img class="layui-upload-img" id="demo1" src="${hotel.restaurantImg}">
@@ -144,7 +158,7 @@ pageEncoding="UTF-8"%>
 						<p id="demoText"></p>
 					</div>
 				</div>
-				<div class="layui-upload" style="float: right; margin-right: 300px; margin-top: -240px">
+				<div class="layui-upload" style="float: right; margin-right: 300px; margin-top: -290px">
 					<button type="button" class="layui-btn" id="test2">上传餐馆图片</button>
 					<div class="layui-upload-list">
 						<img class="layui-upload-img" id="demo2" src="${hotel.restaurantBackimage}">
