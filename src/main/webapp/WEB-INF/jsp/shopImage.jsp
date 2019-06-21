@@ -31,12 +31,12 @@ pageEncoding="UTF-8"%>
 			margin: 0 10px 10px 0;
 		}
     </style>
-	<script>
-		function chan() {
-            $("#form1").submit();
-        }
-		
-	</script>
+	<%--<script>--%>
+		<%--function chan() {--%>
+            <%--$("#form1").submit();--%>
+        <%--}--%>
+		<%----%>
+	<%--</script>--%>
 	<body style="width: 98%">
 	<div style="margin-top: 10px">
 		<font style="color: #000; font-size: 12px; margin-left: 10px">
@@ -46,14 +46,14 @@ pageEncoding="UTF-8"%>
 		<hr style="background: red; height: 2px; margin-top: 0px">
 	</div>
  		<div>
-			<form class="form-horizontal" role="form"  action="" id="form1">
+			<form class="form-horizontal" role="form"  action="/craftsman/addImg" id="form1">
 				<div>
 					<input type="hidden" name="Policyid" value="">
 				</div>
 				<div class="form-group">
 					<label class="col-sm-1 control-label">图片描述:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="browse" type="text" name="" value="" placeholder="请输入图片描述">
+						<input class="form-control" id="imageDetalis" type="text" name="imageDetalis" value="" placeholder="请输入图片描述">
 					</div>
 					<label class="col-sm-1 control-label">添加类型:</label>
 					<div class="col-sm-2">
@@ -64,12 +64,12 @@ pageEncoding="UTF-8"%>
 					<button type="button" class="layui-btn" id="test1">请上传商品图片</button>
 					<div class="layui-upload-list">
 						<img class="layui-upload-img" id="demo1" src="">
-						<input id="videoBackimg" name="videoBackimg" type="hidden" value=""/>
+						<input id="imgUrl" name="imgUrl" type="hidden" value=""/>
 						<p id="demoText"></p>
 					</div>
 				</div>
 		    	<div style="margin-top: 10px; margin-left: 530px; margin-top: -50px">
-		    		<button class="layui-btn layui-btn-sm" onclick="chan()">确定添加/修改</button>
+		    		<button class="layui-btn layui-btn-sm" onclick="addImgById(${ product.id})">确定添加/修改</button>
 		    		<%--<button class="layui-btn layui-btn-sm layui-btn-danger">确定修改</button>--%>
 		    	</div>
 			</form>
@@ -79,6 +79,17 @@ pageEncoding="UTF-8"%>
  			</div>
  		</div>
     <script type="text/javascript" src="/js/wangEditor.js"></script>
+
+	<script type="text/javascript">
+        function addImgById(id){
+            // var imageName = document.getElementById("imageName").value;
+            var imageDetalis = document.getElementById("imageDetalis").value;
+            var imgUrl = document.getElementById("imgUrl").value;
+            window.location.href="/craftsman/addImg?id="+id+"&imageDetalis="+imageDetalis+"&imgUrl="+imgUrl;
+        }
+
+	</script>
+
     <script type="text/javascript">
         var E = window.wangEditor;
         var editor1 = new E('#div1', '#div2'); 

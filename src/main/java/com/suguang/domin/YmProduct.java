@@ -18,7 +18,7 @@ public class YmProduct implements Serializable {
 	private Integer id;
 	private Integer shopsId;
 	private String productName;
-	private String skuId;
+	//private String skuId;
 	private String productPoint;
 	private BigDecimal price;
 	private String productDatile;
@@ -74,13 +74,13 @@ public class YmProduct implements Serializable {
 		return productName;
 	}
 
-	public void setSkuId(String skuId) {
-		this.skuId = skuId;
-	}
-
-	public String getSkuId() {
-		return skuId;
-	}
+//	public void setSkuId(String skuId) {
+//		this.skuId = skuId;
+//	}
+//
+//	public String getSkuId() {
+//		return skuId;
+//	}
 
 	public String getProductPoint() {
 		return productPoint;
