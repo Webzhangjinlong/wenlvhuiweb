@@ -23,6 +23,7 @@ import java.io.File;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by 11491 on 2019/5/29.
@@ -51,11 +52,6 @@ public class CarftsmanController {
         return "craftsmanShopAdd";
     }
 
-    @RequestMapping("/image")
-    public String imgShop(){
-        return "shopImage";
-    }
-
     //匠人
     @GetMapping("/list")
     public String getAllByPage(HttpServletRequest request, Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size) {
@@ -76,6 +72,9 @@ public class CarftsmanController {
         model.addAttribute("show", ymShops);
         List<YmProduct> all = productDao.getByShopsId(Integer.parseInt(Shopid));
         model.addAttribute("productList", all);
+
+        YmUser byTypeIdd = userDao.getByTypeId(Integer.parseInt(Shopid));
+        model.addAttribute("byTypeIds",byTypeIdd);
         return "craftsmanAdd";
     }
 
@@ -102,6 +101,8 @@ public class CarftsmanController {
         String experience = request.getParameter("experience");
         String imgUrl = request.getParameter("imgUrl");
         String province = request.getParameter("province");
+        String phone = request.getParameter("phone");
+        String password = request.getParameter("password");
         YmShops ymShops = new YmShops();
 
         //此处一定要加判断ID是否为空，否怎会报错，即使不为空也报错
@@ -122,11 +123,33 @@ public class CarftsmanController {
 
         Date date = new Date();
         ymShops.setCreateDate(date);
-
         ymShops.setImgUrl(imgUrl);
-
         YmShops save = craftsmanDao.save(ymShops);
         model.addAttribute("save", save);
+
+        if (id.equals("")) {
+            YmUser ymUser = new YmUser();
+            //ymUser.setHeadPic(artistLogourl);
+            ymUser.setPassword(password);
+            ymUser.setPhone(phone);
+            ymUser.setUsername(shopsName);
+            ymUser.setNickName(shopsName);
+            ymUser.setName(shopsName);
+            ymUser.setTypeId(save.getId());
+            ymUser.setUserType(3);
+            userDao.save(ymUser);
+        }else{
+            YmUser byTypeId = userDao.getByTypeId(Integer.parseInt(id));
+            //byTypeId.setHeadPic(artistLogourl);
+            byTypeId.setPassword(password);
+            byTypeId.setPhone(phone);
+            byTypeId.setUsername(shopsName);
+            byTypeId.setNickName(shopsName);
+            byTypeId.setName(shopsName);
+            byTypeId.setTypeId(save.getId());
+            byTypeId.setUserType(3);
+            userDao.save(byTypeId);
+        }
 
         if (pageNum==null) {
             pageNum =1;
@@ -174,6 +197,8 @@ public class CarftsmanController {
         String productImage = request.getParameter("productImage");
         String productDatile = request.getParameter("productDatile");
 
+        String productId = UUID.randomUUID().toString();
+
         YmProduct ymProduct = new YmProduct();
         //商品介绍未写
 //        request.getParameter("");
@@ -183,6 +208,9 @@ public class CarftsmanController {
         if (productid != null && productid != "") {
             ymProduct.setId(Integer.parseInt(productid));
         }
+
+        ymProduct.setProductId(productId);//生成唯一标识
+
         ymProduct.setProductName(productName);
         BigDecimal bigDecimal = new BigDecimal(Double.parseDouble(price));
         ymProduct.setPrice(bigDecimal);
@@ -232,6 +260,13 @@ public class CarftsmanController {
         imgDao.save(ymImage);
 
         return "redirect:/craftsman/updatePro?id=" + productid;
+    }
+
+    //跳转至添加图片页面
+    @RequestMapping("/image")
+    public String imgShop(){
+        System.out.print("ooo");
+        return "shopImage";
     }
 
     //删除对应图片

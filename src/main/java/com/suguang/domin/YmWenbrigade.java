@@ -29,6 +29,15 @@ public class YmWenbrigade {
     private Date createTime;
     private Integer recommend;
     private Integer browse;
+    private String productId;
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
 
     public String getName() {
         return name;

@@ -22,6 +22,7 @@ import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by 11491 on 2019/5/26.
@@ -105,10 +106,15 @@ public class TagController {
         String latitude = request.getParameter("latitude");
         String detailsContent = request.getParameter("detailsContent");
         String phone = request.getParameter("phone");
+        String productId = UUID.randomUUID().toString();
+        String productPrice = request.getParameter("productPrice");
         YmPolicy ymPolicy = new YmPolicy();
         if(id != null && id != ""){
             ymPolicy.setId(Integer.parseInt(id));
         }
+
+        ymPolicy.setProductPrice(Double.parseDouble(productPrice));
+        ymPolicy.setProductId(productId);//生成唯一标识
         ymPolicy.setTitle(title);
         ymPolicy.setTextType(Integer.parseInt(textType));
         ymPolicy.setSource(source);
@@ -142,10 +148,7 @@ public class TagController {
         if (sizeNum ==null) {
             sizeNum =10;
         }
-
-      
         return "redirect:/tag/list?page=" + pageNum + "&size=" + sizeNum;
-
     }
 
     //添加活动

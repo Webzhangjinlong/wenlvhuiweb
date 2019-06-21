@@ -134,12 +134,12 @@
         <div class="form-group">
             <label class="col-sm-1 control-label">手机号:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="longitude" type="text" name="longitude" value=""
+                <input class="form-control" id="phone" type="text" name="phone" value="${byTypeIds.phone}"
                        placeholder="请输入手机号">
             </div>
             <label class="col-sm-1 control-label">登陆密码:</label>
             <div class="col-sm-2">
-                <input class="form-control" id="latitude" type="text" name="latitude" value=""
+                <input class="form-control" id="password" type="text" name="password" value="${byTypeIds.password}"
                        placeholder="请输入登陆密码">
             </div>
         </div>

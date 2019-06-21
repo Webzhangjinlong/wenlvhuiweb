@@ -2,8 +2,10 @@ package com.suguang.controller;
 
 import com.suguang.dao.FoodDao;
 import com.suguang.dao.HotelDao;
+import com.suguang.dao.UserDao;
 import com.suguang.domin.YmFood;
 import com.suguang.domin.YmRestaurant;
+import com.suguang.domin.YmUser;
 import com.suguang.domin.YmWenlv;
 import com.suguang.service.HotelService;
 import com.suguang.util.YmStaticVariablesUtil;
@@ -39,6 +41,8 @@ public class HotelController {
     private HotelService hotelService;
     @Autowired
     private FoodDao foodDao;
+    @Autowired
+    private UserDao userDao;
 
     private Integer pageNum;
     private Integer sizeNum;
@@ -66,6 +70,10 @@ public class HotelController {
             model.addAttribute("hotel",result);
             List<YmFood> foods = foodDao.getByRestaurantId(Integer.parseInt(hotelid));
             model.addAttribute("foodList",foods);
+
+            YmUser byTypeIdd = userDao.getByTypeId(Integer.parseInt(hotelid));
+            model.addAttribute("byTypeIdd",byTypeIdd);
+
             return "hotelAdd";
         }
         return "";
@@ -95,6 +103,8 @@ public class HotelController {
         String restaurantBackimage = request.getParameter("restaurantBackimage");
         String restaurantTag = request.getParameter("restaurantTag");
         String restaurantDetail = request.getParameter("restaurantDetail");
+        String phone = request.getParameter("phone");
+        String password = request.getParameter("password");
 
         YmRestaurant ymRestaurant = new YmRestaurant();
 
@@ -117,6 +127,30 @@ public class HotelController {
         ymRestaurant.setRestaurantDetail(restaurantDetail);
         YmRestaurant save = hotelDao.save(ymRestaurant);
         model.addAttribute("hotel", save);
+
+        if (id.equals("")) {
+            YmUser ymUser = new YmUser();
+            //ymUser.setHeadPic(artistLogourl);
+            ymUser.setPassword(password);
+            ymUser.setPhone(phone);
+            ymUser.setUsername(restaurantName);
+            ymUser.setNickName(restaurantName);
+            ymUser.setName(restaurantName);
+            ymUser.setTypeId(save.getId());
+            ymUser.setUserType(4);
+            userDao.save(ymUser);
+        }else{
+            YmUser byTypeId = userDao.getByTypeId(Integer.parseInt(id));
+            //byTypeId.setHeadPic(artistLogourl);
+            byTypeId.setPassword(password);
+            byTypeId.setPhone(phone);
+            byTypeId.setUsername(restaurantName);
+            byTypeId.setNickName(restaurantName);
+            byTypeId.setName(restaurantName);
+            byTypeId.setTypeId(save.getId());
+            byTypeId.setUserType(4);
+            userDao.save(byTypeId);
+        }
 
         if (pageNum==null) {
             pageNum =1;

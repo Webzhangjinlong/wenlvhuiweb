@@ -27,6 +27,15 @@ public class YmProduct implements Serializable {
 	private Integer categoryId;
 	private Integer status;
 	private Date createDate;
+	private String productId;
+
+	public String getProductId() {
+		return productId;
+	}
+
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
 
 	public java.util.Date getCreateDate() {
 		return createDate;

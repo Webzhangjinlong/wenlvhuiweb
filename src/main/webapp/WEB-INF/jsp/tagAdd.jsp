@@ -230,6 +230,14 @@
                        value="${tagupdate.phone}" placeholder="请输入活动电话">
             </div>
         </div>
+        <div>
+            <label class="col-sm-1 control-label">活动金额:</label>
+            <div class="col-sm-2">
+                <input class="form-control" id="productPrice" type="text" name="productPrice"
+                       value="${tagupdate.productPrice}" placeholder="请输入金额">
+            </div>
+        </div>
+
         <div class="layui-upload" style="margin-left: 20px;margin-top: 20px">
             <button type="button" class="layui-btn layui-btn-normal" id="test8">选择活动视频</button>
             <input type="hidden" id="videourl" name="videourl" value="${tagupdate.videourl}" >

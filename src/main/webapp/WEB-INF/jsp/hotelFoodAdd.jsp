@@ -98,12 +98,12 @@ pageEncoding="UTF-8"%>
 						</select>
 					</div>
 				</div>
-				<div class="layui-upload" style="margin-left: 20px;margin-top: 20px">
-					<button type="button" class="layui-btn layui-btn-normal" id="test8">选择活动视频</button>
-					<input type="hidden" id="videoUrl" name="videoUrl" value="${ymFood.videoUrl}" >
-					<button type="button" class="layui-btn" id="test9">开始上传</button>
-					<p id="p1" class="layui-btn layui-btn-warm layui-btn-radius" style="margin-top: 11px">${ymFood.videoUrl}</p>
-				</div>
+				<%--<div class="layui-upload" style="margin-left: 20px;margin-top: 20px">--%>
+					<%--<button type="button" class="layui-btn layui-btn-normal" id="test8">选择活动视频</button>--%>
+					<%--<input type="hidden" id="videoUrl" name="videoUrl" value="${ymFood.videoUrl}" >--%>
+					<%--<button type="button" class="layui-btn" id="test9">开始上传</button>--%>
+					<%--<p id="p1" class="layui-btn layui-btn-warm layui-btn-radius" style="margin-top: 11px">${ymFood.videoUrl}</p>--%>
+				<%--</div>--%>
 				<div class="layui-upload" style="float: right; margin-right: 400px; margin-top: -170px">
 					<button type="button" class="layui-btn" id="test1">上传菜品/视频封面图</button>
 					<div class="layui-upload-list">

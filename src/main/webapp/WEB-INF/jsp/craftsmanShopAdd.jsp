@@ -160,17 +160,20 @@ pageEncoding="UTF-8"%>
 				<th>图片</th>
 				<td>
 					<%--<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="imageById()">修改</button>--%>
-					<script type="text/javascript">
-                        function artistImageAdd() {
-                            window.location.href="/craftsman/image";
-                        }
-					</script>
+
 					<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteImgById(${ ymImages.id})">删除</button>
 				</td>
 			</tr>
 			</c:forEach>
 			</tbody>
 		</table>
+
+		<script type="text/javascript">
+            function artistImageAdd() {
+                window.location.href="/craftsman/image";
+            }
+		</script>
+
     <script type="text/javascript" src="/js/wangEditor.js"></script>
 
 		<script type="text/javascript">

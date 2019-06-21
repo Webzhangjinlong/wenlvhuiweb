@@ -139,11 +139,11 @@ pageEncoding="UTF-8"%>
 				<div class="form-group">
 					<label class="col-sm-1 control-label">手机号:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  name="longitude" value="" placeholder="请输入手机号">
+						<input class="form-control" id="phone" type="text"  name="phone" value="${byTypeIdd.phone}" placeholder="请输入手机号">
 					</div>
 					<label class="col-sm-1 control-label">登陆密码:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  name="latitude" value="" placeholder="请输入登陆密码">
+						<input class="form-control" id="password" type="text"  name="password" value="${byTypeIdd.password}" placeholder="请输入登陆密码">
 					</div>
 					<div class="col-sm-2">
 						<a href="https://lbs.amap.com/console/show/picker"

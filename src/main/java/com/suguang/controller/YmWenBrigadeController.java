@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by Mr.King on 2019/6/4.
@@ -90,11 +91,14 @@ public class YmWenBrigadeController {
         String recommend = request.getParameter("recommend");
         String browse = request.getParameter("browse");
         String img = request.getParameter("img");
+        String productId = UUID.randomUUID().toString();
 
         YmWenbrigade ymWenBrigade = new YmWenbrigade();
         if (WenBrigadeId != null && WenBrigadeId != "") {
             ymWenBrigade.setId(Integer.parseInt(WenBrigadeId));
         }
+
+        ymWenBrigade.setProductId(productId);//生成唯一标识
         ymWenBrigade.setType(Integer.parseInt(type));
         ymWenBrigade.setAdult(Double.parseDouble(adult));
         ymWenBrigade.setChildren(Double.parseDouble(children));
