@@ -1,6 +1,7 @@
 package com.suguang.controller;
 
 import com.suguang.dao.CraftsmanDao;
+import com.suguang.dao.ImgDao;
 import com.suguang.dao.ProductDao;
 import com.suguang.dao.UserDao;
 import com.suguang.domin.*;
@@ -38,13 +39,21 @@ public class CarftsmanController {
     UserDao userDao;
     @Autowired
     ProductDao productDao;
+    @Autowired
+    ImgDao imgDao;
     private Integer pageNum;
     private Integer sizeNum;
     private String Shopid;
+    private String productid;
 
     @RequestMapping("/shopUpdate")
     public String shopUpdate(){
         return "craftsmanShopAdd";
+    }
+
+    @RequestMapping("/image")
+    public String imgShop(){
+        return "shopImage";
     }
 
     //匠人
@@ -141,18 +150,21 @@ public class CarftsmanController {
     }
 
     //修改商品,此处为商品的回显
-    @RequestMapping("/updatePro")
+    @RequestMapping("/updatePro")//?
     public String deletePro(HttpServletRequest request,Model model){
-        String id = request.getParameter("id");
-        YmProduct ymProduct = productDao.getById(Integer.parseInt(id));
+        productid = request.getParameter("id");
+        YmProduct ymProduct = productDao.getById(Integer.parseInt(productid));
         model.addAttribute("product",ymProduct);
+        //添加图片回显
+        List<YmImage> byImgTypeAndPid = imgDao.getByImgTypeAndPid(6, Integer.parseInt(productid));
+        model.addAttribute("ymImagess",byImgTypeAndPid);
         return "craftsmanShopAdd";
     }
 
     //添加和修改更新商品，且保存数据库
     @RequestMapping("/productadd")
     public String productadd(HttpServletRequest request,Model model){
-        String id = request.getParameter("id");
+        productid = request.getParameter("id");
         String productName = request.getParameter("productName");
         String price = request.getParameter("price");
         String priceDq = request.getParameter("priceDq");
@@ -168,8 +180,8 @@ public class CarftsmanController {
 //        request.getParameter("");
 //        request.getParameter("");
 //        request.getParameter("");
-        if (id != null && id != "") {
-            ymProduct.setId(Integer.parseInt(id));
+        if (productid != null && productid != "") {
+            ymProduct.setId(Integer.parseInt(productid));
         }
         ymProduct.setProductName(productName);
         BigDecimal bigDecimal = new BigDecimal(Double.parseDouble(price));
@@ -200,6 +212,37 @@ public class CarftsmanController {
     @RequestMapping("/addPro")
     public String addPro(){
         return "craftsmanShopAdd";
+    }
+
+    //添加图片模态框
+    @RequestMapping("/addImg")
+    public String addImg(HttpServletRequest request, Model model) {
+        //艺人ID
+        String imgName = request.getParameter("imageName");
+        String imageDetalis = request.getParameter("imageDetalis");
+        String imgUrl = request.getParameter("imgUrl");
+
+        YmImage ymImage = new YmImage();
+        ymImage.setImageType(1);
+        ymImage.setImgType(6);
+        ymImage.setPid(Integer.parseInt(productid));
+        ymImage.setImgName(imgName);
+        ymImage.setDetalis(imageDetalis);
+        ymImage.setImgUrl(imgUrl);
+        imgDao.save(ymImage);
+
+        return "redirect:/craftsman/updatePro?id=" + productid;
+    }
+
+    //删除对应图片
+    @RequestMapping("/deleteImg")
+    public String imgDelete(HttpServletRequest request, Model model) {
+        //图片ID
+        String id = request.getParameter("id");
+        imgDao.deleteById(Integer.parseInt(id));
+
+        return "redirect:/craftsman/updatePro?id=" + productid;
+
     }
 
 
