@@ -6,8 +6,9 @@
     <groupId>com.suguang</groupId>
     <artifactId>PRO</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
     <!--Spring Boot父级依赖-->
-    <!--提供相关的Maven默认依赖，常用的包依赖可以省去version标签-->
+    <!--提供相关的Maven默认依赖，常用的包依赖可以省去version标签   你这是不是还少东西呢 还少啥？-->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>

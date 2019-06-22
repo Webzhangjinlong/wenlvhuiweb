@@ -63,8 +63,8 @@ pageEncoding="UTF-8"%>
 				<div class="layui-upload" style="margin-left: 20px">
 					<button type="button" class="layui-btn" id="test1">请上传艺人图片</button>
 					<div class="layui-upload-list">
-						<img class="layui-upload-img" id="demo1" src="">
-						<input id="imgUrl" name="imgUrl" type="hidden" value=""/>
+						<img class="layui-upload-img" id="demo1" src="${ addYmArtist.imgUrl}">
+						<input id="imgUrl" name="imgUrl" type="hidden" value="${ addYmArtist.imgUrl}"/>
 						<p id="demoText"></p>
 					</div>
 				</div>
@@ -115,7 +115,7 @@ pageEncoding="UTF-8"%>
                     if (res.code > 0) {
                         return layer.msg('上传失败！')
                     }
-                    $('#').val('' + res.data[0]);
+                    $('#imgUrl').val('' + res.data[0]);
                     return layer.msg('上传成功！')
                 }
                 , error: function () {

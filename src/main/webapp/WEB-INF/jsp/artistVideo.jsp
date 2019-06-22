@@ -31,12 +31,6 @@ pageEncoding="UTF-8"%>
 			margin: 0 10px 10px 0;
 		}
     </style>
-	<script>
-		function chan() {
-            $("#form1").submit();
-        }
-		
-	</script>
 	<body style="width: 98%">
 	<div style="margin-top: 10px">
 		<font style="color: #000; font-size: 12px; margin-left: 10px">
@@ -63,18 +57,17 @@ pageEncoding="UTF-8"%>
 				<div class="layui-upload"  style="margin-left: 20px">
 					<button type="button" class="layui-btn" id="test1">请上传视频封面图</button>
 					<div class="layui-upload-list">
-						<img class="layui-upload-img" id="demo1" src="">
-						<input id="videoImgUrl" name="videoImgUrl" type="hidden" value=""/>
+						<img class="layui-upload-img" id="demo1" src="${ addYmArtist.videoImgUrl}">
+						<input id="videoImgUrl" name="videoImgUrl" type="hidden" value="${ addYmArtist.videoImgUrl}"/>
 						<p id="demoText"></p>
 					</div>
 				</div>
 				<div class="layui-upload" style="margin-left: 20px;margin-top: 20px">
 					<button type="button" class="layui-btn layui-btn-normal" id="test8">选择艺人视频</button>
-					<input type="hidden" id="videoUrl" name="videoUrl" value="" >
+					<input type="hidden" id="videoUrl" name="videoUrl" value="${ addYmArtist.videoUrl}" >
 					<button type="button" class="layui-btn" id="test9">开始上传</button><br>
 					<p id="p1" class="layui-btn layui-btn-warm layui-btn-radius" style="margin-top: 11px"></p>
 				</div>
-
 		    	<div style="margin-top: 10px; margin-left: 530px;">
 		    		<button class="layui-btn layui-btn-sm" onclick="addVideoById(${ addYmArtist.id})">确定添加/修改</button>
 		    	</div>
@@ -122,7 +115,7 @@ pageEncoding="UTF-8"%>
                     if (res.code > 0) {
                         return layer.msg('上传失败！')
                     }
-                    $('#').val('' + res.data[0]);
+                    $('#videoImgUrl').val('' + res.data[0]);
                     return layer.msg('上传成功！')
                 }
                 , error: function () {
@@ -147,7 +140,7 @@ pageEncoding="UTF-8"%>
                     if(res.code > 0){
                         return layer.msg('上传失败！')
                     }
-                    $("#").val('' + res.data[0]);
+                    $("#videoUrl").val('' + res.data[0]);
                     $("#p1").text('' + res.data[0])
                     return layer.msg('上传成功！')
                 }

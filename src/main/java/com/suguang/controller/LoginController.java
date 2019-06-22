@@ -18,7 +18,7 @@ public class LoginController  {
     private LoginDao loginDao;
 
     @RequestMapping(value = "/login")
-    public String Userlogin(HttpServletRequest request){
+    public String Userlogin(HttpServletRequest request){ //你这咋方法名大写的呢
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
