@@ -61,14 +61,23 @@
         <div id="yrjs" class="toolbar"></div>
         <div style="padding: 5px 0; color: #ccc"></div>
         <div id="yrjs1" class="text">
-            <p></p>
+            <p>${byIdPolicy.policyDetail}</p>
         </div>
-        <input type="hidden" id="" name="">
+        <input type="hidden" id="policyDetail" name="policyDetail">
     </div>
     <div style="margin-top: 10px; margin-left: 650px;">
-        <button type="button" id="button1" onclick="back()" class="layui-btn layui-btn-sm">返回</button>
-        <button type="button" id="button2" onclick="deleteById()" class="layui-btn layui-btn-sm">删除</button>
+        <button type="button" id="button1" onclick="backCircle(${ byIdPolicy.id})" class="layui-btn layui-btn-sm">返回</button>
+        <button type="button" id="button2" onclick="deleteCircle(${ byIdPolicy.id})" class="layui-btn layui-btn-sm">删除</button>
     </div>
+    <script type="text/javascript">
+        function backCircle(id) {
+            window.location.href = "/circle/back?id="+id;
+        }
+
+        function deleteCircle(id) {
+            window.location.href = "/circle/deletePolicy?id="+id;
+        }
+    </script>
 </div>
 <div>
     <div style="margin-left: 20px">
@@ -82,19 +91,21 @@
         </tr>
         </thead>
         <tbody>
+        <c:forEach items="${byImgType}" var="byImgType">
         <tr>
-            <th><img src="#" alt="123" style="width: 35px; height: 30px"></th>
+            <th><img src="${byImgType.imgUrl}" alt="123" style="width: 35px; height: 30px"></th>
             <th>
-                <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteImage()">删除</button>
+                <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteImage(${ byImgType.id})">删除</button>
             </th>
         </tr>
+        </c:forEach>
         </tbody>
     </table>
     <script type="text/javascript" src="/js/wangEditor.js"></script>
 
     <script type="text/javascript">
-        function deleteImage(){
-            window.location.href="";
+        function deleteImage(id){
+            window.location.href="/circle/deleteImg?id="+id;
         }
     </script>
     <script type="text/javascript">

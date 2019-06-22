@@ -48,40 +48,48 @@
             <td>管理员</td>
             <td>操作</td>
         </tr>
+
+        <c:forEach items="${YmCircleList.content}" var="YmCircleList">
             <tr style="font-weight: bold;">
-                <td>朋友圈</td>
-                <td>社交</td>
-                <td><img src="/images/icon.jpg" style="width: 35px; height: 30px;"></td>
-                <td><img src="/images/icon.jpg" style="width: 35px; height: 30px;"></td>
-                <td>355</td>
+                <td>${YmCircleList.createUser}</td>
+                <td>
+                    <c:if test="${YmCircleList.dictionaryId == 1}">绘画</c:if>
+                    <c:if test="${YmCircleList.dictionaryId == 2}">刺绣</c:if>
+                </td>
+                <td><img src="${YmCircleList.imgUrl}" style="width: 35px; height: 30px;"></td>
+                <td><img src="${YmCircleList.backgroundUrl}" style="width: 35px; height: 30px;"></td>
+                <td>${YmCircleList.browse}</td>
                 <td>zhangfei</td>
                 <td>
-                    <button class="layui-btn layui-btn-sm layui-btn-warm" onclick="circleTetail()">详情
+                    <button class="layui-btn layui-btn-sm layui-btn-warm" onclick="circleTetail(${ YmCircleList.id})">详情
                     </button>
-                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteCircle()">删除
+                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteCircle(${ YmCircleList.id})">删除
                     </button>
                 </td>
             </tr>
+        </c:forEach>
     </table>
     <div id="test1" style="margin-left: 900px">
     </div>
 </div>
 
+
 <script type="text/javascript">
-    function deleteCircle() {
+    function deleteCircle(id) {
         alert("您已成功删除！");
-        window.location.href = "";
+        window.location.href = "/circle/delete?id=" + id;
     }
 </script>
 
 <script>
-    function circleTetail() {
-        window.location.href = "/circle/details";
+    function circleTetail(id) {
+        window.location.href = "/circle/details?id=" + id;
     }
 
 </script>
+
 <script>
-    var count = "${YmArtistList.totalElements}";
+    var count = "${YmCircleList.totalElements}";
     console.log(count)
     layui.use('laypage', function () {
         var laypage = layui.laypage;
@@ -95,7 +103,7 @@
                 if (first) {
                     return
                 }
-                var href = '/artist/artistList?page=' + obj.curr + '&size=' + obj.limit
+                var href = '/circle/list?page=' + obj.curr + '&size=' + obj.limit
                 location.href = href;
             }
         });
