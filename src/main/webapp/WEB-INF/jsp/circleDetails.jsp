@@ -52,7 +52,7 @@
 </div>
 <div>
     <div>
-        <input type="hidden" name="id" value="${addYmArtist.id}">
+        <input type="hidden" name="id" value="${byId.id}">
     </div>
     <div style="margin-left: 22px;">
         <label class="control-label">圈子详情</label><br>
@@ -62,9 +62,9 @@
         <div id="yrjs" class="toolbar"></div>
         <div style="padding: 5px 0; color: #ccc"></div>
         <div id="yrjs1" class="text">
-            <p >${addYmArtist.artistDetails}</p>
+            <p >${byId.circleDetail}</p>
         </div>
-        <input type="hidden" id="artistDetails" name="artistDetails">
+        <input type="hidden" id="circleDetail" name="circleDetail">
     </div>
     <div style="margin-left: 22px;">
         <label class="control-label">圈子规定:</label><br>
@@ -73,20 +73,28 @@
         <div id="div1" class="toolbar"></div>
         <div style="padding: 5px 0; color: #ccc"></div>
         <div id="div2" class="text">
-            <p disabled="disabled">${addYmArtist.artistExperience}</p>
+            <p disabled="disabled">${byId.circleRegulations}</p>
         </div>
-        <input type="hidden" id="artistExperience" name="artistExperience">
+        <input type="hidden" id="circleRegulations" name="circleRegulations">
     </div>
     <div style="margin-top: 10px; margin-left: 650px;">
-        <button type="button" id="button" onclick="chan()" class="layui-btn layui-btn-sm">返回</button>
+        <button type="button" id="button" onclick="returnCircle()" class="layui-btn layui-btn-sm">返回</button>
     </div>
 </div>
+
+<script type="text/javascript">
+    function returnCircle() {
+        window.location.href = "/circle/return";
+    }
+</script>
+
 <div>
     <div style="margin-left: 20px">
         <p>圈子动态列表</p>
     </div>
     <table class="layui-table" lay-skin="line" style="margin-left: 20px; width: 80%">
         <thead>
+
         <tr>
             <th>动态id</th>
             <th>动态内容</th>
@@ -96,15 +104,26 @@
         </tr>
         </thead>
         <tbody>
+
+        <%--<c:forEach items="${byIdPolicy}" var="byIdPolicy">--%>
         <tr>
+            <%--<th>${byIdPolicy.id}</th>--%>
+            <%--<th>${byIdPolicy.policyDetail}</th>--%>
+            <%--<th>${byIdPolicy.browse}</th>--%>
+            <%--<th>${byIdPolicy.createDate}</th>--%>
+            <%--<th>--%>
+                <%--<button class="layui-btn layui-btn-sm layui-btn-danger" onclick="circlePolicyDetails()">详情</button>--%>
+            <%--</th>--%>
+
             <th>1</th>
-            <th>今天都别睡觉看谁能熬</th>
-            <th>456</th>
-            <th>2019-05-06</th>
+            <th>VS豆腐干豆腐干上的</th>
+            <th>34</th>
+            <th>293</th>
             <th>
                 <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="circlePolicyDetails()">详情</button>
             </th>
         </tr>
+        <%--</c:forEach>--%>
         </tbody>
     </table>
     <script type="text/javascript" src="/js/wangEditor.js"></script>
