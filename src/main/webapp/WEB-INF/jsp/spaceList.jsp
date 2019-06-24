@@ -91,12 +91,14 @@
                     return
                 }
 
-                var href = '/Space/list?page=' + obj.curr + '&size=' + obj.limit
+                var href = '/space/list?page=' + obj.curr + '&size=' + obj.limit
                 location.href = href;
             }
         });
     });
 </script>
+
+
 
 <script type="text/javascript">
     function updateById(id) {

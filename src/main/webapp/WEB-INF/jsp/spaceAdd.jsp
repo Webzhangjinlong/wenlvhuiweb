@@ -154,6 +154,13 @@
                    class="form-control">♡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点我查看经纬度</a>
             </div>
         </div>
+        <div>
+            <label class="col-sm-1 control-label">空间密码:</label>
+            <div class="col-sm-2">
+                <input class="form-control" id="password" type="text" name="password" value="${byTypeIdspace.password}"
+                       placeholder="纬度">
+            </div>
+        </div>
         <div class="form-group">
             <label class="col-sm-1 control-label" style="margin-top: 30px;">空间内容（必填）:</label>
             <div style="margin-left: 120px">

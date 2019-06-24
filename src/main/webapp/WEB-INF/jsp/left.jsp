@@ -54,7 +54,15 @@ pageEncoding="UTF-8"%>
 			      <dd><a href="/user/list"  target="showframe">会员管理</a></dd>
 			      <dd><a href=""  target="showframe">订单管理</a></dd>
 			      <dd><a href=""  target="showframe">支付管理</a></dd>
-			      <dd><a href=""  target="showframe">退出登陆</a></dd>
+			      <dd><a onclick="removeLogint()">退出登陆</a></dd>
+					<script type="text/javascript">
+                        function removeLogint(){
+                            var result = confirm("确定要退出吗？");
+                            if(result){
+                                location.href="/user/remove";
+                            }
+                        }
+					</script>
 			    </dl>
 		    </li>
 		</ul>

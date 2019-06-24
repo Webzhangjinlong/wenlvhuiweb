@@ -40,8 +40,8 @@
 <div id="tab1">
     <table class="layui-table" lay-skin="line" style="text-align: center; overflow: hidden;">
         <tr style="font-weight: bold;">
-            <td>圈子名称</td>
-            <td>圈子类型</td>
+            <%--<td>圈子名称</td>--%>
+            <%--<td>圈子类型</td>--%>
             <td>圈子头像</td>
             <td>圈子背景</td>
             <td>浏览量</td>
@@ -51,11 +51,11 @@
 
         <c:forEach items="${YmCircleList.content}" var="YmCircleList">
             <tr style="font-weight: bold;">
-                <td>${YmCircleList.createUser}</td>
-                <td>
-                    <c:if test="${YmCircleList.dictionaryId == 1}">绘画</c:if>
-                    <c:if test="${YmCircleList.dictionaryId == 2}">刺绣</c:if>
-                </td>
+                <%--<td>${YmCircleList.circleName}</td>--%>
+                <%--<td>--%>
+                    <%--<c:if test="${YmCircleList.dictionaryId == 1}">绘画</c:if>--%>
+                    <%--<c:if test="${YmCircleList.dictionaryId == 2}">刺绣</c:if>--%>
+                <%--</td>--%>
                 <td><img src="${YmCircleList.imgUrl}" style="width: 35px; height: 30px;"></td>
                 <td><img src="${YmCircleList.backgroundUrl}" style="width: 35px; height: 30px;"></td>
                 <td>${YmCircleList.browse}</td>

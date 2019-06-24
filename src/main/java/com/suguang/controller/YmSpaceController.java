@@ -1,11 +1,10 @@
 package com.suguang.controller;
 
+import com.suguang.dao.UserDao;
 import com.suguang.dao.YmSpaceDao;
 import com.suguang.dao.YmSpaceDetailDao;
 import com.suguang.dao.YmSpacePolicyDao;
-import com.suguang.domin.YmSpace;
-import com.suguang.domin.YmSpaceDetail;
-import com.suguang.domin.YmSpacePolicy;
+import com.suguang.domin.*;
 import com.suguang.service.YmSpaceService;
 import com.suguang.util.YmStaticVariablesUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +38,8 @@ public class YmSpaceController {
     YmSpacePolicyDao ymSpacePolicyDao;
     @Autowired
     YmSpaceService ymSpaceService;
+    @Autowired
+    UserDao userDao;
     private Integer pageNum;
     private Integer sizeNum;
     private String spaceId;
@@ -74,6 +75,8 @@ public class YmSpaceController {
         model.addAttribute("spaceDetailList", spaceDetailList);
         model.addAttribute("addYmSpace", ymYmSpace);
         model.addAttribute("SpacePolicyList", SpacePolicyList);
+        YmUser byTypeIdd = userDao.getByTypeId(Integer.parseInt(spaceId));
+        model.addAttribute("byTypeIdspace",byTypeIdd);
         return "spaceAdd";
 
     }
@@ -100,6 +103,7 @@ public class YmSpaceController {
         String backImg = request.getParameter("backImg");
         String backupField1 = request.getParameter("backupField1");
         String browse = request.getParameter("browse");
+        String password = request.getParameter("password");
         //空间头像，北京图没写
 
         YmSpace ymYmSpace = new YmSpace();
@@ -121,6 +125,30 @@ public class YmSpaceController {
         ymYmSpace.setTel(tel);
 
         YmSpace save = ymSpaceDao.save(ymYmSpace);
+
+        if (id.equals("")) {
+            YmUser ymUser = new YmUser();
+            //ymUser.setHeadPic(artistLogourl);
+            ymUser.setPassword(password);
+            ymUser.setPhone(tel);
+            ymUser.setUsername(spaceName);
+            ymUser.setNickName(spaceName);
+            ymUser.setName(spaceName);
+            ymUser.setTypeId(save.getId());
+            ymUser.setUserType(6);
+            userDao.save(ymUser);
+        }else{
+            YmUser byTypeId = userDao.getByTypeId(Integer.parseInt(id));
+           // byTypeId.setHeadPic(artistLogourl);
+            byTypeId.setPassword(password);
+            byTypeId.setPhone(tel);
+            byTypeId.setUsername(spaceName);
+            byTypeId.setNickName(spaceName);
+            byTypeId.setName(spaceName);
+            byTypeId.setTypeId(save.getId());
+            byTypeId.setUserType(6);//6是空间
+            userDao.save(byTypeId);
+        }
 
 
         if (pageNum == null) {
