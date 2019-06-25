@@ -134,7 +134,7 @@ public class HotelController {
             //ymUser.setHeadPic(artistLogourl);
             ymUser.setPassword(password);
             ymUser.setPhone(phone);
-            ymUser.setUsername(restaurantName);
+            ymUser.setUsername(phone);
             ymUser.setNickName(restaurantName);
             ymUser.setName(restaurantName);
             ymUser.setTypeId(save.getId());
@@ -146,7 +146,7 @@ public class HotelController {
             YmUser byTypeId = userDao.getByTypeId(Integer.parseInt(id));
             byTypeId.setPassword(password);
             byTypeId.setPhone(phone);
-            byTypeId.setUsername(restaurantName);
+            byTypeId.setUsername(phone);
             byTypeId.setNickName(restaurantName);
             byTypeId.setName(restaurantName);
             byTypeId.setTypeId(save.getId());
@@ -234,6 +234,87 @@ public class HotelController {
         String id = request.getParameter("id");
         foodDao.deleteById(Integer.parseInt(id));
         return "redirect:/hotel/update?id="+hotelid;
+    }
+
+
+    //用户登录之后，操作用户数据，首先是页面回显
+    @RequestMapping("/hotelAddById")
+    public String hotelAddById(HttpServletRequest request,Model model){
+        String id = request.getParameter("id");
+        String restaurantName = request.getParameter("restaurantName");
+        String restaurantType = request.getParameter("restaurantType");
+        //request.getParameter("");
+        String averageConsumption = request.getParameter("averageConsumption");
+        String starClass = request.getParameter("starClass");
+        String city = request.getParameter("city");
+        String area = request.getParameter("area");
+        String addrDetail = request.getParameter("addrDetail");
+        String longitude = request.getParameter("longitude");
+        String latitude = request.getParameter("latitude");
+        String restaurantImg = request.getParameter("restaurantImg");
+        String restaurantBackimage = request.getParameter("restaurantBackimage");
+        String restaurantTag = request.getParameter("restaurantTag");
+        String restaurantDetail = request.getParameter("restaurantDetail");
+        String phone = request.getParameter("phone");
+        String password = request.getParameter("password");
+
+        YmRestaurant ymRestaurant = new YmRestaurant();
+
+        //此处一定要加判断ID是否为空，否怎会报错，即使不为空也报错
+        if(id != null && !id.equals("") && !id.equals("null")) {
+            ymRestaurant.setId(Integer.parseInt(id));
+        }
+        ymRestaurant.setRestaurantName(restaurantName);
+        ymRestaurant.setRestaurantType(restaurantType);
+        ymRestaurant.setAverageConsumption(Integer.parseInt(averageConsumption));
+        ymRestaurant.setStarClass(Integer.parseInt(starClass));
+        ymRestaurant.setCity(city);
+        ymRestaurant.setArea(area);
+        ymRestaurant.setAddrDetail(addrDetail);
+        ymRestaurant.setLongitude(longitude);
+        ymRestaurant.setLatitude(latitude);
+        ymRestaurant.setRestaurantImg(restaurantImg);
+        ymRestaurant.setRestaurantBackimage(restaurantBackimage);
+        ymRestaurant.setRestaurantTag(Integer.parseInt(restaurantTag));
+        ymRestaurant.setRestaurantDetail(restaurantDetail);
+        YmRestaurant save = hotelDao.save(ymRestaurant);
+        model.addAttribute("hotel", save);
+
+        if (id.equals("")) {
+            YmUser ymUser = new YmUser();
+            //ymUser.setHeadPic(artistLogourl);
+            ymUser.setPassword(password);
+            ymUser.setPhone(phone);
+            ymUser.setUsername(phone);
+            ymUser.setNickName(restaurantName);
+            ymUser.setName(restaurantName);
+            ymUser.setTypeId(save.getId());
+            ymUser.setUserType(4);
+            Date time = new Date();
+            ymUser.setCreated(time);
+            userDao.save(ymUser);
+        }else{
+            YmUser byTypeId = userDao.getByTypeId(Integer.parseInt(id));
+            byTypeId.setPassword(password);
+            byTypeId.setPhone(phone);
+            byTypeId.setUsername(phone);
+            byTypeId.setNickName(restaurantName);
+            byTypeId.setName(restaurantName);
+            byTypeId.setTypeId(save.getId());
+            byTypeId.setUserType(4);
+            Date time = new Date();
+            byTypeId.setCreated(time);
+            userDao.save(byTypeId);
+        }
+
+        return "redirect:/user/login";
+       // return "redirect:/user/login?page=" + pageNum + "&size=" + sizeNum;
+    }
+
+    //跳转添加页面
+    @RequestMapping("/addFoodById")
+    public String addFoodById(HttpServletRequest request){
+        return "hotelFoodAddById";
     }
 
     //返回服务器资源

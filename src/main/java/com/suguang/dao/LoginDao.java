@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface LoginDao extends JpaRepository<YmUser,Integer> {
     //根据密码账号判断
 
-     YmUser getByPasswordAndUsername(String username, String password);
+     YmUser getByUsernameAndPassword(String username, String password);
 
-    YmUser findByUsernameAndPassword(String username, String password);
+
 }

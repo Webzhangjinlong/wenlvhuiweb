@@ -131,7 +131,7 @@ public class YmSpaceController {
             //ymUser.setHeadPic(artistLogourl);
             ymUser.setPassword(password);
             ymUser.setPhone(tel);
-            ymUser.setUsername(spaceName);
+            ymUser.setUsername(tel);
             ymUser.setNickName(spaceName);
             ymUser.setName(spaceName);
             ymUser.setTypeId(save.getId());
@@ -144,7 +144,7 @@ public class YmSpaceController {
            // byTypeId.setHeadPic(artistLogourl);
             byTypeId.setPassword(password);
             byTypeId.setPhone(tel);
-            byTypeId.setUsername(spaceName);
+            byTypeId.setUsername(tel);
             byTypeId.setNickName(spaceName);
             byTypeId.setName(spaceName);
             byTypeId.setTypeId(save.getId());

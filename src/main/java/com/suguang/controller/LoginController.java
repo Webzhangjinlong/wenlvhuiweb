@@ -1,9 +1,13 @@
 package com.suguang.controller;
 
+import com.suguang.dao.HotelDao;
 import com.suguang.dao.LoginDao;
+import com.suguang.dao.UserDao;
+import com.suguang.domin.YmRestaurant;
 import com.suguang.domin.YmUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,13 +21,16 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
     @Autowired
     private LoginDao loginDao;
+    @Autowired
+    private HotelDao hotelDao;
+    @Autowired
+    private UserDao userDao;
 
     @RequestMapping(value = "/login")
-    public String Userlogin(HttpServletRequest request) { //你这咋方法名大写的呢
+    public String Userlogin(HttpServletRequest request, Model model) { //你这咋方法名大写的呢
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-
-        YmUser ymUser = loginDao.findByUsernameAndPassword(username, password);
+        YmUser ymUser = loginDao.getByUsernameAndPassword(username,password);
         HttpSession session = request.getSession();
         session.setAttribute("UserSession", ymUser);
 
@@ -32,6 +39,15 @@ public class LoginController {
                 return "商家对应的主页面";
             }
             if (ymUser.getUserType() == 4) {
+
+                Integer htypeId = ymUser.getTypeId();
+                if(htypeId != null && !htypeId.equals("") && !htypeId.equals("null")){
+                    YmRestaurant result = hotelDao.getById(htypeId);
+                    model.addAttribute("hotelAddById",result);
+
+                    YmUser byTypeIdd = userDao.getByTypeId(htypeId);
+                    model.addAttribute("userbyTypeId",byTypeIdd);
+                }
                 //返回餐厅对应的主页
                 return "hotelAddById";
             }

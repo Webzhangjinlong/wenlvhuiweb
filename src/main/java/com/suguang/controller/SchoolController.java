@@ -197,7 +197,7 @@ public class SchoolController {
             ymUser.setHeadPic(logourl);
             ymUser.setPassword(password);
             ymUser.setPhone(phone);
-            ymUser.setUsername(name);
+            ymUser.setUsername(phone);
             ymUser.setNickName(name);
             ymUser.setName(name);
             ymUser.setTypeId(save.getId());
@@ -209,7 +209,7 @@ public class SchoolController {
             YmUser byTypeId = userDao.getByTypeId(Integer.parseInt(id));
             byTypeId.setPassword(password);
             byTypeId.setPhone(phone);
-            byTypeId.setUsername(name);
+            byTypeId.setUsername(phone);
             byTypeId.setNickName(name);
             byTypeId.setName(name);
             byTypeId.setTypeId(save.getId());

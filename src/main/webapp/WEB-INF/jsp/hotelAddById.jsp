@@ -44,43 +44,43 @@ pageEncoding="UTF-8"%>
 		<hr style="background: red; height: 2px; margin-top: 5px">
 	</div>
  		<div>
-			<form class="form-horizontal" role="form" id="form1" action="/hotel/preUpdate">
+			<form class="form-horizontal" role="form" id="form1" action="/hotel/hotelAddById">
 				<div>
-					<input type="hidden" name="id" value="${hotel.id}">
+					<input type="hidden" name="id" value="${hotelAddById.id}">
 				</div>
 
 				<div class="form-group">
 					<label class="col-sm-1 control-label">餐馆名称:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="restaurantName" type="text"  name="restaurantName" value="${hotel.restaurantName}" placeholder="请输入餐馆名称">
+						<input class="form-control" id="restaurantName" type="text"  name="restaurantName" value="${hotelAddById.restaurantName}" placeholder="请输入餐馆名称">
 					</div>
 						<label class="col-sm-1 control-label">餐馆类别:</label>
 						<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  name="restaurantType" value="${hotel.restaurantType}" placeholder="请输入餐馆类别">
+						<input class="form-control" id="focusedInput" type="text"  name="restaurantType" value="${hotelAddById.restaurantType}" placeholder="请输入餐馆类别">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-1 control-label">平均消费:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  name="averageConsumption" value="${hotel.averageConsumption}" placeholder="请输入平均消费">
+						<input class="form-control" id="focusedInput" type="text"  name="averageConsumption" value="${hotelAddById.averageConsumption}" placeholder="请输入平均消费">
 					</div>
 						<label class="col-sm-1 control-label">推荐指数:</label>
 						<div class="col-sm-2">
-							<select class="form-control" name="starClass" value="${hotel.starClass}">
+							<select class="form-control" name="starClass" value="${hotelAddById.starClass}">
 
-								<c:if test="${hotel.starClass == 1}">
+								<c:if test="${hotelAddById.starClass == 1}">
 									<option name="starClass" value="1">★</option>
 								</c:if>
-								<c:if test="${hotel.starClass == 2}">
+								<c:if test="${hotelAddById.starClass == 2}">
 									<option name="starClass" value="1">★★</option>
 								</c:if>
-								<c:if test="${hotel.starClass == 3}">
+								<c:if test="${hotelAddById.starClass == 3}">
 									<option name="starClass" value="1">★★★</option>
 								</c:if>
-								<c:if test="${hotel.starClass == 4}">
+								<c:if test="${hotelAddById.starClass == 4}">
 									<option name="starClass" value="1">★★★★</option>
 								</c:if>
-								<c:if test="${hotel.starClass == 5}">
+								<c:if test="${hotelAddById.starClass == 5}">
 									<option name="starClass" value="1">★★★★★</option>
 								</c:if>
 									<option value="0" name="starClass">--请选择--</option>
@@ -95,25 +95,25 @@ pageEncoding="UTF-8"%>
 				<div class="form-group">
 						<label class="col-sm-1 control-label">市:</label>
 						<div class="col-sm-2">
-							<input class="form-control" id="focusedInput" type="text"  name="city" value="${hotel.city}" placeholder="请输入市">
+							<input class="form-control" id="focusedInput" type="text"  name="city" value="${hotelAddById.city}" placeholder="请输入市">
 						</div>
 						<label class="col-sm-1 control-label">区:</label>
 						<div class="col-sm-2">
-							<input class="form-control" id="focusedInput" type="text"  name="area" value="${hotel.area}" placeholder="请输入区">
+							<input class="form-control" id="focusedInput" type="text"  name="area" value="${hotelAddById.area}" placeholder="请输入区">
 						</div>
 				</div>
 				<div class="form-group">
 						<label class="col-sm-1 control-label">详细地址:</label>
 						<div class="col-sm-2">
-							<input class="form-control" id="focusedInput" type="text" name="addrDetail" value="${hotel.addrDetail}" placeholder="请输入详细地址">
+							<input class="form-control" id="focusedInput" type="text" name="addrDetail" value="${hotelAddById.addrDetail}" placeholder="请输入详细地址">
 						</div>
 						<label class="col-sm-1 control-label">店铺标签:</label>
 						<div class="col-sm-2">
-							<select class="form-control" id="restaurantTag" name="restaurantTag" value="${hotel.restaurantTag}">
-								<c:if test="${hotel.restaurantTag == 1}">
+							<select class="form-control" id="restaurantTag" name="restaurantTag" value="${hotelAddById.restaurantTag}">
+								<c:if test="${hotelAddById.restaurantTag == 1}">
 									<option value="1" name="restaurantTag">必吃</option>
 								</c:if>
-								<c:if test="${hotel.restaurantTag == 2}">
+								<c:if test="${hotelAddById.restaurantTag == 2}">
 									<option value="2" name="restaurantTag">特色</option>
 								</c:if>
 								<option value="0" name="restaurantTag">--请选择--</option>
@@ -125,11 +125,11 @@ pageEncoding="UTF-8"%>
 				<div class="form-group">
 					<label class="col-sm-1 control-label">经度:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  name="longitude" value="${hotel.longitude}" placeholder="请输入经度">
+						<input class="form-control" id="focusedInput" type="text"  name="longitude" value="${hotelAddById.longitude}" placeholder="请输入经度">
 					</div>
 						<label class="col-sm-1 control-label">纬度:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="focusedInput" type="text"  name="latitude" value="${hotel.latitude}" placeholder="请输入纬度">
+						<input class="form-control" id="focusedInput" type="text"  name="latitude" value="${hotelAddById.latitude}" placeholder="请输入纬度">
 					</div>
 					<div class="col-sm-2">
 						<a href="https://lbs.amap.com/console/show/picker"
@@ -139,11 +139,11 @@ pageEncoding="UTF-8"%>
 				<div class="form-group">
 					<label class="col-sm-1 control-label">手机号:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="phone" type="text"  name="phone" value="${byTypeIdd.phone}" placeholder="请输入手机号">
+						<input class="form-control" id="phone" type="text"  name="phone" value="${userbyTypeId.phone}" placeholder="请输入手机号">
 					</div>
 					<label class="col-sm-1 control-label">登陆密码:</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="password" type="text"  name="password" value="${byTypeIdd.password}" placeholder="请输入登陆密码">
+						<input class="form-control" id="password" type="text"  name="password" value="${userbyTypeId.password}" placeholder="请输入登陆密码">
 					</div>
 					<div class="col-sm-2">
 						<a href="https://lbs.amap.com/console/show/picker"
@@ -153,16 +153,16 @@ pageEncoding="UTF-8"%>
 				<div class="layui-upload" style="float: right; margin-right: 500px; margin-top: -290px">
 					<button type="button" class="layui-btn" id="test1">上传餐馆背景图</button>
 					<div class="layui-upload-list">
-						<img class="layui-upload-img" id="demo1" src="${hotel.restaurantImg}">
-						<input id="restaurantImg" name="restaurantImg" value="${hotel.restaurantImg}" type="hidden"/>
+						<img class="layui-upload-img" id="demo1" src="${hotelAddById.restaurantImg}">
+						<input id="restaurantImg" name="restaurantImg" value="${hotelAddById.restaurantImg}" type="hidden"/>
 						<p id="demoText"></p>
 					</div>
 				</div>
 				<div class="layui-upload" style="float: right; margin-right: 300px; margin-top: -290px">
 					<button type="button" class="layui-btn" id="test2">上传餐馆图片</button>
 					<div class="layui-upload-list">
-						<img class="layui-upload-img" id="demo2" src="${hotel.restaurantBackimage}">
-						<input id="restaurantBackimage" name="restaurantBackimage" value="${hotel.restaurantBackimage}" type="hidden"/>
+						<img class="layui-upload-img" id="demo2" src="${hotelAddById.restaurantBackimage}">
+						<input id="restaurantBackimage" name="restaurantBackimage" value="${hotelAddById.restaurantBackimage}" type="hidden"/>
 						<p id="demoText1"></p>
 					</div>
 				</div>
@@ -173,7 +173,7 @@ pageEncoding="UTF-8"%>
 				    <div id="div1" class="toolbar"></div>
 					    <div style="padding: 5px 0; color: #ccc"></div>
 					    <div id="div2" class="text">
-							<p>${hotel.restaurantDetail}</p>
+							<p>${hotelAddById.restaurantDetail}</p>
 		    		</div>
 					<input type="hidden" id="restaurantDetail" name="restaurantDetail">
 		    	</div>
@@ -184,16 +184,16 @@ pageEncoding="UTF-8"%>
 			</form>
 			<div>
 			<div style="margin-left: 20px">
-				<button class="btn btn-primary btn-sm" id="aa" onclick="addFood(${hotel.id})" >
+				<button class="btn btn-primary btn-sm" id="aa" onclick="addFood(${hotelAddById.id})" >
 					添加菜品
 					<script type="text/javascript">
                         function addFood(id) {
-                            if(id == null || id == ""){
-                                alert("请添加完成餐厅之后在添加菜品！")
-                                document.getElementById("aa").disabled = true;
-                                return false;
-                            }
-                            window.location.href = "/hotel/addFood?id=" + id;
+//                            if(id == null || id == ""){
+//                                alert("请添加完成餐厅之后在添加菜品！")
+//                                document.getElementById("aa").disabled = true;
+//                                return false;
+//                            }
+                            window.location.href = "/hotel/addFoodById?id=" + id;
                         }
 					</script>
 				</button>

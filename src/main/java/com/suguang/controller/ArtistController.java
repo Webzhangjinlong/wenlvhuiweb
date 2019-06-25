@@ -157,7 +157,7 @@ public class ArtistController {
             ymUser.setHeadPic(artistLogourl);
             ymUser.setPassword(password);
             ymUser.setPhone(phone);
-            ymUser.setUsername(name);
+            ymUser.setUsername(phone);
             ymUser.setNickName(name);
             ymUser.setName(name);
             ymUser.setTypeId(save.getId());
@@ -170,7 +170,7 @@ public class ArtistController {
             byTypeId.setHeadPic(artistLogourl);
             byTypeId.setPassword(password);
             byTypeId.setPhone(phone);
-            byTypeId.setUsername(name);
+            byTypeId.setUsername(phone);
             byTypeId.setNickName(name);
             byTypeId.setName(name);
             byTypeId.setTypeId(save.getId());
