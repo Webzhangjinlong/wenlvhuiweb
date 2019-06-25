@@ -206,10 +206,10 @@
 		</div>
 		<table class="layui-table" lay-skin="line" style="text-align: center; overflow: hidden; width: 80%">
 			<tr style="font-weight: bold;">
-				<td width="25">状态</td>
-				<td width="25">图片</td>
-				<td width="25">描述</td>
-				<td width="25">操作</td>
+				<td>状态</td>
+				<td>图片</td>
+				<td>描述</td>
+				<tdai'na>操作</tdai>
 			</tr>
 
 			<c:forEach items="${ymImages}" var="ymImages">

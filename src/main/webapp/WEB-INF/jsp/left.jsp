@@ -60,6 +60,8 @@ pageEncoding="UTF-8"%>
                             var result = confirm("确定要退出吗？");
                             if(result){
                                 location.href="/user/remove";
+                                var frame = window.parent.frames["auto"];
+                                console.log(frame)
                             }
                         }
 					</script>

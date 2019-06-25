@@ -9,11 +9,11 @@ pageEncoding="UTF-8"%>
 	</head>
  		<frameset rows="15%,85%" cols="*">
 		  	<frameset rows="100%" cols="*" frameborder="yes" border="1" framespacing="1">
-		  		<frame src="/index/top" scrolling="no"/>
+		  		<frame id="top" name="top" src="/index/top" scrolling="no"/>
 		  	</frameset>
 		  	<frameset rows="*" cols="13%,87%">
-		  		<frame src="/index/left" scrolling="no"/>
-		  		<frame scrolling="auto" noresize="" border="0" name="showframe" src="/user/list"/>
+		  		<frame id="left" name="left" src="/index/left" scrolling="no"/>
+		  		<frame id="auto" name="auto" scrolling="auto" noresize="" border="0" name="showframe" src="/user/list"/>
 		  		<frame name="showframe" scrolling="auto"/>
 		  	</frameset>
   		</frameset>
