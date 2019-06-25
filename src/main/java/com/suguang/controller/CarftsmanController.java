@@ -137,10 +137,11 @@ public class CarftsmanController {
             ymUser.setName(shopsName);
             ymUser.setTypeId(save.getId());
             ymUser.setUserType(3);
+            Date time = new Date();
+            ymUser.setCreated(time);
             userDao.save(ymUser);
         }else{
             YmUser byTypeId = userDao.getByTypeId(Integer.parseInt(id));
-            //byTypeId.setHeadPic(artistLogourl);
             byTypeId.setPassword(password);
             byTypeId.setPhone(phone);
             byTypeId.setUsername(shopsName);
@@ -148,6 +149,8 @@ public class CarftsmanController {
             byTypeId.setName(shopsName);
             byTypeId.setTypeId(save.getId());
             byTypeId.setUserType(3);
+            Date time = new Date();
+            byTypeId.setCreated(time);
             userDao.save(byTypeId);
         }
 

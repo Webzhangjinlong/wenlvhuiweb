@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import static org.apache.ibatis.ognl.DynamicSubscript.all;
@@ -138,10 +139,11 @@ public class HotelController {
             ymUser.setName(restaurantName);
             ymUser.setTypeId(save.getId());
             ymUser.setUserType(4);
+            Date time = new Date();
+            ymUser.setCreated(time);
             userDao.save(ymUser);
         }else{
             YmUser byTypeId = userDao.getByTypeId(Integer.parseInt(id));
-            //byTypeId.setHeadPic(artistLogourl);
             byTypeId.setPassword(password);
             byTypeId.setPhone(phone);
             byTypeId.setUsername(restaurantName);
@@ -149,6 +151,8 @@ public class HotelController {
             byTypeId.setName(restaurantName);
             byTypeId.setTypeId(save.getId());
             byTypeId.setUserType(4);
+            Date time = new Date();
+            byTypeId.setCreated(time);
             userDao.save(byTypeId);
         }
 

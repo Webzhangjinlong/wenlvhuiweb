@@ -136,6 +136,8 @@ public class YmSpaceController {
             ymUser.setName(spaceName);
             ymUser.setTypeId(save.getId());
             ymUser.setUserType(6);
+            Date time = new Date();
+            ymUser.setCreated(time);
             userDao.save(ymUser);
         }else{
             YmUser byTypeId = userDao.getByTypeId(Integer.parseInt(id));
@@ -147,6 +149,8 @@ public class YmSpaceController {
             byTypeId.setName(spaceName);
             byTypeId.setTypeId(save.getId());
             byTypeId.setUserType(6);//6是空间
+            Date time = new Date();
+            byTypeId.setCreated(time);
             userDao.save(byTypeId);
         }
 

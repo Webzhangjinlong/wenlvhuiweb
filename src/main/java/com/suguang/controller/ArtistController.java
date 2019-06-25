@@ -162,6 +162,8 @@ public class ArtistController {
             ymUser.setName(name);
             ymUser.setTypeId(save.getId());
             ymUser.setUserType(2);
+            Date time = new Date();
+            ymUser.setCreated(time);
             userDao.save(ymUser);
         }else{
             YmUser byTypeId = userDao.getByTypeId(Integer.parseInt(id));
@@ -173,6 +175,8 @@ public class ArtistController {
             byTypeId.setName(name);
             byTypeId.setTypeId(save.getId());
             byTypeId.setUserType(2);
+            Date time = new Date();
+            byTypeId.setCreated(time);
             userDao.save(byTypeId);
         }
         if (pageNum==null) {

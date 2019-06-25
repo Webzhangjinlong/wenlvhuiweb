@@ -203,9 +203,10 @@ public class SchoolController {
             ymUser.setTypeId(save.getId());
             ymUser.setUserType(2);
             userDao.save(ymUser);
+            Date time = new Date();
+            ymUser.setCreated(time);
         }else{
             YmUser byTypeId = userDao.getByTypeId(Integer.parseInt(id));
-            byTypeId.setHeadPic(logourl);
             byTypeId.setPassword(password);
             byTypeId.setPhone(phone);
             byTypeId.setUsername(name);
@@ -213,6 +214,8 @@ public class SchoolController {
             byTypeId.setName(name);
             byTypeId.setTypeId(save.getId());
             byTypeId.setUserType(2);
+            Date time = new Date();
+            byTypeId.setCreated(time);
             userDao.save(byTypeId);
         }
 
