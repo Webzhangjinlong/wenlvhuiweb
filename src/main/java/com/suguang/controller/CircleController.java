@@ -67,6 +67,7 @@ public class CircleController {
     public String delete(HttpServletRequest request){
         String id = request.getParameter("id");
         ymCircleDao.deleteById(Integer.parseInt(id));
+        userDao.deleteByTypeId(Integer.parseInt(id));
         return "redirect:/circle/list?page=" + pageNum + "&size=" + sizeNum;    }
 
     //返回主页面列表

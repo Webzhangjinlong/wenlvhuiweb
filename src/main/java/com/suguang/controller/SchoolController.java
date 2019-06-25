@@ -115,7 +115,7 @@ public class SchoolController {
     public String schoolDelete(HttpServletRequest request) {
         String id = request.getParameter("id");
         schoolDao.deleteById(Integer.parseInt(id));
-
+       // userDao.deleteByTypeId(Integer.parseInt(id));
         return "redirect:/school/list?page=" + pageNum + "&size=" + sizeNum;
     }
 

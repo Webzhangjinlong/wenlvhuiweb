@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface UserDao extends JpaRepository<YmUser,Integer> {
      YmUser getById(Integer id);
      YmUser getByTypeId(Integer id);
+     YmUser deleteByTypeId(Integer id);
 }

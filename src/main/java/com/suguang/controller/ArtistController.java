@@ -75,6 +75,7 @@ public class ArtistController {
     public String YmArtistDelete(HttpServletRequest request) {
         String id = request.getParameter("id");
         YmArtistDao.deleteById(Integer.parseInt(id));
+       // userDao.deleteByTypeId(Integer.parseInt(id));
         return "redirect:/artist/artistList?page=" + pageNum + "&size=" + sizeNum;
 //        return "redirect:/YmArtist/list";
     }

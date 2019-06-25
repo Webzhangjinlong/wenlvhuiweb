@@ -31,9 +31,6 @@ public class LoginController {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         YmUser ymUser = loginDao.getByUsernameAndPassword(username,password);
-        HttpSession session = request.getSession();
-        session.setAttribute("UserSession", ymUser);
-
         if (ymUser != null) {
             if (ymUser.getUserType() == 3) {
                 return "商家对应的主页面";
@@ -42,14 +39,11 @@ public class LoginController {
 
                 Integer htypeId = ymUser.getTypeId();
                 if(htypeId != null && !htypeId.equals("") && !htypeId.equals("null")){
-                    YmRestaurant result = hotelDao.getById(htypeId);
-                    model.addAttribute("hotelAddById",result);
+                    //返回餐厅对应的主页
+                    return "redirect:/hotel/update?id="+htypeId;
 
-                    YmUser byTypeIdd = userDao.getByTypeId(htypeId);
-                    model.addAttribute("userbyTypeId",byTypeIdd);
                 }
-                //返回餐厅对应的主页
-                return "hotelAddById";
+
             }
             if (ymUser.getUserType() == 9) {
                 //返回管理员的主页

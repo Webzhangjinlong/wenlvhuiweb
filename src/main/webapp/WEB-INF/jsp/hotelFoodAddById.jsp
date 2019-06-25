@@ -44,7 +44,7 @@ pageEncoding="UTF-8"%>
 		<hr style="background: red; height: 2px; margin-top: 5px">
 	</div>
  		<div>
-			<form class="form-horizontal" id="form1" role="form" action="/hotel/addUpdate">
+			<form class="form-horizontal" id="form1" role="form" action="">
 
 				<div>
 					<input type="hidden" name="id" value="${ymFood.id}">
