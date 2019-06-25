@@ -158,9 +158,9 @@
 					<div class="layui-upload" style="float: right; margin-right: 200px; margin-top: -190px">
 						<button type="button" class="layui-btn" id="test4">上传学校背景图：</button>
 						<div class="layui-upload-list">
-							<img class="layui-upload-img" id="demo4" src="${byImgTypeAndPidAndImageType.imgUrl}">
+							<img class="layui-upload-img" id="demo4" src="${byImgTypeAndPidAndImageType}">
 						</div>
-						<input id="backImg" name="backImg" type="hidden" />
+						<input id="imgUrl" name="imgUrl" type="hidden" />
 						<p id="demoText3"></p>
 					</div>
                     <div class="form-group">
@@ -206,7 +206,6 @@
 		</div>
 		<table class="layui-table" lay-skin="line" style="text-align: center; overflow: hidden; width: 80%">
 			<tr style="font-weight: bold;">
-				<td width="25">名称</td>
 				<td width="25">状态</td>
 				<td width="25">图片</td>
 				<td width="25">描述</td>
@@ -248,7 +247,6 @@
 			</div>
 			<table class="layui-table" lay-skin="line" style="text-align: center; overflow: hidden; width: 80%">
 				<tr style="font-weight: bold;">
-					<td width="25">名称</td>
 					<td width="25">状态</td>
 					<td width="25">图片</td>
 					<td width="25">描述</td>
@@ -336,7 +334,7 @@
                     if(res.code > 0){
                         return layer.msg('上传失败');
                     }
-                    $('#backImg').val(''+ res.data[0]);
+                    $('#imgUrl').val(''+ res.data[0]);
                     //上传成功
                 }
                 ,error: function(){
