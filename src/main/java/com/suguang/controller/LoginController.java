@@ -32,6 +32,12 @@ public class LoginController {
         String password = request.getParameter("password");
         YmUser ymUser = loginDao.getByUsernameAndPassword(username,password);
         if (ymUser != null) {
+            if(ymUser.getUserType()==2){
+                Integer htypeId = ymUser.getTypeId();
+                if(htypeId != null && !htypeId.equals("") && !htypeId.equals("null")){
+                    return "redirect:/artist1/update1?id="+htypeId;
+                }
+            }
             if (ymUser.getUserType() == 3) {
                 return "商家对应的主页面";
             }
@@ -40,7 +46,7 @@ public class LoginController {
                 Integer htypeId = ymUser.getTypeId();
                 if(htypeId != null && !htypeId.equals("") && !htypeId.equals("null")){
                     //返回餐厅对应的主页
-                    return "redirect:/hotel/update?id="+htypeId;
+                    return "redirect:/hotel1/update1?id="+htypeId;
 
                 }
 

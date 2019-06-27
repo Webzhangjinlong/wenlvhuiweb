@@ -44,7 +44,7 @@
 	<hr style="background: red; height: 2px; margin-top: 5px">
 </div>
 <div>
-	<form class="form-horizontal" role="form" id="form1" action="/hotel/preUpdate1">
+	<form class="form-horizontal" role="form" id="form1" action="/hotel1/preUpdate1">
 		<div>
 			<input type="hidden" name="id" value="${hotel.id}">
 		</div>

@@ -19,7 +19,7 @@ pageEncoding="UTF-8" %>
     <div class="kit-login-bg"></div>
     <div class="kit-login-wapper">
       <h2 style="color: #000000" class="kit-login-slogan">欢迎使用 <br> 文旅惠后台管理系统</h2>
-        <form action="/user/login">
+        <form method="post" action="/user/login">
             账号：<input type="username" name="username"><br>
             密码：<input type="password" name="password"><br>
             <input class="layui-btn layui-btn-xs" style="margin-left: 150px; margin-top: 10px" type="submit" value="确定登陆">

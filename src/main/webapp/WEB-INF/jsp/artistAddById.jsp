@@ -72,7 +72,7 @@
     <hr style="background: red; height: 2px">
 </div>
 <div>
-    <form class="form-horizontal" id="form1" role="form" action="/artist/saveupdate" method="post">
+    <form class="form-horizontal" id="form1" role="form" action="/artist1/saveupdate1" method="post">
 
         <div>
             <input type="hidden" name="id" value="${addYmArtist.id}">
@@ -221,7 +221,7 @@
                         alert("请添加完成艺人之后在添加视频！")
                         document.getElementById("aa").disabled = true;
                     }
-                    window.location.href="/artist/video"
+                    window.location.href="/artist1/video1"
                 }
             </script>
         </button>
@@ -260,11 +260,11 @@
 
 <script type="text/javascript">
     function deleteImgById(id){
-        window.location.href="/artist/deleteImg?id="+id;
+        window.location.href="/artist1/deleteImg1?id="+id;
     }
 
     function deleteVideoById(id){
-        window.location.href="/artist/deleteVideo?id="+id;
+        window.location.href="/artist1/deleteVideo1?id="+id;
     }
 </script>
 <script type="text/javascript">

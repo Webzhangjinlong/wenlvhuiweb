@@ -1,0 +1,244 @@
+package com.suguang.controller;
+
+import com.suguang.dao.FoodDao;
+import com.suguang.dao.HotelDao;
+import com.suguang.dao.UserDao;
+import com.suguang.domin.YmFood;
+import com.suguang.domin.YmRestaurant;
+import com.suguang.domin.YmUser;
+import com.suguang.service.HotelService;
+import com.suguang.util.YmStaticVariablesUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * Created by 11491 on 2019/5/29.
+ * 登陆后跳转至分页面，此处跳转至餐馆页面
+ */
+
+@Controller
+@RequestMapping("/hotel1")
+public class HotelController1 {
+    @Autowired
+    private HotelDao hotelDao;
+    @Autowired
+    private HotelService hotelService;
+    @Autowired
+    private FoodDao foodDao;
+    @Autowired
+    private UserDao userDao;
+
+    private Integer pageNum;
+    private Integer sizeNum;
+    private String hotelid;
+
+
+    //查询所有
+//    @GetMapping("/list1")
+//    public String getAllByPage(HttpServletRequest request, Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size) {
+//        pageNum = page == null ? 1 : page;
+//        sizeNum = size == null ? 10 : size;
+//
+//        Page<YmRestaurant> sourceCode = hotelService.getHotel(pageNum, sizeNum);
+//        model.addAttribute("hotelList", sourceCode);
+//        return "hotelList";
+//    }
+
+    //修改
+    //获取修改页，并且将需要修改的信息回显在修改页上
+    @RequestMapping("/update1")
+    public String showUpdate(HttpServletRequest request,Model model){
+        hotelid = request.getParameter("id");
+        if(hotelid != null && !hotelid.equals("") && !hotelid.equals("null")){
+            YmRestaurant result = hotelDao.getById(Integer.parseInt(hotelid));
+            model.addAttribute("hotel",result);
+            List<YmFood> foods = foodDao.getByRestaurantId(Integer.parseInt(hotelid));
+            model.addAttribute("foodList",foods);
+
+            YmUser byTypeIdd = userDao.getByTypeId(Integer.parseInt(hotelid));
+            model.addAttribute("byTypeIdd",byTypeIdd);
+
+            return "hotelAddById";
+        }
+        return "";
+    }
+
+    //获取添加页面
+    @RequestMapping("/add1")
+    public  String add(){
+        return "hotelAdd";
+    }
+
+    //在文本框输入数据，然后保存在数据库
+    @RequestMapping("/preUpdate1")
+    public String preUpdate(HttpServletRequest request,Model model){
+        String id = request.getParameter("id");
+        String restaurantName = request.getParameter("restaurantName");
+        String restaurantType = request.getParameter("restaurantType");
+        //request.getParameter("");
+        String averageConsumption = request.getParameter("averageConsumption");
+        String starClass = request.getParameter("starClass");
+        String city = request.getParameter("city");
+        String area = request.getParameter("area");
+        String addrDetail = request.getParameter("addrDetail");
+        String longitude = request.getParameter("longitude");
+        String latitude = request.getParameter("latitude");
+        String restaurantImg = request.getParameter("restaurantImg");
+        String restaurantBackimage = request.getParameter("restaurantBackimage");
+        String restaurantTag = request.getParameter("restaurantTag");
+        String restaurantDetail = request.getParameter("restaurantDetail");
+        String phone = request.getParameter("phone");
+        String password = request.getParameter("password");
+
+        YmRestaurant ymRestaurant = new YmRestaurant();
+
+        //此处一定要加判断ID是否为空，否怎会报错，即使不为空也报错
+        if(id != null && !id.equals("") && !id.equals("null")) {
+            ymRestaurant.setId(Integer.parseInt(id));
+        }
+        ymRestaurant.setRestaurantName(restaurantName);
+        ymRestaurant.setRestaurantType(restaurantType);
+        ymRestaurant.setAverageConsumption(Integer.parseInt(averageConsumption));
+        ymRestaurant.setStarClass(Integer.parseInt(starClass));
+        ymRestaurant.setCity(city);
+        ymRestaurant.setArea(area);
+        ymRestaurant.setAddrDetail(addrDetail);
+        ymRestaurant.setLongitude(longitude);
+        ymRestaurant.setLatitude(latitude);
+        ymRestaurant.setRestaurantImg(restaurantImg);
+        ymRestaurant.setRestaurantBackimage(restaurantBackimage);
+        ymRestaurant.setRestaurantTag(Integer.parseInt(restaurantTag));
+        ymRestaurant.setRestaurantDetail(restaurantDetail);
+        YmRestaurant save = hotelDao.save(ymRestaurant);
+        model.addAttribute("hotel", save);
+
+        if (id.equals("")) {
+            YmUser ymUser = new YmUser();
+            //ymUser.setHeadPic(artistLogourl);
+            ymUser.setPassword(password);
+            ymUser.setPhone(phone);
+            ymUser.setUsername(phone);
+            ymUser.setNickName(restaurantName);
+            ymUser.setName(restaurantName);
+            ymUser.setTypeId(save.getId());
+            ymUser.setUserType(4);
+            Date time = new Date();
+            ymUser.setCreated(time);
+            userDao.save(ymUser);
+        }else{
+            YmUser byTypeId = userDao.getByTypeId(Integer.parseInt(id));
+            byTypeId.setPassword(password);
+            byTypeId.setPhone(phone);
+            byTypeId.setUsername(phone);
+            byTypeId.setNickName(restaurantName);
+            byTypeId.setName(restaurantName);
+            byTypeId.setTypeId(save.getId());
+            byTypeId.setUserType(4);
+            Date time = new Date();
+            byTypeId.setCreated(time);
+            userDao.save(byTypeId);
+        }
+
+//        if (pageNum==null) {
+//            pageNum =1;
+//        }
+//        if (sizeNum ==null) {
+//            sizeNum =10;
+//        }
+        //return "redirect:/hotel1/update1";
+        return "redirect:/hotel1/update1?id=" + hotelid;
+    }
+
+    //餐厅删除
+    @RequestMapping("/delete1")
+    public String delete(HttpServletRequest request){
+        String id = request.getParameter("id");
+        if(id != null && !id.equals("") && !id.equals("null")) {
+            hotelDao.deleteById(Integer.parseInt(id));
+           // userDao.deleteByTypeId(Integer.parseInt(id));
+            return "redirect:/hotel1/list1?page=" + pageNum + "&size=" + sizeNum;
+        }
+        return "/";
+    }
+
+    //通过饭店id获取菜品，并且渲染页面
+    @RequestMapping("/updateFood1")
+    public String updateFood(HttpServletRequest request,Model model){
+        String id = request.getParameter("id");
+        YmFood ymFood = foodDao.getById(Integer.parseInt(id));
+        model.addAttribute("ymFood",ymFood);
+        return "hotelFoodAdd";
+    }
+
+    //修改添加菜品
+    @RequestMapping("/addUpdate1")
+    public String addUpdate(HttpServletRequest request,Model model){
+        String id = request.getParameter("id");
+        String foodName = request.getParameter("foodName");
+        String foodType = request.getParameter("foodType");
+        String foodPrice = request.getParameter("foodPrice");
+        String imgUrl = request.getParameter("imgUrl");
+        String videoUrl = request.getParameter("videoUrl");
+        String foodDetail = request.getParameter("foodDetail");
+        String upNum = request.getParameter("upNum");
+        String imgOrVideo = request.getParameter("imgOrVideo");
+
+        YmFood ymFood = new YmFood();
+
+        if (id != null && !id.equals("") && !id.equals("null")) {
+            ymFood.setId(Integer.parseInt(id));
+        }
+        ymFood.setFoodName(foodName);
+        ymFood.setRestaurantId(Integer.parseInt(hotelid));
+        ymFood.setFoodType(Integer.parseInt(foodType));
+        BigDecimal bigDecimal1 = new BigDecimal(Double.parseDouble(foodPrice));
+        ymFood.setFoodPrice(bigDecimal1);
+        ymFood.setUpNum(Integer.parseInt(upNum));
+        ymFood.setImgUrl(imgUrl);
+        ymFood.setVideoUrl(videoUrl);
+        ymFood.setFoodDetail(foodDetail);
+        ymFood.setImgOrVideo(Integer.parseInt(imgOrVideo));
+        //富文本和上传视频图片未写
+        foodDao.save(ymFood);
+
+        return "redirect:/hotel1/update1?id="+hotelid;
+
+    }
+
+    //跳转添加页面
+    @RequestMapping("/addFood1")
+    public String addFood(HttpServletRequest request){
+        return "hotelFoodAdd";
+    }
+
+    //删除菜单菜品
+    @RequestMapping("/deleteFood1")
+    public String deleteFood(HttpServletRequest request){
+        String id = request.getParameter("id");
+        foodDao.deleteById(Integer.parseInt(id));
+        return "redirect:/hotel1/update1?id="+hotelid;
+    }
+
+
+    //返回服务器资源
+    @RequestMapping(value = "export_xls", method = RequestMethod.GET)
+    public ResponseEntity<FileSystemResource> exportXls(HttpServletRequest request) {
+        String file = request.getParameter("file");
+        return UploadController.export(new File(YmStaticVariablesUtil.UPLOAD_PATH+file));
+    }
+
+}
