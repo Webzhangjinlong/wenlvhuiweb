@@ -9,7 +9,7 @@ pageEncoding="UTF-8" %>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Login</title>
+  <title>欢迎进入文旅惠后台管理系统</title>
   <link rel="stylesheet" href="/layui/css/layui.css">
   <link rel="stylesheet" href="/css/login.css">
 </head>
@@ -22,7 +22,7 @@ pageEncoding="UTF-8" %>
         <form action="/user/login">
             账号：<input type="username" name="username"><br>
             密码：<input type="password" name="password"><br>
-            <input class="layui-btn layui-btn-sm" style="margin-left: 150px; margin-top: 10px" type="submit" value="确定登陆">
+            <input class="layui-btn layui-btn-xs" style="margin-left: 150px; margin-top: 10px" type="submit" value="确定登陆">
         </form>
     </div>
   </div>
