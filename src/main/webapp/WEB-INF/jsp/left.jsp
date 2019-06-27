@@ -49,7 +49,7 @@ pageEncoding="UTF-8"%>
 		  <li class="layui-nav-item">
 		  	<a href="javascript:;">系统管理</a>
 			  	<dl class="layui-nav-child">
-			      <dd><a href="" target="showframe">广告管理</a></dd>
+			      <dd><a href="/advertising/manager" target="showframe">广告管理</a></dd>
 			      <dd><a href=""  target="showframe">数据管理</a></dd>
 			      <dd><a href="/user/list"  target="showframe">会员管理</a></dd>
 			      <dd><a href=""  target="showframe">订单管理</a></dd>

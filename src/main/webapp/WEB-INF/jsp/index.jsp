@@ -12,8 +12,8 @@ pageEncoding="UTF-8"%>
 		  		<frame id="top" name="top" src="/index/top" scrolling="no"/>
 		  	</frameset>
 		  	<frameset rows="*" cols="13%,87%">
-		  		<frame id="left" name="left" src="/index/left" scrolling="no"/>
-		  		<frame id="auto" name="auto" scrolling="auto" noresize="" border="0" name="showframe" src="/user/list"/>
+		  		<frame src="/index/left" scrolling="no"/>
+		  		<frame scrolling="auto" noresize="" border="0" name="showframe" src="/user/list"/>
 		  		<frame name="showframe" scrolling="auto"/>
 		  	</frameset>
   		</frameset>
