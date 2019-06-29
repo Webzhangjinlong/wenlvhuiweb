@@ -11,4 +11,14 @@ public class AdvertisingController {
     public String advertisingManager(){
         return "advertising";
     }
+
+    @RequestMapping("/indexImage")
+    public String indexImage(){
+        return "advertisingIndexImage";
+    }
+
+    @RequestMapping("/schoolImage")
+    public String schoolImage(){
+        return "advertisingSchoolImage";
+    }
 }

@@ -89,7 +89,12 @@
             </td>
             <td>www.baidu.com</td>
             <td>
-                <button type="button" class="layui-btn layui-btn-xs layui-btn-normal">修改</button>
+                <button type="button" class="layui-btn layui-btn-xs layui-btn-normal" onclick="jump()">修改</button>
+                <script type="text/javascript">
+                    function jump() {
+                        window.location.href="/advertising/indexImage"
+                    }
+                </script>
             </td>
         </tr>
         <tr>
@@ -241,8 +246,15 @@
                 <button type="submit" class="layui-btn layui-btn-sm" style="margin-left: 280px; margin-top: -50px">确定</button>
             </div>
         </form>
+        <div class="layui-upload" style="margin-left: 400px; margin-top: -160px ">
+            <p style="margin-left: 30px">最新活动</p>
+            <div class="layui-upload-list">
+                <img class="layui-upload-img" id="demo11" style="margin-top: -10px">
+            </div>
+            <button type="button" class="layui-btn layui-btn-xs" id="test11" style="margin-top: -18px;margin-left: 20px">修改图片</button>
+        </div>
     </div>
-    <div style="float: right; margin-top: -155px">
+    <div style="float: right; margin-top: -140px">
         <div class="layui-upload" style="margin-right: 300px">
             <p style="margin-left: 30px">我的圈子</p>
             <div class="layui-upload-list">
@@ -251,7 +263,7 @@
             <button type="button" class="layui-btn layui-btn-xs" id="test9" style="margin-top: -18px; margin-left: 30px">修改图片</button>
         </div>
     </div>
-    <div style="float: right; margin-top: -155px">
+    <div style="float: right; margin-top: -140px">
         <div class="layui-upload" style="margin-right: 150px">
             <p style="margin-left: 30px">我的关注</p>
             <div class="layui-upload-list">
@@ -261,7 +273,7 @@
         </div>
     </div>
 </div>
-    <hr style="height: 1px;  margin-left: 5px; background: #92B8B1; margin-top: 0px">
+    <hr style="height: 1px;  margin-left: 5px; background: #92B8B1; margin-top: 22px">
     <div>
         <p style="font-weight: bold; color: #0C0C0C; font-size: 13px; margin-top: 0px;margin-left: 5px">★ 文艺培训标签管理</p>
         <hr style="height: 2px; margin-left: 5px; background: #d9534f; margin-top: 1px">
@@ -286,7 +298,12 @@
                     <td>1989-10-14</td>
                     <td>
                         <button type="button" class="layui-btn layui-btn-xs layui-btn-danger">删除</button>
-                        <button type="button" class="layui-btn layui-btn-xs layui-btn-normal">添加</button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-normal" onclick="jump1()">添加</button>
+                        <script type="text/javascript">
+                            function jump1() {
+                                window.location.href="/advertising/schoolImage"
+                            }
+                        </script>
                     </td>
                 </tr>
                 <tr>
@@ -320,6 +337,71 @@
                     <td>
                         <button type="button" class="layui-btn layui-btn-xs layui-btn-danger">删除</button>
                         <button type="button" class="layui-btn layui-btn-xs layui-btn-normal">添加</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr style="height: 1px;  margin-left: 5px; background: #92B8B1; margin-top: 22px">
+    <div>
+        <p style="font-weight: bold; color: #0C0C0C; font-size: 13px; margin-top: 0px;margin-left: 5px">★ 文旅路线标签管理</p>
+        <hr style="height: 2px; margin-left: 5px; background: #d9534f; margin-top: 1px">
+    </div>
+    <div>
+        <div class="layui-form" style="margin-left: 20px">
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th>图片</th>
+                    <th>名称</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <img src="/images/icon.jpg" width="35px" height="30px">
+                    </td>
+                    <td>周末嗨游</td>
+                    <td>1989-10-14</td>
+                    <td>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-danger">删除</button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-normal">修改</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="/images/icon.jpg" width="35px" height="30px">
+                    </td>
+                    <td>农家嗨乐</td>
+                    <td>1989-10-14</td>
+                    <td>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-danger">删除</button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-normal">修改</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="/images/icon.jpg" width="35px" height="30px">
+                    </td>
+                    <td>人气嗨爆</td>
+                    <td>1989-10-14</td>
+                    <td>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-danger">删除</button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-normal">修改</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="/images/icon.jpg" width="35px" height="30px">
+                    </td>
+                    <td>野驴路线</td>
+                    <td>1989-10-14</td>
+                    <td>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-danger">删除</button>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-normal">修改</button>
                     </td>
                 </tr>
                 </tbody>
@@ -619,6 +701,32 @@
                 });
             }
         });
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#test11'
+            , url: '/upload/'
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#demo11').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText11');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
     });
 </script>
 <script>
@@ -627,62 +735,6 @@
             ,layer = layui.layer
             ,layedit = layui.layedit
             ,laydate = layui.laydate;
-
-        //日期
-        laydate.render({
-            elem: '#date'
-        });
-        laydate.render({
-            elem: '#date1'
-        });
-
-        //创建一个编辑器
-        var editIndex = layedit.build('LAY_demo_editor');
-
-        //自定义验证规则
-        form.verify({
-            title: function(value){
-                if(value.length < 5){
-                    return '标题至少得5个字符啊';
-                }
-            }
-            ,pass: [
-                /^[\S]{6,12}$/
-                ,'密码必须6到12位，且不能出现空格'
-            ]
-            ,content: function(value){
-                layedit.sync(editIndex);
-            }
-        });
-
-        //监听指定开关
-        form.on('switch(switchTest)', function(data){
-            layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
-                offset: '6px'
-            });
-            layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
-        });
-
-        //监听提交
-        form.on('submit(demo1)', function(data){
-            layer.alert(JSON.stringify(data.field), {
-                title: '最终的提交信息'
-            })
-            return false;
-        });
-
-        //表单初始赋值
-        form.val('example', {
-            "username": "贤心" // "name": "value"
-            ,"password": "123456"
-            ,"interest": 1
-            ,"like[write]": true //复选框选中状态
-            ,"close": true //开关状态
-            ,"sex": "女"
-            ,"desc": "我爱 layui"
-        })
-
-
     });
 </script>
 </html>
