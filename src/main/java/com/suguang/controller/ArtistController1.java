@@ -1,15 +1,12 @@
 package com.suguang.controller;
 
-import com.suguang.Dto.SaveUpdateFormSubmit;
 import com.suguang.dao.ImgDao;
 import com.suguang.dao.UserDao;
-import com.suguang.dao.YmArtistDao;
 import com.suguang.dao.YmArtistDao;
 import com.suguang.domin.YmArtist;
 import com.suguang.domin.YmImage;
 import com.suguang.domin.YmUser;
 import com.suguang.service.ArtistService;
-
 import com.suguang.util.YmStaticVariablesUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
@@ -17,10 +14,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import java.io.File;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -32,8 +31,8 @@ import java.util.UUID;
  * Created by 11491 on 2019/6/1.
  */
 @Controller
-@RequestMapping("/artist")
-public class ArtistController {
+@RequestMapping("/artist1")
+public class ArtistController1 {
     @Autowired
     ArtistService YmArtistService;
     @Autowired
@@ -47,18 +46,18 @@ public class ArtistController {
     private Integer sizeNum;
     private String artistid;
 
-    @RequestMapping("/image")
+    @RequestMapping("/image1")
     public String imageByid(){
         return "artistImage";
     }
 
-    @RequestMapping("/video")
+    @RequestMapping("/video1")
     public String videoById(){
         return "artistVideo";
     }
 
     //查询所有活动
-    @GetMapping("/artistList")
+    @GetMapping("/artistList1")
     public String getAllByPage(HttpServletRequest request, Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size) {
         pageNum = page == null ? 1 : page;
         sizeNum = size == null ? 10 : size;
@@ -71,17 +70,17 @@ public class ArtistController {
     }
 
     //删除学校信息
-    @RequestMapping("/delete")
+    @RequestMapping("/delete1")
     public String YmArtistDelete(HttpServletRequest request) {
         String id = request.getParameter("id");
         YmArtistDao.deleteById(Integer.parseInt(id));
        // userDao.deleteByTypeId(Integer.parseInt(id));
-        return "redirect:/artist/artistList?page=" + pageNum + "&size=" + sizeNum;
-//        return "redirect:/YmArtist/list";
+        return "redirect:/artist1/artistList1?page=" + pageNum + "&size=" + sizeNum;
+//        return "redirect:/YmArtist1/list1";
     }
 
     //通过id获取修改页面，并将要修改的数据在修改页面渲染
-    @RequestMapping("/update")
+    @RequestMapping("/update1")
     public String YmArtistpreUpdate(HttpServletRequest request, Model model) {
         artistid = request.getParameter("id");
 
@@ -108,17 +107,17 @@ public class ArtistController {
         YmUser byTypeId = userDao.getByTypeId(Integer.parseInt(artistid));
         model.addAttribute("byTypeId",byTypeId);
         model.addAttribute("addYmArtist", ymYmArtist);
-        return "artistAdd";
+        return "artistAddById";
 
     }
 
-    @RequestMapping("/add")
+    @RequestMapping("/add1")
     public String add() {
         return "artistAdd";
     }
 
     //将信息保存，返回到列表页
-    @RequestMapping(value = "/saveupdate")
+    @RequestMapping(value = "/saveupdate1")
     public String YmArtistSaveUpdate(HttpServletRequest request, Model model) throws ParseException {
 
         String id = request.getParameter("id");
@@ -180,38 +179,38 @@ public class ArtistController {
             byTypeId.setCreated(time);
             userDao.save(byTypeId);
         }
-        if (pageNum==null) {
-            pageNum =1;
-        }
-        if (sizeNum ==null) {
-            sizeNum =10;
-        }
+//        if (pageNum==null) {
+//            pageNum =1;
+//        }
+//        if (sizeNum ==null) {
+//            sizeNum =10;
+//        }
 
-        return "redirect:/artist/artistList?page=" + pageNum + "&size=" + sizeNum;
+        return "redirect:/artist1/update1?id=" + artistid;
 
     }
 
     //删除对应图片
-    @RequestMapping("/deleteImg")
+    @RequestMapping("/deleteImg1")
     public String imgDelete(HttpServletRequest request, Model model) {
         //图片ID
         String id = request.getParameter("id");
         imgDao.deleteById(Integer.parseInt(id));
 
-        return "redirect:/artist/update?id=" + artistid;
+        return "redirect:/artist1/update1?id=" + artistid;
 
     }
 
     //删除对应视频
-    @RequestMapping("/deleteVideo")
+    @RequestMapping("/deleteVideo1")
     public String videoDelete(HttpServletRequest request) {
         String id = request.getParameter("id");
         imgDao.deleteById(Integer.parseInt(id));
-        return "redirect:/artist/update?id=" + artistid;
+        return "redirect:/artist1/update1?id=" + artistid;
     }
 
     //添加图片模态框
-    @RequestMapping("/addImg")
+    @RequestMapping("/addImg1")
     public String addImg(HttpServletRequest request, Model model) {
         //艺人ID
         String imgName = request.getParameter("imageName");
@@ -227,11 +226,11 @@ public class ArtistController {
         ymImage.setImgUrl(imgUrl);
         imgDao.save(ymImage);
 
-        return "redirect:/artist/update?id=" + artistid;
+        return "redirect:/artist1/update1?id=" + artistid;
     }
 
     //添加视频模态框
-    @RequestMapping("/addVideo")
+    @RequestMapping("/addVideo1")
     public String addVideo(HttpServletRequest request, Model model) {
         //学校ID
 
@@ -251,7 +250,7 @@ public class ArtistController {
 
         imgDao.save(ymImage);
 
-        return "redirect:/artist/update?id=" + artistid;
+        return "redirect:/artist1/update1?id=" + artistid;
     }
 
     //返回服务器资源

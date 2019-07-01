@@ -60,7 +60,7 @@ public class YmSpaceController {
     public String Spacedelete(HttpServletRequest request) {
         String id = request.getParameter("id");
         ymSpaceDao.deleteById(Integer.parseInt(id));
-
+      //  userDao.deleteByTypeId(Integer.parseInt(id));
         return "redirect:/space/list?page=" + pageNum + "&size=" + sizeNum;
 
     }

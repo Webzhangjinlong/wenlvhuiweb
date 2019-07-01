@@ -170,6 +170,7 @@ public class CarftsmanController {
     public String delete(HttpServletRequest request) {
         String id = request.getParameter("id");
         craftsmanDao.deleteById(Integer.parseInt(id));
+        userDao.deleteByTypeId(Integer.parseInt(id));
 
         return "redirect:/craftsman/list?page=" + pageNum + "&size=" + sizeNum;
         // return "redirect:/craftsman/list";
