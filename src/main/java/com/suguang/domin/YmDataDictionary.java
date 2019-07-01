@@ -1,10 +1,18 @@
 package com.suguang.domin;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * 数据字典表
  */
+@Entity
 public class YmDataDictionary extends YmEntity {
-	
+
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
 	    Integer id ;//   int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
 	    String dataType ;//   varchar(255) DEFAULT NULL COMMENT '数据类型   活动菜单  主页菜单  图书分类等',
 	    String dataName ;//   varchar(255) DEFAULT NULL COMMENT '数据名称',
