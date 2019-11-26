@@ -226,6 +226,8 @@
                 <input class="form-control" id="libraryAddress" type="text" name="libraryAddress" value="${ymBook.libraryAddress}" placeholder="图书馆多个请以，号分隔">
             </div>
         </div>
+
+
         <div class="layui-upload" style="float: right; margin-right: 400px; margin-top: -300px">
             <button type="button" class="layui-btn" id="test1">上传图书封面图</button>
             <div class="layui-upload-list">
