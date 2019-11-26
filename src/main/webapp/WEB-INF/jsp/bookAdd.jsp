@@ -50,7 +50,7 @@
     <hr style="background: red; height: 2px; margin-top: 5px">
 </div>
 <div>
-    <form class="form-horizontal" role="form" action="/book/addUpdate" id="form1">
+    <form class="layui-form" role="form" action="/book/addUpdate" id="form1">
         <div>
             <input type="hidden" name="id" value="${ymBook.id}">
         </div>

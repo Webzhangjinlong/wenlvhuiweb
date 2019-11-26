@@ -17,7 +17,6 @@
         }
 
         td {
-            width: 100%;
             word-break: keep-all; /* 不换行 */
             white-space: nowrap; /* 不换行 */
             overflow: hidden; /* 内容超出宽度时隐藏超出部分的内容 */
@@ -61,15 +60,15 @@
 
         <c:forEach items="${list.content}" var="list">
             <tr>
-                <td>${ list.shopsName}</td>
-                <td>${ list.shopsSlogan}</td>
-                <td>${ list.city}</td>
-                <td>${ list.area}</td>
-                <td>${ list.longitude}</td>
-                <td>${ list.latitude}</td>
-                <td>${ list.addrDetail}</td>
-                <td>${ list.createDate}</td>
-                <td>
+                <td style="width: 10%">${ list.shopsName}</td>
+                <td style="width: 10%">${ list.shopsSlogan}</td>
+                <td style="width: 10%">${ list.city}</td>
+                <td style="width: 10%">${ list.area}</td>
+                <td style="width: 10%">${ list.longitude}</td>
+                <td style="width: 10%">${ list.latitude}</td>
+                <td style="width: 10%">${ list.addrDetail}</td>
+                <td style="width: 10%">${ list.createDate}</td>
+                <td style="width: 10%">
                     <button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ list.id})">修改/详情
                     </button>
                     <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ list.id})">删除

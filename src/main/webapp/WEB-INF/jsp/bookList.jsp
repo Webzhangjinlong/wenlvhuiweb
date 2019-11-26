@@ -75,7 +75,6 @@
 
                 <td>
                     <button class="layui-btn layui-btn-sm layui-btn-warm" onclick="updateById(${ bookList.id})">修改</button>
-                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteById(${ bookList.id})">删除</button>
                 </td>
             </tr>
         </c:forEach>

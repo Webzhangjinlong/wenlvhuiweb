@@ -3,7 +3,6 @@ package com.suguang.controller;
 import com.suguang.dao.HotelDao;
 import com.suguang.dao.LoginDao;
 import com.suguang.dao.UserDao;
-import com.suguang.domin.YmRestaurant;
 import com.suguang.domin.YmUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

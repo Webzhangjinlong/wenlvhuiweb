@@ -83,7 +83,7 @@ pageEncoding="UTF-8"%>
                     if (res.code > 0) {
                         return layer.msg('上传失败！')
                     }
-                    $('#imgUrl').val('' + res.data[0]);
+                    $('#').val('' + res.data[0]);
                     return layer.msg('上传成功！')
                 }
                 , error: function () {
